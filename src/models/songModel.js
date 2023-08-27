@@ -17,7 +17,6 @@ const songSchema = new mongoose.Schema({
     },
     totalStreams: {
         type: Number,
-        default: 0,
     },
     dailyStreams: {
         type: Object,

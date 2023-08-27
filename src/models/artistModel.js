@@ -23,19 +23,15 @@ const artistSchema = new mongoose.Schema({
     },
     totalStreams: {
         type: Number,
-        default: 0,
     },
     leadStreams: {
         type: Number,
-        default: 0,
     },
     soloStreams: {
         type: Number,
-        default: 0,
     },
     featureStreams: {
         type: Number,
-        default: 0,
     },
     dailyTotalStreams: {
         type: Object,
