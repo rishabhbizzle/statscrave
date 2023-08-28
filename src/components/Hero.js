@@ -1,48 +1,41 @@
 "use client"
 
 import React from 'react'
-import { motion } from 'framer-motion'
-import { slideIn, staggerContainer, textVariant } from '@/utils/motion';
 import Image from 'next/image'
-import HeroImage from "@/assets/cover.png"
+import HeroImage from "@/assets/robot.png"
+import styles from '@/styles/style'
 
 const Hero = () => {
   return (
-    <section className="flex justify-center sm:py-16 xs:py-8 py-12">
-      <motion.div
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: false, amount: 0.25 }}
-        className="2xl:max-w-[1280px] w-[90%] mx-auto flex flex-col"
-      >
-        <div className="flex justify-center items-center flex-col relative z-10 mb-14">
-          <motion.h1 variants={textVariant(1.1)} className="font-bold lg:text-[120px] md:text-[80px] sm:text-[55px] text-[45px] lg:leading-[158.4px] md:leading-[114.4px] sm:leading-[74.4px] leading-[64.4px] uppercase text-white">
-            SpotAnalytics
-          </motion.h1>
-          <motion.div
-            variants={textVariant(1.2)}
-            className="flex flex-row justify-center items-center"
-          >
-            <h1 className="font-bold lg:text-[40px] md:text-[25px] sm:text-[20px] text-[15px] uppercase text-white">By the fans for the fans</h1>
-            {/* <div className="md:w-[212px] sm:w-[80px] w-[60px] md:h-[108px] sm:h-[48px] h-[38px] md:border-[18px] border-[9px] rounded-r-[50px] rounded-l-[50px] border-white sm:mx-2 mx-[6px]"/> */}
-            {/* <h1 className="font-bold lg:text-[144px] md:text-[100px] sm:text-[60px] text-[44px] lg:leading-[158.4px] md:leading-[114.4px] sm:leading-[74.4px] leading-[64.4px] uppercase text-white">Ness</h1> */}
-          </motion.div>
+    <section id="home" className={`flex md:flex-row flex-col ${styles.paddingY}`}>
+      <div className={`flex-1 ${styles.flexStart} flex-col xl:px-0 sm:px-16 px-6`}>
+        <div className="flex flex-row items-center py-[6px] px-4 bg-discount-gradient rounded-[10px] mb-2">
+          {/* <img src={discount} alt="discount" className="w-[32px] h-[32px]" /> */}
+          <p className={`${styles.paragraph} ml-2`}>
+            <span className="text-white">By</span> the fans{" "}
+            <span className="text-white">For</span> the fans
+          </p>
         </div>
 
-        <motion.div
-          variants={slideIn('right', 'tween', 0.2, 1)}
-          className="relative w-full md:-mt-[20px] -mt-[12px]"
-        >
-          <div className="absolute w-full h-[300px] hero-gradient rounded-tl-[140px] z-[0] -top-[30px]" />
+        <div className="flex flex-row justify-between items-center w-full">
+          <h1 className="flex-1 text-gradient font-poppins font-semibold ss:text-[72px] text-[52px] ss:leading-[100.8px] leading-[75px]">
+            StatsForFans
+          </h1>
+        </div>
+        <p className={`${styles.paragraph} max-w-[470px] mt-5`}>
+        Updating stats for thousand of songs, albums from your favourite artists everyday.
+        </p>
+      </div>
 
-          <Image
-            src={HeroImage}
-            alt="hero_cover"
-            className="w-full sm:h-[500px] h-[350px] object-cover rounded-tl-[140px] z-10 relative"
-          />
-        </motion.div>
-      </motion.div>
+      <div className={`flex-1 flex ${styles.flexCenter} md:my-0 my-10 relative`}>
+        <Image src={HeroImage} alt="billing" className="w-[100%] h-[100%] relative z-[5]" />
+
+        {/* gradient start */}
+        <div className="absolute z-[0] w-[40%] h-[35%] top-0 pink__gradient" />
+        <div className="absolute z-[1] w-[80%] h-[80%] rounded-full white__gradient bottom-40" />
+        <div className="absolute z-[0] w-[50%] h-[50%] right-20 bottom-20 blue__gradient" />
+        {/* gradient end */}
+      </div>
     </section>
   )
 }

@@ -1,17 +1,36 @@
-import Hero from '@/components/Hero'
 import "./globals.css"
 import Navbar from '@/components/Navbar'
+import Hero from '@/components/Hero'
 import Image from 'next/image'
-import GetStarted from '@/components/GetStarted'
+import styles from '@/styles/style'
+import Stats from '@/components/Stats'
 
 export default function Home() {
   return (
-    <div className="bg-black overflow-hidden">
-      <Navbar />
-      <Hero />
-      <div className="relative">
-        <GetStarted />
-        <div className="gradient-04 z-0" />
+    <div className="bg-primary w-full overflow-hidden">
+      <div className={`${styles.paddingX} ${styles.flexCenter}`}>
+        <div className={`${styles.boxWidth}`}>
+          <Navbar />
+        </div>
+      </div>
+
+      <div className={`bg-primary ${styles.flexStart}`}>
+        <div className={`${styles.boxWidth}`}>
+          <Hero />
+        </div>
+      </div>
+
+      <div className={`bg-primary ${styles.paddingX} ${styles.flexCenter}`}>
+        <div className={`${styles.boxWidth}`}>
+          <Stats />
+          {/* <Business />
+          <Billing />
+          <CardDeal />
+          <Testimonials />
+          <Clients />
+          <CTA />
+          <Footer /> */}
+        </div>
       </div>
     </div>
   )

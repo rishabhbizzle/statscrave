@@ -1,37 +1,81 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { navVariants } from '@/utils/motion';
-import Image from 'next/image';
-import Search from '@/assets/search.svg';
-import Menu from '@/assets/menu.svg';
+import { useState } from "react";
+import logo from "../assets/logo.png";
+import menu from "../assets/menu.svg";
+import close from "../assets/close.svg";
+import Image from "next/image";
 
-const Navbar = () => (
-  <motion.nav
-    variants={navVariants}
-    initial="hidden"
-    whileInView="show"
-    className="sm:px-16 px-6 py-8 relative"
-  >
-    <div className="absolute w-[50%] inset-0 gradient-01" />
-    <div
-      className="lg:w-[80%] w-[100%] mx-auto flex justify-between gap-8"
-    >
-      <Image
-        src={Search}
-        alt="search"
-        className="w-[24px] h-[24px] object-contain"
-      />
-      <h2 className="font-extrabold text-[24px] leading-[30.24px] text-white">
-        METAVERSUS
-      </h2>
-      <Image
-        src={Menu}
-        alt="menu"
-        className="w-[24px] h-[24px] object-contain"
-      />
-    </div>
-  </motion.nav>
-);
+const Navbar = () => {
+  const navLinks = [
+    {
+      id: "home",
+      title: "Home",
+    },
+    {
+      id: "features",
+      title: "Features",
+    },
+    {
+      id: "product",
+      title: "Product",
+    },
+    {
+      id: "clients",
+      title: "Clients",
+    },
+  ];
+  const [active, setActive] = useState("Home");
+  const [toggle, setToggle] = useState(false);
+
+  return (
+    <nav className="w-full flex py-6 justify-between items-center navbar">
+      <Image src={logo} alt="hoobank" className="w-[60px] h-[60px]" />
+
+      <ul className="list-none sm:flex hidden justify-end items-center flex-1">
+        {navLinks.map((nav, index) => (
+          <li
+            key={nav.id}
+            className={`font-poppins font-normal cursor-pointer text-[16px] ${
+              active === nav.title ? "text-white" : "text-dimWhite"
+            } ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}`}
+            onClick={() => setActive(nav.title)}
+          >
+            <a href={`#${nav.id}`}>{nav.title}</a>
+          </li>
+        ))}
+      </ul>
+
+      <div className="sm:hidden flex flex-1 justify-end items-center">
+        <Image
+          src={toggle ? close : menu}
+          alt="menu"
+          className="w-[28px] h-[28px] object-contain"
+          onClick={() => setToggle(!toggle)}
+        />
+
+        <div
+          className={`${
+            !toggle ? "hidden" : "flex"
+          } p-6 bg-black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar`}
+        >
+          <ul className="list-none flex justify-end items-start flex-1 flex-col">
+            {navLinks.map((nav, index) => (
+              <li
+                key={nav.id}
+                className={`font-poppins font-medium cursor-pointer text-[16px] ${
+                  active === nav.title ? "text-white" : "text-dimWhite"
+                } ${index === navLinks.length - 1 ? "mb-0" : "mb-4"}`}
+                onClick={() => setActive(nav.title)}
+              >
+                <a href={`#${nav.id}`}>{nav.title}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
+};
 
 export default Navbar;

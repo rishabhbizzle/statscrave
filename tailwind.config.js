@@ -8,12 +8,22 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'primary-black': '#1A232E',
-        'secondary-white': '#c7c7c7',
+        primary: "#00040f",
+        secondary: "#00f6ff",
+        dimWhite: "rgba(255, 255, 255, 0.7)",
+        dimBlue: "rgba(9, 151, 124, 0.1)",
       },
-      transitionTimingFunction: {
-        'out-flex': 'cubic-bezier(0.05, 0.6, 0.4, 0.9)',
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
       },
+    },
+    screens: {
+      xs: "480px",
+      ss: "620px",
+      sm: "768px",
+      md: "1060px",
+      lg: "1200px",
+      xl: "1700px",
     },
   },
   plugins: [],
