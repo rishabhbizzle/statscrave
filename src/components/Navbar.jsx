@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import logo from "../assets/logo.png";
-import menu from "../assets/menu.svg";
-import close from "../assets/close.svg";
+import logo from "@/assets/logo.png";
+import menu from "@/assets/menu.svg";
+import close from "@/assets/close.svg";
 import Image from "next/image";
 
 const Navbar = () => {

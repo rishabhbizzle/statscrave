@@ -42,7 +42,7 @@ const FeatureCard = ({ icon, title, content, index }) => (
 const Feature = () =>  (
   <section id="features" className={layout.section}>
     <div className={layout.sectionInfo}>
-      <h2 className={styles.heading2}>
+      <h2 className="font-poppins font-semibold xs:text-[48px] text-[40px] text-white xs:leading-[76.8px] leading-[66.8px] w-full">
         You do the business, <br className="sm:block hidden" /> we’ll handle
         the money.
       </h2>

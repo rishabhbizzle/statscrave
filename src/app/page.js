@@ -5,6 +5,7 @@ import Image from 'next/image'
 import styles from '@/styles/style'
 import Stats from '@/components/Stats'
 import Feature from "@/components/Features"
+import Footer from "@/components/Footer"
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
         <div className={`${styles.boxWidth}`}>
           <Stats />
           <Feature />
+          <Footer />
           {/* <Business />
           <Billing />
           <CardDeal />
