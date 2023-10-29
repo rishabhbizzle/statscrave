@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import ProfileButton from "./ui/ProfileButton";
+import ProfileButton from "./ui/profileButton";
 import MenuIcon from '@mui/icons-material/Menu';
 
 const Navbar = () => {
