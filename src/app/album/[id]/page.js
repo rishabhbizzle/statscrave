@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useState, useEffect, use } from 'react'
-import styles from '@/styles/style'
 import Image from 'next/image'
 import axios from 'axios'
 import Container from '@/components/ui/container'
