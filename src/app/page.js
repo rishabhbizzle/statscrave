@@ -1,41 +1,15 @@
-import "./globals.css"
-import Navbar from '@/components/Navbar'
-import Hero from '@/components/Hero'
+"use client"
+
+import Navbar from '@/components/navbar'
+import { Button } from '@/components/ui/button'
+import Container from '@/components/ui/container'
+import { ModeToggle } from '@/components/ui/toggleButton'
 import Image from 'next/image'
-import styles from '@/styles/style'
-import Stats from '@/components/Stats'
-import Feature from "@/components/Features"
-import Footer from "@/components/Footer"
 
 export default function Home() {
   return (
-    <div className="bg-primary w-full overflow-hidden">
-      <div className={`${styles.paddingX} ${styles.flexCenter}`}>
-        <div className={`${styles.boxWidth}`}>
-          <Navbar />
-        </div>
-      </div>
-
-      <div className={`bg-primary ${styles.flexStart}`}>
-        <div className={`${styles.boxWidth}`}>
-          <Hero />
-        </div>
-      </div>
-
-      <div className={`bg-primary ${styles.paddingX} ${styles.flexCenter}`}>
-        <div className={`${styles.boxWidth}`}>
-          <Stats />
-          <Feature />
-          <Footer />
-          {/* <Business />
-          <Billing />
-          <CardDeal />
-          <Testimonials />
-          <Clients />
-          <CTA />
-          <Footer /> */}
-        </div>
-      </div>
-    </div>
+    <Container>
+      {/* <Navbar /> */}
+    </Container>
   )
 }

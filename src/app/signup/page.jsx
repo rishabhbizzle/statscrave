@@ -1,81 +1,78 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect } from "react";
-import {useRouter} from "next/navigation";
-import axios from "axios";
-
-
-
+import { SignUpForm } from "./signUpForm";
+import Image from "next/image";
+import Container from "@/components/ui/container";
+import AlbumCollage from "@/assets/albumCollages.jpg";
+import Logo from "@/assets/logo.png";
 
 export default function SignupPage() {
-    const router = useRouter();
-    const [user, setUser] = React.useState({
-        email: "",
-        password: "",
-        username: "",
-    })
-    const [buttonDisabled, setButtonDisabled] = React.useState(false);
-    const [loading, setLoading] = React.useState(false);
-
-    const onSignup = async () => {
-        try {
-            setLoading(true);
-            const response = await axios.post("/api/signup", user);
-            console.log("Signup success", response.data);
-            router.push("/login");
-            
-        } catch (error) {
-            console.log("Signup failed", error.message);
-        }finally {
-            setLoading(false);
-        }
-    }
-
-    useEffect(() => {
-        if(user.email.length > 0 && user.password.length > 0 && user.username.length > 0) {
-            setButtonDisabled(false);
-        } else {
-            setButtonDisabled(true);
-        }
-    }, [user]);
-
-
-    return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-        <h1>{loading ? "Processing" : "Signup"}</h1>
-        <hr />
-        <label htmlFor="username">username</label>
-        <input 
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
-            id="username"
-            type="text"
-            value={user.username}
-            onChange={(e) => setUser({...user, username: e.target.value})}
-            placeholder="username"
+  return (
+    <Container>
+      <div className="relative h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+        {/* <Link
+            href="/examples/authentication"
+            className={cn(
+              buttonVariants({ variant: "ghost" }),
+              "absolute right-4 top-4 md:right-8 md:top-8"
+            )}
+          >
+            Login
+          </Link> */}
+        <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
+          <div className="absolute inset-0 bg-zinc-900" />
+          <Image
+            src={AlbumCollage}
+            alt="Album Collage"
+            layout="fill"
+            objectFit="cover"
+            className="opacity-25"
+          />
+          <div className="relative z-20 flex flex-col items-center text-lg font-medium">
+            <Image
+              src={Logo}
+              alt="Logo"
+            //   width="300"
+            //   height="300"
+              className=""
             />
-        <label htmlFor="email">email</label>
-        <input 
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
-            id="email"
-            type="text"
-            value={user.email}
-            onChange={(e) => setUser({...user, email: e.target.value})}
-            placeholder="email"
-            />
-        <label htmlFor="password">password</label>
-        <input 
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
-            id="password"
-            type="password"
-            value={user.password}
-            onChange={(e) => setUser({...user, password: e.target.value})}
-            placeholder="password"
-            />
-            <button
-            onClick={onSignup}
-            className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">{buttonDisabled ? "No signup" : "Signup"}</button>
-            <Link href="/login">Visit login page</Link>
+            <p>
+            StatsForFans
+            </p>
+          </div>
         </div>
-    )
-
+        <div className="lg:p-8">
+          <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+            <div className="flex flex-col space-y-2 text-center">
+              <h1 className="text-2xl font-semibold tracking-tight">
+                Create an account
+              </h1>
+              <p className="text-sm text-muted-foreground">
+                Enter your email below to create your account
+              </p>
+            </div>
+            <SignUpForm />
+            <p className="px-8 text-center text-sm text-muted-foreground">
+              By clicking continue, you agree to our{" "}
+              <Link
+                href="/terms"
+                className="underline underline-offset-4 hover:text-primary"
+              >
+                Terms of Service
+              </Link>{" "}
+              and{" "}
+              <Link
+                href="/privacy"
+                className="underline underline-offset-4 hover:text-primary"
+              >
+                Privacy Policy
+              </Link>
+              .
+            </p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  );
 }
