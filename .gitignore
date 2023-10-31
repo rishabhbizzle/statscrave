@@ -5,6 +5,8 @@
 /.pnp
 .pnp.js
 
+/src/api/cron
+
 # testing
 /coverage
 
