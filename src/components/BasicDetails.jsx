@@ -13,7 +13,7 @@ export default function BasicDetails({ details, type = "artist"}) {
             width={400}
             height={400}
             className={cn(
-              "object-cover transition-all hover:scale-105 rounded-xl"
+              "object-cover rounded-xl"
             )}
           />
         </div>

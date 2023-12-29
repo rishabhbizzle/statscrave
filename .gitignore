@@ -35,3 +35,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+src/app/api/cron/controller.js
+src/app/api/cron/route.js

@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils'
 import StreamingDetails from '@/components/StreamingDetails'
 import OtherDetails from '@/components/OtherDetails'
 import BasicDetails from '@/components/BasicDetails'
+import { Recomendations } from '@/components/recomendations'
 
 
 
@@ -718,6 +719,7 @@ const Album = ({ params }) => {
       <div className="flex-1 space-y-4 pt-6">
         <StreamingDetails streamingData={albumData?.streamingData} type='album' />
         <OtherDetails details={albumData?.albumDetails} type='album' />
+        <Recomendations type='album' setLoading={setIsLoading} />
       </div>
 
     </Container>
