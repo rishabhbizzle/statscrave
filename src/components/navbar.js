@@ -8,9 +8,11 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import ProfileButton from "./ui/profileButton";
 import MenuIcon from '@mui/icons-material/Menu';
+import { UserButton, useUser } from "@clerk/nextjs";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
+  // const { isLoaded, user } = useUser()
   const routes = [
     {
       href: "/",
@@ -85,7 +87,8 @@ const Navbar = () => {
               <DarkModeIcon className="absolute h-6 w-6 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
               <span className="sr-only">Toggle Theme</span>
             </Button>
-            <ProfileButton />
+            {/* <ProfileButton /> */}
+            <UserButton afterSignOutUrl="/"/>
           </div>
         </div>
     </header>

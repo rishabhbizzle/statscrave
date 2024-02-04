@@ -2,6 +2,7 @@ import Navbar from '@/components/navbar'
 import './globals.css'
 import { ThemeProvider } from "@/components/theme-provider"
 import Footer from '@/components/footer'
+import { ClerkProvider } from '@clerk/nextjs'
 
 
 export const metadata = {
@@ -13,6 +14,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <>
+     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <head />
         <body>
@@ -27,6 +29,7 @@ export default function RootLayout({ children }) {
           </ThemeProvider>
         </body>
       </html>
+     </ClerkProvider>
     </>
   )
 }
