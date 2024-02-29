@@ -6,14 +6,18 @@ import { useTheme } from "next-themes";
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis,  CartesianGrid, Tooltip, Legend } from "recharts";
 
 
-export function BarChartComponent({ data }) {
+export function BarChartComponent({ data, formatted }) {
+  const formattedData = formatted ? data :  Object.keys(data).map((date) => ({
+    date,
+    streams: data[date],
+}));
   const { theme: mode } = useTheme();
   const [config] = useConfig();
   const theme = themes.find((theme) => theme.name === config.theme)
   return (
     <ResponsiveContainer width="100%" height={350}>
       <BarChart
-        data={data}
+        data={formattedData}
         style={{
           fill: "var(--theme-primary)",
           opacity: 1,
@@ -37,7 +41,7 @@ export function BarChartComponent({ data }) {
           // tickFormatter={(value) => `$${value}`}
         />
         <Tooltip />
-        <Bar dataKey="streams" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="streams" radius={[8, 8, 0, 0]}  />
       </BarChart>
     </ResponsiveContainer>
   );

@@ -42,6 +42,7 @@ import {
 } from "@/components/ui/table";
 import { rankItem } from "@tanstack/match-sorter-utils";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
+import { columnsData } from "@/lib/columns";
 
 const fuzzyFilter = (row, columnId, value, addMeta) => {
   const itemRank = rankItem(row.getValue(columnId), value);
@@ -52,11 +53,12 @@ const fuzzyFilter = (row, columnId, value, addMeta) => {
   return itemRank.passed;
 };
 
-export function DataTable({ data, columns, searchColumn }) {
+export function DataTable({ data, type, searchColumn }) {
   const [sorting, setSorting] = React.useState([]);
   const [columnFilters, setColumnFilters] = React.useState([]);
   const [columnVisibility, setColumnVisibility] = React.useState({});
   const [rowSelection, setRowSelection] = React.useState({});
+  const columns = columnsData[type];
 
   const table = useReactTable({
     data,
