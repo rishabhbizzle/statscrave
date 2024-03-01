@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { BarChartComponent } from "./barChart";
+import { getLatestDateValue } from "@/lib/helperFunctions";
 
 
 const percentageChange = (latest, old) => {
@@ -10,7 +11,7 @@ const percentageChange = (latest, old) => {
 }
 
 
-export default function StreamingDetails({ streamingData, type = 'artist'}) {
+export default function StreamingDetails({ streamingData, type }) {
   return (
     <>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
@@ -55,11 +56,9 @@ export default function StreamingDetails({ streamingData, type = 'artist'}) {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {streamingData?.dailyStreams[
-                streamingData?.dailyStreams?.length - 1
-              ].streams?.toLocaleString("en-US")}
+              {getLatestDateValue(streamingData?.dailyStreams)?.toLocaleString("en-US")}
             </div>
-            {streamingData?.dailyStreams?.length > 2 && (
+            {/* {streamingData?.dailyStreams?.length > 2 && (
               <p className="text-xs text-muted-foreground">
                 {percentageChange(
                   streamingData?.dailyStreams[
@@ -71,7 +70,7 @@ export default function StreamingDetails({ streamingData, type = 'artist'}) {
                 )}
                 % from previous day
               </p>
-            )}
+            )} */}
           </CardContent>
         </Card>
       </div>
