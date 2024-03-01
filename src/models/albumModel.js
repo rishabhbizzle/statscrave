@@ -6,6 +6,9 @@ const albumSchema = new mongoose.Schema({
         unique: true,
         required: [true, "Please provide a song id"],
     },
+    image:{
+        type: String,
+    },
     title: {
         type: String,
         required: [true, "Please provide a title"],

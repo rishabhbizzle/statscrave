@@ -11,6 +11,6 @@ const priorityArtistSchema = new mongoose.Schema({
 }
 )
 
-const PriorityArtist = mongoose.models.priorityArtist || mongoose.model("priorityArtists", priorityArtistSchema);
+const PriorityArtist = mongoose.models.priorityArtists || mongoose.model("priorityArtists", priorityArtistSchema);
 
 export default PriorityArtist;

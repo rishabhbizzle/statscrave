@@ -11,6 +11,9 @@ const songSchema = new mongoose.Schema({
         required: [true, "Please provide a title"],
         trim: true,
     },
+    image:{
+        type: String,
+    },
     artistSpotifyId: {
         type: String,
         ref: "artists",

@@ -1,11 +1,6 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    username: {
-        type: String,
-        required: [true, "Please provide a username"],
-        unique: true,
-    },
     email: {
         type: String,
         required: [true, "Please provide a email"],
@@ -29,6 +24,25 @@ const userSchema = new mongoose.Schema({
     verifyTokenExpiry: Date,
 })
 
+const userFavoriteSchema = new mongoose.Schema({
+    userId: {
+        type: String,
+        required: [true, "Please provide a user id"],
+    },
+    type: { 
+        type: String,
+        enum: ['artist', 'album', 'song'] 
+    },
+    spotifyId: { 
+        type: String,
+        required: [true, "Please provide a spotify id"],
+    }
+});
+
+
+
 const User = mongoose.models.users || mongoose.model("users", userSchema);
 
-export default User;
+const UserFavorite = mongoose.models.userFavorites || mongoose.model("userFavorites", userFavoriteSchema);
+
+export default { User, UserFavorite };

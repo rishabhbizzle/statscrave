@@ -6,6 +6,10 @@ const artistSchema = new mongoose.Schema({
         unique: true,
         required: [true, "Please provide a artist id"],
     },
+    image:{
+        type: String,
+        default: "",
+    },
     name: {
         type: String,
         required: [true, "Please provide a title"],
