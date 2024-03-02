@@ -1,5 +1,6 @@
 import {
   getArtistOverallDailyData,
+  getArtistRecords,
   getArtistStreamingData,
 } from "@/lib/actions";
 import React from "react";
@@ -13,13 +14,15 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { BarChartComponent } from "../barChart";
+import { InfiniteMovingCards } from "../ui/moving-cards";
 
 const ArtistOverview = async ({ id, artist }) => {
   const streamingData = await getArtistStreamingData(id);
   const overallData = await getArtistOverallDailyData(id);
+  // const records = await getArtistRecords(artist?.name);
   return (
     <div>
-      <div className="my-3 grid gap-4 md:grid-cols-3">
+      {/* <div className="my-3 grid gap-4 md:grid-cols-3">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Popularity</CardTitle>
@@ -85,7 +88,7 @@ const ArtistOverview = async ({ id, artist }) => {
             </div>
           </CardContent>
         </Card>
-      </div>
+      </div> */}
       <div className="my-3 grid gap-4 md:grid-cols-2">
         {overallData &&
           overallData?.map((data, index) => (
@@ -135,6 +138,14 @@ const ArtistOverview = async ({ id, artist }) => {
           ))}
       </div>
 
+      {/* <div>
+        <InfiniteMovingCards
+          items={records}
+          direction="right"
+          speed="slow"
+        />
+      </div> */}
+      
       {streamingData && (
         <div className="flex flex-col gap-8">
           <Card>
