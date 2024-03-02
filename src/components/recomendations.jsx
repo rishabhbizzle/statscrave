@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import Autoplay from "embla-carousel-autoplay";
+import React from "react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -8,72 +7,58 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import axios from "axios";
 import Image from "next/image";
 import { Button } from "./ui/button";
+import { getRecomendations } from "@/lib/actions";
+import Link from "next/link";
 
-export function Recomendations({ type, setLoading }) {
-  const [recomendations, setRecomendations] = useState([]);
-  const fetchRecomendations = async () => {
-    try {
-      await axios
-        .get(`/api/recomendations?type=${type}`)
-        .then((res) => {
-          setRecomendations(res?.data?.data?.recomendations);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    fetchRecomendations();
-  }, []);
+export async function Recomendations({ type }) {
+  const recomendations = await getRecomendations(type);
 
   return (
-    <div className="w-full flex justify-center px-10 flex-col">
-        <p className="text-2xl font-bold mb-5">Check out these {type}s too:</p>
-      <Carousel
-        plugins={[
-          Autoplay({
-            delay: 3500,
-          }),
-        ]}
-        opts={{
-          align: "start",
-          loop: true,
-        }}
-        className="w-full"
-      >
-        <CarouselContent>
-          {Array.from({ length: 10 }).map((_, index) => (
-            <CarouselItem
-              key={index}
-              className="md:basis-1/4 lg:basis-1/5"
-            >
-              <div className="p-1">
-                <Card>
-                  <CardContent className="flex aspect-square items-center justify-center flex-col p-0 hover:opacity-90 hover:scale-105  transition-all cursor-pointer">
-                    <Image
-                      src="https://i.scdn.co/image/ab67616d0000b273f46b9d202509a8f7384b90de"
-                      alt="test"
-                      width={500}
-                      height={500}
-                      className=" rounded-l object-"
-                    />
-                    <Button variant="none" className="w-full text-ellipsis overflow-hidden">Purpose</Button>
-                  </CardContent>
-                </Card>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
-    </div>
+    <Card>
+      <CardHeader>
+        <CardTitle>Check out these {type}s too:</CardTitle>
+        {/* <CardDescription>kk</CardDescription> */}
+      </CardHeader>
+      <CardContent>
+      <div className="w-full flex justify-center px-10 flex-col">
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="w-full"
+        >
+          <CarouselContent>
+            {recomendations.map((data, index) => (
+              <CarouselItem key={index} className="md:basis-1/4 lg:basis-1/5">
+                <Link href={`/${type}/${data?.spotifyId}`}>
+                <div className="p-1">
+                  <Card>
+                    <CardContent className="flex aspect-square items-center justify-center flex-col p-0 hover:opacity-90 hover:scale-105  transition-all cursor-pointer">
+                      <Image
+                        src={data?.image}
+                        alt="test"
+                        width={500}
+                        height={500}
+                        className=" rounded-l object-"
+                      />
+                      <Button variant="none" className="w-full truncate">
+                        {data?.title}
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </div>
+                </Link>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      </div>
+      </CardContent>
+    </Card>
   );
 }
