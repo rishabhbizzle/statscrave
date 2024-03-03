@@ -3,6 +3,12 @@ import puppeteer from "puppeteer"
 import Spotify from "@/helper/spotify";
 import { connect } from "@/dgConfig/dbConfig";
 import Artist from "@/models/artistModel";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import Album from "@/models/albumModel";
+import { UserFavorite } from "@/models/userModel";
+import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
+import { revalidatePath } from "next/cache";
+import Song from "@/models/songModel";
 
 const browser = await puppeteer.launch({ headless: "new" });
 
@@ -115,11 +121,18 @@ export const getArtistOverallDailyData = async (artistId) => {
 export const getArtistSpotifyApiData = async (id) => {
     await connect();
     const artist = await Spotify.artists.get(id)
-    // const topTracks = await Spotify.artists.topTracks(id, "ES");
-    const streamingData = await Artist.findOne({ spotifyId: id })
-    return { artist, streamingData };
+    return artist
 }
 
+export const getArtistMostPopularSongs = async (id) => {
+    const topTracks = await Spotify.artists.topTracks(id, "US");
+    return topTracks.tracks
+}
+
+export const getArtistStreamingData = async (id) => {
+    const streamingData = await Artist.findOne({ spotifyId: id })
+    return streamingData
+}
 
 export const getArtistDiscography = async (artistId) => {
     const songsData = await getArtistSongsDailyData(artistId);
@@ -127,3 +140,145 @@ export const getArtistDiscography = async (artistId) => {
     const albumData = await getArtistAlbumsDailyData(artistId);
     return { songsData, overallData, albumData };
 }
+
+export const getArtistRecords = async (name) => {
+    try {
+        let prompt = `Give 5 achievements of ${name}. Make sure the achievements are valid and legit. Your response should a single string in the format array contains objects with two keys title and details. The title is the name of the achievement and the details is the description of the achievement. For example: [{title: "Most streamed song", details: "The most streamed song by the artist is 'song name' with 100M streams"}]. Remember the string response should be in valid JSON format so that we can parse it without any errors.`
+        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+        const modelDetails = genAI.getGenerativeModel({ model: 'gemini-pro' })
+        const result = await modelDetails?.generateContent(prompt);
+        const text = result?.response?.text();
+        console.log(text);
+        let resultsObj = JSON.parse(text);
+        return resultsObj;
+    } catch (error) {
+        console.error(error);
+        return []
+    }
+}
+
+export const getAlbumData = async (id) => {
+    try {
+        await connect();
+        console.log('fetching album data:', id)
+        const albumDetails = await Spotify.albums.get(id, "US")
+        // const albumTracks = await Spotify.albums.tracks(id, "US", 50)
+        let streamingData = await Album.findOne({ spotifyId: id })
+        return { albumDetails, streamingData }
+    } catch (error) {
+        console.error(error);
+        return { albumDetails: null, streamingData: null }
+    }
+}
+
+export const getTrackData = async (id) => {
+    try {
+        await connect();
+        console.log('fetching track data:', id)
+        const trackDetails = await Spotify.tracks.get(id, "US")
+        // const albumTracks = await Spotify.albums.tracks(id, "US", 50)
+        let streamingData = await Song.findOne({ spotifyId: id })
+        return { trackDetails, streamingData }
+    } catch (error) {
+        console.error(error);
+        return { trackDetails: null, streamingData: null }
+    }
+}
+
+
+export const getRecomendations = async (type) => {
+    try {
+        await connect();
+        let recomendations;
+        if (type === "artist") {
+            // get the random 10 artists from database
+            recomendations = await Artist.aggregate([{ $sample: { size: 10 } }])
+        } else if (type === "track") {
+            // get the random 10 songs from database
+            recomendations = await Song.aggregate([{ $sample: { size: 10 } }])
+        } else if (type === "album") {
+            // get the random 10 albums from database
+            recomendations = await Album.aggregate([{ $sample: { size: 10 } }])
+        }
+        return recomendations
+    } catch (error) {
+        console.error(error);
+        return []
+    }
+}
+
+
+export const getUserFavourites = async () => {
+    try {
+        await connect();
+        const { getUser } = await getKindeServerSession();
+        let user = await getUser();
+        let kindeId = user?.id
+        let userFavourites = await UserFavorite.find({ kindeId: kindeId })
+        // divide the favourites into types
+        let artistFavourites = userFavourites.filter(fav => fav.type === "artist")
+        let albumFavourites = userFavourites.filter(fav => fav.type === "album")
+        let trackFavourites = userFavourites.filter(fav => fav.type === "track")
+        return { artistFavourites, albumFavourites, trackFavourites }
+    } catch (error) {
+        console.error(error);
+        return { artistFavourites: [], albumFavourites: [], trackFavourites: [] }
+    }
+}
+
+
+export const isUserFavorite = async (type, spotifyId) => {
+    try {
+        await connect();
+        const { getUser } = await getKindeServerSession();
+        let user = await getUser();
+        let kindeId = user?.id
+        let userFavourite = await UserFavorite.findOne({ kindeId: kindeId, type: type, spotifyId: spotifyId })
+        if (userFavourite){
+            return true
+        }
+        return false
+    } catch (error) {
+        console.error(error);
+        return false
+    }
+}
+
+
+export const markFavourite = async (type, spotifyId, image, name) => {
+    try {
+        if (!type || !spotifyId) throw new Error("Invalid type or id")
+        const { getUser } = await getKindeServerSession();
+        let user = await getUser();
+        let kindeId = user?.id
+        await connect();
+        let userFavourite = await UserFavorite.findOne({ kindeId: kindeId, type: type, spotifyId: spotifyId })
+        if (userFavourite) {
+            await UserFavorite.deleteOne({ kindeId: kindeId, type: type, spotifyId: spotifyId })
+            revalidatePath(`${type}/${spotifyId}`)
+            return { message: "Removed from favourites" , type: "success"}
+        } else {
+            await UserFavorite.create({ kindeId: kindeId, type: type, spotifyId: spotifyId, image: image, name:name})
+            revalidatePath(`/${type}/${spotifyId}`)
+            return { message: "Added to favourites" , type: "success"}
+        }
+
+    }
+    catch (error) {
+        console.error(error);
+        return { message: error.message || 'An error occured while marking favourite', type: "error"}
+    }
+}
+
+
+
+export const getNewReleases = async () => {
+    try {
+        let newReleases = await Spotify.browse.getNewReleases("US", 10)
+        return newReleases
+    } catch (error) {
+        console.error(error);
+        return []
+    }
+}
+    

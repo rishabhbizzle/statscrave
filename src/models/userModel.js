@@ -25,18 +25,25 @@ const userSchema = new mongoose.Schema({
 })
 
 const userFavoriteSchema = new mongoose.Schema({
-    userId: {
+    kindeId: {
         type: String,
         required: [true, "Please provide a user id"],
     },
     type: { 
         type: String,
-        enum: ['artist', 'album', 'song'] 
+        enum: ['artist', 'album', 'track'] 
     },
     spotifyId: { 
         type: String,
         required: [true, "Please provide a spotify id"],
-    }
+    },
+    image: { 
+        type: String,
+    },
+    name: { 
+        type: String,
+        required: [true, "Please provide a name"],
+    },
 });
 
 
@@ -45,4 +52,4 @@ const User = mongoose.models.users || mongoose.model("users", userSchema);
 
 const UserFavorite = mongoose.models.userFavorites || mongoose.model("userFavorites", userFavoriteSchema);
 
-export default { User, UserFavorite };
+export  { User, UserFavorite };
