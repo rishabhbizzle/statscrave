@@ -101,9 +101,6 @@ export default function OtherDetails({ details, type }) {
           <Card className="col-span-3">
             <CardHeader>
               <CardTitle>Tracks</CardTitle>
-              {/* <CardDescription>
-                You made 265 sales this month.
-              </CardDescription> */}
             </CardHeader>
             <CardContent>
               <TracksSection tracks={details?.tracks?.items} defaultImage={details?.images[0]?.url} />

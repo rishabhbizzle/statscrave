@@ -24,7 +24,7 @@ export function TracksSection({ tracks, defaultImage }) {
           <AvatarFallback>N/A</AvatarFallback>
         </Avatar>
         <div className="ml-4 space-y-1">
-          <Link href={`/track/${track?.id}`} passHref>
+          <Link href={`/track/${track?.id}`} passHref className="hover:underline">
           <p className="text-sm font-medium leading-none">{track?.name}</p>
           </Link>
           <p className="text-sm text-muted-foreground">

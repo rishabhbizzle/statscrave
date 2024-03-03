@@ -19,6 +19,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { millisecondsToMinutesSeconds } from "@/lib/helperFunctions";
+import Link from "next/link";
 const PopularTracks = async ({ id }) => {
   const tracks = await getArtistMostPopularSongs(id);
   return (
@@ -58,7 +59,10 @@ const PopularTracks = async ({ id }) => {
                       width="50"
                     />
                   </TableCell>
+                <Link href={`/track/${track.id}`} className="hover:underline" key={idx}>
+
                   <TableCell>{track.name}</TableCell>
+                </Link>
                   <TableCell>
                     {millisecondsToMinutesSeconds(track.duration_ms)}
                   </TableCell>
