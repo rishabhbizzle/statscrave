@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import ArtistOverview from '@/components/artist/overview'
 import PopularTracks from '@/components/artist/populars'
 import BasicDetails from '@/components/BasicDetails'
+import Loader from '@/components/ui/loader'
 
 
 const Artist = async ({ params }) => {
@@ -21,22 +22,21 @@ const Artist = async ({ params }) => {
                     <TabsList>
                         <TabsTrigger value="overview">Overview</TabsTrigger>
                         <TabsTrigger value="songs">Songs</TabsTrigger>
-                        <TabsTrigger value="albums">Album</TabsTrigger>
-                        {/* <TabsTrigger value="other">Other</TabsTrigger> */}
+                        <TabsTrigger value="albums">Albums</TabsTrigger>
                     </TabsList>
                     <TabsContent value="overview">
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense fallback={<Loader />}>
                             <ArtistOverview id={id} artist={artist} />
                             <PopularTracks id={id} />
                         </Suspense>
                     </TabsContent>
                     <TabsContent value="songs">
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense fallback={<Loader />}>
                             <ArtistSongs id={id} />
                         </Suspense>
                     </TabsContent>
                     <TabsContent value="albums">
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense fallback={<Loader />}>
                             <ArtistAlbums id={id} />
                         </Suspense>
                     </TabsContent>
