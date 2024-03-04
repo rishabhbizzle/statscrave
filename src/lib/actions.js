@@ -11,7 +11,7 @@ import { revalidatePath } from "next/cache";
 import Song from "@/models/songModel";
 
 const browser = await puppeteer.launch({
-    headless:false,
+    headless: true,
     args: ["--no-sandbox"]
 });
 
