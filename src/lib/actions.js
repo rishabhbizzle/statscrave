@@ -6,11 +6,14 @@ import Artist from "@/models/artistModel";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import Album from "@/models/albumModel";
 import { UserFavorite } from "@/models/userModel";
-import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { revalidatePath } from "next/cache";
 import Song from "@/models/songModel";
 
-const browser = await puppeteer.launch({ headless: "new" });
+const browser = await puppeteer.launch({
+    headless:false,
+    args: ["--no-sandbox"]
+});
 
 export const getArtistSongsDailyData = async (artistId) => {
     console.log('fecthing songs data')
@@ -234,7 +237,7 @@ export const isUserFavorite = async (type, spotifyId) => {
         let user = await getUser();
         let kindeId = user?.id
         let userFavourite = await UserFavorite.findOne({ kindeId: kindeId, type: type, spotifyId: spotifyId })
-        if (userFavourite){
+        if (userFavourite) {
             return true
         }
         return false
@@ -256,17 +259,17 @@ export const markFavourite = async (type, spotifyId, image, name) => {
         if (userFavourite) {
             await UserFavorite.deleteOne({ kindeId: kindeId, type: type, spotifyId: spotifyId })
             revalidatePath(`${type}/${spotifyId}`)
-            return { message: "Removed from favourites" , type: "success"}
+            return { message: "Removed from favourites", type: "success" }
         } else {
-            await UserFavorite.create({ kindeId: kindeId, type: type, spotifyId: spotifyId, image: image, name:name})
+            await UserFavorite.create({ kindeId: kindeId, type: type, spotifyId: spotifyId, image: image, name: name })
             revalidatePath(`/${type}/${spotifyId}`)
-            return { message: "Added to favourites" , type: "success"}
+            return { message: "Added to favourites", type: "success" }
         }
 
     }
     catch (error) {
         console.error(error);
-        return { message: error.message || 'An error occured while marking favourite', type: "error"}
+        return { message: error.message || 'An error occured while marking favourite', type: "error" }
     }
 }
 
