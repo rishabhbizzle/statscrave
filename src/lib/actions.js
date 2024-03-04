@@ -281,4 +281,37 @@ export const getNewReleases = async () => {
         return []
     }
 }
-    
+
+
+export const getDashboardArtistRankingData = async () => {
+    try {
+        let responseData = [];
+        const { artistFavourites } = await getUserFavourites()
+        for (let artist of artistFavourites) {
+            const overAllData = await getArtistOverallDailyData(artist.spotifyId)
+            // get the streams, daily obj from the overall data
+            let streams = overAllData.find(data => data.type === "Streams")
+            let daily = overAllData.find(data => data.type === "Daily")
+
+            let artistData = {
+                streams: streams?.total,
+                dailyStreams: daily?.total,
+                spotifyId: artist.spotifyId,
+                image: artist.image,
+                name: artist.name
+            }
+
+            responseData.push(artistData)
+        }
+
+        return responseData?.sort((a, b) => {
+            const aNum = parseInt(a?.dailyStreams?.replace(/,/g, ''))
+            const bNum = parseInt(b?.dailyStreams?.replace(/,/g, ''))
+            return bNum - aNum
+        }) || []
+
+    } catch (error) {
+        console.error(error);
+        return []
+    }
+}
