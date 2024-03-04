@@ -9,8 +9,7 @@ import { UserFavorite } from "@/models/userModel";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { revalidatePath } from "next/cache";
 import Song from "@/models/songModel";
-
-const chromium = require("@sparticuz/chromium");
+const chromium = require('@sparticuz/chromium-min');
 
 let browser = await puppeteer.launch({
     args: [...chromium.args, '--hide-scrollbars', '--disable-web-security'],

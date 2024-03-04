@@ -28,7 +28,7 @@
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tabs": "^1.0.4",
-    "@sparticuz/chromium": "^122.0.0",
+    "@sparticuz/chromium-min": "^122.0.0",
     "@spotify/web-api-ts-sdk": "^1.2.0",
     "@tanstack/match-sorter-utils": "^8.11.8",
     "@tanstack/react-table": "^8.12.0",
