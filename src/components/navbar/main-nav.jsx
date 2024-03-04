@@ -23,6 +23,15 @@ export function MainNav() {
         <span className="hidden font-bold sm:inline-block">StatsForFans</span>
       </Link>
       <nav className="flex items-center gap-6 text-sm">
+      <Link
+          href="/dashboard"
+          className={cn(
+            "transition-colors hover:text-foreground/80",
+            pathname === "/dashboard" ? "text-foreground" : "text-foreground/60"
+          )}
+        >
+          Dashboard
+        </Link>
         <Link
           href="/artist"
           className={cn(
