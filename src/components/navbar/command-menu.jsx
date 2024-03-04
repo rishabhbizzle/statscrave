@@ -116,8 +116,8 @@ export function CommandMenu({ ...props }) {
           </Select>
         </div>
         <ScrollArea className="h-52">
-          {results.map((result) => (
-            <div className="px-3 my-1">
+          {results.map((result, i) => (
+            <div className="px-3 my-1" key={i}>
               <div
                 className="flex gap-2 border-b transition-colors hover:bg-muted/50 cursor-pointer"
                 onClick={() => handleSelect(result?.id)}

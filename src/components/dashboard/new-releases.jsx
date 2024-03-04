@@ -28,7 +28,7 @@ const NewReleases = async () => {
     <div>
       <Card>
         <CardHeader>
-          <CardTitle>This week's new releases:</CardTitle>
+          <CardTitle>This weeks new releases:</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="w-full flex justify-center px-10 flex-col">
