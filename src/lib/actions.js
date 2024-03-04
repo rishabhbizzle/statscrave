@@ -10,10 +10,17 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { revalidatePath } from "next/cache";
 import Song from "@/models/songModel";
 
-const browser = await puppeteer.launch({
-    headless: true,
-    args: ["--no-sandbox"]
-});
+const chromium = require("@sparticuz/chromium");
+
+let browser = await puppeteer.launch({
+    args: [...chromium.args, '--hide-scrollbars', '--disable-web-security'],
+    defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath(
+      `https://github.com/Sparticuz/chromium/releases/download/v116.0.0/chromium-v116.0.0-pack.tar`
+    ),
+    headless: chromium.headless,
+    ignoreHTTPSErrors: true,
+  });
 
 export const getArtistSongsDailyData = async (artistId) => {
     console.log('fecthing songs data')
