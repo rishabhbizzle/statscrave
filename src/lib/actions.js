@@ -15,23 +15,29 @@ import Song from "@/models/songModel";
 
 
 const getBrowser = async () => {
-    let browser = null;
-    if (process.env.PRODUCTION == 'true') {
-        console.log('launching browser with custom chromium pack')
-        // this the only method that works on vercel so I'm not touching it :(
-        browser = await puppeteer.launch({
-            args: [...chromium.args, '--hide-scrollbars', '--disable-web-security'],
-            defaultViewport: chromium.defaultViewport,
-            executablePath: await chromium.executablePath(
-                `https://github.com/Sparticuz/chromium/releases/download/v122.0.0/chromium-v122.0.0-pack.tar`
-            ),
-            headless: chromium.headless,
-            ignoreHTTPSErrors: true,
-        });
-    } else {
-        browser = await puppeteer.launch({ headless: "new" });
+    try {
+        let browser = null;
+        if (process.env.PRODUCTION == 'true') {
+            console.log('launching browser with custom chromium pack')
+            // this the only method that works on vercel so I'm not touching it :(
+            browser = await puppeteer.launch({
+                args: [...chromium.args, '--hide-scrollbars', '--disable-web-security'],
+                defaultViewport: chromium.defaultViewport,
+                executablePath: await chromium.executablePath(
+                    `https://github.com/Sparticuz/chromium/releases/download/v122.0.0/chromium-v122.0.0-pack.tar`
+                ),
+                headless: chromium.headless,
+                ignoreHTTPSErrors: true,
+            });
+        } else {
+            browser = await puppeteer.launch({ headless: "new" });
+        }
+        return browser;
+    } catch (error) {
+        console.error(error);
+        return null
+
     }
-    return browser;
 }
 export const getArtistSongsDailyData = async (artistId) => {
     const browser = await getBrowser();
