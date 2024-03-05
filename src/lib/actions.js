@@ -12,35 +12,27 @@ import { revalidatePath } from "next/cache";
 import Song from "@/models/songModel";
 
 
-
-
-const getBrowser = async () => {
-    try {
-        let browser = null;
-        if (process.env.PRODUCTION == 'true') {
-            console.log('launching browser with custom chromium pack')
-            // this the only method that works on vercel so I'm not touching it :(
-            browser = await puppeteer.launch({
-                args: [...chromium.args, '--hide-scrollbars', '--disable-web-security'],
-                defaultViewport: chromium.defaultViewport,
-                executablePath: await chromium.executablePath(
-                    `https://github.com/Sparticuz/chromium/releases/download/v122.0.0/chromium-v122.0.0-pack.tar`
-                ),
-                headless: chromium.headless,
-                ignoreHTTPSErrors: true,
-            });
-        } else {
-            browser = await puppeteer.launch({ headless: "new" });
-        }
-        return browser;
-    } catch (error) {
-        console.error(error);
-        return null
-
-    }
+let browser = null;
+if (process.env.PRODUCTION == 'true') {
+    console.log('launching browser with custom chromium pack')
+    // this the only method that works on vercel so I'm not touching it :(
+    browser = await puppeteer.launch({
+        args: [...chromium.args, '--hide-scrollbars', '--disable-web-security'],
+        defaultViewport: chromium.defaultViewport,
+        executablePath: await chromium.executablePath(
+            `https://github.com/Sparticuz/chromium/releases/download/v122.0.0/chromium-v122.0.0-pack.tar`
+        ),
+        headless: chromium.headless,
+        ignoreHTTPSErrors: true,
+    });
+    console.log('browser launched')
+} else {
+    browser = await puppeteer.launch({ headless: "new" });
 }
+
+
 export const getArtistSongsDailyData = async (artistId) => {
-    const browser = await getBrowser();
+    // const browser = await getBrowser();
     try {
         console.log('fecthing songs data')
         const page = await browser.newPage();
@@ -77,15 +69,13 @@ export const getArtistSongsDailyData = async (artistId) => {
     } catch (error) {
         console.error(error);
         return []
-    } finally {
-        await browser.close();
     }
 
 }
 
 
 export const getArtistAlbumsDailyData = async (artistId) => {
-    const browser = await getBrowser();
+    // const browser = await getBrowser();
     try {
         const page = await browser.newPage();
         const url = `${process.env.DATA_SOURCE}spotify/artist/${artistId}_albums.html`;
@@ -125,14 +115,12 @@ export const getArtistAlbumsDailyData = async (artistId) => {
     } catch (error) {
         console.error(error);
         return []
-    } finally {
-        await browser.close();
     }
 }
 
 
 export const getArtistOverallDailyData = async (artistId) => {
-    const browser = await getBrowser();
+    // const browser = await getBrowser();
     try {
         const page = await browser.newPage();
         const url = `${process.env.DATA_SOURCE}spotify/artist/${artistId}_songs.html`;
@@ -162,8 +150,6 @@ export const getArtistOverallDailyData = async (artistId) => {
     } catch (error) {
         console.error(error);
         return []
-    } finally {
-        await browser.close();
     }
 }
 
@@ -336,7 +322,7 @@ export const markFavourite = async (type, spotifyId, image, name) => {
 }
 
 
-
+//spotify
 export const getNewReleases = async () => {
     try {
         let newReleases = await Spotify.browse.getNewReleases("US", 10)
