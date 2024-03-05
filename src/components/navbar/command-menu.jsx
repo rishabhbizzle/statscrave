@@ -14,6 +14,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
+import Loader from "../ui/loader";
 
 export function CommandMenu({ ...props }) {
   const router = useRouter();
@@ -21,8 +22,10 @@ export function CommandMenu({ ...props }) {
   const [type, setType] = React.useState("artist");
   const [text, setText] = React.useState("");
   const [results, setResults] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
 
   const handleSearch = async () => {
+    setLoading(true);
     const res = await fetch(`/api/search?type=${type}&text=${text}`);
     const { data } = await res.json();
     if (res.status === 200) {
@@ -36,17 +39,20 @@ export function CommandMenu({ ...props }) {
     } else {
       console.error("Error fetching data");
     }
+    setLoading(false);
   };
 
   React.useEffect(() => {
-    const delay = 800;
+    const delay = 900;
     const debounce = setTimeout(() => {
       handleSearch();
     }, delay);
-
     return () => clearTimeout(debounce);
+  }, [text]);
 
-  }, [text, type]);
+  React.useEffect(() => {
+      handleSearch();
+  }, [type]);
 
   React.useEffect(() => {
     const down = (e) => {
@@ -93,6 +99,7 @@ export function CommandMenu({ ...props }) {
         </kbd>
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
+        {loading && <Loader />}
         <CommandInput
           placeholder="Search..."
           onValueChange={(val) => setText(val)}
@@ -115,7 +122,7 @@ export function CommandMenu({ ...props }) {
             </SelectContent>
           </Select>
         </div>
-        <ScrollArea className="h-52">
+        <ScrollArea className="h-52 md:h-60">
           {results.map((result, i) => (
             <div className="px-3 my-1" key={i}>
               <div
@@ -125,8 +132,12 @@ export function CommandMenu({ ...props }) {
                 <img
                   src={
                     type === "track"
-                      ? (result?.album?.images?.length > 0 ? result?.album?.images[0]?.url: 'https://upload.wikimedia.org/wikipedia/en/b/b1/Portrait_placeholder.png' )
-                      : (result?.images?.length > 0 ? result?.images[0]?.url: 'https://upload.wikimedia.org/wikipedia/en/b/b1/Portrait_placeholder.png' )
+                      ? result?.album?.images?.length > 0
+                        ? result?.album?.images[0]?.url
+                        : "https://upload.wikimedia.org/wikipedia/en/b/b1/Portrait_placeholder.png"
+                      : result?.images?.length > 0
+                      ? result?.images[0]?.url
+                      : "https://upload.wikimedia.org/wikipedia/en/b/b1/Portrait_placeholder.png"
                   }
                   alt={result.name}
                   width={50}

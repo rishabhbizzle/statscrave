@@ -20,7 +20,7 @@ export function MainNav() {
           height="40"
           className="rounded-full"
         />
-        <span className="hidden font-bold sm:inline-block">StatsForFans</span>
+        <span className="hidden font-bold sm:inline-block text-xl">StatsForFans</span>
       </Link>
       <nav className="flex items-center gap-6 text-sm">
       <Link
@@ -32,7 +32,7 @@ export function MainNav() {
         >
           Dashboard
         </Link>
-        <Link
+        {/* <Link
           href="/artist"
           className={cn(
             "transition-colors hover:text-foreground/80",
@@ -62,7 +62,7 @@ export function MainNav() {
           )}
         >
           Songs
-        </Link>
+        </Link> */}
         <Link
           href="/top-list"
           className={cn(
@@ -73,6 +73,17 @@ export function MainNav() {
           )}
         >
           Top List
+        </Link>
+        <Link
+          href="/charts"
+          className={cn(
+            "transition-colors hover:text-foreground/80",
+            pathname?.startsWith("/charts")
+              ? "text-foreground"
+              : "text-foreground/60"
+          )}
+        >
+          Charts
         </Link>
       </nav>
     </div>
