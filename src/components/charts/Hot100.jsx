@@ -99,8 +99,8 @@ const Hot100 = () => {
               <th className="bg-black text-white text-left px-1">W.O.C</th>
             </tr>
 
-            {songsList.map((song) => (
-              <tr className="even:bg-white odd:bg-gray-100 text-black">
+            {songsList.map((song, i) => (
+              <tr className="even:bg-white odd:bg-gray-100 text-black" key={i}>
                 <td className="pr-1 md:pr-3 text-end border-r-2 border-dashed">
                   {song.rank}
                 </td>
