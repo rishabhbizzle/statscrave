@@ -61,3 +61,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+.global-bg{
+  background-image: linear-gradient(-180deg, #2922C6, #490580 );
+}
