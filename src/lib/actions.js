@@ -16,7 +16,8 @@ import Song from "@/models/songModel";
 
 const getBrowser = async () => {
     let browser = null;
-    if (process.env.PRODUCTION === 'true') {
+    if (process.env.PRODUCTION == 'true') {
+        console.log('launching browser with custom chromium pack')
         // this the only method that works on vercel so I'm not touching it :(
         browser = await puppeteer.launch({
             args: [...chromium.args, '--hide-scrollbars', '--disable-web-security'],
