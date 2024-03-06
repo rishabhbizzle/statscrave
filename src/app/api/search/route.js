@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import Spotify from "@/helper/spotify";
+export const fetchCache = 'force-no-store'
 
 export const GET = async (request, { params}) => {
     try {

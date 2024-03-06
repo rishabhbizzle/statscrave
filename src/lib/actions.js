@@ -1,7 +1,5 @@
 'use server'
-const chromium = require('@sparticuz/chromium-min');
-import puppeteer from "puppeteer"
-import Spotify from "@/helper/spotify";
+
 import { connect } from "@/dgConfig/dbConfig";
 import Artist from "@/models/artistModel";
 import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -10,61 +8,13 @@ import { UserFavorite } from "@/models/userModel";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { revalidatePath } from "next/cache";
 import Song from "@/models/songModel";
-
-
-let browser = null;
-if (process.env.PRODUCTION == 'true') {
-    console.log('launching browser with custom chromium pack')
-    // this the only method that works on vercel so I'm not touching it :(
-    browser = await puppeteer.launch({
-        args: [...chromium.args, '--hide-scrollbars', '--disable-web-security'],
-        defaultViewport: chromium.defaultViewport,
-        executablePath: await chromium.executablePath(
-            `https://github.com/Sparticuz/chromium/releases/download/v122.0.0/chromium-v122.0.0-pack.tar`
-        ),
-        headless: chromium.headless,
-        ignoreHTTPSErrors: true,
-    });
-    console.log('browser launched')
-} else {
-    browser = await puppeteer.launch({ headless: "new" });
-}
+import axios from "axios";
 
 
 export const getArtistSongsDailyData = async (artistId) => {
-    // const browser = await getBrowser();
     try {
-        console.log('fecthing songs data')
-        const page = await browser.newPage();
-        const url = `${process.env.DATA_SOURCE}spotify/artist/${artistId}_songs.html`;
-        await page.goto(url);
-        await page.waitForSelector('table');
-        const songsData = await page.evaluate(() => {
-            const tables = document.querySelectorAll('table');
-            if (tables.length >= 2) {
-                const table = tables[1];
-                const rows = Array.from(table.querySelectorAll('tr'));
-
-                const columnIndexesToExtractLinks = [0];
-
-                return rows.map(row => {
-                    const columns = Array.from(row.querySelectorAll('td'));
-                    let songTitle = columns[0] && columns[0].textContent ? columns[0].textContent?.startsWith('*') ? columns[0].textContent?.substring(1)?.trim() : columns[0].textContent?.trim() : null
-                    let link = columnIndexesToExtractLinks.includes(0) && columns[0] && columns[0].querySelector('a') ? columns[0].querySelector('a').getAttribute('href') : null
-                    let parts = link?.split('/');
-                    let id = parts && parts[parts.length - 1];
-                    const rowData = {
-                        id: id,
-                        title: songTitle,
-                        link: link,
-                        total: columns[1] && columns[1].textContent ? columns[1].textContent : null,
-                        daily: columns[2] && columns[2].textContent ? columns[2].textContent : null
-                    };
-                    return rowData;
-                });
-            }
-            return null;
-        });
+        const res = await axios.get(`${process.env.BASE_URL}/api/v1/daily/songs/${artistId}`)
+        const songsData = res?.data?.data || []
         return songsData;
     } catch (error) {
         console.error(error);
@@ -75,42 +25,9 @@ export const getArtistSongsDailyData = async (artistId) => {
 
 
 export const getArtistAlbumsDailyData = async (artistId) => {
-    // const browser = await getBrowser();
     try {
-        const page = await browser.newPage();
-        const url = `${process.env.DATA_SOURCE}spotify/artist/${artistId}_albums.html`;
-        await page.goto(url);
-        await page.waitForSelector('table');
-        const albumData = await page.evaluate(() => {
-            const tables = document.querySelectorAll('table');
-            if (tables.length >= 1) {
-                const table = tables[0];
-                const rows = Array.from(table.querySelectorAll('tr'));
-
-                const columnIndexesToExtractLinks = [0];
-
-                return rows.map(row => {
-                    const columns = Array.from(row.querySelectorAll('td'));
-                    let albumTitle = columns[0] && columns[0].textContent ? columns[0].textContent?.startsWith('^') ? columns[0].textContent?.substring(1)?.trim() : columns[0].textContent?.trim() : null
-                    let albumLink = columnIndexesToExtractLinks.includes(0) && columns[0] && columns[0].querySelector('a') ? columns[0].querySelector('a').getAttribute('href') : null
-                    let parts = albumLink?.split('/');
-                    let id = parts && parts[parts.length - 1];
-
-                    const rowData = {
-                        id: id,
-                        title: albumTitle,
-                        link: albumLink,
-                        total: columns[1] && columns[1].textContent ? columns[1].textContent : null,
-                        daily: columns[2] && columns[2].textContent ? columns[2].textContent : null
-                    };
-
-
-                    return rowData;
-                });
-            }
-            return null; // Return null if there's no second table
-        });
-
+        const res = await axios.get(`${process.env.BASE_URL}/api/v1/daily/albums/${artistId}`)
+        const albumData = res?.data?.data || []
         return albumData;
     } catch (error) {
         console.error(error);
@@ -120,32 +37,9 @@ export const getArtistAlbumsDailyData = async (artistId) => {
 
 
 export const getArtistOverallDailyData = async (artistId) => {
-    // const browser = await getBrowser();
     try {
-        const page = await browser.newPage();
-        const url = `${process.env.DATA_SOURCE}spotify/artist/${artistId}_songs.html`;
-        await page.goto(url);
-        await page.waitForSelector('table');
-        const overallData = await page.evaluate(() => {
-            const tables = document.querySelectorAll('table');
-            if (tables.length >= 2) {
-                const table = tables[0]; // Select the second table
-                const rows = Array.from(table.querySelectorAll('tr'));
-
-                return rows.slice(1).map(row => {
-                    const columns = Array.from(row.querySelectorAll('td'));
-                    const rowData = {
-                        type: columns[0] && columns[0].textContent ? columns[0].textContent : null,
-                        total: columns[1] && columns[1].textContent ? columns[1].textContent : null,
-                        lead: columns[2] && columns[2].textContent ? columns[2].textContent : null,
-                        solo: columns[3] && columns[3].textContent ? columns[3].textContent : null,
-                        feature: columns[4] && columns[4].textContent ? columns[4].textContent : null,
-                    };
-                    return rowData;
-                });
-            }
-            return null;
-        });
+        const res = await axios.get(`${process.env.BASE_URL}/api/v1/daily/overall/${artistId}`)
+        const overallData = res?.data?.data || []
         return overallData;
     } catch (error) {
         console.error(error);
@@ -153,21 +47,24 @@ export const getArtistOverallDailyData = async (artistId) => {
     }
 }
 
+
 export const getArtistSpotifyApiData = async (id) => {
     try {
-        await connect();
-        const artist = await Spotify.artists.get(id)
+        const res = await axios.get(`${process.env.BASE_URL}/api/v1/artist/${id}`)
+        const artist = res?.data?.data || null
         return artist
+
     } catch (error) {
         console.error(error);
         return null
     }
 }
 
+
 export const getArtistMostPopularSongs = async (id) => {
     try {
-        const topTracks = await Spotify.artists.topTracks(id, "US");
-        return topTracks.tracks
+        const res = await axios.get(`${process.env.BASE_URL}/api/v1/artist/popular/${id}`)
+        return res?.data?.data || []
     } catch (error) {
         console.error(error);
         return []
@@ -185,12 +82,6 @@ export const getArtistStreamingData = async (id) => {
     }
 }
 
-export const getArtistDiscography = async (artistId) => {
-    const songsData = await getArtistSongsDailyData(artistId);
-    const overallData = await getArtistOverallDailyData(artistId);
-    const albumData = await getArtistAlbumsDailyData(artistId);
-    return { songsData, overallData, albumData };
-}
 
 export const getArtistRecords = async (name) => {
     try {
@@ -208,14 +99,11 @@ export const getArtistRecords = async (name) => {
     }
 }
 
+
 export const getAlbumData = async (id) => {
     try {
-        await connect();
-        console.log('fetching album data:', id)
-        const albumDetails = await Spotify.albums.get(id, "US")
-        // const albumTracks = await Spotify.albums.tracks(id, "US", 50)
-        let streamingData = await Album.findOne({ spotifyId: id })
-        return { albumDetails, streamingData }
+        const res = await axios.get(`${process.env.BASE_URL}/api/v1/album/${id}`)
+        return res?.data?.data || null
     } catch (error) {
         console.error(error);
         return { albumDetails: null, streamingData: null }
@@ -224,12 +112,9 @@ export const getAlbumData = async (id) => {
 
 export const getTrackData = async (id) => {
     try {
-        await connect();
-        console.log('fetching track data:', id)
-        const trackDetails = await Spotify.tracks.get(id, "US")
-        // const albumTracks = await Spotify.albums.tracks(id, "US", 50)
-        let streamingData = await Song.findOne({ spotifyId: id })
-        return { trackDetails, streamingData }
+        const res = await axios.get(`${process.env.BASE_URL}/api/v1/track/${id}`)
+        console.log(res?.data)
+        return res?.data?.data || null
     } catch (error) {
         console.error(error);
         return { trackDetails: null, streamingData: null }
@@ -322,17 +207,16 @@ export const markFavourite = async (type, spotifyId, image, name) => {
 }
 
 
-//spotify
 export const getNewReleases = async () => {
     try {
-        let newReleases = await Spotify.browse.getNewReleases("US", 10)
+        const res = await axios.get(`${process.env.BASE_URL}/api/v1/others/new-releases`)
+        const newReleases = res?.data?.data || []
         return newReleases
     } catch (error) {
         console.error(error);
         return []
     }
 }
-
 
 export const getDashboardArtistRankingData = async () => {
     try {

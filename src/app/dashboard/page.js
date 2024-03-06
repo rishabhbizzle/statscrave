@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import Loader from '@/components/ui/loader';
 import ArtistRankings from '@/components/dashboard/artistsRankings';
 import AlbumAndSongs from '@/components/dashboard/albumAndSongs';
-export const fetchCache = 'force-no-store'
 
 
 const Dashboard = async () => {
