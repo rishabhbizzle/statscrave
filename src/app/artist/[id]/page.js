@@ -8,6 +8,7 @@ import PopularTracks from '@/components/artist/populars'
 import BasicDetails from '@/components/BasicDetails'
 import Loader from '@/components/ui/loader'
 
+export const fetchCache = 'force-no-store'
 
 const Artist = async ({ params }) => {
     const id = params.id

@@ -1,3 +1,6 @@
+export const fetchCache = 'force-no-store'
+export const dynamic =  'force-dynamic' 
+
 const { SpotifyApi } = require('@spotify/web-api-ts-sdk');
 
 
@@ -15,4 +18,4 @@ const Spotify = SpotifyApi.withClientCredentials(
 
 console.log("Spotify initialized");
 
-module.exports = Spotify;
+export default Spotify;
