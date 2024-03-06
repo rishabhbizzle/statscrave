@@ -112,7 +112,7 @@ export const getAlbumData = async (id) => {
 
 export const getTrackData = async (id) => {
     try {
-        const res = await axios.get(`${process.env.BASE_URL}/api/v1/track/${id}`)
+        const res = await axios.get(`https://spotanalyticsv2-backend.onrender.com/api/v1/track/${id}`)
         console.log(res?.data)
         return res?.data?.data || null
     } catch (error) {
