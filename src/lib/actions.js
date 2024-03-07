@@ -27,7 +27,12 @@ if (process.env.PRODUCTION == 'true') {
     });
     console.log('browser launched')
 } else {
-    browser = await puppeteer.launch({ headless: "new" });
+    browser = await puppeteer.launch({ args: [
+        "--disable-setuid-sandbox",
+        "--no-sandbox",
+        "--single-process",
+        "--no-zygote",
+    ], });
 }
 
 
