@@ -7,7 +7,6 @@ import BasicDetails from '@/components/BasicDetails'
 import { Recomendations } from '@/components/recomendations'
 import { getAlbumData, isUserFavorite } from '@/lib/actions'
 import Loader from '@/components/ui/loader'
-export const maxDuration = 300
 
 
 
