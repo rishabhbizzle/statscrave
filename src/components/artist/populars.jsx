@@ -1,5 +1,4 @@
-import React from "react";
-import { getArtistMostPopularSongs } from "@/lib/actions";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -20,8 +19,32 @@ import {
 } from "@/components/ui/table";
 import { millisecondsToMinutesSeconds } from "@/lib/helperFunctions";
 import Link from "next/link";
-const PopularTracks = async ({ id }) => {
-  const tracks = await getArtistMostPopularSongs(id);
+import { toast } from "sonner";
+import axios from "axios";
+import Loader from "../ui/loader";
+
+const PopularTracks = ({ id }) => {
+  
+  const [loading, setLoading] = useState(false);
+  const [tracks, setTracks] = useState([]);
+  const fetchArtistMostPopularSongs = async (id) => {
+    setLoading(true);
+    try {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/artist/popular/${id}`
+      );
+      setTracks(res?.data?.data || []);
+    } catch (error) {
+      toast.error(error?.message);
+      console.error(error);
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchArtistMostPopularSongs(id);
+  }, [id]);
+
   return (
     <div className="md:px-10 my-5">
       <Card>
@@ -36,6 +59,7 @@ const PopularTracks = async ({ id }) => {
           </CardDescription>
         </CardHeader>
         <CardContent>
+          {loading && <Loader component={true} />}
           <Table>
             <TableHeader>
               <TableRow>
@@ -59,10 +83,13 @@ const PopularTracks = async ({ id }) => {
                       width="50"
                     />
                   </TableCell>
-                <Link href={`/track/${track.id}`} className="hover:underline" key={idx}>
-
-                  <TableCell>{track.name}</TableCell>
-                </Link>
+                  <Link
+                    href={`/track/${track.id}`}
+                    className="hover:underline"
+                    key={idx}
+                  >
+                    <TableCell>{track.name}</TableCell>
+                  </Link>
                   <TableCell>
                     {millisecondsToMinutesSeconds(track.duration_ms)}
                   </TableCell>

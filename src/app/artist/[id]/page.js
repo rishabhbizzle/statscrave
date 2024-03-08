@@ -1,46 +1,66 @@
-import React, { Suspense } from 'react'
+'use client'
+
+import React, { Suspense, useEffect, useState } from 'react'
 import ArtistSongs from '@/components/artist/songs'
-import { getArtistSpotifyApiData, isUserFavorite } from '@/lib/actions'
 import ArtistAlbums from '@/components/artist/albums'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import ArtistOverview from '@/components/artist/overview'
 import PopularTracks from '@/components/artist/populars'
 import BasicDetails from '@/components/BasicDetails'
 import Loader from '@/components/ui/loader'
+import axios from 'axios'
+import { toast } from 'sonner'
 
-const Artist = async ({ params }) => {
+
+const Artist = ({ params }) => {
     const id = params.id
-    const artist = await getArtistSpotifyApiData(id)
-    const isFavourite = await isUserFavorite('artist', id)
+    const [loading, setLoading] = useState(false)
+    const [artist, setArtist] = useState(null)
+
+    const fetchArtistData = async () => {
+        setLoading(true)
+        try {
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/artist/${id}`)
+            if (res.status !== 200) {
+                throw new Error(res?.data?.message || 'Failed to fetch data')
+            }
+            setArtist(res?.data?.data)
+        } catch (error) {
+            toast.error(error?.message)
+            console.error(error);
+        }
+        setLoading(false)
+    }
+
+    useEffect(() => {
+        fetchArtistData(id)
+    }, [id])
 
     return (
         <div className='container'>
-            <div className="w-full ">
-                <BasicDetails details={artist} type="artist" isFavourite={isFavourite} />
-                <Tabs className="mt-6" defaultValue='overview' activationMode='manual'>
-                    <TabsList>
-                        <TabsTrigger value="overview">Overview</TabsTrigger>
-                        <TabsTrigger value="songs">Songs</TabsTrigger>
-                        <TabsTrigger value="albums">Albums</TabsTrigger>
-                    </TabsList>
-                    <TabsContent value="overview">
-                        <Suspense fallback={<Loader />}>
+            {artist && (
+                <div className="w-full ">
+                    <BasicDetails details={artist} type="artist" spotifyId={id} />
+                    <Tabs className="mt-6" defaultValue='overview' activationMode='manual'>
+                        <TabsList>
+                            <TabsTrigger value="overview">Overview</TabsTrigger>
+                            <TabsTrigger value="songs">Songs</TabsTrigger>
+                            <TabsTrigger value="albums">Albums</TabsTrigger>
+                        </TabsList>
+                        <TabsContent value="overview">
                             <ArtistOverview id={id} artist={artist} />
                             <PopularTracks id={id} />
-                        </Suspense>
-                    </TabsContent>
-                    <TabsContent value="songs">
-                        <Suspense fallback={<Loader />}>
+                        </TabsContent>
+                        <TabsContent value="songs">
                             <ArtistSongs id={id} />
-                        </Suspense>
-                    </TabsContent>
-                    <TabsContent value="albums">
-                        <Suspense fallback={<Loader />}>
+                        </TabsContent>
+                        <TabsContent value="albums">
                             <ArtistAlbums id={id} />
-                        </Suspense>
-                    </TabsContent>
-                </Tabs>
-            </div>
+                        </TabsContent>
+                    </Tabs>
+                </div>
+            )}
+            {loading && <Loader />}
         </div>
     )
 }

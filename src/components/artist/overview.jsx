@@ -1,9 +1,4 @@
-import {
-  getArtistOverallDailyData,
-  getArtistRecords,
-  getArtistStreamingData,
-} from "@/lib/actions";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   CardContent,
   CardFooter,
@@ -15,80 +10,56 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { BarChartComponent } from "../barChart";
 import { InfiniteMovingCards } from "../ui/moving-cards";
+import { toast } from "sonner";
+import axios from "axios";
+import Loader from "../ui/loader";
 
-const ArtistOverview = async ({ id, artist }) => {
-  const streamingData = await getArtistStreamingData(id);
-  const overallData = await getArtistOverallDailyData(id);
-  // const records = await getArtistRecords(artist?.name);
+const ArtistOverview = ({ id }) => {
+  const [loading, setLoading] = useState(false);
+  const [overallData, setOverallData] = useState([]);
+  const [streamingData, setStreamingData] = useState(null);
+
+  const fetchArtistOverallDailyData = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/daily/overall/${id}`
+      );
+      if (res.status !== 200) {
+        throw new Error(res?.data?.message || "Failed to fetch data");
+      }
+      setOverallData(res?.data?.data || []);
+    } catch (error) {
+      toast.error(error?.message);
+    }
+  };
+
+  const fetchArtistStreamingData = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/artist/streams/${id}`
+      );
+      if (res.status !== 200) {
+        throw new Error(res?.data?.message || "Failed to fetch data");
+      }
+      setStreamingData(res?.data?.data);
+    } catch (error) {
+      toast.error(error?.message);
+    }
+  };
+
+  const fetchAllData = async () => {
+    setLoading(true);
+    await fetchArtistOverallDailyData(),
+      await fetchArtistStreamingData(),
+      setLoading(false);
+  };
+  useEffect(() => {
+    fetchAllData();
+  }, [id]);
+
   return (
     <div>
-      {/* <div className="my-3 grid gap-4 md:grid-cols-3">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Popularity</CardTitle>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              className="h-4 w-4 text-muted-foreground"
-            >
-              <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-            </svg>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{artist?.popularity}</div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Followers</CardTitle>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              className="h-4 w-4 text-muted-foreground"
-            >
-              <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-            </svg>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{artist?.followers?.total}</div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Genres</CardTitle>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              className="h-4 w-4 text-muted-foreground"
-            >
-              <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-            </svg>
-          </CardHeader>
-          <CardContent>
-            <div className="flex gap-3 text-2xl font-bold items-center">
-              {artist?.genres?.map((genre, index) => {
-                return <Badge key={index}>{genre}</Badge>;
-              })}
-            </div>
-          </CardContent>
-        </Card>
-      </div> */}
+      {loading && <Loader component={true} />}
       <div className="my-3 grid gap-4 md:grid-cols-2">
         {overallData &&
           overallData?.map((data, index) => (
@@ -145,7 +116,7 @@ const ArtistOverview = async ({ id, artist }) => {
           speed="slow"
         />
       </div> */}
-      
+
       {streamingData && (
         <div className="flex flex-col gap-8">
           <Card>

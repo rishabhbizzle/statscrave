@@ -1,15 +1,37 @@
+import React, { useEffect, useState } from "react";
+import { DataTable } from "../data-table/data-table";
+import { toast } from "sonner";
+import axios from "axios";
+import Loader from "../ui/loader";
 
-import React from 'react'
-import { DataTable } from '../data-table/data-table'
-import { getArtistSongsDailyData } from '@/lib/actions'
+const ArtistSongs = ({ id }) => {
+  const [loading, setLoading] = useState(false);
+  const [songsData, setSongsData] = useState([]);
+  const fetchArtistSongsDailyData = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/daily/songs/${id}`
+      );
+      setSongsData(res?.data?.data || []);
+    } catch (error) {
+      toast.error(error?.message);
+      console.error(error);
+    }
+    setLoading(false);
+  };
 
-const ArtistSongs = async ( { id }) => {
-    const songsData = await getArtistSongsDailyData(id)
-    return (
-        <div>
-            <DataTable data={songsData} type="songs" searchColumn={'title'} />
-        </div>
-    )
-}
+  useEffect(() => {
+    fetchArtistSongsDailyData();
+  }, [id]);
 
-export default ArtistSongs
+  return (
+    <div>
+      {songsData.length > 0 && (
+        <DataTable data={songsData} type="songs" searchColumn={"title"} />
+      )}
+    </div>
+  );
+};
+
+export default ArtistSongs;
