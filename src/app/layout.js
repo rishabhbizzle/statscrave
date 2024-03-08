@@ -3,6 +3,7 @@ import './globals.css'
 import { ThemeProvider } from "@/components/theme-provider"
 import Footer from '@/components/footer'
 import { Poppins, Roboto } from 'next/font/google'
+import { Toaster } from 'sonner'
  
 const roboto = Poppins({
   weight: ["400", "500", "700", "900"],
@@ -30,6 +31,7 @@ export default function RootLayout({ children }) {
             <Navbar />
             {children}
             {/* <Footer /> */}
+            <Toaster />
           </ThemeProvider>
         </body>
       </html>
