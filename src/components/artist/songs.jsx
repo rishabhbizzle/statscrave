@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect, useState } from "react";
 import { DataTable } from "../data-table/data-table";
 import { toast } from "sonner";
