@@ -1,12 +1,26 @@
-import { Loader2 } from 'lucide-react'
-import React from 'react'
+import { Loader2 } from "lucide-react";
+import React from "react";
 
-const Loader = () => {
+const Loader = ({ component = false, text='Loading' }) => {
+  if (component) {
+    return (
+      // loader to be used in specific components so it should be centered of that component
+      <div
+        className="flex w-full justify-center items-center my-32"
+      >
+        <Loader2 className="mr-2 h-8 w-8 animate-spin" /> {text}
+      </div>
+    );
+  }
   return (
-    <div className={"flex absolute top-0 justify-center items-center bottom-0 left-0 right-0 z-50"}>
-      <Loader2 className="mr-2 h-8 w-8 animate-spin" /> Loading
+    <div
+      className={
+        "flex absolute top-0 justify-center items-center bottom-0 left-0 right-0 z-50"
+      }
+    >
+      <Loader2 className="mr-2 h-8 w-8 animate-spin" /> {text}
     </div>
-  )
-}
+  );
+};
 
-export default Loader
+export default Loader;

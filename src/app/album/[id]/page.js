@@ -1,16 +1,18 @@
 'use client'
 
 import React, { Suspense, useEffect, useState } from 'react'
-import Image from 'next/image'
 import Container from '@/components/ui/container'
 import StreamingDetails from '@/components/StreamingDetails'
 import OtherDetails from '@/components/OtherDetails'
 import BasicDetails from '@/components/BasicDetails'
-import { Recomendations } from '@/components/recomendations'
 import Loader from '@/components/ui/loader'
 import axios from 'axios'
 import { toast } from 'sonner'
+import dynamic from 'next/dynamic'
 
+const Recomendations = dynamic(() => import('../../../components/recomendations.jsx'),{
+  loading: () => <p>Loading...</p>,
+});
 
 
 const Album = ({ params }) => {
@@ -37,27 +39,21 @@ const Album = ({ params }) => {
     fetchAlbumData(id)
   }, [id])
 
-
   return (
     <Container>
       {data?.albumDetails && (
-        <BasicDetails details={data?.albumDetails} type='album' spotifyId={id} />
-      )}
-      <div className="flex-1 space-y-4 pt-6">
-        {data?.streamingData && (
-          <Suspense fallback={<Loader />}>
-            <StreamingDetails streamingData={data?.streamingData} type='album' />
-          </Suspense>
-        )}
-        {data?.albumDetails && (
-          <Suspense fallback={<Loader />}>
+        <div>
+          <BasicDetails details={data?.albumDetails} type='album' spotifyId={id} />
+          <div className="flex-1 space-y-4 pt-6">
+            {data?.streamingData && (
+              <StreamingDetails streamingData={data?.streamingData} type='album' />
+            )}
             <OtherDetails details={data?.albumDetails} type='album' />
-          </Suspense>
-        )}
-        {/* <Suspense fallback={<Loader />}>
-          <Recomendations type='album' />
-        </Suspense> */}
-      </div>
+            <Recomendations type='album' />
+          </div>
+        </div>
+      )}
+      {loading && <Loader />}
     </Container>
   )
 }

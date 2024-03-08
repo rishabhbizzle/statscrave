@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Carousel,
@@ -9,11 +9,33 @@ import {
 } from "@/components/ui/carousel";
 import Image from "next/image";
 import { Button } from "./ui/button";
-import { getRecomendations } from "@/lib/actions";
 import Link from "next/link";
+import Loader from "./ui/loader";
+import { toast } from "sonner";
+import axios from "axios";
 
-export async function Recomendations({ type }) {
-  const recomendations = await getRecomendations(type);
+const  Recomendations = ({ type }) => {
+  const [loading, setLoading] = useState(false)
+  const [recomendations, setRecomendations] = useState([])
+
+  const fetchData = async () => {
+    setLoading(true)
+    try {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/others/getRecomendations?type=${type}`)
+      if (res.status !== 200) {
+        throw new Error(res?.data?.message || 'Failed to fetch data')
+      }
+      setRecomendations(res?.data?.data)
+    } catch (error) {
+      toast.error(error?.message)
+      console.error(error);
+    }
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [type])
 
   return (
     <Card>
@@ -31,7 +53,7 @@ export async function Recomendations({ type }) {
           className="w-full"
         >
           <CarouselContent>
-            {recomendations.map((data, index) => (
+            {recomendations?.length > 0 && recomendations.map((data, index) => (
               <CarouselItem key={index} className="md:basis-1/4 lg:basis-1/5">
                 <Link href={`/${type}/${data?.spotifyId}`}>
                 <div className="p-1">
@@ -59,6 +81,10 @@ export async function Recomendations({ type }) {
         </Carousel>
       </div>
       </CardContent>
+      {loading && <Loader />}
     </Card>
   );
 }
+
+
+export default Recomendations;
