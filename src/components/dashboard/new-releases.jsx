@@ -1,14 +1,7 @@
-import React from "react";
-import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
-import { getNewReleases } from "@/lib/actions";
-import { Badge } from "../ui/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -18,14 +11,37 @@ import {
 } from "@/components/ui/carousel";
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "sonner";
+import axios from "axios";
+import Loader from "../ui/loader";
 
-const NewReleases = async () => {
-  const {
-    albums: { items },
-  } = await getNewReleases();
+const NewReleases = () => {
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const fetchNewReleases = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/others/new-releases`
+      );
+      if (res.status !== 200) {
+        throw new Error(res?.data?.message || "Failed to fetch data");
+      }
+      setItems(res?.data?.data?.albums?.items);
+    } catch (error) {
+      toast.error(error?.message);
+      console.error(error);
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchNewReleases();
+  }, []);
 
   return (
     <div>
+      {loading && <Loader component={true} />}
       <Card>
         <CardHeader>
           <CardTitle>This weeks new releases:</CardTitle>

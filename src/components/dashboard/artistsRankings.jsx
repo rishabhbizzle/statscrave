@@ -1,5 +1,6 @@
-import { getDashboardArtistRankingData } from '@/lib/actions';
-import React from 'react'
+'use client'
+
+import React, { useEffect, useState } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
 import {
@@ -13,11 +14,36 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Image from 'next/image';
+import { toast } from 'sonner';
+import axios from 'axios';
+import Loader from '../ui/loader';
 
-const ArtistRankings = async () => {
-  const artistsRanking = await getDashboardArtistRankingData();
+const ArtistRankings = ({ id } ) => {
+  const [artistsRanking, setArtistsRanking] = useState([])
+  const [loading, setLoading] = useState(false)
+
+  const fetchDashboardData = async () => {
+    setLoading(true)
+    try {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/user/dashboard/${id}`)
+      if (res.status !== 200) {
+        throw new Error(res?.data?.message || 'Failed to fetch data')
+      }
+      setArtistsRanking(res?.data?.data)
+    } catch (error) {
+      toast.error(error?.message)
+      console.error(error);
+    }
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    fetchDashboardData()
+  }, [id])
 
   return (
+    <>
+    {!loading ? (
     <Card>
         <CardHeader>
           <CardTitle>Artists</CardTitle>
@@ -37,7 +63,7 @@ const ArtistRankings = async () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {artistsRanking.map((artist, idx) => (
+              {artistsRanking && artistsRanking.map((artist, idx) => (
                 <TableRow key={idx}>
                   <TableCell>{idx + 1}</TableCell>
                   <TableCell>
@@ -64,6 +90,11 @@ const ArtistRankings = async () => {
           </Table>
         </CardContent>
       </Card>
+    ) : (
+      <Loader component={true} />
+    )}
+    </>
+
   )
 }
 
