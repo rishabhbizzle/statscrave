@@ -8,7 +8,7 @@ const Loader = ({ component = false, text='Loading' }) => {
       <div
         className="flex w-full justify-center items-center my-32"
       >
-        <Loader2 className="mr-2 h-8 w-8 animate-spin" /> {text}
+        <Loader2 className="mr-2 h-5 w-5 animate-spin" /> {text}
       </div>
     );
   }
@@ -18,7 +18,7 @@ const Loader = ({ component = false, text='Loading' }) => {
         "flex absolute top-0 justify-center items-center bottom-0 left-0 right-0 z-50"
       }
     >
-      <Loader2 className="mr-2 h-8 w-8 animate-spin" /> {text}
+      <Loader2 className="mr-2 h-7 w-7 animate-spin" /> {text}
     </div>
   );
 };

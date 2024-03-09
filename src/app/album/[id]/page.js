@@ -11,7 +11,7 @@ import { toast } from 'sonner'
 import dynamic from 'next/dynamic'
 
 const Recomendations = dynamic(() => import('../../../components/recomendations.jsx'),{
-  loading: () => <p>Loading...</p>,
+  loading: () => <Loader component={true} />,
 });
 
 

@@ -1,31 +1,56 @@
-import React, { Suspense } from 'react'
+'use client'
+
+import React, { Suspense, useEffect, useState } from 'react'
 import Container from '@/components/ui/container'
 import StreamingDetails from '@/components/StreamingDetails'
 import BasicDetails from '@/components/BasicDetails'
-import { getTrackData, isUserFavorite } from '@/lib/actions'
 import Loader from '@/components/ui/loader'
-import Recomendations from '@/components/recomendations'
+import axios from 'axios'
+import AudioFeatures from '@/components/audioFeatures'
+import dynamic from 'next/dynamic'
+const Recomendations = dynamic(() => import('../../../components/recomendations.jsx'),{
+  loading: () => <Loader component={true} />,
+});
 
 
-const Track = async ({ params }) => {
+const Track = ({ params }) => {
   const id = params.id
-  const { trackDetails, streamingData } = await getTrackData(id)
-  const isFavourite = await isUserFavorite('track', id)
+  const [data, setData] = useState({})
+  const [loading, setLoading] = useState(false)
+  const fetchAlbumData = async () => {
+    setLoading(true)
+    try {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/track/${id}`)
+      if (res.status !== 200) {
+        throw new Error(res?.data?.message || 'Failed to fetch data')
+      }
+      setData(res?.data?.data)
+    } catch (error) {
+      toast.error(error?.message)
+      console.error(error);
+    }
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    fetchAlbumData(id)
+  }, [id])
 
   return (
     <Container>
-      <BasicDetails details={trackDetails} type='track' isFavourite={isFavourite} />
-      <div className="flex-1 space-y-4 pt-6">
-        {streamingData && (
-          <Suspense fallback={<Loader />}>
-            <StreamingDetails streamingData={streamingData} type='track' />
-          </Suspense>
-        )}
-        {/* <Suspense fallback={<div>Loading...</div>}>
-          <OtherDetails details={trackDetails} type='album' />
-        </Suspense> */}
-          <Recomendations type='track' />
-      </div>
+      {data?.trackDetails && (
+        <div>
+          <BasicDetails details={data?.trackDetails} type='track' spotifyId={id} />
+          <div className="flex-1 space-y-4 pt-6">
+            {data?.streamingData && (
+                <StreamingDetails streamingData={data?.streamingData} type='track' />
+            )}
+          <AudioFeatures data={data?.trackFeatures} />
+            <Recomendations type='track' />
+          </div>
+        </div>
+      )}
+      {loading && <Loader />}
     </Container>
   )
 }
