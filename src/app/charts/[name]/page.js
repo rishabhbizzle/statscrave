@@ -1,3 +1,6 @@
+"use client"
+
+
 import React from 'react'
 import Album from '@/components/charts/Album'
 import Artist from '@/components/charts/Artist'

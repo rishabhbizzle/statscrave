@@ -1,3 +1,5 @@
+"use client"
+
 import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid'
 import { BarChart3 } from 'lucide-react';
 import Image from 'next/image';
