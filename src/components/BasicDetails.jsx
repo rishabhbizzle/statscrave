@@ -14,6 +14,7 @@ import axios from "axios";
 export default function BasicDetails({ details, type, spotifyId }) {
   const { user, isAuthenticated, isLoading } = useKindeBrowserClient();
   const [isFavourite, setIsFavourite] = useState(false);
+  const [reRender, setReRender] = useState(false);
 
   const fetchUserFavDetails = async () => {
     try {
@@ -105,7 +106,8 @@ export default function BasicDetails({ details, type, spotifyId }) {
           <div className="mt-4 flex space-x-3">
             <FavouriteButton
               type={type}
-              id={details?.id}
+              id={user?.id}
+              spotifyId={details?.id}
               isFavourite={isFavourite}
               image={
                 type === "track"
@@ -113,6 +115,7 @@ export default function BasicDetails({ details, type, spotifyId }) {
                   : details?.images[0]?.url
               }
               name={details?.name}
+              setIsFavourite={setIsFavourite}
             />
             <Button variant="outline">Download PDF report</Button>
           </div>
