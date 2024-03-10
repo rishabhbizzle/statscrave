@@ -22,6 +22,5 @@ export const getLatestDateValue = (data) => {
       maxValue = value;
     }
   }
-  console.log(maxValue);
   return maxValue;
 }
