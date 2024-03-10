@@ -64,15 +64,15 @@ export function MainNav() {
           Songs
         </Link> */}
         <Link
-          href="/top-list"
+          href="/records"
           className={cn(
             "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/top-list")
+            pathname?.startsWith("/records")
               ? "text-foreground"
               : "text-foreground/60"
           )}
         >
-          Top List
+          Records
         </Link>
         <Link
           href="/charts"
