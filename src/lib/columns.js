@@ -131,5 +131,281 @@ export const columnsData = {
                 return aNum - bNum
             }
         }
-    ]
+    ],
+
+
+    artist: [
+        {
+            accessorKey: "name",
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                    >
+                        ARTIST NAME
+                        <CaretSortIcon className="ml-2 h-4 w-4" />
+                    </Button>
+                )
+            },
+            cell: ({ row }) => <div className="">{row.getValue('name')}</div>,
+            size: 300,
+            filterFn: 'fuzzy',
+        },
+        {
+            accessorKey: 'total',
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                    >
+                        TOTAL
+                        <CaretSortIcon className="ml-2 h-4 w-4" />
+                    </Button>
+                )
+            },
+            cell: ({ row }) => <div className="">{row.getValue('total')}</div>,
+            sortingFn: (a, b) => {
+                // first we need to convert the strings to numbers and remove commas
+                const aNum = parseInt(a?.original?.total?.replace(/,/g, ''))
+                const bNum = parseInt(b?.original?.total?.replace(/,/g, ''))
+                // then we can compare the numbers
+                return aNum - bNum
+            }
+        },
+        {
+            accessorKey: 'daily',
+            size: 10,
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                    >
+                        DAILY
+                        <CaretSortIcon className="ml-2 h-4 w-4" />
+                    </Button>
+                )
+            },
+            cell: ({ row }) => <div className="">{row.getValue('daily')}</div>,
+            sortingFn: (a, b) => {
+                // first we need to convert the strings to numbers and remove commas
+                const aNum = parseInt(a?.original?.daily?.replace(/,/g, ''))
+                const bNum = parseInt(b?.original?.daily?.replace(/,/g, ''))
+                // then we can compare the numbers
+                return aNum - bNum
+            }
+        },
+        {
+            accessorKey: 'lead',
+            size: 10,
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                    >
+                        LEAD
+                        <CaretSortIcon className="ml-2 h-4 w-4" />
+                    </Button>
+                )
+            },
+            cell: ({ row }) => <div className="">{row.getValue('lead')}</div>,
+            sortingFn: (a, b) => {
+                // first we need to convert the strings to numbers and remove commas
+                const aNum = parseInt(a?.original?.lead?.replace(/,/g, ''))
+                const bNum = parseInt(b?.original?.lead?.replace(/,/g, ''))
+                // then we can compare the numbers
+                return aNum - bNum
+            }
+        },{
+            accessorKey: 'feature',
+            size: 10,
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                    >
+                        FEAT.
+                        <CaretSortIcon className="ml-2 h-4 w-4" />
+                    </Button>
+                )
+            },
+            cell: ({ row }) => <div className="">{row.getValue('feature')}</div>,
+            sortingFn: (a, b) => {
+                // first we need to convert the strings to numbers and remove commas
+                const aNum = parseInt(a?.original?.feature?.replace(/,/g, ''))
+                const bNum = parseInt(b?.original?.feature?.replace(/,/g, ''))
+                // then we can compare the numbers
+                return aNum - bNum
+            }
+        }
+    ],
+    album2: [
+        {
+            accessorKey: "name",
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                    >
+                        NAME
+                    </Button>
+                )
+            },
+            cell: ({ row }) => <div className="">{row.getValue('name')}</div>,
+            size: 2700,
+            filterFn: 'fuzzy',
+        },
+        {
+            accessorKey: "artist",
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                    >
+                        ARTIST
+                    </Button>
+                )
+            },
+            cell: ({ row }) => <div className="">{row.getValue('artist')}</div>,
+            size: 2700,
+            filterFn: 'fuzzy',
+        },
+        {
+            accessorKey: 'total',
+            size: 200,
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                    >
+                        TOTAL STREAMS
+                        <CaretSortIcon className="ml-2 h-4 w-4" />
+                    </Button>
+                )
+            },
+            cell: ({ row }) => <div className="">{row.getValue('total')}</div>,
+            sortingFn: (a, b) => {
+                // first we need to convert the strings to numbers and remove commas
+                const aNum = parseInt(a?.original?.total?.replace(/,/g, ''))
+                const bNum = parseInt(b?.original?.total?.replace(/,/g, ''))
+                // then we can compare the numbers
+                return aNum - bNum
+            }
+        },
+        {
+            accessorKey: 'daily',
+            size: 10,
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                    >
+                        DAILY STREAMS
+                        <CaretSortIcon className="ml-2 h-4 w-4" />
+                    </Button>
+                )
+            },
+            cell: ({ row }) => <div className="">{row.getValue('daily')}</div>,
+            sortingFn: (a, b) => {
+                // first we need to convert the strings to numbers and remove commas
+                const aNum = parseInt(a?.original?.daily?.replace(/,/g, ''))
+                const bNum = parseInt(b?.original?.daily?.replace(/,/g, ''))
+                // then we can compare the numbers
+                return aNum - bNum
+            }
+        }
+    ],
+    monthlyListeners: [
+        {
+            accessorKey: "name",
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                    >
+                        ARTIST NAME
+                    </Button>
+                )
+            },
+            cell: ({ row }) => <div className="">{row.getValue('name')}</div>,
+            size: 2700,
+            filterFn: 'fuzzy',
+        },
+        {
+            accessorKey: 'total',
+            size: 200,
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                    >
+                        TOTAL
+                        <CaretSortIcon className="ml-2 h-4 w-4" />
+                    </Button>
+                )
+            },
+            cell: ({ row }) => <div className="">{row.getValue('total')}</div>,
+            sortingFn: (a, b) => {
+                // first we need to convert the strings to numbers and remove commas
+                const aNum = parseInt(a?.original?.total?.replace(/,/g, ''))
+                const bNum = parseInt(b?.original?.total?.replace(/,/g, ''))
+                // then we can compare the numbers
+                return aNum - bNum
+            }
+        },
+        {
+            accessorKey: 'daily',
+            size: 10,
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                    >
+                        DAILY
+                        <CaretSortIcon className="ml-2 h-4 w-4" />
+                    </Button>
+                )
+            },
+            cell: ({ row }) => <div className={parseInt(row.getValue('daily')?.replace(/,/g, '')) > 0 ? "text-green-500" : "text-red-500"}>{row.getValue('daily')}</div>,
+            sortingFn: (a, b) => {
+                // first we need to convert the strings to numbers and remove commas
+                const aNum = parseInt(a?.original?.daily?.replace(/,/g, ''))
+                const bNum = parseInt(b?.original?.daily?.replace(/,/g, ''))
+                // then we can compare the numbers
+                return aNum - bNum
+            }
+        },
+        {
+            accessorKey: 'peak',
+            size: 10,
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                    >
+                        PEAK
+                        <CaretSortIcon className="ml-2 h-4 w-4" />
+                    </Button>
+                )
+            },
+            cell: ({ row }) => <div>{row.getValue('peak')}</div>,
+            sortingFn: (a, b) => {
+                // first we need to convert the strings to numbers and remove commas
+                const aNum = parseInt(a?.original?.peak?.replace(/,/g, ''))
+                const bNum = parseInt(b?.original?.peak?.replace(/,/g, ''))
+                // then we can compare the numbers
+                return aNum - bNum
+            }
+        }
+    ],
+
 }
