@@ -32,7 +32,6 @@ const ArtistAlbums = ({ id }) => {
       {albumsData.length > 0 && (
         <DataTable data={albumsData} type="album" searchColumn={"title"} />
       )}
-
       {loading && <Loader component={true} />}
     </div>
   );

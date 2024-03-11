@@ -20,7 +20,7 @@ export function MainNav() {
           height="40"
           className="rounded-full"
         />
-        <span className="hidden font-bold sm:inline-block text-xl">StatsForFans</span>
+        <span className="hidden font-bold sm:inline-block text-xl">Spotracker</span>
       </Link>
       <nav className="flex items-center gap-6 text-sm">
       <Link
