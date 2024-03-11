@@ -1,12 +1,23 @@
 "use client";
 
-import React, { useState, experimental_useOptimistic as useOptimistic } from "react";
+import React, {
+  useState,
+  experimental_useOptimistic as useOptimistic,
+} from "react";
 import { Button } from "./ui/button";
 import { HeartFilledIcon, HeartIcon } from "@radix-ui/react-icons";
 import { toast } from "sonner";
 import axios from "axios";
 
-const FavouriteButton = ({ type, id, spotifyId, isFavourite, image, name, setIsFavourite }) => {
+const FavouriteButton = ({
+  type,
+  id,
+  spotifyId,
+  isFavourite,
+  image,
+  name,
+  setIsFavourite,
+}) => {
   const [loading, setLoading] = useState(false);
   // const [optimisticValue, setOptimisticValue] = useOptimistic(isFavourite,
   //   (state, newVal) => {
@@ -28,13 +39,13 @@ const FavouriteButton = ({ type, id, spotifyId, isFavourite, image, name, setIsF
       if (res.status !== 200) {
         throw new Error("Failed to fetch data");
       }
+      toast.success(res?.data?.data?.message);
       setIsFavourite((prev) => !prev);
     } catch (error) {
       console.error(error);
       toast.error("Failed to fetch data");
     }
-  }
-
+  };
 
   return (
     <>

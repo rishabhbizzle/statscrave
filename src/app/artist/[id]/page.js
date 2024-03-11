@@ -37,7 +37,7 @@ const Artist = ({ params }) => {
     }, [id])
 
     return (
-        <div className='container'>
+        <div className='container min-h-screen'>
             {artist && (
                 <div className="w-full ">
                     <BasicDetails details={artist} type="artist" spotifyId={id} />

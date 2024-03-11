@@ -2,14 +2,11 @@
 
 
 import React from 'react'
-import { BarChart3 } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
 import { HoverEffect } from '@/components/ui/card-hover';
 
 const RecordsPage = () => {
     return (
-        <div>
+        <div className='min-h-screen'>
             <div className="max-w-5xl mx-auto px-8">
                 <HoverEffect items={projects} />
             </div>

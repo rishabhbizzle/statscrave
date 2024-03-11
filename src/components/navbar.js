@@ -4,12 +4,11 @@
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { MainNav } from "./navbar/main-nav"
-import { ModeToggle } from "./ui/toggleButton"
 import { Github, Twitter } from "lucide-react"
 import { CommandMenu } from "./navbar/command-menu"
 import { Button, buttonVariants } from "./ui/button"
 import { MobileNav } from "./navbar/mobile-nav"
-import { LoginLink, LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { UserMenu } from "./navbar/user-menu";
 
@@ -24,12 +23,12 @@ export default function Navbar() {
         <MainNav />
         <MobileNav />
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-          {isAuthenticated && (
-            <div className="w-full flex-1 md:w-auto md:flex-none">
+          <div className="w-auto flex-1 md:w-auto md:flex-none">
+            {isAuthenticated && (
               <CommandMenu />
-            </div>
-          )}
-          <nav className="flex items-center gap-2">
+            )}
+          </div>
+          <nav className="flex items-center justify-end gap-2">
             {/* <Link
               href='/'
               target="_blank"
@@ -64,7 +63,6 @@ export default function Navbar() {
                 <span className="sr-only">Twitter</span>
               </div>
             </Link>
-            <ModeToggle />
             {isAuthenticated ? (
               <UserMenu user={user} />
             ) : (
