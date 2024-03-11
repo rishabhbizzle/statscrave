@@ -56,8 +56,7 @@ const ArtistRankings = ({ id } ) => {
             <TableHeader>
               <TableRow>
                 <TableHead className="w-[5%]">#</TableHead>
-                <TableHead className="w-[10%]"></TableHead>
-                <TableHead className="w-[45%]" >Artist</TableHead>
+                <TableHead className="w-[55%]" >Artist</TableHead>
                 <TableHead >Total Streams</TableHead>
                 <TableHead className="text-right">Daily Streams</TableHead>
               </TableRow>
@@ -66,17 +65,17 @@ const ArtistRankings = ({ id } ) => {
               {artistsRanking && artistsRanking.map((artist, idx) => (
                 <TableRow key={idx}>
                   <TableCell>{idx + 1}</TableCell>
-                  <TableCell>
+                    <Link href={`/artist/${artist.spotifyId}`}  key={idx}>
+                  <TableCell className="flex flex-col md:flex-row gap-3 items-center">
                     <Image
                       alt="cover"
-                      className="object-cover"
-                      height="50"
+                      className="md:object-cover"
+                      height="55"
                       src={artist?.image}
-                      width="50"
+                      width="55"
                     />
+                    <p>{artist.name}</p>
                   </TableCell>
-                  <Link href={`/artist/${artist.spotifyId}`} className="hover:underline" key={idx}>
-                    <TableCell>{artist.name}</TableCell>
                   </Link>
                   <TableCell>
                     {artist?.streams}

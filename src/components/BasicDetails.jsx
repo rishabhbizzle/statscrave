@@ -71,7 +71,7 @@ export default function BasicDetails({ details, type, spotifyId }) {
             <div>
               <Users className="inline-block mr-1" size={24} />
               <span className="text-sm">
-                {details?.followers.total} followers
+                {details?.followers?.total?.toLocaleString("en-US")} followers
               </span>
             </div>
           ) : (

@@ -4,6 +4,21 @@ const { CaretSortIcon } = require("@radix-ui/react-icons")
 export const columnsData = {
     songs: [
         {
+            accessorKey: "#",
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                    >
+                        #
+                    </Button>
+                )
+            },
+            cell: (row, index) => {
+                return row?.row?.index + 1
+            },
+        },
+        {
             accessorKey: "title",
             header: ({ column }) => {
                 return (
@@ -68,6 +83,21 @@ export const columnsData = {
         }
     ],
     album: [
+        {
+            accessorKey: "#asda",
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                    >
+                        #
+                    </Button>
+                )
+            },
+            cell: (row, index) => {
+                return row?.row?.index + 1
+            },
+        },
         {
             accessorKey: "title",
             header: ({ column }) => {
@@ -135,6 +165,21 @@ export const columnsData = {
 
 
     artist: [
+        {
+            accessorKey: "#asda",
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                    >
+                        #
+                    </Button>
+                )
+            },
+            cell: (row, index) => {
+                return row?.row?.index + 1
+            },
+        },
         {
             accessorKey: "name",
             header: ({ column }) => {
@@ -219,7 +264,7 @@ export const columnsData = {
                 // then we can compare the numbers
                 return aNum - bNum
             }
-        },{
+        }, {
             accessorKey: 'feature',
             size: 10,
             header: ({ column }) => {
@@ -244,6 +289,21 @@ export const columnsData = {
         }
     ],
     album2: [
+        {
+            accessorKey: "#asda",
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                    >
+                        #
+                    </Button>
+                )
+            },
+            cell: (row, index) => {
+                return row?.row?.index + 1
+            },
+        },
         {
             accessorKey: "name",
             header: ({ column }) => {
@@ -322,6 +382,21 @@ export const columnsData = {
         }
     ],
     monthlyListeners: [
+        {
+            accessorKey: "#asda",
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                    >
+                        #
+                    </Button>
+                )
+            },
+            cell: (row, index) => {
+                return row?.row?.index + 1
+            },
+        },
         {
             accessorKey: "name",
             header: ({ column }) => {
