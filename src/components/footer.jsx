@@ -21,7 +21,7 @@ export default function Footer() {
   const pathname = usePathname();
 
   return (
-    <footer className="border-t border-gray-700">
+    <footer className="border-t border-gray-700 mt-10">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between flex-col gap-5">
           <div className="flex space-x-6">

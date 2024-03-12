@@ -41,8 +41,17 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { rankItem } from "@tanstack/match-sorter-utils";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
 import { columnsData } from "@/lib/columns";
+import { createFileName, useScreenshot } from "use-react-screenshot";
+import { useRef } from "react";
+import { Download, File } from "lucide-react";
 
 const fuzzyFilter = (row, columnId, value, addMeta) => {
   const itemRank = rankItem(row.getValue(columnId), value);
@@ -59,6 +68,22 @@ export function DataTable({ data, type, searchColumn, title, description }) {
   const [columnVisibility, setColumnVisibility] = React.useState({});
   const [rowSelection, setRowSelection] = React.useState({});
   const columns = columnsData[type];
+
+  const ref = useRef(null);
+
+  const [image, takeScreenShot] = useScreenshot({
+    type: "image/jpeg",
+    quality: 1.0,
+  });
+
+  const download = (image, { name = "img", extension = "jpg" } = {}) => {
+    const a = document.createElement("a");
+    a.href = image;
+    a.download = createFileName(extension, name);
+    a.click();
+  };
+
+  const downloadScreenshot = () => takeScreenShot(ref.current).then(download);
 
   const table = useReactTable({
     data,
@@ -106,7 +131,7 @@ export function DataTable({ data, type, searchColumn, title, description }) {
       </CardHeader>
       <CardContent>
         <div className="w-full">
-          <div className="flex items-center py-4">
+          <div className="flex flex-col md:flex-row items-center py-4 gap-2">
             <Input
               placeholder="Search..."
               value={table.getColumn(searchColumn)?.getFilterValue() ?? ""}
@@ -115,39 +140,50 @@ export function DataTable({ data, type, searchColumn, title, description }) {
                   .getColumn(searchColumn)
                   ?.setFilterValue(event.target.value)
               }
+              className="w-full"
             />
-            <Button variant="outline" onClick={handleExport}>
-              Export
+            <Button
+              variant="outline"
+              onClick={downloadScreenshot}
+              className="hidden md:flex"
+            >
+              <Download className="mr-2 w-4 h-4" />
+              Download
             </Button>
-
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="ml-auto">
-                  Columns <ChevronDownIcon className="ml-2 h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                {table
-                  .getAllColumns()
-                  .filter((column) => column.getCanHide())
-                  .map((column) => {
-                    return (
-                      <DropdownMenuCheckboxItem
-                        key={column.id}
-                        className="capitalize"
-                        checked={column.getIsVisible()}
-                        onCheckedChange={(value) =>
-                          column.toggleVisibility(!!value)
-                        }
-                      >
-                        {column.id}
-                      </DropdownMenuCheckboxItem>
-                    );
-                  })}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <div className="mt-2 md:mt-0 flex items-center">
+              <Button variant="outline" onClick={handleExport}>
+                <File className="mr-2 w-4 h-4" />
+                Export
+              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" className="ml-auto">
+                    Columns <ChevronDownIcon className="ml-2 h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  {table
+                    .getAllColumns()
+                    .filter((column) => column.getCanHide())
+                    .map((column) => {
+                      return (
+                        <DropdownMenuCheckboxItem
+                          key={column.id}
+                          className="capitalize"
+                          checked={column.getIsVisible()}
+                          onCheckedChange={(value) =>
+                            column.toggleVisibility(!!value)
+                          }
+                        >
+                          {column.id}
+                        </DropdownMenuCheckboxItem>
+                      );
+                    })}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
           </div>
-          <div className="rounded-md border">
+          <div className="rounded-md border" ref={ref}>
             <Table>
               <TableHeader>
                 {table.getHeaderGroups().map((headerGroup) => (

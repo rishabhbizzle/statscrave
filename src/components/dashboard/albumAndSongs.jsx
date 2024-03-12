@@ -13,8 +13,7 @@ import { toast } from "sonner";
 import axios from "axios";
 import Loader from "../ui/loader";
 
-const AlbumAndSongs = ( { id }) => {
-
+const AlbumAndSongs = ({ id }) => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -39,9 +38,8 @@ const AlbumAndSongs = ( { id }) => {
     fetchFavouritesData();
   }, [id]);
 
-
   if (loading) {
-    return <Loader component={true} />
+    return <Loader component={true} />;
   }
 
   return (
@@ -52,6 +50,11 @@ const AlbumAndSongs = ( { id }) => {
         </CardHeader>
         <CardContent>
           <ScrollArea className="h-56 md:h-72">
+            {data?.trackFavourites?.length === 0 && (
+              <p className="text-muted-foreground text-center my-4">
+                No tracks found
+              </p>
+            )}
             {data?.trackFavourites?.map((track, i) => (
               <Item item={track} type="track" key={i} />
             ))}
@@ -66,6 +69,12 @@ const AlbumAndSongs = ( { id }) => {
         </CardHeader>
         <CardContent>
           <ScrollArea className="h-56 md:h-72">
+            {data?.albumFavourites?.length === 0 && (
+              <p className="text-muted-foreground text-center my-4">
+                No albums found
+              </p>
+            )}
+
             {data?.albumFavourites?.map((album, i) => (
               <Item item={album} type="album" key={i} />
             ))}

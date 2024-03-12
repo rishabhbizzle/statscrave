@@ -52,17 +52,22 @@ const ArtistRankings = ({ id } ) => {
           </CardDescription>
         </CardHeader>
         <CardContent>
+          {artistsRanking && artistsRanking?.length === 0 && (
+            <p className="text-muted-foreground text-center my-4">
+              No artists found
+            </p>
+          )}
           <Table>
             <TableHeader>
               <TableRow>
                 <TableHead className="w-[5%]">#</TableHead>
-                <TableHead className="w-[55%]" >Artist</TableHead>
-                <TableHead >Total Streams</TableHead>
+                <TableHead className="w-[55%]">Artist</TableHead>
+                <TableHead>Total Streams</TableHead>
                 <TableHead className="text-right">Daily Streams</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {artistsRanking && artistsRanking.map((artist, idx) => (
+              {artistsRanking && artistsRanking?.map((artist, idx) => (
                 <TableRow key={idx}>
                   <TableCell>{idx + 1}</TableCell>
                     <Link href={`/artist/${artist.spotifyId}`}  key={idx}>
