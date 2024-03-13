@@ -72,3 +72,7 @@
 .blogContent{
   color: white
 }
+
+.invert-white {
+  filter: invert(100%);
+}

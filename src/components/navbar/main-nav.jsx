@@ -14,11 +14,11 @@ export function MainNav() {
     <div className="mr-4 hidden md:flex">
       <Link href="/" className="mr-6 flex items-center space-x-2">
         <Image
-          src={Logo}
+          src='/logo-white.png'
           alt="Logo"
           width="40"
           height="40"
-          className="rounded-full"
+          className="rounded-full invert-white dark:invert-0"
         />
         <span className="hidden font-bold sm:inline-block text-xl">Spotracker</span>
       </Link>
