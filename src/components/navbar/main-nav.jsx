@@ -85,6 +85,17 @@ export function MainNav() {
         >
           Charts
         </Link>
+        <Link
+          href="/updates"
+          className={cn(
+            "transition-colors hover:text-foreground/80",
+            pathname?.startsWith("/updates")
+              ? "text-foreground"
+              : "text-foreground/60"
+          )}
+        >
+          Updates
+        </Link>
       </nav>
     </div>
   );

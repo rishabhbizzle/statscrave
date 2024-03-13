@@ -44,11 +44,6 @@ import { Button } from "../ui/button"
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
-            <LogoutLink>
-          <DropdownMenuItem>
-            Log out
-          </DropdownMenuItem>
-            </LogoutLink>
         </DropdownMenuContent>
       </DropdownMenu>
     )
