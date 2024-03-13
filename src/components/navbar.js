@@ -2,22 +2,20 @@
 
 
 import Link from "next/link"
-import { cn } from "@/lib/utils"
+import { checkUserRole, cn } from "@/lib/utils"
 import { MainNav } from "./navbar/main-nav"
-import { Github, Twitter } from "lucide-react"
+import { Github, Lock, Twitter } from "lucide-react"
 import { CommandMenu } from "./navbar/command-menu"
 import { Button, buttonVariants } from "./ui/button"
 import { MobileNav } from "./navbar/mobile-nav"
-import { UserMenu } from "./navbar/user-menu";
-import { UserButton, useUser } from "@clerk/nextjs";
+import { UserButton, useUser, useSession } from "@clerk/nextjs";
 import { SignIn, SignInButton } from "@clerk/clerk-react";
 
 
 export default function Navbar() {
 
   const { isSignedIn: isAuthenticated, user, isLoaded } = useUser();
-
-  console.log(user)
+  const userRole = checkUserRole(user);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -65,11 +63,25 @@ export default function Navbar() {
                 <span className="sr-only">Twitter</span>
               </div>
             </Link>
+
             {isAuthenticated ? (
               <UserButton />
-              ) : (
+            ) : (
               <SignInButton />
             )}
+
+            {userRole === "org:admin" && (
+              <Link
+                href='/admin'
+              >
+                <Button
+                >
+                  <Lock className=" h-4 w-4  mr-2" />
+                  Admin Panel
+                </Button>
+              </Link>
+            )}
+
 
           </nav>
         </div>
