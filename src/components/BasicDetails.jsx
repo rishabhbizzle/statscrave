@@ -8,11 +8,11 @@ import { Button } from "./ui/button";
 import FavouriteButton from "./favourite";
 import Link from "next/link";
 import { toast } from "sonner";
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import axios from "axios";
+import { useUser } from "@clerk/nextjs";
 
 export default function BasicDetails({ details, type, spotifyId }) {
-  const { user, isAuthenticated, isLoading } = useKindeBrowserClient();
+  const { isSignedIn: isAuthenticated, user, isLoaded } = useUser();
   const [isFavourite, setIsFavourite] = useState(false);
   const [reRender, setReRender] = useState(false);
 
@@ -62,7 +62,7 @@ export default function BasicDetails({ details, type, spotifyId }) {
         <div className="w-full flex flex-col gap-1">
           <div className="w-full flex justify-between">
             <h1 className="text-4xl font-bold">{details?.name}</h1>
-            <div className="text-2xl p-2 font-bold bg-primary text-primary-foreground hover:bg-primary/90">
+            <div className="text-2xl max-h-12 p-2 font-bold bg-primary text-primary-foreground hover:bg-primary/90">
               {details?.popularity}
             </div>
           </div>

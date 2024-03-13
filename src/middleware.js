@@ -1,7 +1,16 @@
-import {withAuth} from "@kinde-oss/kinde-auth-nextjs/middleware";
-export default function middleware(req) {
-    return withAuth(req);
-}
+import { authMiddleware } from "@clerk/nextjs";
+ 
+export default authMiddleware({
+  // Routes that can be accessed while signed out
+  publicRoutes: ['/', '/updates', '/updates/(.*)'],
+  // Routes that can always be accessed, and have
+  // no authentication information
+  ignoredRoutes: [],
+});
+ 
 export const config = {
-    matcher: ["/dashboard", "/charts", "/charts/(.*)", "/artist", "/artist/(.*)", "/album", "/album/(.*)", "/track", "/track/(.*)", "/search", "/search/(.*)", "/settings", "/settings/(.*)", "/api/(.*)", "/records", "/records/(.*)"],
+  // Protects all routes, including api/trpc.
+  // See https://clerk.com/docs/references/nextjs/auth-middleware
+  // for more information about configuring your Middleware
+  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };

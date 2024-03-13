@@ -8,14 +8,16 @@ import { Github, Twitter } from "lucide-react"
 import { CommandMenu } from "./navbar/command-menu"
 import { Button, buttonVariants } from "./ui/button"
 import { MobileNav } from "./navbar/mobile-nav"
-import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { UserMenu } from "./navbar/user-menu";
+import { UserButton, useUser } from "@clerk/nextjs";
+import { SignIn, SignInButton } from "@clerk/clerk-react";
 
 
 export default function Navbar() {
 
-  const { user, isAuthenticated, isLoading } = useKindeBrowserClient();
+  const { isSignedIn: isAuthenticated, user, isLoaded } = useUser();
+
+  console.log(user)
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -64,11 +66,9 @@ export default function Navbar() {
               </div>
             </Link>
             {isAuthenticated ? (
-              <UserMenu user={user} />
-            ) : (
-              <LoginLink>
-                <Button variant="secondary">Login</Button>
-              </LoginLink>
+              <UserButton />
+              ) : (
+              <SignInButton />
             )}
 
           </nav>
