@@ -17,7 +17,7 @@ const Page = async () => {
                     <h2 className="text-3xl md:text-5xl font-bold tracking-tight">Updates</h2>
                 </div>
                 <p className="text-muted-foreground text-center">
-                   Wanna know what's new in pop music culture? Check out these latest updates to stay in the loop.
+                   Wanna know whats new in pop music culture? Check out these latest updates to stay in the loop.
                 </p>
                 <div className="flex items-center space-x-2">
                     {/* <Button onClick={() => console.log("test")}>Download</Button> */}

@@ -24,3 +24,18 @@ export const getLatestDateValue = (data) => {
   }
   return maxValue;
 }
+
+
+export const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const options = { 
+      year: 'numeric', 
+      month: '2-digit', 
+      day: '2-digit', 
+      hour: '2-digit', 
+      minute: '2-digit', 
+      second: '2-digit',
+      timeZone: 'UTC' // Set the time zone as per your requirement
+  };
+  return date.toLocaleString('en-US', options);
+}

@@ -24,6 +24,7 @@ const CustomDialogTrigger = ({
         block
         overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']
         sm:h-[440px]
+        max-w-[80%]
         w-full
       "
       >
