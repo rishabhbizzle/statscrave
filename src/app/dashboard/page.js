@@ -19,7 +19,7 @@ const Dashboard = () => {
 
   return (
     <div className="container min-h-screen">
-      <div className="flex items-center flex-col justify-between space-y-2 my-8">
+      <div className="flex items-center flex-col justify-between space-y-2 my-10">
         <div className='flex gap-2'>
           <Sparkles className='w-6 h-6' />
           <h2 className="text-4xl md:text-6xl font-bold tracking-tight">Dashboard</h2>

@@ -84,7 +84,7 @@ export const columnsData = {
     ],
     album: [
         {
-            accessorKey: "#asda",
+            accessorKey: "#",
             header: ({ column }) => {
                 return (
                     <Button
@@ -166,7 +166,7 @@ export const columnsData = {
 
     artist: [
         {
-            accessorKey: "#asda",
+            accessorKey: "#",
             header: ({ column }) => {
                 return (
                     <Button
@@ -290,7 +290,7 @@ export const columnsData = {
     ],
     album2: [
         {
-            accessorKey: "#asda",
+            accessorKey: "#",
             header: ({ column }) => {
                 return (
                     <Button
@@ -381,9 +381,79 @@ export const columnsData = {
             }
         }
     ],
+    track: [
+        {
+            accessorKey: "#",
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                    >
+                        #
+                    </Button>
+                )
+            },
+            cell: (row, index) => {
+                return row?.row?.index + 1
+            },
+        },
+        {
+            accessorKey: "name",
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                    >
+                        NAME
+                    </Button>
+                )
+            },
+            cell: ({ row }) => <div className="">{row.getValue('name')}</div>,
+            size: 2700,
+            filterFn: 'fuzzy',
+        },
+        {
+            accessorKey: "artist",
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                    >
+                        ARTIST
+                    </Button>
+                )
+            },
+            cell: ({ row }) => <div className="">{row.getValue('artist')}</div>,
+            size: 2700,
+            filterFn: 'fuzzy',
+        },
+        {
+            accessorKey: 'streams',
+            size: 200,
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                    >
+                        STREAMS
+                        <CaretSortIcon className="ml-2 h-4 w-4" />
+                    </Button>
+                )
+            },
+            cell: ({ row }) => <div className="">{row.getValue('streams')}</div>,
+            sortingFn: (a, b) => {
+                // first we need to convert the strings to numbers and remove commas
+                const aNum = parseInt(a?.original?.streams?.replace(/,/g, ''))
+                const bNum = parseInt(b?.original?.streams?.replace(/,/g, ''))
+                // then we can compare the numbers
+                return aNum - bNum
+            }
+        },
+    ],
     monthlyListeners: [
         {
-            accessorKey: "#asda",
+            accessorKey: "#",
             header: ({ column }) => {
                 return (
                     <Button

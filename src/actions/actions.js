@@ -5,11 +5,16 @@ import Updates from "@/models/updatesModel";
 import { currentUser } from '@clerk/nextjs';
 import { revalidatePath } from "next/cache";
 
-export const getAllBlogsFromDb = async () => {
+export const getAllBlogsFromDb = async (count) => {
     try {
         await connect()
-        const blogs = await Updates.find({ });
-        return blogs
+        const blogs = count ? await Updates.find().limit(count).sort({ createdAt: -1 }): await Updates.find().sort({ createdAt: -1 })
+
+        // convert the blogs to json
+        const data = JSON.parse(JSON.stringify(blogs))
+        return data
+
+
     } catch (error) {
         console.log(error)
         return null

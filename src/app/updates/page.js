@@ -26,7 +26,7 @@ const Page = async () => {
             <div>
                 <BentoGrid className="max-w-5xl mx-auto md:auto-rows-[25rem]">
                     <BentoGridItem
-                        title={<Link className='w-full flex justify-end hover:underline' href={`/updates/${pinnedBlog.slug}`}>{pinnedBlog.title}</Link>}
+                        title={<Link className='w-full flex hover:underline' href={`/updates/${pinnedBlog.slug}`}>{pinnedBlog.title}</Link>}
                         // description={<Link className='w-full flex justify-end' href={`/updates/${pinnedBlog.slug}`}><Button>Read More</Button></Link>}
                         header={<img
                             alt="Cover image"
@@ -40,7 +40,7 @@ const Page = async () => {
                         if (blog?.id === pinnedBlog?.id) return null
                         return <BentoGridItem
                             key={i}
-                            title={<Link className='w-full flex justify-end hover:underline' href={`/updates/${pinnedBlog.slug}`}>{blog.title}</Link>}
+                            title={<Link className='w-full flex  hover:underline' href={`/updates/${pinnedBlog.slug}`}>{blog.title}</Link>}
                             // description={item.description}
                             header={<img
                                 alt="Cover image"
