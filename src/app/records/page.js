@@ -35,6 +35,17 @@ const projects = [
         description: "A list of the most popular artists on Spotify right now",
         link: "/records/most-popular-artists",
     },
+    {
+        title: "Most Streamed Songs in Single Day",
+        description: "A list of the most streamed songs on Spotify in a single day.",
+        link: "/records/most-streamed-songs-single-day",
+    },
+    {
+        title: "Most Streamed Songs in Single Week",
+        description: "A list of the most streamed songs on Spotify in a single day.",
+        link: "/records/most-streamed-songs-single-week",
+    },
+
 ];
 
 export default RecordsPage
