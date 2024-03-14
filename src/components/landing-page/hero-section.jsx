@@ -55,7 +55,7 @@ const HeroSection = () => {
               variants={FADE_DOWN_ANIMATION_VARIANTS}
               className="mt-6 text-base sm:text-lg leading-8 "
             >
-              Spotracker is a platform for fans to track their favorite artist's
+              Spotracker is a platform for fans to track their favorite artists
               spotify streams and more...
             </motion.p>
 
