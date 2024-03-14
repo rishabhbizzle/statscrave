@@ -25,9 +25,9 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between flex-col gap-5">
           <div className="flex space-x-6">
-            <TriangleIcon className="h-5 w-5 " />
+            <p className="text-muted-foreground">Spotracker</p>
             <p className="text-sm ">© 2024</p>
-            <Badge variant="secondary">All systems normal.</Badge>
+            <Badge variant="secondary">BETA</Badge>
           </div>
           <div className="flex justify-between items-center">
             <div className="flex space-x-6">
@@ -40,49 +40,7 @@ export default function Footer() {
                     : "text-foreground/60"
                 )}
               >
-                Dashboard
-              </Link>
-              {/* <Link
-          href="/artist"
-          className={cn(
-            "transition-colors hover:text-foreground/80",
-            pathname === "/artist" ? "text-foreground" : "text-foreground/60"
-          )}
-        >
-          Artists
-        </Link>
-        <Link
-          href="/album"
-          className={cn(
-            "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/album")
-              ? "text-foreground"
-              : "text-foreground/60"
-          )}
-        >
-          Albums
-        </Link>
-        <Link
-          href="/song"
-          className={cn(
-            "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/song")
-              ? "text-foreground"
-              : "text-foreground/60"
-          )}
-        >
-          Songs
-        </Link> */}
-              <Link
-                href="/records"
-                className={cn(
-                  "text-sm transition-colors hover:text-foreground/80",
-                  pathname?.startsWith("/records")
-                    ? "text-foreground"
-                    : "text-foreground/60"
-                )}
-              >
-                Records
+                Contact
               </Link>
               <Link
                 href="/charts"
@@ -93,7 +51,7 @@ export default function Footer() {
                     : "text-foreground/60"
                 )}
               >
-                Charts
+                Updates
               </Link>
             </div>
             <div className="flex items-center space-x-4">
