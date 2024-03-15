@@ -25,7 +25,7 @@ export default function Page() {
   const LSAvailabe = typeof window !== "undefined";
   const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
   const clientSecret = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET;
-  const redirectURI = "http://localhost:3000/userSpotify/";
+  const redirectURI = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT || "http://localhost:3000/userSpotify/";
   const currentDate = new Date();
   let refreshToken;
   let accessToken;
