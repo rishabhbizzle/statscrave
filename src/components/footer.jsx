@@ -30,29 +30,8 @@ export default function Footer() {
             <Badge variant="secondary">BETA</Badge>
           </div>
           <div className="flex justify-between items-center">
-            <div className="flex space-x-6">
-              <Link
-                href="/dashboard"
-                className={cn(
-                  "text-sm transition-colors hover:text-foreground/80",
-                  pathname === "/dashboard"
-                    ? "text-foreground"
-                    : "text-foreground/60"
-                )}
-              >
-                Contact
-              </Link>
-              <Link
-                href="/charts"
-                className={cn(
-                  "text-sm transition-colors hover:text-foreground/80",
-                  pathname?.startsWith("/charts")
-                    ? "text-foreground"
-                    : "text-foreground/60"
-                )}
-              >
-                Updates
-              </Link>
+            <div className="flex space-x-6 text-muted-foreground text-sm">
+            We are not related to Billboard, Spotify or any of its partners in any way. It's just a fan project.
             </div>
             <div className="flex items-center space-x-4">
               <Link
