@@ -31,7 +31,7 @@ export default function Footer() {
           </div>
           <div className="flex justify-between items-center">
             <div className="flex space-x-6 text-muted-foreground text-sm">
-            We are not related to Billboard, Spotify or any of its partners in any way. It's just a fan project.
+            We are not related to Billboard, Spotify or any of its partners in any way. This is a fan project.
             </div>
             <div className="flex items-center space-x-4">
               <Link
