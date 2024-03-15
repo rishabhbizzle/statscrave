@@ -10,6 +10,7 @@ import { Button, buttonVariants } from "./ui/button"
 import { MobileNav } from "./navbar/mobile-nav"
 import { UserButton, useUser, useSession } from "@clerk/nextjs";
 import { SignIn, SignInButton } from "@clerk/clerk-react";
+import { UserMenu } from "./navbar/user-menu";
 
 
 export default function Navbar() {
@@ -65,7 +66,7 @@ export default function Navbar() {
             </Link>
 
             {isAuthenticated ? (
-              <UserButton />
+              <UserMenu user={user} />
             ) : (
               <SignInButton />
             )}

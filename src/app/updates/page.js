@@ -40,7 +40,7 @@ const Page = async () => {
                         if (blog?.id === pinnedBlog?.id) return null
                         return <BentoGridItem
                             key={i}
-                            title={<Link className='w-full flex  hover:underline' href={`/updates/${pinnedBlog.slug}`}>{blog.title}</Link>}
+                            title={<Link className='w-full flex  hover:underline' href={`/updates/${blog.slug}`}>{blog.title}</Link>}
                             // description={item.description}
                             header={<img
                                 alt="Cover image"
