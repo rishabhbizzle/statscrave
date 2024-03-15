@@ -20,7 +20,7 @@ const HeroSection = () => {
   const heroSectionInView = useInView(heroSectionRef);
 
   return (
-    <div className="flex min-h-[75vh] p-8 mb-14 justify-center items-center">
+    <div className="flex min-h-[85vh] p-8 mb-14 justify-center items-center">
       <div className="flex flex-col md:flex-row items-center justify-between">
         <div className="flex flex-col items-center">
           <motion.div
@@ -46,17 +46,16 @@ const HeroSection = () => {
             </motion.h1>
             <motion.p
               variants={FADE_DOWN_ANIMATION_VARIANTS}
-              className="space-x-4 text-2xl font-bold tracking-tight sm:text-4xl mt-3"
+              className="space-x-4 text-xl font-bold tracking-tight sm:text-3xl mt-3"
             >
-              By the fans, for the fans
+              Your ultimate music analytics platform
             </motion.p>
 
             <motion.p
               variants={FADE_DOWN_ANIMATION_VARIANTS}
               className="mt-6 text-base sm:text-lg leading-8 "
             >
-              Spotracker is a platform for fans to track their favorite artists
-              spotify streams and more...
+  Dive into our comprehensive streaming analytics to uncover the pulse of your favorite artists, albums, and songs and much more.
             </motion.p>
 
             <motion.div

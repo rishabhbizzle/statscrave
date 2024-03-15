@@ -8,25 +8,25 @@ import { useRef } from 'react';
 
 
 const features = [{
-    title: "Daily Spotify Streams Gains",
-    description: "Provide daily stream gains",
+    title: "Personalised dashboard based on your favorites.",
+    description: "Get a personalised dashboard to track your favorite tracks, albums, artists spotify streams of your favorite artists and also you can checkout recomendations based on your taste more...",
     image: "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
   },
   {
-    title: "Daily Spotify Streams Gains",
-    description: "Provide daily stream gains",
+    title: "Extensive streaming data, records and more.",
+    description: "Get extensive streaming data, records and more about your favorite artists, albums and tracks. You can also checkout the top charts and more...",
     image: "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
   },
   {
-    title: "Daily Spotify Streams Gains",
-    description: "Provide daily stream gains",
+    title: "Music culture updates & news on the go.",
+    description: "Stay up-to-date with the latest trends and news in music pop culture with concise and informative blog posts covering exciting news in the music industry...",
     image: "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
   },
-  {
-    title: "Daily Spotify Streams Gains",
-    description: "Provide daily stream gains",
-    image: "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
-  }
+  // {
+  //   title: "Daily Spotify Streams Gains",
+  //   description: "Provide daily stream gains",
+  //   image: "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
+  // }
   
   ]
   
@@ -48,17 +48,16 @@ export default function Features() {
                   src={feature.image}
                   width="550"
                   initial={{ opacity: 0, x: 100 }} // Initial state for the image
-                  animate={{ opacity: featureSectionInView ? 1 : 0, x: featureSectionInView ? 0 : index % 2 === 0 ? -60 : 60 }} // Animation for the image
+                  animate={{ opacity: featureSectionInView ? 1 : 0, x: featureSectionInView ? 0 : index % 2 === 0 ? -40 : 40 }} // Animation for the image
                   transition={{ duration: 0.5, delay: 0.2 }} // Animation duration with delay
                 />
               </div>
-              <div className="flex flex-col justify-center space-y-4">
+              <div className="flex flex-col justify-center space-y-4 md:w-[60%]">
                 <div className="space-y-2">
                   <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-gray-800">Features</div>
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Faster iteration. More innovation.</h2>
+                  <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">{feature?.title}</h2>
                   <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                    The platform for rapid progress. Let your team focus on shipping features instead of managing
-                    infrastructure with automated CI/CD, built-in testing, and integrated collaboration.
+                    {feature.description}
                   </p>
                 </div>
                 {/* <ul className="grid gap-2 py-4">
