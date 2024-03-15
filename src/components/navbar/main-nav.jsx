@@ -32,37 +32,15 @@ export function MainNav() {
         >
           Dashboard
         </Link>
-        {/* <Link
-          href="/artist"
-          className={cn(
-            "transition-colors hover:text-foreground/80",
-            pathname === "/artist" ? "text-foreground" : "text-foreground/60"
-          )}
-        >
-          Artists
-        </Link>
         <Link
-          href="/album"
+          href="/userSpotify"
           className={cn(
             "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/album")
-              ? "text-foreground"
-              : "text-foreground/60"
+            pathname === "/userSpotify" ? "text-foreground" : "text-foreground/60"
           )}
         >
-          Albums
+          Your Spotify
         </Link>
-        <Link
-          href="/song"
-          className={cn(
-            "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/song")
-              ? "text-foreground"
-              : "text-foreground/60"
-          )}
-        >
-          Songs
-        </Link> */}
         <Link
           href="/records"
           className={cn(
