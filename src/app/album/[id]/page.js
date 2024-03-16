@@ -48,9 +48,9 @@ const Album = ({ params }) => {
         <div>
           <BasicDetails details={data?.albumDetails} type='album' spotifyId={id} />
           <div className="flex-1 space-y-4 pt-6">
-            {data?.streamingData && (
+            {/* {data?.streamingData && (
               <StreamingDetails streamingData={data?.streamingData} type='album' />
-            )}
+            )} */}
             <OtherDetails details={data?.albumDetails} type='album' />
             <Recomendations type='album' />
           </div>

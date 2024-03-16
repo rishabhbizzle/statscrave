@@ -19,7 +19,7 @@ export default function Page() {
   const [timeRange, setTimeRange] = useState("short_term");
   const AUTHORIZE = "https://accounts.spotify.com/authorize";
   const TOKEN = "https://accounts.spotify.com/api/token";
-  const scopes = ["user-top-read", "user-read-email", "user-read-private"].join(
+  const scopes = ["user-top-read"].join(
     ","
   );
   const LSAvailabe = typeof window !== "undefined";
@@ -168,7 +168,7 @@ export default function Page() {
           />
         ) : (
           <Link
-            href={`${AUTHORIZE}?client_id=${clientId}&response_type=code&redirect_uri=${redirectURI}&show_dialog=true&scope="user-top-read"`}
+            href={`${AUTHORIZE}?client_id=${clientId}&response_type=code&redirect_uri=${redirectURI}&show_dialog=true&scope=${scopes}`}
           >
             <Button>Sign in with Spotify</Button>
           </Link>

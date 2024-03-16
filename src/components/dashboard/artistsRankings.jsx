@@ -73,8 +73,8 @@ const ArtistRankings = ({ id }) => {
                   <TableRow>
                     <TableHead className="w-[5%]">#</TableHead>
                     <TableHead className="w-[55%]">Artist</TableHead>
-                    <TableHead>Total Streams</TableHead>
-                    <TableHead className="text-right">Daily Streams</TableHead>
+                    {/* <TableHead>Total Streams</TableHead>
+                    <TableHead className="text-right">Daily Streams</TableHead> */}
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -94,10 +94,10 @@ const ArtistRankings = ({ id }) => {
                             <p>{artist.name}</p>
                           </TableCell>
                         </Link>
-                        <TableCell>{artist?.streams}</TableCell>
+                        {/* <TableCell>{artist?.streams}</TableCell>
                         <TableCell className="text-right">
                           {artist?.dailyStreams}
-                        </TableCell>
+                        </TableCell> */}
                       </TableRow>
                     ))}
                 </TableBody>

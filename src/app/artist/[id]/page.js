@@ -48,19 +48,19 @@ const Artist = ({ params }) => {
                     <Tabs className="mt-6" defaultValue='overview' activationMode='manual'>
                         <TabsList>
                             <TabsTrigger value="overview">Overview</TabsTrigger>
-                            <TabsTrigger value="songs">Songs</TabsTrigger>
-                            <TabsTrigger value="albums">Albums</TabsTrigger>
+                            {/* <TabsTrigger value="songs">Songs</TabsTrigger>
+                            <TabsTrigger value="albums">Albums</TabsTrigger> */}
                         </TabsList>
                         <TabsContent value="overview">
-                            <ArtistOverview id={id} artist={artist} />
+                            {/* <ArtistOverview id={id} artist={artist} /> */}
                             <PopularTracks id={id} />
                         </TabsContent>
-                        <TabsContent value="songs">
+                        {/* <TabsContent value="songs">
                             <ArtistSongs id={id} />
                         </TabsContent>
                         <TabsContent value="albums">
                             <ArtistAlbums id={id} />
-                        </TabsContent>
+                        </TabsContent> */}
                     </Tabs>
                 </div>
             )}

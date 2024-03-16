@@ -47,9 +47,9 @@ const Track = ({ params }) => {
         <div>
           <BasicDetails details={data?.trackDetails} type='track' spotifyId={id} />
           <div className="flex-1 space-y-4 pt-6">
-            {data?.streamingData && (
+            {/* {data?.streamingData && (
                 <StreamingDetails streamingData={data?.streamingData} type='track' />
-            )}
+            )} */}
           <AudioFeatures data={data?.trackFeatures} />
             <Recomendations type='track' />
           </div>
