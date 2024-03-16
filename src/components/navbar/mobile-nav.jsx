@@ -2,25 +2,20 @@
 
 import * as React from "react";
 import Link, { LinkProps } from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
     Sheet,
-    SheetClose,
     SheetContent,
-    SheetDescription,
-    SheetFooter,
-    SheetHeader,
-    SheetTitle,
     SheetTrigger,
   } from "@/components/ui/sheet"
 import { Button } from "../ui/button";
-import { LogInIcon } from "lucide-react";
 import { ScrollArea } from "../ui/scroll-area";
 import Image from "next/image";
 
 export function MobileNav() {
   const [open, setOpen] = React.useState(false);
+  const pathname = usePathname();
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -74,13 +69,19 @@ export function MobileNav() {
           height="40"
           className="rounded-full invert-white dark:invert-0"
         />
-          <span className="font-bold">StatsForFans</span>
+          <span className="font-bold">Spotracker</span>
         </MobileLink>
         <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
           <div className="flex flex-col space-y-3">
                   <MobileLink
                     href='/dashboard'
                     onOpenChange={setOpen}
+                    className={cn(
+                      "transition-colors hover:text-foreground/80",
+                      pathname?.startsWith("/dashboard")
+                        ? "text-foreground"
+                        : "text-foreground/60"
+                    )}
                   >
                     Dashboard
                   </MobileLink>
@@ -91,7 +92,12 @@ export function MobileNav() {
                 <MobileLink
                   href={'/userSpotify'}
                   onOpenChange={setOpen}
-                  className="text-muted-foreground"
+                  className={cn(
+                    "transition-colors hover:text-foreground/80",
+                    pathname?.startsWith("/userSpotify")
+                      ? "text-foreground"
+                      : "text-foreground/60"
+                  )}
                 >
                   Your Spotify
                 </MobileLink>
@@ -104,7 +110,12 @@ export function MobileNav() {
                 <MobileLink
                   href={'/records'}
                   onOpenChange={setOpen}
-                  className="text-muted-foreground"
+                  className={cn(
+                    "transition-colors hover:text-foreground/80",
+                    pathname?.startsWith("/records")
+                      ? "text-foreground"
+                      : "text-foreground/60"
+                  )}
                 >
                   Records
                 </MobileLink>
@@ -117,7 +128,13 @@ export function MobileNav() {
                 <MobileLink
                   href={'/charts'}
                   onOpenChange={setOpen}
-                  className="text-muted-foreground"
+                  className={cn(
+                    "transition-colors hover:text-foreground/80",
+                    pathname?.startsWith("/charts")
+                      ? "text-foreground"
+                      : "text-foreground/60"
+                  )}
+                  
                 >
                   Charts
                 </MobileLink>
@@ -130,7 +147,12 @@ export function MobileNav() {
                 <MobileLink
                   href={'/updates'}
                   onOpenChange={setOpen}
-                  className="text-muted-foreground"
+                  className={cn(
+                    "transition-colors hover:text-foreground/80",
+                    pathname?.startsWith("/updates")
+                      ? "text-foreground"
+                      : "text-foreground/60"
+                  )}
                 >
                   Updates
                 </MobileLink>
@@ -140,7 +162,7 @@ export function MobileNav() {
         </ScrollArea>
       </SheetContent>
     </Sheet>
-  );
+  ); 
 }
 
 function MobileLink({ href, onOpenChange, className, children, ...props }) {

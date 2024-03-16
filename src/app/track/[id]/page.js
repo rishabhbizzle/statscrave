@@ -8,6 +8,7 @@ import Loader from '@/components/ui/loader'
 import axios from 'axios'
 import AudioFeatures from '@/components/audioFeatures'
 import dynamic from 'next/dynamic'
+import { toast } from 'sonner'
 const Recomendations = dynamic(() => import('../../../components/recomendations.jsx'),{
   loading: () => <Loader component={true} />,
 });
@@ -24,6 +25,10 @@ const Track = ({ params }) => {
       if (res.status !== 200) {
         throw new Error(res?.data?.message || 'Failed to fetch data')
       }
+      if (!res?.data?.data) {
+        throw new Error('No track found')
+      }
+
       setData(res?.data?.data)
     } catch (error) {
       toast.error(error?.message)

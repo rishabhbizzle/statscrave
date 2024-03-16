@@ -117,7 +117,7 @@ export default function BasicDetails({ details, type, spotifyId }) {
               name={details?.name}
               setIsFavourite={setIsFavourite}
             />
-            <Button variant="outline">Download PDF report</Button>
+            <Button variant="outline" onClick={() => toast.info("Coming Soon !!!")}>Download PDF report</Button>
           </div>
         </div>
       </div>

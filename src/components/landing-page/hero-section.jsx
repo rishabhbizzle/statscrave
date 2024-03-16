@@ -20,8 +20,8 @@ const HeroSection = () => {
   const heroSectionInView = useInView(heroSectionRef);
 
   return (
-    <div className="flex min-h-[85vh] p-8 mb-14 justify-center items-center">
-      <div className="flex flex-col md:flex-row items-center justify-between">
+    <div className="flex min-h-[85vh] p-8  md:mb-14 justify-center items-center">
+      <div className="flex flex-col gap-10 md:gap-2 md:flex-row items-center justify-between">
         <div className="flex flex-col items-center">
           <motion.div
             initial="hidden"
@@ -78,7 +78,7 @@ const HeroSection = () => {
             </motion.div>
           </motion.div>
         </div>
-        <div className="hidden md:flex">
+        <div className="flex">
             <Image src={HeroImg} alt="Spotracker" className="rounded-lg" width={500} height={500} />
         </div>
       </div>

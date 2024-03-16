@@ -24,46 +24,37 @@ export default function Footer() {
     <footer className="border-t border-gray-700 mt-10">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between flex-col gap-5">
+            <div className="flex justify-between">
           <div className="flex space-x-6">
+
             <p className="text-muted-foreground">Spotracker</p>
             <p className="text-sm ">© 2024</p>
             <Badge variant="secondary">BETA</Badge>
-          </div>
-          <div className="flex justify-between items-center">
-            <div className="flex space-x-6 text-muted-foreground text-sm">
-            We are not related to Billboard, Spotify or any of its partners in any way. This is a fan project.
             </div>
             <div className="flex items-center space-x-4">
-              <Link
-              href='/'
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div
-                className={cn(
-                  "w-9 px-0"
-                )}
-              >
-                <Github className="h-4 w-4" />
-                <span className="sr-only">GitHub</span>
-              </div>
-            </Link>
-            <Link
-              href='/'
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div
-                className={cn(
-                  "w-9 px-0"
-                )}
-              >
-                <Twitter className=" h-5 w-5 fill-current" />
-                <span className="sr-only">Twitter</span>
-              </div>
-            </Link>
-            <ModeToggle />
+              <Link href="/" target="_blank" rel="noreferrer">
+                <div className={cn("w-9 px-0")}>
+                  <Github className="h-4 w-4" />
+                  <span className="sr-only">GitHub</span>
+                </div>
+              </Link>
+              <Link href="/" target="_blank" rel="noreferrer">
+                <div className={cn("w-9 px-0")}>
+                  <Twitter className=" h-5 w-5 fill-current" />
+                  <span className="sr-only">Twitter</span>
+                </div>
+              </Link>
+              <ModeToggle />
             </div>
+          </div>
+          <div className="flex flex-col-reverse justify-col items-center">
+            <div className="flex flex-col gap-2">
+              <div className="flex space-x-6 text-muted-foreground text-sm">
+                We are not related to Billboard, Spotify or any of its partners. This is a fan project. The data shown on this website is publicly available and
+                retrieved directly from APIs.
+              </div>
+            </div>
+            
           </div>
         </div>
       </div>

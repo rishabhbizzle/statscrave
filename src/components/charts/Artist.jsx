@@ -74,6 +74,9 @@ const Artist = () => {
         <div className="head w-full shadow-2xl">
           <Image src={Head} className="items-center" alt="artist100" />
         </div>
+        <div className="bg-[#182655] text-sm text-muted-foreground text-end pr-3">
+          @Spotracker
+        </div>
         {/* <div className="hot">
         <img src={Hot} alt="" />
         </div> */}

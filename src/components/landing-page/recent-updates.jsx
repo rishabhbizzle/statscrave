@@ -8,7 +8,6 @@ import {
   CarouselPrevious,
 } from "../ui/carousel";
 import { Card, CardContent } from "../ui/card";
-import { Button } from "../ui/button";
 import Link from "next/link";
 
 export default function RecentUpdates({ data }) {
@@ -34,7 +33,7 @@ export default function RecentUpdates({ data }) {
                           className="aspect-video overflow-hidden rounded-lg object-cover w-full h-full"
                           src={data.image}
                         />
-                        <div className="w-full h-[30%] flex mt-3">
+                        <div className="w-full text-sm h-[30%] flex mt-3">
                           <p className="font-medium">{data?.title}</p>
                         </div>
                       </CardContent>

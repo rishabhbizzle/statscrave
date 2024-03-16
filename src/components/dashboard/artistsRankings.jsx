@@ -67,7 +67,7 @@ const ArtistRankings = ({ id }) => {
             </p>
           )}
           {!loading ? (
-            <ScrollArea className="h-60 md:h-80">
+            // <ScrollArea className="h-60 md:h-80 w-full">
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -83,7 +83,7 @@ const ArtistRankings = ({ id }) => {
                       <TableRow key={idx}>
                         <TableCell>{idx + 1}</TableCell>
                         <Link href={`/artist/${artist.spotifyId}`} key={idx}>
-                          <TableCell className="flex flex-col md:flex-row gap-3 items-center">
+                          <TableCell className="flex flex-col md:flex-row gap-1 md:gap-3 items-center">
                             <Image
                               alt="cover"
                               className="md:object-cover"
@@ -102,7 +102,7 @@ const ArtistRankings = ({ id }) => {
                     ))}
                 </TableBody>
               </Table>
-            </ScrollArea>
+            // </ScrollArea>
           ) : (
             <Loader component={true} />
           )}

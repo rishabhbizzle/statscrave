@@ -10,7 +10,7 @@ import axios from 'axios'
 import { toast } from 'sonner'
 import dynamic from 'next/dynamic'
 
-const Recomendations = dynamic(() => import('../../../components/recomendations.jsx'),{
+const Recomendations = dynamic(() => import('../../../components/recomendations.jsx'), {
   loading: () => <Loader component={true} />,
 });
 
@@ -26,6 +26,9 @@ const Album = ({ params }) => {
       const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/album/${id}`)
       if (res.status !== 200) {
         throw new Error(res?.data?.message || 'Failed to fetch data')
+      }
+      if (!res?.data?.data) {
+        throw new Error('No album found')
       }
       setData(res?.data?.data)
     } catch (error) {

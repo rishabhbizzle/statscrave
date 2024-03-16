@@ -10,6 +10,7 @@ import BasicDetails from '@/components/BasicDetails'
 import Loader from '@/components/ui/loader'
 import axios from 'axios'
 import { toast } from 'sonner'
+import { redirect } from 'next/navigation'
 
 
 const Artist = ({ params }) => {
@@ -24,10 +25,13 @@ const Artist = ({ params }) => {
             if (res.status !== 200) {
                 throw new Error(res?.data?.message || 'Failed to fetch data')
             }
+            if (!res?.data?.data) {
+                throw new Error('No artist found')
+            }
             setArtist(res?.data?.data)
         } catch (error) {
             toast.error(error?.message)
-            console.error(error);
+            console.log(error);
         }
         setLoading(false)
     }
