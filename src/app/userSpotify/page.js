@@ -168,7 +168,7 @@ export default function Page() {
           />
         ) : (
           <Link
-            href={`${AUTHORIZE}?client_id=${clientId}&response_type=code&redirect_uri=${redirectURI}&show_dialog=true&scope=${scopes}`}
+            href={`${AUTHORIZE}?client_id=${clientId}&response_type=code&redirect_uri=${redirectURI}&show_dialog=true&scope="user-top-read"`}
           >
             <Button>Sign in with Spotify</Button>
           </Link>

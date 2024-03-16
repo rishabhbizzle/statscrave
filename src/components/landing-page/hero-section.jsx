@@ -42,7 +42,7 @@ const HeroSection = () => {
               variants={FADE_DOWN_ANIMATION_VARIANTS}
               className="space-x-4 text-5xl font-bold tracking-tight sm:text-7xl"
             >
-              <div className="text-black">StatsForFans</div>
+              <div className="">StatsForFans</div>
             </motion.h1>
             <motion.p
               variants={FADE_DOWN_ANIMATION_VARIANTS}
