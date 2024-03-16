@@ -42,7 +42,7 @@ const HeroSection = () => {
               variants={FADE_DOWN_ANIMATION_VARIANTS}
               className="space-x-4 text-5xl font-bold tracking-tight sm:text-7xl"
             >
-              <div className="text-primary">Spotracker</div>
+              <div className="text-black">StatsForFans</div>
             </motion.h1>
             <motion.p
               variants={FADE_DOWN_ANIMATION_VARIANTS}
@@ -79,7 +79,7 @@ const HeroSection = () => {
           </motion.div>
         </div>
         <div className="flex">
-            <Image src={HeroImg} alt="Spotracker" className="rounded-lg" width={500} height={500} />
+            <Image src={HeroImg} alt="StatsForFans" className="rounded-lg" width={500} height={500} />
         </div>
       </div>
     </div>

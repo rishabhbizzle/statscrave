@@ -77,7 +77,7 @@ const Global = () => {
           <Image src={Head} className="items-center" alt="ddd" />
         </div>
         <div className="bg-[#2922C6] text-sm text-muted-foreground text-end pr-3">
-          @Spotracker
+          @StatsForFans
         </div>
         {/* <div className="hot">
         <img src={Hot} alt="" />

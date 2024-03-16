@@ -14,8 +14,8 @@ const roboto = Poppins({
 
 
 export const metadata = {
-  title: 'Spotracker - By the fans, for the fans.',
-  description: "Spotracker is a platform for fans to track their favorite artist's spotify streams and more...",
+  title: 'StatsForFans - By the fans, for the fans.',
+  description: "StatsForFans is a platform for fans to track their favorite artist's spotify streams and more...",
 }
 
 

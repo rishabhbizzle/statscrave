@@ -22,7 +22,7 @@ export function UserMenu({ user }) {
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-9 w-9">
             <AvatarImage src={user?.imageUrl} alt="user_img" />
-            <AvatarFallback>{user?.firstName[0]}</AvatarFallback>
+            <AvatarFallback>{'A'}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>

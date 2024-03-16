@@ -27,7 +27,7 @@ export default function Footer() {
             <div className="flex justify-between">
           <div className="flex space-x-6">
 
-            <p className="text-muted-foreground">Spotracker</p>
+            <p className="text-muted-foreground">StatsForFans</p>
             <p className="text-sm ">© 2024</p>
             <Badge variant="secondary">BETA</Badge>
             </div>

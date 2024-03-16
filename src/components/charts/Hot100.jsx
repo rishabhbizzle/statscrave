@@ -77,7 +77,7 @@ const Hot100 = () => {
           <Image src={Hot} className="items-center" alt="hot100" />
         </div>
         <div className="bg-black text-sm text-muted-foreground text-end pr-3">
-          @Spotracker
+          @StatsForFans
         </div>
         {/* <div className="hot">
         <img src={Hot} alt="" />

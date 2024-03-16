@@ -77,7 +77,7 @@ const Album = () => {
           <Image src={Head} className="items-center" alt="album200" />
         </div>
         <div className="bg-[#00427F] text-sm text-muted-foreground text-end pr-3">
-          @Spotracker
+          @StatsForFans
         </div>
         {/* <div className="hot">
         <img src={Hot} alt="" />

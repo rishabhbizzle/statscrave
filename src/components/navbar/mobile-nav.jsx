@@ -69,7 +69,7 @@ export function MobileNav() {
           height="40"
           className="rounded-full invert-white dark:invert-0"
         />
-          <span className="font-bold">Spotracker</span>
+          <span className="font-bold">StatsForFans</span>
         </MobileLink>
         <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
           <div className="flex flex-col space-y-3">
