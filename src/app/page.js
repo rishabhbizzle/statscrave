@@ -51,13 +51,13 @@ export default async function Home() {
       {/* <div className="absolute pointer-events-none inset-0 flex items-center justify-center [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div> */}
 
       <HeroSection />
-        <div className='my-10 p-2'>
+        {/* <div className='my-10 p-2'>
           <InfiniteMovingCards
             items={testimonials}
             direction="right"
             speed="slow"
           />
-        </div>
+        </div> */}
         <Features />
         <RecentUpdates data={updatesData} />
 

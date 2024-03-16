@@ -5,29 +5,26 @@ import { AnimatePresence, motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 
 
-
-
 const features = [{
     title: "Personalised dashboard based on your favorites.",
     description: "Get a personalised dashboard to track your favorite tracks, albums, artists spotify streams of your favorite artists and also you can checkout recomendations based on your taste more...",
-    image: "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
+    image: "./feat1.webp"
   },
   {
     title: "Extensive streaming data, records and more.",
     description: "Get extensive streaming data, records and more about your favorite artists, albums and tracks. You can also checkout the top charts and more...",
-    image: "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
+    image: "./feat2.webp"
   },
   {
     title: "Music culture updates & news on the go.",
     description: "Stay up-to-date with the latest trends and news in music pop culture with concise and informative blog posts covering exciting news in the music industry...",
-    image: "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
+    image: "./feat3.webp"
   },
-  // {
-  //   title: "Daily Spotify Streams Gains",
-  //   description: "Provide daily stream gains",
-  //   image: "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
-  // }
-  
+  {
+    title: "Find out your most played tracks and artists.",
+    description: "Tired of waiting for Spotify Wrapped? Get your most played tracks and artists of the month, 6 months and all time with just a click...",
+    image: "./feat4.webp"
+  },
   ]
   
 export default function Features() {
@@ -40,13 +37,11 @@ export default function Features() {
     <div className="flex flex-col gap-10 md:gap-20 px-4 md:px-8 my-40" ref={featureSectionRef}>
           {features.map((feature, index) => (
             <div className={`flex items-center gap-6 flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`} key={index}>
-              <div>
+              <div className='md:w-[70%]'>
                 <motion.img
                   alt="Image"
-                  className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full"
-                  height="310"
+                  className="mx-auto overflow-hidden rounded-xl object-cover object-center sm:w-full"
                   src={feature.image}
-                  width="550"
                   initial={{ opacity: 0, x: 100 }} // Initial state for the image
                   animate={{ opacity: featureSectionInView ? 1 : 0, x: featureSectionInView ? 0 : index % 2 === 0 ? -40 : 40 }} // Animation for the image
                   transition={{ duration: 0.5, delay: 0.2 }} // Animation duration with delay

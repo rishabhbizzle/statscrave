@@ -6,9 +6,9 @@ import { AnimatePresence, motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
 import { Button } from "../ui/button";
-import Img from "@/assets/big.jpg"
 import Image from "next/image";
 import { SignIn, SignInButton } from "@clerk/nextjs";
+import HeroImg from '@/assets/hero1.webp'
 
 const HeroSection = () => {
   const FADE_DOWN_ANIMATION_VARIANTS = {
@@ -79,7 +79,7 @@ const HeroSection = () => {
           </motion.div>
         </div>
         <div className="hidden md:flex">
-            <Image src={Img} alt="Spotracker" className="rounded-lg" width={500} height={500} />
+            <Image src={HeroImg} alt="Spotracker" className="rounded-lg" width={500} height={500} />
         </div>
       </div>
     </div>

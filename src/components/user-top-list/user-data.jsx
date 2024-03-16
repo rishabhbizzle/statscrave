@@ -10,12 +10,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Sparkle, Sparkles } from "lucide-react";
 
 const UserData = ({ type, setType, userData, timeRange, setTimeRange }) => {
   return (
     <div className="w-full flex flex-col justify-center items-center">
-      <div className="flex w-full justify-between my-10">
-        <h1 className="text-3xl font-bold">Your top {type}</h1>
+      <div className="flex w-full justify-between mt-12 mb-10">
+        <div className="flex gap-3">
+
+        <Sparkles size={32} />
+        <h1 className="text-4xl font-bold">Your top {type}</h1>
+        </div>
         <Select value={type} onValueChange={(newVal) => setType(newVal)}>
           <SelectTrigger className="w-[200px]">
             <SelectValue placeholder="Select Type" />
@@ -42,6 +47,9 @@ const UserData = ({ type, setType, userData, timeRange, setTimeRange }) => {
           {userData?.map((item, index) => (
             <Card key={index} className="w-full my-4 p-2 md:p-4">
               <div className="space-y-4 w-full flex items-center">
+                <p className="font-medium mr-2 md:mr-4">
+                  #{index + 1}
+                </p>
                 <div className="flex items-center space-x-4">
                   <Image
                     alt="Image"
