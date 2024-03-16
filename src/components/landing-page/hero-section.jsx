@@ -48,7 +48,7 @@ const HeroSection = () => {
               variants={FADE_DOWN_ANIMATION_VARIANTS}
               className="space-x-4 text-xl font-bold tracking-tight sm:text-3xl mt-3"
             >
-              Your ultimate music analytics platform
+              By the fans for the fans
             </motion.p>
 
             <motion.p

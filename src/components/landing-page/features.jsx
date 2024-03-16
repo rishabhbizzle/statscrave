@@ -5,16 +5,17 @@ import { AnimatePresence, motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 
 
-const features = [{
-    title: "Personalised dashboard based on your favorites.",
-    description: "Get a personalised dashboard to track your favorite tracks, albums, artists spotify streams of your favorite artists and also you can checkout recomendations based on your taste more...",
-    image: "./feat1.webp"
-  },
-  {
-    title: "Extensive streaming data, records and more.",
-    description: "Get extensive streaming data, records and more about your favorite artists, albums and tracks. You can also checkout the top charts and more...",
-    image: "./feat2.webp"
-  },
+const features = [
+  // {
+  //   title: "Personalised dashboard based on your favorites.",
+  //   description: "Get a personalised dashboard to track your favorite tracks, albums, artists spotify streams of your favorite artists and also you can checkout recomendations based on your taste more...",
+  //   image: "./feat1.webp"
+  // },
+  // {
+  //   title: "Extensive streaming data, records and more.",
+  //   description: "Get extensive streaming data, records and more about your favorite artists, albums and tracks. You can also checkout the top charts and more...",
+  //   image: "./feat2.webp"
+  // },
   {
     title: "Music culture updates & news on the go.",
     description: "Stay up-to-date with the latest trends and news in music pop culture with concise and informative blog posts covering exciting news in the music industry...",
