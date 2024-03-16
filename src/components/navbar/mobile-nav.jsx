@@ -17,6 +17,7 @@ import {
 import { Button } from "../ui/button";
 import { LogInIcon } from "lucide-react";
 import { ScrollArea } from "../ui/scroll-area";
+import Image from "next/image";
 
 export function MobileNav() {
   const [open, setOpen] = React.useState(false);
@@ -66,29 +67,72 @@ export function MobileNav() {
           className="flex items-center"
           onOpenChange={setOpen}
         >
-          <LogInIcon className="mr-2 h-4 w-4" />
+          <Image
+          src='/logo-white.png'
+          alt="Logo"
+          width="40"
+          height="40"
+          className="rounded-full invert-white dark:invert-0"
+        />
           <span className="font-bold">StatsForFans</span>
         </MobileLink>
         <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
           <div className="flex flex-col space-y-3">
                   <MobileLink
-                    key={1}
-                    href='/'
+                    href='/dashboard'
                     onOpenChange={setOpen}
                   >
-                    TTT
+                    Dashboard
                   </MobileLink>
           </div>
           <div className="flex flex-col space-y-2">
             <div className="flex flex-col space-y-3 pt-6">
-              <h4 className="font-medium">Test</h4>
               <React.Fragment key={1}>
                 <MobileLink
-                  href={'/'}
+                  href={'/userSpotify'}
                   onOpenChange={setOpen}
                   className="text-muted-foreground"
                 >
-                  Helllooo
+                  Your Spotify
+                </MobileLink>
+              </React.Fragment>
+            </div>
+          </div>
+          <div className="flex flex-col space-y-2">
+            <div className="flex flex-col space-y-3 pt-6">
+              <React.Fragment key={1}>
+                <MobileLink
+                  href={'/records'}
+                  onOpenChange={setOpen}
+                  className="text-muted-foreground"
+                >
+                  Records
+                </MobileLink>
+              </React.Fragment>
+            </div>
+          </div>
+          <div className="flex flex-col space-y-2">
+            <div className="flex flex-col space-y-3 pt-6">
+              <React.Fragment key={1}>
+                <MobileLink
+                  href={'/charts'}
+                  onOpenChange={setOpen}
+                  className="text-muted-foreground"
+                >
+                  Charts
+                </MobileLink>
+              </React.Fragment>
+            </div>
+          </div>
+          <div className="flex flex-col space-y-2">
+            <div className="flex flex-col space-y-3 pt-6">
+              <React.Fragment key={1}>
+                <MobileLink
+                  href={'/updates'}
+                  onOpenChange={setOpen}
+                  className="text-muted-foreground"
+                >
+                  Updates
                 </MobileLink>
               </React.Fragment>
             </div>

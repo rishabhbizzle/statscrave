@@ -5,8 +5,8 @@ import { TracksSection } from '@/components/tracks'
 export default function OtherDetails({ details, type }) {
   return (
     <>
-        <div className="grid gap-4md:grid-cols-2 lg:grid-cols-7">
-          <div className="col-span-4 grid gap-4 md:grid-cols-2 lg:grid-cols-2">
+        <div className="flex">
+          {/* <div className="col-span-4 grid gap-4 md:grid-cols-2 lg:grid-cols-2">
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
@@ -97,8 +97,8 @@ export default function OtherDetails({ details, type }) {
               </CardContent>
             </Card>
            
-          </div>
-          <Card className="col-span-3">
+          </div> */}
+          <Card className="w-full">
             <CardHeader>
               <CardTitle>Tracks</CardTitle>
             </CardHeader>
