@@ -8,7 +8,7 @@ import { revalidatePath } from "next/cache";
 export const getAllBlogsFromDb = async (count) => {
     try {
         await connect()
-        const blogs = count ? await Updates.find().limit(count).sort({ createdAt: -1 }): await Updates.find().sort({ createdAt: -1 })
+        const blogs = count ? await Updates.find({}).limit(count).sort({ createdAt: -1 }): await Updates.find({}).sort({ createdAt: -1 })
 
         // convert the blogs to json
         const data = JSON.parse(JSON.stringify(blogs))

@@ -48,7 +48,7 @@ export default function Navbar() {
               </div>
             </Link> */}
             <Link
-              href='/'
+              href='https://twitter.com/jdbsdata'
               target="_blank"
               rel="noreferrer"
             >
@@ -60,7 +60,7 @@ export default function Navbar() {
                   "w-9 px-0"
                 )}
               >
-                <Twitter className=" h-5 w-5 fill-current" />
+                <Twitter className=" h-5 w-5" />
                 <span className="sr-only">Twitter</span>
               </div>
             </Link>
