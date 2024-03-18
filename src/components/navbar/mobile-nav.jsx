@@ -4,11 +4,7 @@ import * as React from "react";
 import Link, { LinkProps } from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import {
-    Sheet,
-    SheetContent,
-    SheetTrigger,
-  } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "../ui/button";
 import { ScrollArea } from "../ui/scroll-area";
 import Image from "next/image";
@@ -63,34 +59,34 @@ export function MobileNav() {
           onOpenChange={setOpen}
         >
           <Image
-          src='/logo-white.png'
-          alt="Logo"
-          width="40"
-          height="40"
-          className="rounded-full invert-white dark:invert-0"
-        />
+            src="/logo-white.png"
+            alt="Logo"
+            width="40"
+            height="40"
+            className="rounded-full invert-white dark:invert-0"
+          />
           <span className="font-bold">Spotracker</span>
         </MobileLink>
         <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
           <div className="flex flex-col space-y-3">
-                  <MobileLink
-                    href='/dashboard'
-                    onOpenChange={setOpen}
-                    className={cn(
-                      "transition-colors hover:text-foreground/80",
-                      pathname?.startsWith("/dashboard")
-                        ? "text-foreground"
-                        : "text-foreground/60"
-                    )}
-                  >
-                    Dashboard
-                  </MobileLink>
+            <MobileLink
+              href="/dashboard"
+              onOpenChange={setOpen}
+              className={cn(
+                "transition-colors hover:text-foreground/80",
+                pathname?.startsWith("/dashboard")
+                  ? "text-foreground"
+                  : "text-foreground/60"
+              )}
+            >
+              Dashboard
+            </MobileLink>
           </div>
           <div className="flex flex-col space-y-2">
             <div className="flex flex-col space-y-3 pt-6">
               <React.Fragment key={1}>
                 <MobileLink
-                  href={'/userSpotify'}
+                  href={"/userSpotify"}
                   onOpenChange={setOpen}
                   className={cn(
                     "transition-colors hover:text-foreground/80",
@@ -108,7 +104,7 @@ export function MobileNav() {
             <div className="flex flex-col space-y-3 pt-6">
               <React.Fragment key={1}>
                 <MobileLink
-                  href={'/records'}
+                  href={"/records"}
                   onOpenChange={setOpen}
                   className={cn(
                     "transition-colors hover:text-foreground/80",
@@ -126,7 +122,7 @@ export function MobileNav() {
             <div className="flex flex-col space-y-3 pt-6">
               <React.Fragment key={1}>
                 <MobileLink
-                  href={'/charts'}
+                  href={"/charts"}
                   onOpenChange={setOpen}
                   className={cn(
                     "transition-colors hover:text-foreground/80",
@@ -134,7 +130,6 @@ export function MobileNav() {
                       ? "text-foreground"
                       : "text-foreground/60"
                   )}
-                  
                 >
                   Charts
                 </MobileLink>
@@ -145,7 +140,7 @@ export function MobileNav() {
             <div className="flex flex-col space-y-3 pt-6">
               <React.Fragment key={1}>
                 <MobileLink
-                  href={'/updates'}
+                  href={"/updates"}
                   onOpenChange={setOpen}
                   className={cn(
                     "transition-colors hover:text-foreground/80",
@@ -162,7 +157,7 @@ export function MobileNav() {
         </ScrollArea>
       </SheetContent>
     </Sheet>
-  ); 
+  );
 }
 
 function MobileLink({ href, onOpenChange, className, children, ...props }) {

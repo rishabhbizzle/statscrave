@@ -8,7 +8,7 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import { SignIn, SignInButton } from "@clerk/nextjs";
-import HeroImg from '@/assets/hero1.webp'
+import HeroImg from "@/assets/hero1.webp";
 
 const HeroSection = () => {
   const FADE_DOWN_ANIMATION_VARIANTS = {
@@ -55,7 +55,8 @@ const HeroSection = () => {
               variants={FADE_DOWN_ANIMATION_VARIANTS}
               className="mt-6 text-base sm:text-lg leading-8 "
             >
-  Dive into our comprehensive streaming analytics to uncover the pulse of your favorite artists, albums, and songs and much more.
+              Dive into our comprehensive streaming analytics to uncover the
+              pulse of your favorite artists, albums, and songs and much more.
             </motion.p>
 
             <motion.div
@@ -63,11 +64,10 @@ const HeroSection = () => {
               className="mt-10 flex items-center  gap-x-6 "
             >
               <SignInButton>
-
-              <Button variant="secondary">
-                <ArrowBigDownDash className="w-5 h-5 mr-2 hover:animate-spin" />
-                Get Started
-              </Button>
+                <Button variant="secondary">
+                  <ArrowBigDownDash className="w-5 h-5 mr-2 hover:animate-spin" />
+                  Get Started
+                </Button>
               </SignInButton>
               <Link href="/updates">
                 <Button variant="outline">
@@ -79,7 +79,13 @@ const HeroSection = () => {
           </motion.div>
         </div>
         <div className="flex">
-            <Image src={HeroImg} alt="Spotracker" className="rounded-lg" width={500} height={500} />
+          <Image
+            src={HeroImg}
+            alt="Spotracker"
+            className="rounded-lg"
+            width={500}
+            height={500}
+          />
         </div>
       </div>
     </div>
