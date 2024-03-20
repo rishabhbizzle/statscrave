@@ -1,13 +1,15 @@
 'use client'
 
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import { Button } from '@/components/ui/button';
 import Loader from '@/components/ui/loader';
 import ArtistRankings from '@/components/dashboard/artistsRankings';
 import AlbumAndSongs from '@/components/dashboard/albumAndSongs';
 import dynamic from 'next/dynamic';
 import { Sparkles } from 'lucide-react';
-import { useUser } from '@clerk/nextjs';
+import { redirectToSignIn, useUser } from '@clerk/nextjs';
+import { toast } from 'sonner';
+import { redirect } from 'next/navigation';
 
 const NewReleases = dynamic(() => import('@/components/dashboard/new-releases'), {
   loading: () => <Loader component={true} />,
@@ -16,6 +18,15 @@ const NewReleases = dynamic(() => import('@/components/dashboard/new-releases'),
 
 const Dashboard = () => {
   const { isSignedIn: isAuthenticated, user, isLoaded } = useUser();
+
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      toast.warning('You need to be logged in to access that page');
+      redirect('/')
+    }
+  }, [isAuthenticated])
+
 
   return (
     <div className="container min-h-screen">

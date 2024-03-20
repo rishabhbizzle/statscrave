@@ -26,6 +26,12 @@ const FavouriteButton = ({
 
   const handleMarkFavourite = async () => {
     try {
+      
+      if (!id){
+        toast.warning("Please login to mark favourite")
+        return
+      }
+
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/user/markFavourite`,
         {
@@ -37,13 +43,13 @@ const FavouriteButton = ({
         }
       );
       if (res.status !== 200) {
-        throw new Error("Failed to fetch data");
+        throw new Error("Failed to mark favourite");
       }
       toast.success(res?.data?.data?.message);
       setIsFavourite((prev) => !prev);
     } catch (error) {
       console.error(error);
-      toast.error("Failed to fetch data");
+      toast.error(error?.response?.data?.message);
     }
   };
 
