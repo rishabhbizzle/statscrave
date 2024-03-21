@@ -20,11 +20,11 @@ const features = [{
     description: "Stay up-to-date with the latest trends and news in music pop culture with concise and informative blog posts covering exciting news in the music industry...",
     image: "./feat3.webp"
   },
-  {
-    title: "Find out your most played tracks and artists.",
-    description: "Tired of waiting for Spotify Wrapped? Get your most played tracks and artists of the month, 6 months and all time with just a click...",
-    image: "./feat4.webp"
-  },
+  // {
+  //   title: "Find out your most played tracks and artists.",
+  //   description: "Tired of waiting for Spotify Wrapped? Get your most played tracks and artists of the month, 6 months and all time with just a click...",
+  //   image: "./feat4.webp"
+  // },
   ]
   
 export default function Features() {

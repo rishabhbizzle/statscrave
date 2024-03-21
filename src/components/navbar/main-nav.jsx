@@ -20,7 +20,7 @@ export function MainNav() {
           height="40"
           className="rounded-full invert-white dark:invert-0"
         />
-        <span className="hidden font-bold sm:inline-block text-xl">Spotracker</span>
+        <span className="hidden font-bold sm:inline-block text-xl">StatsCrave</span>
       </Link>
       <nav className="flex items-center gap-6 text-sm">
       <Link
@@ -32,7 +32,7 @@ export function MainNav() {
         >
           Dashboard
         </Link>
-        <Link
+        {/* <Link
           href="/userSpotify"
           className={cn(
             "transition-colors hover:text-foreground/80",
@@ -40,7 +40,7 @@ export function MainNav() {
           )}
         >
           Your Spotify
-        </Link>
+        </Link> */}
         <Link
           href="/records"
           className={cn(

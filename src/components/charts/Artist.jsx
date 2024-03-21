@@ -75,7 +75,7 @@ const Artist = () => {
           <Image src={Head} className="items-center" alt="artist100" />
         </div>
         <div className="bg-[#182655] text-sm text-muted-foreground text-end pr-3">
-          @Spotracker
+          @StatsCrave
         </div>
         {/* <div className="hot">
         <img src={Hot} alt="" />
