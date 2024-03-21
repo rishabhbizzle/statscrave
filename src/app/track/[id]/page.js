@@ -9,7 +9,9 @@ import axios from 'axios'
 import AudioFeatures from '@/components/audioFeatures'
 import dynamic from 'next/dynamic'
 import { toast } from 'sonner'
-const Recomendations = dynamic(() => import('../../../components/recomendations.jsx'),{
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert.jsx'
+import { Info } from 'lucide-react'
+const Recomendations = dynamic(() => import('../../../components/recomendations.jsx'), {
   loading: () => <Loader component={true} />,
 });
 
@@ -47,10 +49,20 @@ const Track = ({ params }) => {
         <div>
           <BasicDetails details={data?.trackDetails} type='track' spotifyId={id} />
           <div className="flex-1 space-y-4 pt-6">
+            <div className='opacity-70'>
+              <Alert>
+                <Info className="h-4 w-4" />
+                <AlertTitle>Heads up!</AlertTitle>
+                <AlertDescription>
+                  Since there can be multiple versions of a track, the streaming data might not be accurate. Please consider checking all versions of the track.
+                </AlertDescription>
+              </Alert>
+            </div>
+
             {data?.streamingData && (
-                <StreamingDetails streamingData={data?.streamingData} type='track' />
+              <StreamingDetails streamingData={data?.streamingData} type='track' />
             )}
-          <AudioFeatures data={data?.trackFeatures} />
+            <AudioFeatures data={data?.trackFeatures} />
             <Recomendations type='track' />
           </div>
         </div>

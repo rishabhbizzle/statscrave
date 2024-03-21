@@ -8,34 +8,39 @@ export const millisecondsToMinutesSeconds = (duration_ms) => {
 }
 
 export const getLatestDateValue = (data) => {
-  let maxDate = null;
-  let maxValue = null;
+  try {
+    let maxDate = null;
+    let maxValue = null;
 
-  for (const dateStr in data) {
-    // Parsing the date string in the format "DD-MM-YYYY"
-    const parts = dateStr.split('-');
-    const currentDate = new Date(`${parts[1]}-${parts[0]}-${parts[2]}`);
-    const value = data[dateStr];
+    for (const dateStr in data) {
+      // Parsing the date string in the format "DD-MM-YYYY"
+      const parts = dateStr.split('-');
+      const currentDate = new Date(`${parts[1]}-${parts[0]}-${parts[2]}`);
+      const value = data[dateStr];
 
-    if (!isNaN(currentDate.getTime()) && (maxDate === null || currentDate > maxDate)) {
-      maxDate = currentDate;
-      maxValue = value;
+      if (!isNaN(currentDate.getTime()) && (maxDate === null || currentDate > maxDate)) {
+        maxDate = currentDate;
+        maxValue = value;
+      }
     }
+    return maxValue;
+  } catch (error) {
+    console.log(error);
+    return null;
   }
-  return maxValue;
 }
 
 
 export const formatDate = (dateString) => {
   const date = new Date(dateString);
-  const options = { 
-      year: 'numeric', 
-      month: '2-digit', 
-      day: '2-digit', 
-      hour: '2-digit', 
-      minute: '2-digit', 
-      second: '2-digit',
-      timeZone: 'UTC' // Set the time zone as per your requirement
+  const options = {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    timeZone: 'UTC' // Set the time zone as per your requirement
   };
   return date.toLocaleString('en-US', options);
 }
