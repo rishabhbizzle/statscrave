@@ -15,7 +15,7 @@ const roboto = Poppins({
 
 export const metadata = {
   title: 'Your ultimate music analytics platform',
-  description: "StatsCrave is a platform for fans to track their favorite artist's spotify streams and more...",
+  description: "A platform which offers comprehensive streaming statistics and personalized dashboards. Track trends, discover new music, and stay updated on pop culture developments effortlessly.",
   metadataBase: new URL('https://statscrave.com'),
   alternates: {
     canonical: '/',
@@ -25,17 +25,26 @@ export const metadata = {
     },
   },
   openGraph: {
-    images: '/og-image.png',
+    images: [
+      {
+        url: 'https://statscrave.com/og-image.png',
+        alt: 'StatsCrave - Your ultimate music analytics platform',
+      },
+      {
+        url: 'https://statscrave.com/og-image2.jpg',
+        alt: 'StatsCrave - Your ultimate music analytics platform',
+      },
+    ],
     type: 'website',
     locale: 'en_US',
     title: 'StatsCrave - Your ultimate music analytics platform',
-    description: "StatsCrave is a platform for fans to track their favorite artist's spotify streams and more...",
+    description: "A platform which offers comprehensive streaming statistics and personalized dashboards. Track trends, discover new music, and stay updated on pop culture developments effortlessly.",
     site_name: 'StatsCrave',
   },
   twitter: {
     card: "summary_large_image",
     title: 'StatsCrave - Your ultimate music analytics platform',
-    description: "StatsCrave is a platform for fans to track their favorite artist's spotify streams and more...",
+    description: "A platform which offers comprehensive streaming statistics and personalized dashboards. Track trends, discover new music, and stay updated on pop culture developments effortlessly.",
     creator: "@StatsCrave",
     images: [
       {
