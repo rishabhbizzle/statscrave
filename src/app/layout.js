@@ -6,6 +6,7 @@ import { Poppins, Roboto } from 'next/font/google'
 import { Toaster } from 'sonner'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { ClerkProvider } from '@clerk/nextjs'
+import { SpeedInsights } from '@vercel/speed-insights/next';
  
 const roboto = Poppins({
   weight: ["400", "500", "700", "900"],
@@ -70,6 +71,7 @@ export default function RootLayout({ children }) {
           >
             <Navbar />
             {children}
+            <SpeedInsights />
             <Toaster richColors />
             <Footer />
           </ThemeProvider>
