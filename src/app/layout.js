@@ -14,8 +14,36 @@ const roboto = Poppins({
 
 
 export const metadata = {
-  title: 'StatsCrave - By the fans, for the fans.',
+  title: 'Your ultimate music analytics platform',
   description: "StatsCrave is a platform for fans to track their favorite artist's spotify streams and more...",
+  metadataBase: new URL('https://statscrave.com'),
+  alternates: {
+    canonical: '/',
+    languages: {
+      'en-US': '/en-US',
+      'de-DE': '/de-DE',
+    },
+  },
+  openGraph: {
+    images: '/og-image.png',
+    type: 'website',
+    locale: 'en_US',
+    title: 'StatsCrave - Your ultimate music analytics platform',
+    description: "StatsCrave is a platform for fans to track their favorite artist's spotify streams and more...",
+    site_name: 'StatsCrave',
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: 'StatsCrave - Your ultimate music analytics platform',
+    description: "StatsCrave is a platform for fans to track their favorite artist's spotify streams and more...",
+    creator: "@StatsCrave",
+    images: [
+      {
+        url: 'https://statscrave.com/og-image.png',
+        alt: 'StatsCrave - Your ultimate music analytics platform',
+      },
+    ],
+  },
 }
 
 
