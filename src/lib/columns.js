@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 const { Button } = require("@/components/ui/button")
 const { CaretSortIcon } = require("@radix-ui/react-icons")
 
@@ -31,7 +33,13 @@ export const columnsData = {
                     </Button>
                 )
             },
-            cell: ({ row }) => <div className="">{row.getValue('title')}</div>,
+            cell: ({ row }) => {
+                if (row?.original?.id) {
+                    return <Link className="hover:underline font-medium" href={`/track/${row?.original?.id}`}>{row.getValue('title')}</Link>
+                } else {
+                    return <div className="font-medium">{row.getValue('title')}</div>
+                }
+            },
             size: 2700,
             filterFn: 'fuzzy',
         },
@@ -111,7 +119,13 @@ export const columnsData = {
                     </Button>
                 )
             },
-            cell: ({ row }) => <div className="">{row.getValue('title')}</div>,
+            cell: ({ row }) => {
+                if (row?.original?.id) {
+                    return <Link className="hover:underline font-medium" href={`/album/${row?.original?.id}`}>{row.getValue('title')}</Link>
+                } else {
+                    return <div className="font-medium">{row.getValue('title')}</div>
+                }
+            },
             size: 2700,
             filterFn: 'fuzzy',
         },
@@ -193,7 +207,13 @@ export const columnsData = {
                     </Button>
                 )
             },
-            cell: ({ row }) => <div className="">{row.getValue('name')}</div>,
+            cell: ({ row }) => {
+                if (row?.original?.id) {
+                    return <Link className="hover:underline font-medium" href={`/track/${row?.original?.id}`}>{row.getValue('name')}</Link>
+                } else {
+                    return <div className="font-medium">{row.getValue('name')}</div>
+                }
+            },
             size: 300,
             filterFn: 'fuzzy',
         },
@@ -315,7 +335,13 @@ export const columnsData = {
                     </Button>
                 )
             },
-            cell: ({ row }) => <div className="">{row.getValue('name')}</div>,
+            cell: ({ row }) => {
+                if (row?.original?.id) {
+                    return <Link className="hover:underline font-medium" href={`/album/${row?.original?.id}`}>{row.getValue('name')}</Link>
+                } else {
+                    return <div className="font-medium">{row.getValue('name')}</div>
+                }
+            },
             size: 2700,
             filterFn: 'fuzzy',
         },
@@ -478,7 +504,13 @@ export const columnsData = {
                     </Button>
                 )
             },
-            cell: ({ row }) => <div className="">{row.getValue('name')}</div>,
+            cell: ({ row }) => {
+                if (row?.original?.id) {
+                    return <Link className="hover:underline font-medium" href={`/artist/${row?.original?.id}`}>{row.getValue('name')}</Link>
+                } else {
+                    return <div className="font-medium">{row.getValue('name')}</div>
+                }
+            },
             size: 2700,
             filterFn: 'fuzzy',
         },

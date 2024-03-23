@@ -44,3 +44,9 @@ export const formatDate = (dateString) => {
   };
   return date.toLocaleString('en-US', options);
 }
+
+
+export const toSentenceCase = (word) => {
+  if (!word) return null;
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}
