@@ -1,17 +1,37 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { BarChartComponent } from "./barChart";
-import { getLatestDateValue } from "@/lib/helperFunctions";
 
+function calculatePercentageChange(data) {
+  try {
+    const dates = Object.keys(data);
+    const latestDate = dates[dates.length - 1];
+    const secondLatestDate = dates[dates.length - 2];
 
-const percentageChange = (latest, old) => {
-  const change = latest - old
-  const changePercentage = (change / old) * 100
-  return changePercentage.toFixed(2)
+    const latestValue = data[latestDate] || 0;
+    const secondLatestValue = data[secondLatestDate] || 0;
+
+    const percentageChange =
+      ((latestValue - secondLatestValue) / secondLatestValue) * 100;
+
+    return (
+      <p
+        className={`text-xs mt-1 ${
+          percentageChange > 0 ? "text-green-500" : "text-red-500"
+        }`}
+      >
+        {percentageChange.toFixed(2)}% from previous day
+      </p>
+    );
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
 }
 
-
 export default function StreamingDetails({ streamingData, type }) {
+  const lastDate = Object.keys(streamingData?.dailyStreams).pop();
+
   return (
     <>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
@@ -56,21 +76,13 @@ export default function StreamingDetails({ streamingData, type }) {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {getLatestDateValue(streamingData?.dailyStreams)?.toLocaleString("en-US")}
+              {streamingData?.dailyStreams[lastDate]?.toLocaleString("en-US")}
             </div>
-            {/* {streamingData?.dailyStreams?.length > 2 && (
-              <p className="text-xs text-muted-foreground">
-                {percentageChange(
-                  streamingData?.dailyStreams[
-                    streamingData?.dailyStreams?.length - 1
-                  ].streams,
-                  streamingData?.dailyStreams[
-                    streamingData?.dailyStreams?.length - 2
-                  ].streams
-                )}
-                % from previous day
-              </p>
-            )} */}
+            {Object.keys(streamingData?.dailyStreams)?.length > 2 && (
+              <div>
+                {calculatePercentageChange(streamingData?.dailyStreams)}
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>
