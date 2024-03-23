@@ -14,8 +14,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { SignOutButton } from "@clerk/nextjs";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export function UserMenu({ user }) {
+  const router = useRouter();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -40,11 +43,16 @@ export function UserMenu({ user }) {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <Link href="/user-profile">
-          <DropdownMenuItem>Settings</DropdownMenuItem>
+            <DropdownMenuItem>Settings</DropdownMenuItem>
           </Link>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <SignOutButton signOutCallback={() => localStorage.clear()}>
+        <SignOutButton
+          signOutCallback={() => {
+            localStorage.clear();
+            router.push("/");
+          }}
+        >
           <DropdownMenuItem>Logout</DropdownMenuItem>
         </SignOutButton>
       </DropdownMenuContent>
