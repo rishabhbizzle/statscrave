@@ -17,16 +17,7 @@ const NewReleases = dynamic(() => import('@/components/dashboard/new-releases'),
 
 
 const Dashboard = () => {
-  const { isSignedIn: isAuthenticated, user, isLoaded } = useUser();
-
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      toast.warning('You need to be logged in to access that page');
-      redirect('/')
-    }
-  }, [isAuthenticated])
-
+  let { isSignedIn: isAuthenticated, user, isLoaded } = useUser();
 
   return (
     <div className="container min-h-screen">
