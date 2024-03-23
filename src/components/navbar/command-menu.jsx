@@ -51,7 +51,7 @@ export function CommandMenu({ ...props }) {
   }, [text]);
 
   React.useEffect(() => {
-      handleSearch();
+    handleSearch();
   }, [type]);
 
   React.useEffect(() => {
@@ -147,6 +147,13 @@ export function CommandMenu({ ...props }) {
               </div>
             </div>
           ))}
+          {results.length === 0 && !loading && (
+            <div className="px-3 my-1">
+              <div className="flex gap-2 justify-center">
+                <span>No results found !!</span>
+              </div>
+            </div>
+          )}
           <ScrollBar />
         </ScrollArea>
       </CommandDialog>

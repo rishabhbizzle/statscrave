@@ -2,16 +2,24 @@ import { NextResponse } from "next/server";
 import Spotify from "@/helper/spotify";
 export const fetchCache = 'force-no-store'
 
-export const GET = async (request, { params}) => {
+
+function getRandomCharacter() {
+    try {
+        const charCode = Math.floor(Math.random() * 26) + 97;
+        return String.fromCharCode(charCode)
+    } catch (error) {
+        return null
+    }
+}
+
+export const GET = async (request, { params }) => {
     try {
         const { searchParams } = new URL(request.url);
 
-        console.log("search api hit")
-
         const type = searchParams.get("type");
-        const searchText = searchParams.get("text") || "just";
+        const searchText = searchParams.get("text") || getRandomCharacter() || 'bieber'
 
-        if (searchText === ''){
+        if (searchText === '') {
             return NextResponse.json({ error: "Please provide text" }, { status: 500 })
         }
 
