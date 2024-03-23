@@ -30,7 +30,7 @@ const MostStreamedArtists = () => {
       {data?.length > 0 && (
         <DataTable data={data} type="artist" searchColumn={"name"} title={'Most Streamed Artists'} description={"Following are the most streamed artists in Spotify history. The numbers are in billions."} />
       )}
-      {loading && <Loader component={true} />}
+      {loading && <Loader />}
     </>
   );
 };

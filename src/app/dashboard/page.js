@@ -10,6 +10,7 @@ import { Sparkles } from 'lucide-react';
 import { redirectToSignIn, useUser } from '@clerk/nextjs';
 import { toast } from 'sonner';
 import { redirect } from 'next/navigation';
+import Recomendations from '@/components/recomendations';
 
 const NewReleases = dynamic(() => import('@/components/dashboard/new-releases'), {
   loading: () => <Loader component={true} />,
@@ -39,7 +40,7 @@ const Dashboard = () => {
         <div className='flex flex-col gap-8'>
           <ArtistRankings id={user?.id} />
           <AlbumAndSongs id={user?.id} />
-          <NewReleases />
+          <Recomendations type="track" />
         </div>
       )}
     </div>

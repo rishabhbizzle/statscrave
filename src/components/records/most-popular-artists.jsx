@@ -30,7 +30,7 @@ const MostPopularArtists = () => {
       {data?.length > 0 && (
         <DataTable data={data} type="monthlyListeners" searchColumn={"name"} title={'Most Popular Artists'} description={"Following are the most popular artists in Spotify currently based on monthly listeners."} />
       )}
-      {loading && <Loader component={true} />}
+      {loading && <Loader />}
     </>
   );
 };

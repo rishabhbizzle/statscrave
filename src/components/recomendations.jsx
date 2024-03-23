@@ -80,7 +80,7 @@ const Recomendations = ({ type }) => {
                               className="rounded-l"
                             />
                             <div className="w-full flex">
-                              <p className="truncate font-medium">
+                              <p className="truncate font-medium mt-1">
                                 {data?.title}
                               </p>
                             </div>
