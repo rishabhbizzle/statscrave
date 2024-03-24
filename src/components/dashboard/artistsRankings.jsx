@@ -84,7 +84,7 @@ const ArtistRankings = ({ id }) => {
                         <TableCell>{idx + 1}</TableCell>
                         <Link href={`/artist/${artist.spotifyId}`} key={idx}>
                           <TableCell className="flex flex-col md:flex-row gap-1 md:gap-3 items-center">
-                            <Image
+                            <img
                               alt="cover"
                               className="md:object-cover"
                               height="55"

@@ -78,7 +78,7 @@ const PopularTracks = ({ id }) => {
                 <TableRow key={idx}>
                   <TableCell>{idx + 1}</TableCell>
                   <TableCell>
-                    <Image
+                    <img
                       alt="cover"
                       className="object-cover"
                       height="50"

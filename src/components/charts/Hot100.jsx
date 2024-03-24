@@ -74,7 +74,7 @@ const Hot100 = () => {
     <div className="w-full flex flex-col justify-center items-center">
       <div className="text-[8px] sm:text-[10px] md:text-[15px] box max-w-[700px] p-0 md:p-6 my-10">
         <div className="head w-full shadow-2xl">
-          <Image src={Hot} className="items-center" alt="hot100" />
+        <img className="items-center" src='/head.jpg' alt="HOT100" />
         </div>
         <div className="bg-black text-xs md:text-sm text-muted-foreground text-end pr-3">
           @StatsCrave

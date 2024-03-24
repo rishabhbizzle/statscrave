@@ -72,7 +72,8 @@ const Artist = () => {
     <div className="w-full flex flex-col justify-center items-center">
       <div className="text-[8px] sm:text-[10px] md:text-[15px] main max-w-[700px] p-2 md:p-6 my-10">
         <div className="head w-full shadow-2xl">
-          <Image src={Head} className="items-center" alt="artist100" />
+        <img className="items-center" src='/artist.png' alt="artist" />
+
         </div>
         <div className="bg-[#182655] text-xs md:text-sm text-muted-foreground text-end pr-3">
           @StatsCrave

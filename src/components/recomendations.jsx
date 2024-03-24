@@ -72,7 +72,7 @@ const Recomendations = ({ type }) => {
                       <div className="p-1">
                         <Card>
                           <CardContent className="flex aspect-square  justify-center flex-col p-4 hover:opacity-90 hover:scale-105  transition-all cursor-pointer">
-                            <Image
+                            <img
                               src={data?.image}
                               alt="test"
                               width={500}

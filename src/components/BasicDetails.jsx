@@ -62,7 +62,7 @@ export default function BasicDetails({ details, type, spotifyId }) {
     <>
       <div className="w-full flex flex-col sm:flex-row py-5 gap-8">
         <div className="w-full flex justify-center">
-          <Image
+          <img
             alt="cover"
             className="object-cover"
             height="250"

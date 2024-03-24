@@ -13,7 +13,7 @@ export function MainNav() {
   return (
     <div className="mr-4 hidden md:flex">
       <Link href="/" className="mr-6 flex items-center space-x-2">
-        <Image
+        <img
           src='/logo-white.png'
           alt="Logo"
           width="40"

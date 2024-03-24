@@ -58,7 +58,7 @@ export function MobileNav() {
           className="flex items-center"
           onOpenChange={setOpen}
         >
-          <Image
+          <img
             src="/logo-white.png"
             alt="Logo"
             width="40"

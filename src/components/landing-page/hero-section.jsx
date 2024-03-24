@@ -79,7 +79,7 @@ const HeroSection = () => {
           </motion.div>
         </div>
         <div className="flex">
-          <Image
+          <img
             src={HeroImg}
             alt="StatsCrave"
             className="rounded-lg"
