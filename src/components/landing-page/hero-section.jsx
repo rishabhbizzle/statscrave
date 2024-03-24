@@ -8,7 +8,6 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import { SignIn, SignInButton } from "@clerk/nextjs";
-import HeroImg from "@/assets/hero1.webp";
 
 const HeroSection = () => {
   const FADE_DOWN_ANIMATION_VARIANTS = {
@@ -80,7 +79,7 @@ const HeroSection = () => {
         </div>
         <div className="flex">
           <img
-            src={HeroImg}
+            src="/hero1.webp"
             alt="StatsCrave"
             className="rounded-lg"
             width={500}
