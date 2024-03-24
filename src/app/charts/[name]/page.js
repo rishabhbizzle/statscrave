@@ -30,12 +30,12 @@ const Chart = ({ params }) => {
   }
 
   return (
-    <div className='md:p-10'>
+    <div className='md:p-10 min-h-screen'>
       <Card>
         <CardHeader>
           <CardTitle>BILLBOARD {chartName?.toUpperCase()} Chart</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-3 md:p-6">
           <Alert>
             <Info className="h-4 w-4" />
             <AlertTitle>Heads up!</AlertTitle>

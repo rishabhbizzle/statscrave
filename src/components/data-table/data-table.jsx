@@ -145,7 +145,7 @@ export function DataTable({ data, type, searchColumn, title, description }) {
             <Button
               variant="outline"
               onClick={downloadScreenshot}
-              className="hidden md:flex"
+              className="hidden md:flex dark:hidden "
             >
               <Download className="mr-2 w-4 h-4" />
               Download

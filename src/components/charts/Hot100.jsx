@@ -72,11 +72,11 @@ const Hot100 = () => {
 
   return (
     <div className="w-full flex flex-col justify-center items-center">
-      <div className="text-[8px] sm:text-[10px] md:text-[15px] box max-w-[700px] p-2 md:p-6 my-10">
+      <div className="text-[8px] sm:text-[10px] md:text-[15px] box max-w-[700px] p-0 md:p-6 my-10">
         <div className="head w-full shadow-2xl">
           <Image src={Hot} className="items-center" alt="hot100" />
         </div>
-        <div className="bg-black text-sm text-muted-foreground text-end pr-3">
+        <div className="bg-black text-xs md:text-sm text-muted-foreground text-end pr-3">
           @StatsCrave
         </div>
         {/* <div className="hot">
@@ -103,7 +103,7 @@ const Hot100 = () => {
             </tr>
 
             {songsList.map((song, i) => (
-              <tr className="even:bg-white odd:bg-gray-100 text-black" key={i}>
+              <tr className="even:bg-white odd:bg-gray-100 text-black font-medium" key={i}>
                 <td className="pr-1 md:pr-3 text-end border-r-2 border-dashed">
                   {song.rank}
                 </td>

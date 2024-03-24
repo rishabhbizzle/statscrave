@@ -2,12 +2,32 @@ import { getBlogPostFromDb } from '@/actions/actions'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { formatDate } from '@/lib/helperFunctions'
 import { Sparkle, Sparkles, User } from 'lucide-react'
-import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
 
 
-
+export async function generateMetadata({params}) {
+    const slug = decodeURIComponent(params.slug)
+    const blog = await getBlogPostFromDb(slug)
+    return {
+      title: blog?.title,
+        description: "Pop culture updates and news on the go. Stay up-to-date with the latest trends and news in music pop culture with concise and informative blog posts covering exciting news in the music industry...",
+      openGraph: {
+        images: [blog?.image],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: blog?.title,
+        creator: "@StatsCrave",
+        images: [
+          {
+            url: blog?.image,
+            alt: 'StatsCrave - Your ultimate music analytics platform',
+          },
+        ],
+      },
+    }
+  }
 
 
 export default async function Page({ params }) {
@@ -17,11 +37,6 @@ export default async function Page({ params }) {
 
     return (
         <>
-        <Head>
-            <title>{blog.title}</title>
-            <meta property="og:title" content={blog.title} />
-            <meta property="og:image" content={blog.image} />
-        </Head>
         <div className="py-6 md:py-10 lg:py-12">
             <div className="grid max-w-7xl gap-6 px-4 mx-auto lg:grid-cols-12 md:px-6">
                 <div className="space-y-4 lg:col-start-4 lg:col-span-6 lg:space-y-8 lg:order-2">

@@ -76,7 +76,7 @@ const Global = () => {
         <div className="head w-full shadow-2xl">
           <Image src={Head} className="items-center" alt="ddd" />
         </div>
-        <div className="bg-[#2922C6] text-sm text-muted-foreground text-end pr-3">
+        <div className="bg-[#2922C6] text-xs md:text-sm text-muted-foreground text-end pr-3">
           @StatsCrave
         </div>
         {/* <div className="hot">
@@ -108,7 +108,7 @@ const Global = () => {
               </tr>
 
               {songsList.map((song, i) => (
-                <tr className="even:bg-white odd:bg-gray-100 text-black" key={i}>
+                <tr className="even:bg-white odd:bg-gray-100 text-black font-medium" key={i}>
                   <td className="pr-1 md:pr-3  text-end border-r-2 border-dashed">
                     {song.rank}
                   </td>
