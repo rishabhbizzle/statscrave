@@ -10,9 +10,8 @@ import { Sparkles } from 'lucide-react';
 import { redirectToSignIn, useUser } from '@clerk/nextjs';
 import { toast } from 'sonner';
 import { redirect } from 'next/navigation';
-import Recomendations from '@/components/recomendations';
 
-const NewReleases = dynamic(() => import('@/components/dashboard/new-releases'), {
+const Recomendations = dynamic(() => import('@/components/recomendations'), {
   loading: () => <Loader component={true} />,
 });
 
