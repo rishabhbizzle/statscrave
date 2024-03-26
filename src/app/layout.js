@@ -28,10 +28,6 @@ export const metadata = {
   openGraph: {
     images: [
       {
-        url: 'https://statscrave.com/og-image.png',
-        alt: 'StatsCrave - Your ultimate music analytics platform',
-      },
-      {
         url: 'https://statscrave.com/og-image-wide.png',
         alt: 'StatsCrave - Your ultimate music analytics platform',
       },
