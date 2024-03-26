@@ -27,7 +27,7 @@ const Track = ({ params }) => {
       if (res.status !== 200) {
         throw new Error(res?.data?.message || 'Failed to fetch data')
       }
-      if (!res?.data?.data) {
+      if (!res?.data?.data?.trackDetails) {
         throw new Error('No track found')
       }
 
@@ -67,6 +67,13 @@ const Track = ({ params }) => {
           </div>
         </div>
       )}
+
+      {/* {!loading && !data?.trackDetails && (
+        <div className='min-h-[80vh] flex items-center justify-center'>
+          <h1 className='text-2xl font-bold'>No track found!!!</h1>
+        </div>
+      )} */}
+
       {loading && <Loader />}
     </Container>
   )

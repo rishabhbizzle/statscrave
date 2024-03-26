@@ -129,7 +129,7 @@ export function DataTable({ data, type, searchColumn, title, description }) {
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-1 md:p-6">
         <div className="w-full">
           <div className="flex flex-col md:flex-row items-center py-4 gap-2">
             <Input
@@ -209,6 +209,7 @@ export function DataTable({ data, type, searchColumn, title, description }) {
                     <TableRow
                       key={row.id}
                       data-state={row.getIsSelected() && "selected"}
+                      className="text-xs md:text-sm"
                     >
                       {row.getVisibleCells().map((cell) => (
                         <TableCell key={cell.id}>

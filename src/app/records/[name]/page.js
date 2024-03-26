@@ -26,7 +26,7 @@ const Record = ({ params }) => {
   }
 
   return (
-    <div className='md:px-8 min-h-screen'>
+    <div className='px-4 md:px-8 min-h-screen'>
       {recordsMap[recordName]}
     </div>
   )

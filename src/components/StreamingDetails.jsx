@@ -20,6 +20,7 @@ function calculatePercentageChange(data) {
           percentageChange > 0 ? "text-green-500" : "text-red-500"
         }`}
       >
+        {percentageChange > 0 ? "+" : null}
         {percentageChange.toFixed(2)}% from previous day
       </p>
     );
