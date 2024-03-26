@@ -68,14 +68,14 @@ const PopularTracks = ({ id }) => {
               <TableRow>
                 <TableHead className="w-[5%]">#</TableHead>
                 <TableHead className="w-[20%]">Cover</TableHead>
-                <TableHead className="w-[55%]">Title</TableHead>
+                <TableHead className="w-[60%]">Title</TableHead>
                 <TableHead className="w-[10%]">Duration</TableHead>
-                <TableHead className="text-right">Popularity</TableHead>
+                <TableHead className="w-[5%] text-right">Popularity</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {tracks.map((track, idx) => (
-                <TableRow key={idx}>
+                <TableRow key={idx} className="">
                   <TableCell>{idx + 1}</TableCell>
                   <TableCell>
                     <img

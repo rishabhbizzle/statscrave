@@ -9,11 +9,11 @@ export const columnsData = {
             accessorKey: "#",
             header: ({ column }) => {
                 return (
-                    <Button
+                    <div
                         variant="ghost"
                     >
                         #
-                    </Button>
+                    </div>
                 )
             },
             cell: (row, index) => {
@@ -26,6 +26,7 @@ export const columnsData = {
                 return (
                     <Button
                         variant="ghost"
+                        className="px-1 md:px-3"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                     >
                         SONG
@@ -50,6 +51,7 @@ export const columnsData = {
                 return (
                     <Button
                         variant="ghost"
+                        className="px-1 md:px-3"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                     >
                         TOTAL STREAMS
@@ -73,6 +75,7 @@ export const columnsData = {
                 return (
                     <Button
                         variant="ghost"
+                        className="px-1 md:px-3"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                     >
                         DAILY STREAMS
@@ -95,11 +98,11 @@ export const columnsData = {
             accessorKey: "#",
             header: ({ column }) => {
                 return (
-                    <Button
+                    <div
                         variant="ghost"
                     >
                         #
-                    </Button>
+                    </div>
                 )
             },
             cell: (row, index) => {
@@ -112,6 +115,7 @@ export const columnsData = {
                 return (
                     <Button
                         variant="ghost"
+                        className="px-1 md:px-3"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                     >
                         TITLE
@@ -136,6 +140,7 @@ export const columnsData = {
                 return (
                     <Button
                         variant="ghost"
+                        className="px-1 md:px-3"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                     >
                         TOTAL STREAMS
@@ -159,6 +164,7 @@ export const columnsData = {
                 return (
                     <Button
                         variant="ghost"
+                        className="px-1 md:px-3"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                     >
                         DAILY STREAMS
@@ -183,11 +189,11 @@ export const columnsData = {
             accessorKey: "#",
             header: ({ column }) => {
                 return (
-                    <Button
+                    <div
                         variant="ghost"
                     >
                         #
-                    </Button>
+                    </div>
                 )
             },
             cell: (row, index) => {
@@ -200,6 +206,7 @@ export const columnsData = {
                 return (
                     <Button
                         variant="ghost"
+                        className="px-1 md:px-3"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                     >
                         ARTIST NAME
@@ -223,6 +230,7 @@ export const columnsData = {
                 return (
                     <Button
                         variant="ghost"
+                        className="px-1 md:px-3"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                     >
                         TOTAL
@@ -246,6 +254,7 @@ export const columnsData = {
                 return (
                     <Button
                         variant="ghost"
+                        className="px-1 md:px-3"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                     >
                         DAILY
@@ -269,6 +278,7 @@ export const columnsData = {
                 return (
                     <Button
                         variant="ghost"
+                        className="px-1 md:px-3"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                     >
                         LEAD
@@ -291,6 +301,7 @@ export const columnsData = {
                 return (
                     <Button
                         variant="ghost"
+                        className="px-1 md:px-3"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                     >
                         FEAT.
@@ -313,11 +324,11 @@ export const columnsData = {
             accessorKey: "#",
             header: ({ column }) => {
                 return (
-                    <Button
+                    <div
                         variant="ghost"
                     >
                         #
-                    </Button>
+                    </div>
                 )
             },
             cell: (row, index) => {
@@ -330,6 +341,7 @@ export const columnsData = {
                 return (
                     <Button
                         variant="ghost"
+                        className="px-1 md:px-3"
                     >
                         NAME
                     </Button>
@@ -351,6 +363,7 @@ export const columnsData = {
                 return (
                     <Button
                         variant="ghost"
+                        className="px-1 md:px-3"
                     >
                         ARTIST
                     </Button>
@@ -367,6 +380,7 @@ export const columnsData = {
                 return (
                     <Button
                         variant="ghost"
+                        className="px-1 md:px-3"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                     >
                         TOTAL STREAMS
@@ -390,6 +404,7 @@ export const columnsData = {
                 return (
                     <Button
                         variant="ghost"
+                        className="px-1 md:px-3"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                     >
                         DAILY STREAMS
@@ -412,11 +427,11 @@ export const columnsData = {
             accessorKey: "#",
             header: ({ column }) => {
                 return (
-                    <Button
+                    <div
                         variant="ghost"
                     >
                         #
-                    </Button>
+                    </div>
                 )
             },
             cell: (row, index) => {
@@ -429,6 +444,7 @@ export const columnsData = {
                 return (
                     <Button
                         variant="ghost"
+                        className="px-1 md:px-3"
                     >
                         NAME
                     </Button>
@@ -444,6 +460,7 @@ export const columnsData = {
                 return (
                     <Button
                         variant="ghost"
+                        className="px-1 md:px-3"
                     >
                         ARTIST
                     </Button>
@@ -460,6 +477,7 @@ export const columnsData = {
                 return (
                     <Button
                         variant="ghost"
+                        className="px-1 md:px-3"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                     >
                         STREAMS
@@ -482,11 +500,10 @@ export const columnsData = {
             accessorKey: "#",
             header: ({ column }) => {
                 return (
-                    <Button
-                        variant="ghost"
+                    <div
                     >
                         #
-                    </Button>
+                    </div>
                 )
             },
             cell: (row, index) => {
@@ -499,6 +516,7 @@ export const columnsData = {
                 return (
                     <Button
                         variant="ghost"
+                        className="px-1 md:px-3"
                     >
                         ARTIST NAME
                     </Button>
@@ -521,6 +539,7 @@ export const columnsData = {
                 return (
                     <Button
                         variant="ghost"
+                        className="px-1 md:px-3"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                     >
                         TOTAL
@@ -544,6 +563,7 @@ export const columnsData = {
                 return (
                     <Button
                         variant="ghost"
+                        className="px-1 md:px-3"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                     >
                         DAILY
@@ -567,6 +587,7 @@ export const columnsData = {
                 return (
                     <Button
                         variant="ghost"
+                        className="px-1 md:px-3"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                     >
                         PEAK

@@ -30,7 +30,7 @@ const ArtistAlbums = ({ id }) => {
   return (
     <div>
       {albumsData.length > 0 && (
-        <DataTable data={albumsData} type="album" searchColumn={"title"} />
+        <DataTable data={albumsData} type="album" searchColumn={"title"} title={"Albums"} description={"Here are all the albums released by this artist with their total and daily streams."} />
       )}
       {loading && <Loader component={true} />}
     </div>
