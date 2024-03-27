@@ -49,7 +49,7 @@ export const metadata = {
     creator: "@StatsCrave",
     images: [
       {
-        url: 'https://statscrave.com/og-image-wide.png',
+        url: 'https://statscrave.com/og-image-wide.png?999',
         alt: 'StatsCrave - Your ultimate music analytics platform',
       },
     ],
