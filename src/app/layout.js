@@ -45,12 +45,13 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: 'StatsCrave - Your ultimate music analytics platform',
-    description: "A platform which offers comprehensive streaming statistics and personalized dashboards. Track trends, discover new music, and stay updated on pop culture developments effortlessly.",
+    url: 'https://statscrave.com',
+    description: "A platform which offers comprehensive streaming statistics and personalized dashboard. Track trends, discover new music, and stay updated on pop culture developments effortlessly.",
     creator: "@StatsCrave",
     images: [
       {
-        url: 'https://statscrave.com/og-image-wide.png?999',
-        alt: 'StatsCrave - Your ultimate music analytics platform',
+        url: 'https://i.postimg.cc/C10cs3Sf/og-image-wide.png',
+        alt: 'StatsCrave - Your ultimate music analytics platform!!',
       },
     ],
   },
