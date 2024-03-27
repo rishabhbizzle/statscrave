@@ -22,12 +22,17 @@ export const getAllBlogsFromDb = async (count) => {
 }
 
 export const getBlogPostFromDb = async (slug) => {
-    await connect()
-    if (!slug) {
+    try {
+        await connect()
+        if (!slug) {
+            return null
+        }
+        const blog = await Updates.findOne({ slug: slug })
+        return blog
+    } catch (error) {
+        console.log(error)
         return null
     }
-    const blog = await Updates.findOne({ slug: slug })
-    return blog
 }
 
 
