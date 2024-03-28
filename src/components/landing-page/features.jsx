@@ -42,7 +42,7 @@ export default function Features() {
                   alt="Image"
                   className="mx-auto overflow-hidden rounded-xl object-cover object-center sm:w-full"
                   src={feature.image}
-                  initial={{ opacity: 0, x: 100 }} // Initial state for the image
+                  initial={{ opacity: 0, x: 50 }} // Initial state for the image
                   animate={{ opacity: featureSectionInView ? 1 : 0, x: featureSectionInView ? 0 : index % 2 === 0 ? -40 : 40 }} // Animation for the image
                   transition={{ duration: 0.5, delay: 0.2 }} // Animation duration with delay
                 />
