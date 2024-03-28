@@ -4,7 +4,9 @@ import Features from '@/components/landing-page/features';
 import HeroSection from '@/components/landing-page/hero-section';
 import RecentUpdates from '@/components/landing-page/recent-updates';
 import Container from '@/components/ui/container'
+import Loader from '@/components/ui/loader';
 import { InfiniteMovingCards } from '@/components/ui/moving-cards';
+import { Suspense } from 'react';
 
 
 const testimonials = [
@@ -41,7 +43,6 @@ const testimonials = [
 
 
 export default async function Home() {
-  const updatesData = await getAllBlogsFromDb(5)
 
   return (
     // <TracingBeam className="px-0">
@@ -51,18 +52,17 @@ export default async function Home() {
       {/* <div className="absolute pointer-events-none inset-0 flex items-center justify-center [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div> */}
 
       <HeroSection />
-        {/* <div className='my-10 p-2'>
+      {/* <div className='my-10 p-2'>
           <InfiniteMovingCards
             items={testimonials}
             direction="right"
             speed="slow"
           />
         </div> */}
-        <Features />
-        <RecentUpdates data={updatesData} />
-
-
-
+      <Features />
+      <Suspense fallback={<Loader component={true} />}>
+        <RecentUpdates />
+      </Suspense>
       {/* </div> */}
     </Container>
     // </TracingBeam>

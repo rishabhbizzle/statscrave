@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import {
   Carousel,
@@ -9,8 +8,11 @@ import {
 } from "../ui/carousel";
 import { Card, CardContent } from "../ui/card";
 import Link from "next/link";
+import { getAllBlogsFromDb } from "@/actions/actions";
 
-export default function RecentUpdates({ data }) {
+export default async function RecentUpdates() {
+  const data = await getAllBlogsFromDb(5)
+
   return (
     <div className="my-40 w-full flex justify-center px-10">
       <Carousel
