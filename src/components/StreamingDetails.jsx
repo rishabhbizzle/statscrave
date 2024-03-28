@@ -1,6 +1,9 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { BarChartComponent } from "./barChart";
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert.jsx'
+import { Info } from "lucide-react";
+
 
 function calculatePercentageChange(data) {
   try {
@@ -35,6 +38,20 @@ export default function StreamingDetails({ streamingData, type }) {
 
   return (
     <>
+    {type === 'track' && (
+      <div className="opacity-70">
+        <Alert>
+          <Info className="h-4 w-4" />
+          <AlertTitle>Heads up!</AlertTitle>
+          <AlertDescription>
+            Since there can be multiple versions of a track, the streaming data
+            might not be accurate. Please consider checking all versions of the
+            track.
+          </AlertDescription>
+        </Alert>
+      </div>
+    )}
+
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
