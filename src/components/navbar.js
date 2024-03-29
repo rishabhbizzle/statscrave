@@ -46,7 +46,7 @@ export default function Navbar() {
               </div>
             </Link> */}
             <Link
-              href='https://twitter.com/jdbsdata'
+              href='https://twitter.com/statscrave'
               target="_blank"
               rel="noreferrer"
             >

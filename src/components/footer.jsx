@@ -37,7 +37,7 @@ export default function Footer() {
                   <span className="sr-only">GitHub</span>
                 </div>
               </Link> */}
-              <Link href='https://twitter.com/jdbsdata' target="_blank" rel="noreferrer">
+              <Link href='https://twitter.com/statscrave' target="_blank" rel="noreferrer">
                 <div className={cn("w-9 px-0")}>
                   <Twitter className=" h-5 w-5 fill-current" />
                   <span className="sr-only">Twitter</span>
