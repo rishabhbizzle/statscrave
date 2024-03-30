@@ -29,7 +29,7 @@ export const columnsData = {
                         className="px-1 md:px-3"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                     >
-                        SONG
+                        SONG NAME
                         <CaretSortIcon className="ml-2 h-4 w-4" />
                     </Button>
                 )
@@ -54,7 +54,7 @@ export const columnsData = {
                         className="px-1 md:px-3"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                     >
-                        TOTAL STREAMS
+                        TOTAL
                         <CaretSortIcon className="ml-2 h-4 w-4" />
                     </Button>
                 )
@@ -78,7 +78,7 @@ export const columnsData = {
                         className="px-1 md:px-3"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                     >
-                        DAILY STREAMS
+                        DAILY
                         <CaretSortIcon className="ml-2 h-4 w-4" />
                     </Button>
                 )
@@ -118,7 +118,7 @@ export const columnsData = {
                         className="px-1 md:px-3"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                     >
-                        TITLE
+                        ALBUM NAME
                         <CaretSortIcon className="ml-2 h-4 w-4" />
                     </Button>
                 )
@@ -143,7 +143,7 @@ export const columnsData = {
                         className="px-1 md:px-3"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                     >
-                        TOTAL STREAMS
+                        TOTAL
                         <CaretSortIcon className="ml-2 h-4 w-4" />
                     </Button>
                 )
@@ -167,7 +167,7 @@ export const columnsData = {
                         className="px-1 md:px-3"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                     >
-                        DAILY STREAMS
+                        DAILY
                         <CaretSortIcon className="ml-2 h-4 w-4" />
                     </Button>
                 )
