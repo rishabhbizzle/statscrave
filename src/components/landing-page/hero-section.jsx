@@ -7,7 +7,7 @@ import { useRef } from "react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import Image from "next/image";
-import { SignIn, SignInButton } from "@clerk/nextjs";
+import { SignIn, SignInButton, SignedOut } from "@clerk/nextjs";
 
 const HeroSection = () => {
   const FADE_DOWN_ANIMATION_VARIANTS = {
@@ -22,60 +22,59 @@ const HeroSection = () => {
     <div className="flex min-h-[85vh] p-8  md:mb-14 justify-center items-center">
       <div className="flex flex-col gap-10 md:gap-2 md:flex-row items-center justify-between">
         <div className="flex flex-col items-center">
-          <motion.div
-            initial="hidden"
+          <div
+            // initial="hidden"
             className="max-w-2xl"
-            ref={heroSectionRef}
-            animate={heroSectionInView ? "show" : "hidden"}
-            viewport={{ once: true }}
-            variants={{
-              hidden: {},
-              show: {
-                transition: {
-                  staggerChildren: 0.15,
-                },
-              },
-            }}
+            // ref={heroSectionRef}
+            // animate={heroSectionInView ? "show" : "hidden"}
+            // viewport={{ once: true }}
+            // variants={{
+            //   hidden: {},
+            //   show: {
+            //     transition: {
+            //       staggerChildren: 0.15,
+            //     },
+            //   },
+            // }}
           >
-            <motion.h1
+            <h1
               variants={FADE_DOWN_ANIMATION_VARIANTS}
               className="space-x-4 text-5xl font-bold tracking-tight sm:text-7xl"
             >
               <div className="text-primary">StatsCrave</div>
-            </motion.h1>
-            <motion.p
+            </h1>
+            <p
               variants={FADE_DOWN_ANIMATION_VARIANTS}
               className="space-x-4 text-xl font-bold tracking-tight sm:text-3xl mt-3"
             >
               Your ultimate music analytics platform
-            </motion.p>
+            </p>
 
-            <motion.p
+            <p
               variants={FADE_DOWN_ANIMATION_VARIANTS}
               className="mt-6 text-base sm:text-lg leading-8 "
             >
               Dive into our comprehensive streaming analytics to uncover the
               pulse of your favorite artists, albums, and songs and much more.
-            </motion.p>
+            </p>
 
-            <motion.div
-              variants={FADE_DOWN_ANIMATION_VARIANTS}
-              className="mt-10 flex items-center  gap-x-6 "
-            >
-              <SignInButton>
-                <Button variant="secondary">
-                  <ArrowBigDownDash className="w-5 h-5 mr-2 hover:animate-spin" />
-                  Get Started
-                </Button>
-              </SignInButton>
+            <div className="mt-10 flex items-center  gap-x-6 ">
+              <SignedOut>
+                <SignInButton>
+                  <Button variant="secondary">
+                    <ArrowBigDownDash className="w-5 h-5 mr-2 hover:animate-spin" />
+                    Get Started
+                  </Button>
+                </SignInButton>
+              </SignedOut>
               <Link href="/updates">
                 <Button variant="outline">
                   <FileText className="w-5 h-5 mr-2 hover:animate-spin" />
                   Read Updates
                 </Button>
               </Link>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
         <div className="flex">
           <img
