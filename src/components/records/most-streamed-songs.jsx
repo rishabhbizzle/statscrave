@@ -14,7 +14,7 @@ import { DataTable } from "../data-table/data-table";
 import Loader from "../ui/loader";
 import { useRouter, useSearchParams } from "next/navigation";
 
-const years = [2021, 2020, 2019, 2018, 2017, 2016, 2015];
+const years = [2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015];
 
 const MostStreamedSongs = () => {
   const router = useRouter();
