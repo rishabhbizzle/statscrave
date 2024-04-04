@@ -13,6 +13,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  Brush,
 } from "recharts";
 import { createFileName, useScreenshot } from "use-react-screenshot";
 import { Button } from "./ui/button";
@@ -50,6 +51,12 @@ export function BarChartComponent({ data, formatted, artistName }) {
         <ResponsiveContainer width="100%" height={350}>
           <BarChart
             data={formattedData}
+            margin={{
+              top: 5,
+              right: 2,
+              left: 6,
+              bottom: 5,
+            }}
             style={{
               fill: "#22C55E",
               opacity: 1,
@@ -58,22 +65,37 @@ export function BarChartComponent({ data, formatted, artistName }) {
               })`,
             }}
           >
+            {/* <CartesianGrid strokeDasharray="3 3" /> */}
             <XAxis
               dataKey="date"
               stroke="#888888"
-              fontSize={12}
+              fontSize={10}
               tickLine={false}
               axisLine={false}
             />
             <YAxis
               stroke="#888888"
-              fontSize={12}
+              fontSize={10}
               tickLine={false}
               axisLine={false}
-              // tickFormatter={(value) => `$${value}`}
             />
-            <Tooltip />
-            <Bar dataKey="streams" radius={[8, 8, 0, 0]} />
+            <Tooltip
+              labelStyle={{ color: mode === "dark" ? "#09090B" : "" }}
+              className={mode === "dark" ? "text-[#09090B]" : "#FFFFFF"}
+            />
+            <Legend
+              verticalAlign="top"
+              align="right"
+              wrapperStyle={{ lineHeight: "20px" }}
+            />
+            <Brush
+              className="text-xs"
+              fill={mode === "dark" ? "#09090B" : "#FFFFFF"}
+              dataKey="date"
+              height={25}
+              stroke={mode !== "dark" ? "#09090B" : "#FFFFFF"}
+            />
+            <Bar dataKey="streams" radius={[6, 6, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>
