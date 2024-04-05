@@ -5,5 +5,5 @@ export default authMiddleware({
 });
 
 export const config = {
-    matcher: ["/dashboard", "/user-profile"],
+    matcher: ["/dashboard", "/user-profile", "/admin"],
 };
