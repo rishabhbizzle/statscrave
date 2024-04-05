@@ -68,9 +68,9 @@ const PopularTracks = ({ id }) => {
               <TableRow>
                 <TableHead className="w-[5%]">#</TableHead>
                 <TableHead className="w-[20%]">Cover</TableHead>
-                <TableHead className="w-[60%]">Title</TableHead>
-                <TableHead className="w-[10%]">Duration</TableHead>
-                <TableHead className="w-[5%] text-right">Popularity</TableHead>
+                <TableHead className="w-[65%]">Title</TableHead>
+                <TableHead className="w-[10%] text-left">Duration</TableHead>
+                <TableHead className="w-[5%]">Popularity</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -86,18 +86,20 @@ const PopularTracks = ({ id }) => {
                       width="50"
                     />
                   </TableCell>
+                  <TableCell>
                   <Link
                     href={`/track/${track.id}`}
-                    className="hover:underline"
+                    className="hover:underline flex items-center w-full h-full"
                     key={idx}
                   >
-                    <TableCell>{track.name}</TableCell>
+                    {track.name}
                   </Link>
+                  </TableCell>
                   <TableCell>
                     {millisecondsToMinutesSeconds(track.duration_ms)}
                   </TableCell>
 
-                  <TableCell className="text-right">
+                  <TableCell className="">
                     {track.popularity}
                   </TableCell>
                 </TableRow>
