@@ -89,7 +89,7 @@ export function BarChartComponent({ data, formatted, artistName }) {
               wrapperStyle={{ lineHeight: "20px" }}
             />
             <Brush
-              className="text-xs"
+              className="text-[8px]"
               fill={mode === "dark" ? "#09090B" : "#FFFFFF"}
               dataKey="date"
               height={25}
