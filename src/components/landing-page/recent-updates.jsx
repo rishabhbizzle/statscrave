@@ -32,6 +32,7 @@ export default async function RecentUpdates() {
                       <CardContent className="h-[22rem] flex items-center justify-center flex-col p-4 hover:opacity-90 hover:scale-105  transition-all cursor-pointer">
                         <img
                           alt="Cover image"
+                          loading="lazy"
                           className="aspect-video overflow-hidden rounded-lg object-cover w-full h-full"
                           src={data.image}
                         />

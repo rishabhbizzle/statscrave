@@ -80,6 +80,7 @@ const HeroSection = () => {
           <img
             src="/hero1.webp"
             alt="StatsCrave"
+            loading="lazy"
             className="rounded-lg"
             width={500}
             height={500}
