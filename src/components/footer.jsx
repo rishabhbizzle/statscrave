@@ -1,8 +1,6 @@
 "use client";
 
 import Link from "next/link";
-
-import { Button } from "@/components/ui/button";
 import {
   CommandIcon,
   Github,
@@ -54,6 +52,17 @@ export default function Footer() {
                 publicly available and retrieved directly from APIs.
               </div>
             </div>
+          </div>
+          <div className="flex justify-center gap-5">
+          <Link href="/privacy-policy" className="text-muted-foreground text-xs">
+            Privacy Policy
+          </Link>
+          <Link href="https://www.buymeacoffee.com/statscrave" target="_blank" rel="noreferrer" className="text-muted-foreground text-xs">
+            Want to support us?
+          </Link>
+          <Link href="mailto:statscrave@gmail.com" className="text-muted-foreground text-xs">
+            Contact Us
+          </Link>
           </div>
         </div>
       </div>
