@@ -62,7 +62,7 @@ const ArtistOverview = ({ id }) => {
 
   return (
     <div>
-      {loading && <Loader component={true} />}
+      {loading && <Loader component={true} text="Fetching Streaming Stats" />}
       <div className="my-3 grid gap-4 md:grid-cols-2">
         {overallData &&
           overallData?.map((data, index) => (

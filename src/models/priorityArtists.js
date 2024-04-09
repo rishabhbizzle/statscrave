@@ -6,6 +6,10 @@ const priorityArtistSchema = new mongoose.Schema({
         unique: true,
         required: [true, "Please provide a artist id"],
     },
+    cmId: {
+        type: String,
+        unique: true,
+    },
 }, {
     timestamps: true
 }
