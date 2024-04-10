@@ -14,7 +14,7 @@ import {
   FaRadio,
   FaMusic,
 } from "react-icons/fa";
-import { SiPandora, SiGenius, SiShazam } from "react-icons/si";
+import { SiPandora, SiGenius, SiShazam, SiDeezer  } from "react-icons/si";
 import { IoIosRadio } from "react-icons/io";
 
 const platformIcons = {
@@ -27,6 +27,7 @@ const platformIcons = {
   LINE: FaLine,
   Genius: SiGenius,
   AirPlay: IoIosRadio,
+  Deezer: SiDeezer,
 };
 
 const Icon = ({ platform }) => {
@@ -66,7 +67,7 @@ const ArtistSocials = ({ id }) => {
       {socialData?.socialSummary && (
         <Card className="my-4 md:my-8">
           <CardHeader>
-            <CardTitle>Artist Socials Summary</CardTitle>
+            <CardTitle>Platforms Summary</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="max-w-6xl mx-auto mt-8">
