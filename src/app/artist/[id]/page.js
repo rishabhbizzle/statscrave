@@ -11,6 +11,7 @@ import Loader from '@/components/ui/loader'
 import axios from 'axios'
 import { toast } from 'sonner'
 import { redirect } from 'next/navigation'
+import ArtistSocials from '@/components/artist/socials'
 
 
 const Artist = ({ params }) => {
@@ -53,6 +54,7 @@ const Artist = ({ params }) => {
                         </TabsList>
                         <TabsContent value="overview">
                             <ArtistOverview id={id} artist={artist} />
+                            <ArtistSocials id={id} />
                             <PopularTracks id={id} />
                         </TabsContent>
                         <TabsContent value="songs">
@@ -64,6 +66,11 @@ const Artist = ({ params }) => {
                     </Tabs>
                 </div>
             )}
+            {/* {!loading && !artist && (
+                <div className='min-h-[80vh] flex items-center justify-center'>
+                    <h1 className='text-2xl font-bold'>No artist found!!!</h1>
+                </div>
+            )} */}
             {loading && <Loader />}
         </div>
     )
