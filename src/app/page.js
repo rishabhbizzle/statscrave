@@ -22,9 +22,14 @@ const testimonials = [
     title: "@BIZZLEFOREIGN",
   },
   {
-    quote: "You are doing great work",
+    quote: "You are doing great work.",
     name: "KAI",
     title: "@ended_everyone",
+  },
+  {
+    quote: "Your website is super sick, it's honestly one of the best things someone did in the stan culture!",
+    name: "Beanie",
+    title: "@biebs_beanie",
   },
 ];
 
