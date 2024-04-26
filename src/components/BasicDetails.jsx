@@ -1,6 +1,6 @@
 "use client";
 
-import { Calendar, Info, Users } from "lucide-react";
+import { Calendar, Info, Users, Sparkles } from "lucide-react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { Badge } from "./ui/badge";
@@ -8,6 +8,7 @@ import { Button } from "./ui/button";
 import FavouriteButton from "./favourite";
 import Link from "next/link";
 import { toast } from "sonner";
+
 import axios from "axios";
 import { useUser } from "@clerk/nextjs";
 import { toSentenceCase } from "@/lib/helperFunctions";
@@ -61,17 +62,15 @@ export default function BasicDetails({ details, type, spotifyId }) {
   return (
     <>
       <div className="w-full flex flex-col sm:flex-row py-5 gap-8">
-        <div className="w-full flex justify-center">
+        <div className="w-full md:w-[45%] flex justify-center">
           <img
             alt="cover"
-            className="object-cover"
-            height="250"
+            className="w-object-cover w-[250px] md:w-[300px] h-[250px] md:h-[300px]"
             src={
               type === "track"
                 ? details?.album?.images[0]?.url
                 : details?.images[0]?.url
             }
-            width="250"
           />
         </div>
         <div className="w-full flex flex-col gap-1">
@@ -85,16 +84,26 @@ export default function BasicDetails({ details, type, spotifyId }) {
               </PopoverTrigger>
               <PopoverContent className="w-80 flex gap-2">
                 <Info className="w-5 h-5" />
-                <p className="w-60 break-words text-xs">{populariyDetails[type]}</p>
+                <p className="w-60 break-words text-xs">
+                  {populariyDetails[type]}
+                </p>
               </PopoverContent>
             </Popover>
           </div>
           {type === "artist" ? (
-            <div>
-              <Users className="inline-block mr-1" size={24} />
-              <span className="text-sm">
-                {details?.followers?.total?.toLocaleString("en-US")} followers
-              </span>
+            <div className="flex gap-5">
+              <div>
+                <Users className="inline-block mr-1" size={24} />
+                <span className="text-sm">
+                  {details?.followers?.total?.toLocaleString("en-US")} followers
+                </span>
+              </div>
+              {details?.onTour === "1" && (
+                <Badge variant="secondary">
+                  <Sparkles className="w-4 h-4 mr-2" />
+                  On Tour
+                </Badge>
+              )}
             </div>
           ) : (
             <div>
@@ -124,6 +133,9 @@ export default function BasicDetails({ details, type, spotifyId }) {
               return <Badge key={index}>{toSentenceCase(genre)}</Badge>;
             })}
           </div>
+          {details?.summary && (
+            <div className="text-sm mt-3">{details?.summary}</div>
+          )}
 
           <div className="mt-4 flex space-x-3 justify-center md:justify-normal">
             <FavouriteButton

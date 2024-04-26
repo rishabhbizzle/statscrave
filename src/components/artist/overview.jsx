@@ -16,8 +16,9 @@ import { InfiniteMovingCards } from "../ui/moving-cards";
 import { toast } from "sonner";
 import axios from "axios";
 import Loader from "../ui/loader";
+import { FaLastfm, FaSpotify } from "react-icons/fa";
 
-const ArtistOverview = ({ id }) => {
+const ArtistOverview = ({ id, lastFmStats }) => {
   const [loading, setLoading] = useState(false);
   const [overallData, setOverallData] = useState([]);
   const [streamingData, setStreamingData] = useState(null);
@@ -62,7 +63,7 @@ const ArtistOverview = ({ id }) => {
 
   return (
     <div>
-      {loading && <Loader component={true} />}
+      {loading && <Loader component={true} text="Fetching Streaming Stats" />}
       <div className="my-3 grid gap-4 md:grid-cols-2">
         {overallData &&
           overallData?.map((data, index) => (
@@ -71,18 +72,7 @@ const ArtistOverview = ({ id }) => {
                 <CardTitle className="text-sm font-medium">
                   {data?.type}
                 </CardTitle>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  className="h-4 w-4 text-muted-foreground"
-                >
-                  <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-                </svg>
+                <FaSpotify  />
               </CardHeader>
               <CardContent className="flex flex-col">
                 <div className="space-y-1">
@@ -110,6 +100,30 @@ const ArtistOverview = ({ id }) => {
               </CardContent>
             </Card>
           ))}
+          {!loading && lastFmStats && (
+            <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                Last.fm Total Streams
+              </CardTitle>
+              <FaLastfm className="text-2xl" />
+            </CardHeader>
+            <CardContent className="flex flex-col">
+              <div className="space-y-1">
+                <p className="text-3xl font-semibold tracking-tighter">
+                  {parseInt(lastFmStats?.playcount)?.toLocaleString('en-US')}
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                <div className="flex items-center space-x-2">
+                  <div className="h-2 w-2 rounded-full bg-gray-400" />
+                  <span className="text-sm font-medium">Listeners</span>
+                  <span className="text-sm ml-auto">{parseInt(lastFmStats?.listeners)?.toLocaleString('en-US')}</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          )}
       </div>
 
       {/* <div>
@@ -154,6 +168,7 @@ const ArtistOverview = ({ id }) => {
                 <BarChartComponent data={streamingData?.dailyFeatureStreams} />
               </CardContent>
             </Card>
+            
           </div>
         </div>
       )}
