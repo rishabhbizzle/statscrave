@@ -84,7 +84,7 @@ const MostStreamedSongsSingle = ({mode = 'day'}) => {
           searchColumn={"name"}
           title={"Most Streamed Songs"}
           description={
-            "Following are the most streamed artists on Spotify for the selected year."
+            `Following are the most streamed songs on Spotify in a single ${mode}.`
           }
         />
       )}
