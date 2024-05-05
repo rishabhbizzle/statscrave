@@ -216,7 +216,7 @@ export const columnsData = {
             },
             cell: ({ row }) => {
                 if (row?.original?.id) {
-                    return <Link className="hover:underline font-medium" href={`/track/${row?.original?.id}`}>{row.getValue('name')}</Link>
+                    return <Link className="hover:underline font-medium" href={`/artist/${row?.original?.id}`}>{row.getValue('name')}</Link>
                 } else {
                     return <div className="font-medium">{row.getValue('name')}</div>
                 }
