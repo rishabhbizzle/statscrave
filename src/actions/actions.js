@@ -3,6 +3,7 @@
 import { connect } from "@/dgConfig/dbConfig";
 import Updates from "@/models/updatesModel";
 import { currentUser } from '@clerk/nextjs';
+import axios from "axios";
 import { revalidatePath } from "next/cache";
 
 export const getAllBlogsFromDb = async (count) => {
@@ -60,11 +61,20 @@ export const createBlogPostInDb = async (blog) => {
             slug: title.replace(/\s+/g, '-').toLowerCase(),
             author: user?.firstName || 'Admin'
         }
-        console.log(data)
         const newBlog = Updates.create(data)
         revalidatePath('/admin')
         return { data: 'Blog created', error: null }
     } catch (error) {
         return { data: null, error: error?.message }
+    }
+}
+
+export const getLastFmTopTracks = async (page = 1, limit = 10) => {
+    try {
+        const data = await axios.get(`http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=ecc9b2c8a479d81dec5c6a6baadf3c09&format=json&page=${page}&limit=${limit}`)
+        return data?.data?.tracks
+    } catch (error) {
+        console.error(error);
+        return null
     }
 }
