@@ -14,6 +14,7 @@ import {
 import { Info } from 'lucide-react'
 import Link from 'next/link'
 import LastFmTopTracks from '@/components/charts/lastFmTopTracks'
+import LastFmTopArtists from '@/components/charts/lastFmTopArtists'
 
 
 
@@ -45,10 +46,16 @@ const Chart = async ({ params, searchParams }) => {
       page: 'global200'
     },
     {
-      title: 'Last.fm Top Tracks',
+      title: 'Last.fm Top Weekly Tracks',
       description: 'Chart displaying top tracks from Last.fm.',
       component: <LastFmTopTracks searchParams={searchParams} />,
       page: 'lastFmTopTracks'
+    },
+    {
+      title: 'Last.fm Top Weekly Artists',
+      description: 'Chart displaying top tracks from Last.fm.',
+      component: <LastFmTopArtists searchParams={searchParams} />,
+      page: 'lastFmTopArtists'
     }
   ];
 

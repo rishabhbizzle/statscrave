@@ -1,4 +1,4 @@
-import { getAllCountries, getLastFmTopTracks } from "@/actions/actions";
+import { getLastFmTopArtists } from "@/actions/actions";
 import React from "react";
 import {
   Table,
@@ -25,37 +25,40 @@ import { redirect } from "next/navigation";
 import CountriesDropdown from "../countriesDropdown";
 import { ExternalLink } from "lucide-react";
 
-export default async function LastFmTopTracks({ searchParams }) {
+export default async function LastFmTopArtists({ searchParams }) {
   const page = searchParams?.page || 1;
   const limit = searchParams?.limit || 10;
   const country = searchParams?.country || null;
-  const data = await getLastFmTopTracks(page, limit, country);
+  const data = await getLastFmTopArtists(page, limit, country);
 
   if (!data) {
-    return <div>Internal Server Error</div>;
+    return <div className="w-full flex justify-center m-10">
+      **Internal Server Error!**</div>;
   }
 
   return (
     <div>
-      <div className="w-full flex justify-end my-1">
-        <CountriesDropdown country={country} />
+        <div className="w-full flex justify-end my-1">
+      <CountriesDropdown country={country} />
       </div>
+
+      {data?.artist?.length > 0 ? (
+        <>
       <Table>
         <TableHeader>
           <TableRow>
             <TableHead className="w-[5%]">#</TableHead>
-            <TableHead className="w-[50%]">Title</TableHead>
-            <TableHead className="w-[20%]">Artist</TableHead>
+            <TableHead className="w-[50%]">Artist</TableHead>
             {!country && <TableHead className="w-[15%]">Streams</TableHead>}
             <TableHead className="w-[15%]">Listeners</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data?.track?.map((track, idx) => (
+          {data?.artist?.map((track, idx) => (
             <TableRow key={idx} className="">
               <TableCell>{page * 50 + idx + 1 - 50}</TableCell>
               <TableCell>
-                <Link
+              <Link
                   className="hover:underline font-medium"
                   target="_blank"
                   href={track.url}
@@ -66,7 +69,6 @@ export default async function LastFmTopTracks({ searchParams }) {
                   </div>
                 </Link>
               </TableCell>
-              <TableCell>{track?.artist?.name}</TableCell>
               {!country && (
                 <TableCell>
                   {parseInt(track?.playcount)?.toLocaleString("en-US")}
@@ -83,12 +85,12 @@ export default async function LastFmTopTracks({ searchParams }) {
         <PaginationContent>
           <PaginationItem>
             <PaginationPrevious
-              href={`/charts/lastFmTopTracks?page=${Number(page) - 1}`}
+              href={`/charts/lastFmTopArtists?page=${Number(page) - 1}`}
             />
           </PaginationItem>
           <PaginationItem>
             <PaginationLink
-              href={`/charts/lastFmTopTracks?page=${page}`}
+              href={`/charts/lastFmTopArtists?page=${page}`}
               isActive
             >
               {page}
@@ -96,7 +98,7 @@ export default async function LastFmTopTracks({ searchParams }) {
           </PaginationItem>
           <PaginationItem>
             <PaginationLink
-              href={`/charts/lastFmTopTracks?page=${Number(page) + 1}`}
+              href={`/charts/lastFmTopArtists?page=${Number(page) + 1}`}
             >
               {Number(page) + 1}
             </PaginationLink>
@@ -106,11 +108,17 @@ export default async function LastFmTopTracks({ searchParams }) {
           </PaginationItem>
           <PaginationItem>
             <PaginationNext
-              href={`/charts/lastFmTopTracks?page=${Number(page) + 1}`}
+              href={`/charts/lastFmTopArtists?page=${Number(page) + 1}`}
             />
           </PaginationItem>
         </PaginationContent>
       </Pagination>
+      </>
+      ) : (
+        <div className="w-full flex justify-center m-10">
+          
+          OOPS!!! Chart not available for this country</div>
+      )}
     </div>
   );
 }
