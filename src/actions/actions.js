@@ -81,7 +81,6 @@ export const getLastFmTopTracks = async (page = 1, limit = 10, country) => {
 
 export const getLastFmTopArtists = async (page = 1, limit = 10, country) => {
     try {
-        console.log('country', country)
         const data = await axios.get(country ? `http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country=${country}&api_key=${process.env.NEXT_PUBLIC_LASTFM_API_KEY}&format=json&page=${page}` : `http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=${process.env.NEXT_PUBLIC_LASTFM_API_KEY}&format=json&page=${page}`)
         return country ? data?.data?.topartists : data?.data?.artists
     } catch (error) {
