@@ -4,6 +4,7 @@ import { connect } from "@/dgConfig/dbConfig";
 import Updates from "@/models/updatesModel";
 import { currentUser } from '@clerk/nextjs';
 import axios from "axios";
+import Melon from "melon-chart-api";
 import { revalidatePath } from "next/cache";
 
 export const getAllBlogsFromDb = async (count) => {
@@ -101,5 +102,32 @@ export const getAllCountries = async () => {
     } catch (error) {
         console.error(error)
         return []
+    }
+}
+
+export const getMelonChartData = async (chartType = 'realtime', date = new Date()) => {
+    try {
+        let data;
+        if (chartType === 'monthly') {
+            data = await Melon(date, { cutLine: 100 }).monthly().then(chartData => {
+                return chartData
+            })
+        } else if (chartType === 'weekly') {
+            data = await Melon(date, { cutLine: 100 }).weekly().then(chartData => {
+                return chartData
+            })
+        } else if (chartType === 'daily') {
+            data = await Melon(date, { cutLine: 100 }).daily().then(chartData => {
+                return chartData
+            })
+        } else {
+            data = await Melon(date, { cutLine: 100 }).realtime().then(chartData => {
+                return chartData
+            })
+        }
+        return data
+    } catch (error) {
+        console.error(error)
+        return null
     }
 }
