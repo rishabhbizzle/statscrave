@@ -34,6 +34,12 @@ const ChartsPage = () => {
             <p className="my-3">Billboard Artist 100</p>
           </div>
         </Link>
+        <Link href="/charts/melonCharts">
+          <div className="shadow-md shadow-[#040c16] hover:scale-110 duration-500 m-4 bg-black">
+            <img className="mx-auto w-full h-32 object-cover" src="https://6.soompi.io/wp-content/uploads/image/d9fcf751a0a242638b7dc98b29e81bf2.jpeg?s=900x600&e=t" alt="BB200" />
+            <p className="my-3">Melon Charts (Realtime, Daily, Weekly, Monthly)</p>
+          </div>
+        </Link>
         <Link href="/charts/lastFmTopTracks">
           <div className="shadow-md shadow-[#040c16] hover:scale-110 duration-500 m-4 bg-black">
             <img className="mx-auto w-full h-32 object-cover" src="https://www.last.fm/static/images/lastfm_logo_facebook.15d8133be114.png" alt="BB200" />

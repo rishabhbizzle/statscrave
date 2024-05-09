@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/popover";
 import { useRouter } from "next/navigation";
 
-export function DatePicker({ otherParams = [] }) {
+export function DatePicker({ otherParams = [], currentDate }) {
   const [date, setDate] = React.useState();
   const router = useRouter();
 
