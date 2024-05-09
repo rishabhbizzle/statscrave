@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { Suspense } from 'react'
 import Album from '@/components/charts/Album'
 import Artist from '@/components/charts/Artist'
 import Global from '@/components/charts/Global'
@@ -15,6 +15,8 @@ import { Info } from 'lucide-react'
 import Link from 'next/link'
 import LastFmTopTracks from '@/components/charts/lastFmTopTracks'
 import LastFmTopArtists from '@/components/charts/lastFmTopArtists'
+import MelonCharts from '@/components/charts/melonCharts'
+import Loader from '@/components/ui/loader'
 
 
 
@@ -56,6 +58,12 @@ const Chart = async ({ params, searchParams }) => {
       description: 'This week top artists on Last.fm globally or country wise. This chart is a property of Last.fm. We do not own any of the data presented here. All rights to them',
       component: <LastFmTopArtists searchParams={searchParams} />,
       page: 'lastFmTopArtists'
+    },
+    {
+      title: 'Melon Charts',
+      description: 'This chart is a property of Melon. We do not own any of the data presented here. All rights to them',
+      component: <MelonCharts searchParams={searchParams} />,
+      page: 'melonCharts'
     }
   ];
 
@@ -86,7 +94,9 @@ const Chart = async ({ params, searchParams }) => {
             </AlertDescription>
           </Alert> */}
           <Card className="">
+        <Suspense fallback={<Loader component={true} />}>
             {foundChartDetails.component}
+        </Suspense>
           </Card>
         </CardContent>
       </Card>
