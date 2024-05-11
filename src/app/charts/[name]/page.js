@@ -67,16 +67,16 @@ const chartArray = [
   },
   {
     page: 'genie',
-    title: 'Genie Charts',
+    title: 'Genie Top 200 Tracks (Realtime)',
     image: 'https://yt3.googleusercontent.com/scUX4jtNfsIWOB7fFR54ghwTgFziOmvmLkPSt6C5Dl3D5x4haSx_YWvoLcq9L5eo29vSsF2_kw=s900-c-k-c0x00ffffff-no-rj',
-    description: 'This chart is a property of Genie. We do not own any of the data presented here. All rights to them',
+    description: 'The current most popular tracks on Genie. This chart is a property of Genie. We do not own any of the data presented here. All rights to them',
     getComponent: (searchParams) => <OtherKoreanCharts chartName='genie' searchParams={searchParams} />,
   },
   {
     page: 'bugs',
-    title: 'Bug Charts',
+    title: 'Bugs Top 100 Tracks (Realtime)',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Bugs%21_logo.jpg/640px-Bugs%21_logo.jpg',
-    description: 'This chart is a property of Genie. We do not own any of the data presented here. All rights to them',
+    description: 'The current most popular tracks on Bugs. This chart is a property of Genie. We do not own any of the data presented here. All rights to them',
     getComponent: (searchParams) => <OtherKoreanCharts chartName='bugs' searchParams={searchParams} />,
   },
 ];
