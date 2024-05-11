@@ -24,8 +24,8 @@ const OtherKoreanCharts = async ({ chartName }) => {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="w-[8%]">Rank</TableHead>
-                <TableHead className="w-[10%]">#</TableHead>
+                <TableHead className="w-[2%] px-2 md:px-3">Rank</TableHead>
+                <TableHead className="w-[20%] md:w-[8%]">#</TableHead>
                 <TableHead className="w-[45%]">Title</TableHead>
                 <TableHead className="w-[25%]">Artist</TableHead>
               </TableRow>
@@ -33,7 +33,7 @@ const OtherKoreanCharts = async ({ chartName }) => {
             <TableBody>
               {data?.map((track, idx) => (
                 <TableRow key={idx} className="">
-                  <TableCell>
+                  <TableCell className="px-2 md:px-3">
                     <div className="flex gap-2 items-center">
                       <p>{track?.rank}</p>
                       {["down", "up"].includes(track?.diff) ? (

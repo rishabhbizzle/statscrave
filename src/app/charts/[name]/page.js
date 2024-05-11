@@ -76,7 +76,7 @@ const chartArray = [
     page: 'bugs',
     title: 'Bugs Top 100 Tracks (Realtime)',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Bugs%21_logo.jpg/640px-Bugs%21_logo.jpg',
-    description: 'The current most popular tracks on Bugs. This chart is a property of Genie. We do not own any of the data presented here. All rights to them',
+    description: 'The current most popular tracks on Bugs. This chart is a property of Bugs. We do not own any of the data presented here. All rights to them',
     getComponent: (searchParams) => <OtherKoreanCharts chartName='bugs' searchParams={searchParams} />,
   },
 ];
