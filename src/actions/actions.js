@@ -131,3 +131,22 @@ export const getMelonChartData = async (chartType = 'realtime', date = new Date(
         return null
     }
 }
+
+export const getKoreanChartData = async (chartName) => {
+    const chartMap = {
+        genie : '/genie/music/chart/200',
+        naver : '/naver/music/chart/100',
+        bugs: '/bugs/music/chart/100'
+    }
+    try {
+        const data = await fetch(`http://kr-music.ap-south-1.elasticbeanstalk.com/v1${chartMap[chartName]}`)
+            .then((response) => response.json())
+            .then((data) => {
+                return data?.data
+            })
+        return data;
+    } catch (error) {
+        console.error(error)
+        return []
+    }
+}

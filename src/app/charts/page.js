@@ -46,6 +46,19 @@ const ChartsPage = () => {
             <p className="my-3">Last Fm Weekly Top Tracks</p>
           </div>
         </Link>
+        
+        <Link href="/charts/genie">
+          <div className="shadow-md shadow-[#040c16] hover:scale-110 duration-500 m-4 bg-black">
+            <img className="mx-auto w-full h-32 object-cover" src="https://yt3.googleusercontent.com/scUX4jtNfsIWOB7fFR54ghwTgFziOmvmLkPSt6C5Dl3D5x4haSx_YWvoLcq9L5eo29vSsF2_kw=s900-c-k-c0x00ffffff-no-rj" alt="BB200" />
+            <p className="my-3">Genie Top 200 Tracks</p>
+          </div>
+        </Link>
+        <Link href="/charts/bugs">
+          <div className="shadow-md shadow-[#040c16] hover:scale-110 duration-500 m-4 bg-black">
+            <img className="mx-auto w-full h-32 object-cover" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Bugs%21_logo.jpg/640px-Bugs%21_logo.jpg" alt="BB200" />
+            <p className="my-3">Bugs Top 100 Tracks</p>
+          </div>
+        </Link>
         <Link href="/charts/lastFmTopArtists">
           <div className="shadow-md shadow-[#040c16] hover:scale-110 duration-500 m-4 bg-black">
             <img className="mx-auto w-full h-32 object-cover" src="https://www.last.fm/static/images/lastfm_logo_facebook.15d8133be114.png" alt="BB200" />
