@@ -37,9 +37,9 @@ const UserData = ({ type, setType, userData, timeRange, setTimeRange }) => {
         onValueChange={(newVal) => setTimeRange(newVal)}
       >
         <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="short_term">Last 4 weeks</TabsTrigger>
+          <TabsTrigger value="short_term">Last 1 month</TabsTrigger>
           <TabsTrigger value="medium_term">Last 6 months</TabsTrigger>
-          <TabsTrigger value="long_term">All-time</TabsTrigger>
+          <TabsTrigger value="long_term">Last 1 year</TabsTrigger>
         </TabsList>
       </Tabs>
       {userData?.length > 0 && (
