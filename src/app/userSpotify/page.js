@@ -127,6 +127,7 @@ export default function Page() {
         userParams
       )
       .then((res) => {
+        console.log(res.data);
         setUserData(res?.data?.items);
       })
       .catch((err) => {
