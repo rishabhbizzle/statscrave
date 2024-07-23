@@ -247,3 +247,42 @@ export const countriesList = [
   "Zambia",
   "Zimbabwe"
 ];
+
+
+
+export const formatDataForWrappedBanner = (data, platform) => {
+  let formattedData = {
+    coverImg: null,
+    topArtists: [],
+    topSongs: [],
+    topAlbums: [],
+  };
+
+  if (platform === 'lastFm') {
+    formattedData.coverImg = data?.albums?.[0]?.image?.[1]?.['#text'];
+    formattedData.topArtists = data?.artists?.slice(0, 5);
+    formattedData.topSongs = data?.tracks?.slice(0, 5)?.map((track) => {
+      return {
+        name: track?.name,
+        artist: track?.artist?.name,
+      }
+    });
+    formattedData.topAlbums = data?.albums?.slice(0, 5)?.map((album) => {
+      return {
+        name: album?.name,
+        artist: album?.artist?.name,
+      }
+    });
+  } else if (platform === 'spotify') {
+    formattedData.coverImg = data?.topArtists?.items?.[0]?.images?.[0]?.url;
+    formattedData.topArtists = data?.topArtists?.items?.slice(0, 5)?.map((artist) => artist?.name);
+    formattedData.topSongs = data?.topTracks?.items?.slice(0, 5)?.map((track) => {
+      return {
+        name: track?.name,
+        artist: track?.artists?.map((artist) => artist?.name).join(", "),
+      }
+    });
+  }
+
+  return formattedData;
+}
