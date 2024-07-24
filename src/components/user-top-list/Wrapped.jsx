@@ -40,7 +40,6 @@ const WrappedImage = ({ data, platform, timePeriod }) => {
       // Preload images
       const imagesToLoad = [
         userData.userImage,
-        ...userData.topSongs.map((song) => song.imageUrl),
       ];
 
       await Promise.all(
@@ -70,11 +69,41 @@ const WrappedImage = ({ data, platform, timePeriod }) => {
         },
       });
 
-      const imageUrl = canvas.toDataURL("image/png");
-      const link = document.createElement("a");
-      link.href = imageUrl;
-      link.download = `${platform}-replay-statscrave.png`
+      // Convert canvas to blob
+    const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+    const filename = `${platform}-replay-statscrave.png`;
+
+    // Check if the browser supports the download attribute
+    const isDownloadSupported = 'download' in document.createElement('a');
+
+    if (isDownloadSupported) {
+      // For most devices: use Blob and download attribute
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
       link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    } else {
+      // Fallback for iOS and other devices that don't support download
+      const reader = new FileReader();
+      reader.onload = function() {
+        const fullScreen = window.open('', '_blank');
+        if (fullScreen) {
+          fullScreen.document.write('<html><body style="margin:0;"><img src="' + reader.result + '" style="max-width:100%;max-height:100%;" /></body></html>');
+          fullScreen.document.title = filename;
+          fullScreen.document.close();
+        } else {
+          // If popup is blocked, fallback to current window
+          window.location.href = reader.result;
+        }
+      };
+      reader.readAsDataURL(blob);
+    }
+
+    toast.success("Image generated successfully!");
     } catch (error) {
       console.error("Error generating image:", error);
       toast.error(
