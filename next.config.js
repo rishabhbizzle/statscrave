@@ -6,6 +6,10 @@ const nextConfig = {
             protocol: 'https',
             hostname: 'i.scdn.co',
           },
+          {
+            protocol: 'https',
+            hostname: 'lastfm.freetls.fastly.net',
+          },
         ],
       },
 
