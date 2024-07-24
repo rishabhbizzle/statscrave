@@ -259,18 +259,20 @@ export const formatDataForWrappedBanner = (data, platform) => {
   };
 
   if (platform === 'lastFm') {
-    formattedData.coverImg = data?.albums?.[0]?.image?.[1]?.['#text'];
-    formattedData.topArtists = data?.artists?.slice(0, 5);
+    formattedData.coverImg = data?.albums?.[0]?.image?.[3]?.['#text'];
+    formattedData.topArtists = data?.artists?.slice(0, 5)?.map((artist) => artist?.name);
     formattedData.topSongs = data?.tracks?.slice(0, 5)?.map((track) => {
       return {
         name: track?.name,
         artist: track?.artist?.name,
+        playcount: track?.playcount,
       }
     });
     formattedData.topAlbums = data?.albums?.slice(0, 5)?.map((album) => {
       return {
         name: album?.name,
         artist: album?.artist?.name,
+        playcount: album?.playcount,
       }
     });
   } else if (platform === 'spotify') {
@@ -283,6 +285,64 @@ export const formatDataForWrappedBanner = (data, platform) => {
       }
     });
   }
-
   return formattedData;
 }
+
+// export const bgOptions = [
+//   'bg-gradient-to-r from-cyan-500 to-blue-500',
+//   'bg-gradient-to-r from-purple-500 to-purple-900',
+//   'bg-gradient-to-r from-slate-900 to-slate-700',
+//   'bg-gradient-to-r from-emerald-500 to-emerald-900',
+//   'bg-gradient-to-r from-blue-800 to-indigo-900',
+//   'bg-gradient-to-r from-violet-200 to-pink-200',
+//   'bg-gradient-to-r from-amber-200 to-yellow-400',
+//   'bg-black',
+//   'bg-white'
+// ]
+
+export const bgOptions = [
+  {
+    color: 'bg-gradient-to-r from-cyan-500 to-blue-500',
+    text: 'black'
+  },
+
+  {
+    color: 'bg-gradient-to-r from-purple-500 to-purple-900',
+    text: 'white'
+  },
+
+  {
+    color: 'bg-gradient-to-r from-slate-900 to-slate-700',
+    text: 'white'
+  },
+
+  {
+    color: 'bg-gradient-to-r from-emerald-500 to-emerald-900',
+    text: 'white'
+  },
+
+  {
+    color: 'bg-gradient-to-r from-blue-800 to-indigo-900',
+    text: 'white'
+  },
+
+  {
+    color: 'bg-gradient-to-r from-violet-200 to-pink-200',
+    text: 'black'
+  },
+
+  {
+    color: 'bg-gradient-to-r from-amber-200 to-yellow-400',
+    text: 'black'
+  },
+
+  {
+    color: 'bg-black',
+    text: 'white'
+  },
+
+  {
+    color: 'bg-white',
+    text: 'black'
+  }
+]

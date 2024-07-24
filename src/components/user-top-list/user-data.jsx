@@ -14,6 +14,7 @@ import { Sparkle, Sparkles } from "lucide-react";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { FaLastfmSquare } from "react-icons/fa";
+import WrappedImage from "./Wrapped";
 
 const UserData = ({
   type,
@@ -57,26 +58,32 @@ const UserData = ({
           </TabsList>
         </Tabs>
       ) : (
-        <div
-        className="flex justify-end w-full my-5"
-        >
-        <Select
-          value={timeRange}
-          onValueChange={(newVal) => setTimeRange(newVal)}
+        <div className="flex justify-between w-full my-5 flex-col md:flex-row gap-3">
+          <Select
+            value={timeRange}
+            onValueChange={(newVal) => setTimeRange(newVal)}
           >
-          <SelectTrigger className="w-[300px]">
-            <SelectValue placeholder="Select Time Frame" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="7day">Last 7 days</SelectItem>
-            <SelectItem value="1month">Last 1 month</SelectItem>
-            <SelectItem value="3month">Last 3 months</SelectItem>
-            <SelectItem value="6month">Last 6 months</SelectItem>
-            <SelectItem value="12month">Last 1 year</SelectItem>
-            <SelectItem value="overall">All Time</SelectItem>
-          </SelectContent>
-        </Select>
-          </div>
+            <SelectTrigger className="w-[300px]">
+              <SelectValue placeholder="Select Time Frame" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="7day">Last 7 days</SelectItem>
+              <SelectItem value="1month">Last 1 month</SelectItem>
+              <SelectItem value="3month">Last 3 months</SelectItem>
+              <SelectItem value="6month">Last 6 months</SelectItem>
+              <SelectItem value="12month">Last 1 year</SelectItem>
+              <SelectItem value="overall">All Time</SelectItem>
+            </SelectContent>
+          </Select>
+          <div>
+
+          <WrappedImage
+            data={userData}
+            platform={platform}
+            timePeriod={timeRange}
+            />
+            </div>
+        </div>
       )}
 
       {platform === "spotify" ? (
@@ -151,7 +158,7 @@ const UserData = ({
         <div className="w-full gap-5 flex flex-col">
           <Card>
             <CardHeader>
-              <CardTitle>Albums</CardTitle>
+              <CardTitle>Top Albums</CardTitle>
             </CardHeader>
             <CardContent>
               <ScrollArea className="h-56 md:h-72">
@@ -165,7 +172,7 @@ const UserData = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full">
             <Card>
               <CardHeader>
-                <CardTitle>Tracks</CardTitle>
+                <CardTitle>Top Tracks</CardTitle>
               </CardHeader>
               <CardContent>
                 <ScrollArea className="h-56 md:h-72">
@@ -179,7 +186,7 @@ const UserData = ({
 
             <Card>
               <CardHeader>
-                <CardTitle>Albums</CardTitle>
+                <CardTitle>Top Artists</CardTitle>
               </CardHeader>
               <CardContent>
                 <ScrollArea className="h-56 md:h-72">
