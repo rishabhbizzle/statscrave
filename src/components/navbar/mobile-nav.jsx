@@ -136,6 +136,25 @@ export function MobileNav() {
               </React.Fragment>
             </div>
           </div>
+          
+          <div className="flex flex-col space-y-2">
+            <div className="flex flex-col space-y-3 pt-6">
+              <React.Fragment key={1}>
+                <MobileLink
+                  href={"/replay"}
+                  onOpenChange={setOpen}
+                  className={cn(
+                    "transition-colors hover:text-foreground/80",
+                    pathname?.startsWith("/replay")
+                      ? "text-foreground"
+                      : "text-foreground/60"
+                  )}
+                >
+                  Replay
+                </MobileLink>
+              </React.Fragment>
+            </div>
+          </div>
           <div className="flex flex-col space-y-2">
             <div className="flex flex-col space-y-3 pt-6">
               <React.Fragment key={1}>

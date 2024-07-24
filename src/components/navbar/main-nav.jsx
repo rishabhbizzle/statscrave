@@ -64,6 +64,17 @@ export function MainNav() {
           Charts
         </Link>
         <Link
+          href="/replay"
+          className={cn(
+            "transition-colors hover:text-foreground/80",
+            pathname?.startsWith("/replay")
+              ? "text-foreground"
+              : "text-foreground/60"
+          )}
+        >
+          Replay
+        </Link>
+        <Link
           href="/updates"
           className={cn(
             "transition-colors hover:text-foreground/80",
