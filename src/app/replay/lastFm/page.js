@@ -89,7 +89,7 @@ const Page = () => {
         <Container>
             <div className='my-8'>
 
-            <h1 className='text-3xl md:text-4xl font-bold my-5'>LastFM Wrapped</h1>
+            <h1 className='text-3xl md:text-4xl font-bold my-5'>LastFM Replay </h1>
             <p className='text-muted-foreground'>
             All you need to do is enter your last.fm username and select the time frame you want to generate the replay for. You can also download your replay as an image and share your music taste with the world!
             </p>

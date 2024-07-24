@@ -73,7 +73,7 @@ const WrappedImage = ({ data, platform, timePeriod }) => {
       const imageUrl = canvas.toDataURL("image/png");
       const link = document.createElement("a");
       link.href = imageUrl;
-      link.download = "my-wrapped.png";
+      link.download = `${platform}-replay-statscrave.png`
       link.click();
     } catch (error) {
       console.error("Error generating image:", error);
@@ -107,24 +107,24 @@ const WrappedImage = ({ data, platform, timePeriod }) => {
         {/* Content */}
         <div className="py-8 px-12 flex flex-row gap-4 justify-between">
           {/* Top Artists */}
-          <div className="w-1/2 px-2">
+          <div className="w-1/2 px-1">
             <h2 className="text-5xl font-normal mb-5">Top Artists</h2>
             <ol className="text-5xl font-bold mb-6">
               {userData.topArtists?.map((artist, index) => (
                 <li key={index} className=" my-3 h-full max-w-full">
-                  {index + 1}. {truncateText(artist, 18)}
+                  {index + 1}. {truncateText(artist, artist === artist?.toUpperCase() ? 12 : 16)}
                 </li>
               ))}
             </ol>
           </div>
 
           {/* Top Songs */}
-          <div className="w-1/2 px-2 ">
+          <div className="w-1/2 px-1 ">
             <h2 className="text-5xl font-normal mb-5">Top Songs</h2>
             <ol className="text-5xl font-bold mb-6">
               {userData.topSongs.map((song, index) => (
                 <li key={index} className="my-3 h-full  max-w-full">
-                  {index + 1}. {truncateText(song?.name, 18)}
+                  {index + 1}. {truncateText(song?.name, song?.name === song?.name?.toUpperCase() ? 12 : 16)}
                 </li>
               ))}
             </ol>
@@ -134,11 +134,11 @@ const WrappedImage = ({ data, platform, timePeriod }) => {
         <div className="w-full  px-10 flex justify-center mb-8 mt-4">
           <h2 className="text-3xl font-normal mr-3">Top Album: </h2>
           <p className="text-3xl font-bold mr-3">
-            {truncateText(userData?.topAlbums[0]?.name, 30)}
+            {truncateText(userData?.topAlbums[0]?.name, 22)}
           </p>
           <p className="text-3xl font-light">
             {" "}
-            by {truncateText(userData?.topAlbums[0]?.artist, 20)} with{" "}
+            by {truncateText(userData?.topAlbums[0]?.artist, 16)} with{" "}
             <span className="font-semibold">
               {userData?.topAlbums[0]?.playcount}
             </span>{" "}
