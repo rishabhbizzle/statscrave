@@ -31,18 +31,14 @@ const Page = () => {
             // tracks
             const res = await axios.get(`https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=${username}&api_key=${process.env.NEXT_PUBLIC_LASTFM_API_KEY}&period=${timePeriod}&format=json`)
 
-
             // if this userName is wrong throw error and show toast and return
-
             if (res?.data?.error === 6) {
                 toast.error(res?.data?.message || 'User not found')
                 return
             }
-
             if (res?.data?.error) {
                 toast.error(res?.data?.message || 'Failed to top tracks')
             }
-
             tracks = res?.data?.toptracks?.track
 
             // artists
@@ -51,18 +47,14 @@ const Page = () => {
             if (res2?.data?.error) {
                 toast.error(res2?.data?.message || 'Failed to top artists')
             }
-
             artists = res2?.data?.topartists?.artist
 
             // albums
-
             const res3 = await axios.get(`https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=${username}&api_key=${process.env.NEXT_PUBLIC_LASTFM_API_KEY}&period=${timePeriod}&format=json`)
             if (res3?.data?.error) {
                 toast.error(res3?.data?.message || 'Failed to top albums')
             }
-
             albums = res3?.data?.topalbums?.album
-
             setData({
                 artists,
                 tracks,

@@ -146,6 +146,7 @@ export function PlaceholdersAndVanishInput({
   };
 
   const handleKeyDown = (e) => {
+    ["+", "&", "?"].includes(e.key) && e.preventDefault();
     if (e.key === "Enter" && !animating && value) {
       vanishAndSubmit();
     }
