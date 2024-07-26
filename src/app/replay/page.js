@@ -1,14 +1,12 @@
-import { getArtistRecords } from "@/actions/actions";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Container from "@/components/ui/container";
 import { WobbleCard } from "@/components/ui/wobble-card";
 import Link from "next/link";
 
-export default function WrappedPage({ }) {
+export default function ReplayPage({ }) {
   return (
     <Container >
       <Card >
-
         <CardHeader>
           <CardTitle className="text-3xl md:text-4xl">Replay</CardTitle>
           <CardDescription>
