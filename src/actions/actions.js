@@ -3,6 +3,7 @@
 import { connect } from "@/dgConfig/dbConfig";
 import Updates from "@/models/updatesModel";
 import { currentUser } from '@clerk/nextjs';
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import axios from "axios";
 import Melon from "melon-chart-api";
 import { revalidatePath } from "next/cache";
@@ -134,12 +135,12 @@ export const getMelonChartData = async (chartType = 'realtime', date = new Date(
 
 export const getKoreanChartData = async (chartName) => {
     const chartMap = {
-        genie : '/genie/music/chart/200',
-        naver : '/naver/music/chart/100',
+        genie: '/genie/music/chart/200',
+        naver: '/naver/music/chart/100',
         bugs: '/bugs/music/chart/100'
     }
     try {
-        const data = await fetch(`http://kr-music.ap-south-1.elasticbeanstalk.com/v1${chartMap[chartName]}`)
+        const data = await fetch(`http://kr-music.ap-south-1.elasticbeanstalk.com/v1${chartMap[chartName]}`,{ cache: 'no-store' })
             .then((response) => response.json())
             .then((data) => {
                 return data?.data
