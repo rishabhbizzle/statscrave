@@ -3,9 +3,11 @@
 import { connect } from "@/dgConfig/dbConfig";
 import Updates from "@/models/updatesModel";
 import { currentUser } from '@clerk/nextjs';
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import axios from "axios";
 import Melon from "melon-chart-api";
 import { revalidatePath } from "next/cache";
+import { clean } from 'profanity-cleaner';
 
 export const getAllBlogsFromDb = async (count) => {
     try {
@@ -148,5 +150,33 @@ export const getKoreanChartData = async (chartName) => {
     } catch (error) {
         console.error(error)
         return []
+    }
+}
+
+
+export const roastUserMusicTaste = async (userData, timeRange) => {
+    try {
+        let prompt = `You are a witty, sarcastic music critic with a vast knowledge of music history and pop culture. Your task is to humorously roast someone's music taste based on their top tracks and artists from Spotify. Be clever, reference music trends, and don't hold back - but keep it fun and not too mean-spirited. Be a little bit biased towards Justin Bieber, and also show some appreciation for their unique taste if they have it though.
+            Here's the user's music data:
+
+            Top Tracks:
+            ${userData?.topSongs?.map((track, index) => `${index + 1}. ${track.name} by ${track.artist}`).join('\n')}
+
+            Top Artists:
+            ${userData?.topArtists?.map((artist, index) => `${index + 1}. ${artist}`).join('\n')}
+
+            Additional context:
+            - Current year: 2024
+
+            Now, write a humorous roast of this person's music taste in about 150 words. Include at least one specific reference to their top tracks or artists, and one broader comment about their overall taste or a music trend they follow. End with a backhanded compliment.`
+
+        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+        const modelDetails = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' })
+        const result = await modelDetails?.generateContent(clean(prompt));
+        const text = result?.response?.text();
+        return text;
+    } catch (error) {
+        console.error(error);
+        throw error
     }
 }
