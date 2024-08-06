@@ -85,7 +85,7 @@ const Roast = ({ userData, platform, timePeriod }) => {
           {loading && (
             <div className="space-y-2 mt-5">
               {Array.from({ length: 6 }).map((_, index) => (
-                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-full" key={index} />
               ))}
               <Skeleton className="h-4 w-[70%]" />
             </div>
