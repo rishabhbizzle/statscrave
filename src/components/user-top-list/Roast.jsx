@@ -16,11 +16,13 @@ import { ScrollArea } from "../ui/scroll-area";
 import { Flame } from "lucide-react";
 import { toast } from "sonner";
 import { Badge } from "../ui/badge";
+import { formatDataForWrappedBanner } from "@/lib/helperFunctions";
 
-const Roast = ({ userData, platform, timePeriod }) => {
+const Roast = ({ userData: data, platform, timePeriod }) => {
   const [roastData, setRoastData] = useState(null);
   const [confirmRoast, setConfirmRoast] = useState(false);
   const [loading, setLoading] = useState(false);
+  const userData = formatDataForWrappedBanner(data, platform);
 
   const getRoast = async () => {
     setLoading(true);
@@ -45,7 +47,7 @@ const Roast = ({ userData, platform, timePeriod }) => {
   useEffect(() => {
     setConfirmRoast(false);
     setRoastData(null);
-  }, [userData]);
+  }, [data]);
 
   return (
     <Dialog>

@@ -38,7 +38,7 @@ export default function ReplayPage({ }) {
           /> */}
             </WobbleCard>
           </Link>
-          <Link href={'/replay/spotify'}>
+          {/* <Link href={'/replay/spotify'}>
             <WobbleCard containerClassName="col-span-1 min-h-[300px] bg-green-900">
               <div className="max-w-xs">
                 <h2 className="text-left text-balance text-3xl md:text-2xl lg:text-4xl font-semibold tracking-[-0.015em] text-white">
@@ -49,7 +49,7 @@ export default function ReplayPage({ }) {
                 </p>
               </div>
             </WobbleCard>
-          </Link>
+          </Link> */}
         </div>
       </Card>
     </Container>
