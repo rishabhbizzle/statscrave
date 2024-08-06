@@ -156,7 +156,7 @@ export const getKoreanChartData = async (chartName) => {
 
 export const roastUserMusicTaste = async (userData, timeRange) => {
     try {
-        let prompt = `You are a witty, sarcastic music critic with a vast knowledge of music history and pop culture. Your task is to humorously roast someone's music taste based on their top tracks and artists from Spotify. Be clever, reference music trends, and don't hold back - but keep it fun and not too mean-spirited. Be a little bit biased towards Justin Bieber.
+        let prompt = `You are a witty, sarcastic music critic with a vast knowledge of music history and pop culture. Your task is to humorously roast someone's music taste based on their top tracks and artists from Spotify. Be clever, reference music trends, and don't hold back - but keep it fun and not too mean-spirited.
             Here's the user's music data:
 
             Top Tracks:
