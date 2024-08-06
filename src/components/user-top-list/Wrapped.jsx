@@ -1,9 +1,9 @@
 "use client";
 import React, { useRef, useState } from "react";
 import html2canvas from "html2canvas";
-import { bgOptions, formatDataForWrappedBanner } from "@/lib/helperFunctions";
+import { bgOptions, formatDataForWrappedBanner, timePeriodMap } from "@/lib/helperFunctions";
 import { Button } from "../ui/button";
-import { FaLastfm } from "react-icons/fa";
+import { FaLastfm, FaSpotify } from "react-icons/fa";
 import {
   Select,
   SelectContent,
@@ -14,6 +14,8 @@ import {
 import { toast } from "sonner";
 import { Label } from "../ui/label";
 import { Download } from "lucide-react";
+import { BorderButton } from "../ui/moving-border";
+
 
 const WrappedImage = ({ data, platform, timePeriod }) => {
   const userData = formatDataForWrappedBanner(data, platform);
@@ -38,9 +40,7 @@ const WrappedImage = ({ data, platform, timePeriod }) => {
 
     try {
       // Preload images
-      const imagesToLoad = [
-        userData.userImage,
-      ];
+      const imagesToLoad = [userData.userImage];
 
       await Promise.all(
         imagesToLoad.map((url) =>
@@ -70,40 +70,46 @@ const WrappedImage = ({ data, platform, timePeriod }) => {
       });
 
       // Convert canvas to blob
-    const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-    const filename = `${platform}-replay-statscrave.png`;
+      const blob = await new Promise((resolve) =>
+        canvas.toBlob(resolve, "image/png")
+      );
+      const filename = `${platform}-replay-statscrave.png`;
 
-    // Check if the browser supports the download attribute
-    const isDownloadSupported = 'download' in document.createElement('a');
+      // Check if the browser supports the download attribute
+      const isDownloadSupported = "download" in document.createElement("a");
 
-    if (isDownloadSupported) {
-      // For most devices: use Blob and download attribute
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = filename;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-    } else {
-      // Fallback for iOS and other devices that don't support download
-      const reader = new FileReader();
-      reader.onload = function() {
-        const fullScreen = window.open('', '_blank');
-        if (fullScreen) {
-          fullScreen.document.write('<html><body style="margin:0;"><img src="' + reader.result + '" style="max-width:100%;max-height:100%;" /></body></html>');
-          fullScreen.document.title = filename;
-          fullScreen.document.close();
-        } else {
-          // If popup is blocked, fallback to current window
-          window.location.href = reader.result;
-        }
-      };
-      reader.readAsDataURL(blob);
-    }
+      if (isDownloadSupported) {
+        // For most devices: use Blob and download attribute
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      } else {
+        // Fallback for iOS and other devices that don't support download
+        const reader = new FileReader();
+        reader.onload = function () {
+          const fullScreen = window.open("", "_blank");
+          if (fullScreen) {
+            fullScreen.document.write(
+              '<html><body style="margin:0;"><img src="' +
+                reader.result +
+                '" style="max-width:100%;max-height:100%;" /></body></html>'
+            );
+            fullScreen.document.title = filename;
+            fullScreen.document.close();
+          } else {
+            // If popup is blocked, fallback to current window
+            window.location.href = reader.result;
+          }
+        };
+        reader.readAsDataURL(blob);
+      }
 
-    toast.success("Image generated successfully!");
+      toast.success("Image generated successfully!");
     } catch (error) {
       console.error("Error generating image:", error);
       toast.error(
@@ -140,9 +146,13 @@ const WrappedImage = ({ data, platform, timePeriod }) => {
           <div className="w-1/2 px-1">
             <h2 className="text-5xl font-normal mb-5">Top Artists</h2>
             <ol className="text-5xl font-bold mb-6">
-              {userData.topArtists?.map((artist, index) => (
+              {userData?.topArtists?.map((artist, index) => (
                 <li key={index} className=" my-3 h-full max-w-full">
-                  {index + 1}. {truncateText(artist, artist === artist?.toUpperCase() ? 12 : 16)}
+                  {index + 1}.{" "}
+                  {truncateText(
+                    artist,
+                    artist === artist?.toUpperCase() ? 12 : 16
+                  )}
                 </li>
               ))}
             </ol>
@@ -152,45 +162,41 @@ const WrappedImage = ({ data, platform, timePeriod }) => {
           <div className="w-1/2 px-1 ">
             <h2 className="text-5xl font-normal mb-5">Top Songs</h2>
             <ol className="text-5xl font-bold mb-6">
-              {userData.topSongs.map((song, index) => (
+              {userData?.topSongs?.map((song, index) => (
                 <li key={index} className="my-3 h-full  max-w-full">
-                  {index + 1}. {truncateText(song?.name, song?.name === song?.name?.toUpperCase() ? 12 : 16)}
+                  {index + 1}.{" "}
+                  {truncateText(
+                    song?.name,
+                    song?.name === song?.name?.toUpperCase() ? 12 : 16
+                  )}
                 </li>
               ))}
             </ol>
           </div>
         </div>
-
-        <div className="w-full  px-10 flex justify-center mb-8 mt-4">
-          <h2 className="text-3xl font-normal mr-3">Top Album: </h2>
-          <p className="text-3xl font-bold mr-3">
-            {truncateText(userData?.topAlbums[0]?.name, 22)}
-          </p>
-          <p className="text-3xl font-light">
-            {" "}
-            by {truncateText(userData?.topAlbums[0]?.artist, 16)} with{" "}
-            <span className="font-semibold">
-              {userData?.topAlbums[0]?.playcount}
-            </span>{" "}
-            plays
-          </p>
-        </div>
-
-        {/* <div className="w-full  px-10">
-          <h2 className="text-4xl font-normal mb-5">Top Artists</h2>
-          <ol className="text-4xl font-bold mb-6">
-            {userData?.topArtists?.map((album, index) => (
-              <li key={index} className="my-3 h-full  max-w-full">
-                {index + 1}. {truncateText(album, 35)}
-              </li>
-            ))}
-          </ol>
-        </div> */}
+        {platform === "lastFm" && (
+          <div className="w-full  px-10 flex justify-center mb-8 mt-4">
+            <h2 className="text-3xl font-normal mr-3">Top Album: </h2>
+            <p className="text-3xl font-bold mr-3">
+              {truncateText(userData?.topAlbums[0]?.name, 22)}
+            </p>
+            <p className="text-3xl font-light">
+              {" "}
+              by {truncateText(userData?.topAlbums[0]?.artist, 16)} with{" "}
+              <span className="font-semibold">
+                {userData?.topAlbums[0]?.playcount}
+              </span>{" "}
+              plays
+            </p>
+          </div>
+        )}
 
         <div className="flex w-full justify-between mt-5 px-16 ">
           <div className="flex justify-center items-center mt-10">
-            <FaLastfm className="w-14 h-14" />
-            <p className="text-xl font-medium italic ml-4">{timePeriod !== 'overall' ? 'Last' : ''} {timePeriod}</p>
+            {platform === 'lastFm' ? <FaLastfm className="w-14 h-14" /> : <FaSpotify className="w-14 h-14" />}
+            <p className="text-xl font-medium italic ml-4">
+              {timePeriodMap[timePeriod]}
+            </p>
           </div>
           <div className="flex justify-end items-center  mt-10">
             {/* <img src="/logo-white.png" alt="Spotify" className="w-16" /> */}
@@ -215,7 +221,11 @@ const WrappedImage = ({ data, platform, timePeriod }) => {
             ))}
           </SelectContent>
         </Select>
-        <Button onClick={generateAndDownloadImage} disabled={isLoading} size="sm">
+        <Button
+          onClick={generateAndDownloadImage}
+          disabled={isLoading}
+          size="sm"
+        >
           <Download className="mr-2 h-5 w-5" />
           Download
         </Button>

@@ -276,9 +276,9 @@ export const formatDataForWrappedBanner = (data, platform) => {
       }
     });
   } else if (platform === 'spotify') {
-    formattedData.coverImg = data?.topArtists?.items?.[0]?.images?.[0]?.url;
-    formattedData.topArtists = data?.topArtists?.items?.slice(0, 5)?.map((artist) => artist?.name);
-    formattedData.topSongs = data?.topTracks?.items?.slice(0, 5)?.map((track) => {
+    formattedData.coverImg = data?.artists[0]?.images[0]?.url;
+    formattedData.topArtists = data?.artists?.slice(0, 5)?.map((artist) => artist?.name);
+    formattedData.topSongs = data?.tracks?.slice(0, 5)?.map((track) => {
       return {
         name: track?.name,
         artist: track?.artists?.map((artist) => artist?.name).join(", "),
@@ -346,3 +346,17 @@ export const bgOptions = [
     text: 'black'
   }
 ]
+
+
+
+export const timePeriodMap = {
+  short_term: "Last 4 weeks",
+  medium_term: "Last 6 months",
+  long_term: "Last 1 year",
+  "7day" : "Last 7 days",
+  "1month" : "Last 1 month",
+  "3month" : "Last 3 months",
+  "6month" : "Last 6 months",
+  "12month" : "Last 1 year",
+  "overall" : "All Time"
+}
