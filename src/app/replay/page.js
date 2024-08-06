@@ -10,7 +10,7 @@ export default function ReplayPage({ }) {
         <CardHeader>
           <CardTitle className="text-3xl md:text-4xl">Replay</CardTitle>
           <CardDescription>
-            Introducing Replay, where you can get your top artists, albums and songs for different time frames. Share your music taste with the world!
+            Introducing Replay, where you can get your top artists, albums and songs for different time frames and get your music taste roasted by our AI. Share your music taste with the world!
             Below is the list of platforms you can generate your replay from. More platforms will be added soon.
           </CardDescription>
         </CardHeader>
@@ -38,19 +38,18 @@ export default function ReplayPage({ }) {
           /> */}
             </WobbleCard>
           </Link>
-
-          <WobbleCard containerClassName="col-span-1 min-h-[300px] bg-green-900 opacity-50">
-            <h2 className="max-w-80  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-              Spotify
-            </h2>
-            <p className="mt-4 max-w-[26rem] text-left  text-base/6 text-neutral-200 opa">
-              Get your Spotify replay with your top artists and songs for different time frames.
-            </p>
-
-            <p className="mt-3 text-end text-xl font-bold">
-              Coming soon...
-            </p>
-          </WobbleCard>
+          <Link href={'/replay/spotify'}>
+            <WobbleCard containerClassName="col-span-1 min-h-[300px] bg-green-900">
+              <div className="max-w-xs">
+                <h2 className="text-left text-balance text-3xl md:text-2xl lg:text-4xl font-semibold tracking-[-0.015em] text-white">
+                  Spotify
+                </h2>
+                <p className="mt-4 text-left  text-base/6 text-neutral-200">
+                  Get your spotify replay (lowkey wrapped hehe!!) with your top artists and songs for different time frames.
+                </p>
+              </div>
+            </WobbleCard>
+          </Link>
         </div>
       </Card>
     </Container>

@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useState } from "react";
 import html2canvas from "html2canvas";
-import { bgOptions, formatDataForWrappedBanner } from "@/lib/helperFunctions";
+import { bgOptions, formatDataForWrappedBanner, timePeriodMap } from "@/lib/helperFunctions";
 import { Button } from "../ui/button";
 import { FaLastfm, FaSpotify } from "react-icons/fa";
 import {
@@ -15,20 +15,7 @@ import { toast } from "sonner";
 import { Label } from "../ui/label";
 import { Download } from "lucide-react";
 import { BorderButton } from "../ui/moving-border";
-import Roast from "./Roast";
 
-
-const timePeriodMap = {
-  short_term: "Last 4 weeks",
-  medium_term: "Last 6 months",
-  long_term: "Last 1 year",
-  "7day" : "Last 7 days",
-  "1month" : "Last 1 month",
-  "3month" : "Last 3 months",
-  "6month" : "Last 6 months",
-  "12month" : "Last 1 year",
-  "overall" : "All Time"
-}
 
 const WrappedImage = ({ data, platform, timePeriod }) => {
   const userData = formatDataForWrappedBanner(data, platform);
@@ -242,8 +229,6 @@ const WrappedImage = ({ data, platform, timePeriod }) => {
           <Download className="mr-2 h-5 w-5" />
           Download
         </Button>
-
-        <Roast userData={userData} platform={platform} timePeriod={timePeriodMap[timePeriod]} />
       </div>
     </div>
   );

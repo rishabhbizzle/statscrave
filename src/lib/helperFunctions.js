@@ -346,3 +346,17 @@ export const bgOptions = [
     text: 'black'
   }
 ]
+
+
+
+export const timePeriodMap = {
+  short_term: "Last 4 weeks",
+  medium_term: "Last 6 months",
+  long_term: "Last 1 year",
+  "7day" : "Last 7 days",
+  "1month" : "Last 1 month",
+  "3month" : "Last 3 months",
+  "6month" : "Last 6 months",
+  "12month" : "Last 1 year",
+  "overall" : "All Time"
+}

@@ -156,7 +156,7 @@ export const getKoreanChartData = async (chartName) => {
 
 export const roastUserMusicTaste = async (userData, timeRange) => {
     try {
-        let prompt = `You are a witty, sarcastic music critic with a vast knowledge of music history and pop culture. Your task is to humorously roast someone's music taste based on their top tracks and artists from Spotify. Be clever, reference music trends, and don't hold back - but keep it fun and not too mean-spirited. Be a little bit biased towards Justin Bieber, and also show some appreciation for their unique taste if they have it though.
+        let prompt = `You are a witty, sarcastic music critic with a vast knowledge of music history and pop culture. Your task is to humorously roast someone's music taste based on their top tracks and artists from Spotify. Be clever, reference music trends, and don't hold back - but keep it fun and not too mean-spirited. Be a little bit biased towards Justin Bieber.
             Here's the user's music data:
 
             Top Tracks:
@@ -164,11 +164,9 @@ export const roastUserMusicTaste = async (userData, timeRange) => {
 
             Top Artists:
             ${userData?.topArtists?.map((artist, index) => `${index + 1}. ${artist}`).join('\n')}
+           
 
-            Additional context:
-            - Current year: 2024
-
-            Now, write a humorous roast of this person's music taste in about 175 words. Include at least one specific reference to their top tracks or artists, and one broader comment about their overall taste or a music trend they follow. End with a backhanded compliment.`
+            Now, write a humorous roast of this person's music taste in about 170 words. Include at least one specific reference to their top tracks or artists, and one broader comment about their overall taste or a music trend they follow. End with a backhanded compliment.`
 
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
         const modelDetails = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' })
