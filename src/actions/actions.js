@@ -168,7 +168,7 @@ export const roastUserMusicTaste = async (userData, timeRange) => {
             Additional context:
             - Current year: 2024
 
-            Now, write a humorous roast of this person's music taste in about 150 words. Include at least one specific reference to their top tracks or artists, and one broader comment about their overall taste or a music trend they follow. End with a backhanded compliment.`
+            Now, write a humorous roast of this person's music taste in about 175 words. Include at least one specific reference to their top tracks or artists, and one broader comment about their overall taste or a music trend they follow. End with a backhanded compliment.`
 
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
         const modelDetails = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' })

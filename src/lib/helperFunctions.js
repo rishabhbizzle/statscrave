@@ -276,9 +276,9 @@ export const formatDataForWrappedBanner = (data, platform) => {
       }
     });
   } else if (platform === 'spotify') {
-    formattedData.coverImg = data?.topArtists?.items?.[0]?.images?.[0]?.url;
-    formattedData.topArtists = data?.topArtists?.items?.slice(0, 5)?.map((artist) => artist?.name);
-    formattedData.topSongs = data?.topTracks?.items?.slice(0, 5)?.map((track) => {
+    formattedData.coverImg = data?.artists[0]?.images[0]?.url;
+    formattedData.topArtists = data?.artists?.slice(0, 5)?.map((artist) => artist?.name);
+    formattedData.topSongs = data?.tracks?.slice(0, 5)?.map((track) => {
       return {
         name: track?.name,
         artist: track?.artists?.map((artist) => artist?.name).join(", "),
