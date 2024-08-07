@@ -193,7 +193,7 @@ const WrappedImage = ({ data, platform, timePeriod }) => {
 
         <div className="flex w-full justify-between mt-5 px-16 ">
           <div className="flex justify-center items-center mt-10">
-            {platform === 'lastFm' ? <FaLastfm className="w-14 h-14" /> : <FaSpotify className="w-14 h-14" />}
+            {platform === 'lastFm' ? <FaLastfm className="w-10 h-10" /> : <FaSpotify className="w-10 h-10" />}
             <p className="text-xl font-medium italic ml-4">
               {timePeriodMap[timePeriod]}
             </p>

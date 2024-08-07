@@ -16,6 +16,21 @@ export default function ReplayPage({ }) {
         </CardHeader>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 max-w-7xl mx-auto w-full p-5">
+        <Link href={'/replay/spotify'}>
+            <WobbleCard
+              containerClassName="col-span-1 lg:col-span-2 h-full bg-green-900 min-h-[150px] lg:min-h-[200px]"
+
+            >
+              <div className="max-w-xs">
+                <h2 className="text-left text-balance text-3xl md:text-2xl lg:text-4xl font-semibold tracking-[-0.015em] text-white">
+                  Spotify
+                </h2>
+                <p className="mt-4 text-left  text-base/6 text-neutral-200">
+                  Get your spotify replay (lowkey wrapped hehe!!) with your top artists and songs for different time frames.
+                </p>
+              </div>
+            </WobbleCard>
+          </Link>
           <Link href={'/replay/lastFm'}>
             <WobbleCard
               containerClassName="col-span-1 lg:col-span-2 h-full bg-red-700 min-h-[150px] lg:min-h-[200px]"
@@ -38,18 +53,7 @@ export default function ReplayPage({ }) {
           /> */}
             </WobbleCard>
           </Link>
-          {/* <Link href={'/replay/spotify'}>
-            <WobbleCard containerClassName="col-span-1 min-h-[300px] bg-green-900">
-              <div className="max-w-xs">
-                <h2 className="text-left text-balance text-3xl md:text-2xl lg:text-4xl font-semibold tracking-[-0.015em] text-white">
-                  Spotify
-                </h2>
-                <p className="mt-4 text-left  text-base/6 text-neutral-200">
-                  Get your spotify replay (lowkey wrapped hehe!!) with your top artists and songs for different time frames.
-                </p>
-              </div>
-            </WobbleCard>
-          </Link> */}
+          
         </div>
       </Card>
     </Container>
