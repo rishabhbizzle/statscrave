@@ -14,7 +14,7 @@ export default function Info() {
       <main className="flex-1 flex flex-col items-center justify-center px-4 md:px-6 py-12 space-y-8">
         <div className="text-center space-y-4 max-w-2xl">
           <h1 className="text-4xl md:text-6xl font-bold text-white">
-            Discover Your Music Taste, Roasted
+            Discover Your Music Taste
           </h1>
           <p className="text-lg md:text-xl text-white/80">
             Tired of waiting for Spotify wrapped?? Connect
@@ -46,7 +46,7 @@ export default function Info() {
               </div>
             </div>
             <div className="text-white/80">
-              Wow, you really love mainstream pop, don't you? I guess you're
+              Wow, you really love mainstream pop, dont you? I guess you are
               just a sucker for catchy beats and smooth vocals.
             </div>
           </Card>
@@ -66,8 +66,8 @@ export default function Info() {
               </div>
             </div>
             <div className="text-white/80">
-              Ah, the classic Ed Sheeran. You're the kind of person who enjoys a
-                good love song, aren't you? 
+              Ah, the classic Ed Sheeran. You are the kind of person who enjoys a
+                good love song, arent you? 
             </div>
           </Card>
           <Card className="bg-white/10 backdrop-blur-sm rounded-lg p-6 space-y-4">
@@ -86,7 +86,7 @@ export default function Info() {
               </div>
             </div>
             <div className="text-white/80">
-              Ah, the Weeknd. You're the kind of person who probably has a
+              Ah, the Weeknd. You are the kind of person who probably has a
               playlist called "Sad Boi Hours" on repeat. 
             </div>
           </Card>
