@@ -50,7 +50,11 @@ const Roast = ({ userData: data, platform, timePeriod }) => {
   }, [data]);
 
   return (
-    <Dialog>
+    <Dialog
+    onInteractOutside={(e) => {
+      e.preventDefault();
+    }}
+    >
       <DialogTrigger>
         <BorderButton
           borderRadius="1rem"
@@ -89,6 +93,7 @@ const Roast = ({ userData: data, platform, timePeriod }) => {
               {Array.from({ length: 6 }).map((_, index) => (
                 <Skeleton className="h-4 w-full" key={index} />
               ))}
+              <Skeleton className="h-4 w-[80%]" />
               <Skeleton className="h-4 w-[70%]" />
             </div>
           )}

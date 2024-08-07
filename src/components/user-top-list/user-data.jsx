@@ -80,19 +80,20 @@ const UserData = ({
             </Select>
           </div>
         )}
-        <div className="flex justify-center flex-col md:flex-row items-center gap-5">
-
-        <WrappedImage
-          data={userData}
-          platform={platform}
-          timePeriod={timeRange}
-          />
-        <Roast
-          userData={userData}
-          platform={platform}
-          timePeriod={timePeriodMap[timeRange]}
-          />
+        {userData?.tracks?.length > 0 && userData?.artists?.length > 0 && (
+          <div className="flex justify-center flex-col md:flex-row items-center gap-5">
+            <WrappedImage
+              data={userData}
+              platform={platform}
+              timePeriod={timeRange}
+            />
+            <Roast
+              userData={userData}
+              platform={platform}
+              timePeriod={timePeriodMap[timeRange]}
+            />
           </div>
+        )}
       </div>
 
       {platform === "spotify" ? (
@@ -112,6 +113,15 @@ const UserData = ({
                       platform={platform}
                     />
                   ))}
+
+                  {userData?.tracks?.length === 0 && (
+                    <div className="flex justify-center items-center h-36">
+                      <p className="text-gray-500">
+                        No data available for this time period
+                      </p>
+                    </div>
+                  )}
+
                   <ScrollBar />
                 </ScrollArea>
               </CardContent>
@@ -131,6 +141,15 @@ const UserData = ({
                       platform={platform}
                     />
                   ))}
+
+                  {userData?.artists?.length === 0 && (
+                    <div className="flex justify-center items-center h-36">
+                      <p className="text-gray-500">
+                        No data available for this time period
+                      </p>
+                    </div>
+                  )}
+
                   <ScrollBar />
                 </ScrollArea>
               </CardContent>
@@ -148,6 +167,14 @@ const UserData = ({
                 {userData?.albums?.map((item, i) => (
                   <Item item={item} type="artist" key={i} platform={platform} />
                 ))}
+                {userData?.albums?.length === 0 && (
+                  <div className="flex justify-center items-center h-36">
+                    <p className="text-gray-500">
+                      No data available for this time period
+                    </p>
+                  </div>
+                )}
+
                 <ScrollBar />
               </ScrollArea>
             </CardContent>
@@ -167,6 +194,15 @@ const UserData = ({
                       platform={platform}
                     />
                   ))}
+
+                  {userData?.tracks?.length === 0 && (
+                    <div className="flex justify-center items-center h-36">
+                      <p className="text-gray-500">
+                        No data available for this time period
+                      </p>
+                    </div>
+                  )}
+
                   <ScrollBar />
                 </ScrollArea>
               </CardContent>
@@ -186,6 +222,15 @@ const UserData = ({
                       platform={platform}
                     />
                   ))}
+
+                  {userData?.artists?.length === 0 && (
+                    <div className="flex justify-center items-center h-36">
+                      <p className="text-gray-500">
+                        No data available for this time period
+                      </p>
+                    </div>
+                  )}
+
                   <ScrollBar />
                 </ScrollArea>
               </CardContent>

@@ -9,6 +9,7 @@ import Loader from "@/components/ui/loader";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import Info from "./InfoReplay";
 
 const AUTHORIZE = "https://accounts.spotify.com/authorize";
 const TOKEN = "https://accounts.spotify.com/api/token";
@@ -24,7 +25,7 @@ export default function SpotifyUserPage() {
   const router = useRouter();
   const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
   const clientSecret = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET;
-  const redirectURI = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT || "http://localhost:3000/replay/spotify";
+  const redirectURI = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT;
 
   useEffect(() => {
     const code = new URLSearchParams(window.location.search).get("code");
@@ -156,12 +157,28 @@ export default function SpotifyUserPage() {
 
   return (
     <Container>
-      <div className='my-8'>
-        <h1 className='text-3xl md:text-4xl font-bold my-5'>Spotify Replay</h1>
-        <p className='text-muted-foreground'>
-          Get your top tracks and artists from Spotify.
-        </p>
-      </div>
+      {isSpotifyLoggedIn && (
+        <div className='my-8'>
+          <h1 className='text-3xl md:text-4xl font-bold my-5'>Spotify Replay</h1>
+          <p className='text-muted-foreground'>
+            Get your top tracks and artists from Spotify. You can download a banner image of your top tracks and artists to share with your friends. Also get a roast on your music taste.
+          </p>
+          <div>
+            <Button
+              onClick={() => {
+                localStorage.removeItem("spotifyAccessToken");
+                localStorage.removeItem("spotifyRefreshToken");
+                localStorage.removeItem("spotifyTokenExpire");
+                setIsSpotifyLoggedIn(false);
+                router.replace("/replay");
+              }}
+              variant="destructive" className="mt-5">
+              Disconnect Spotify
+            </Button>
+          </div>
+        </div>
+
+      )}
       {isSpotifyLoggedIn ? (
         <div>
           {userData && (
@@ -176,11 +193,8 @@ export default function SpotifyUserPage() {
           )}
         </div>
       ) : (
-        <Link
-          href={`${AUTHORIZE}?client_id=${clientId}&response_type=code&redirect_uri=${redirectURI}&show_dialog=true&scope=${SCOPES}`}
-        >
-          <Button>Sign in with Spotify</Button>
-        </Link>
+        <Info />
+
       )}
       {loading && <Loader />}
     </Container>
