@@ -87,7 +87,7 @@ export default function Info() {
             </div>
             <div className="text-white/80">
               Ah, the Weeknd. You are the kind of person who probably has a
-              playlist called "Sad Boi Hours" on repeat. 
+              playlist called Sad Boi Hours on repeat. 
             </div>
           </Card>
         </div>
