@@ -141,9 +141,9 @@ const WrappedImage = ({ data, platform, timePeriod }) => {
         </div>
 
         {/* Content */}
-        <div className="py-8 px-12 flex flex-row gap-4 justify-between">
+        <div className="py-8 px-12 flex flex-row gap-3 justify-between">
           {/* Top Artists */}
-          <div className="w-1/2 px-1">
+          <div className="w-1/2 px-1 ml-2">
             <h2 className="text-5xl font-normal mb-5">Top Artists</h2>
             <ol className="text-5xl font-bold mb-6">
               {userData?.topArtists?.map((artist, index) => (
@@ -175,7 +175,7 @@ const WrappedImage = ({ data, platform, timePeriod }) => {
           </div>
         </div>
         {platform === "lastFm" && (
-          <div className="w-full  px-10 flex justify-center mb-8 mt-4">
+          <div className="w-full px-10 flex justify-center mb-8 mt-4">
             <h2 className="text-3xl font-normal mr-3">Top Album: </h2>
             <p className="text-3xl font-bold mr-3">
               {truncateText(userData?.topAlbums[0]?.name, 22)}

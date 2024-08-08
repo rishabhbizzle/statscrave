@@ -245,24 +245,36 @@ const UserData = ({
 const Item = ({ item, type, key, platform }) => {
   return (
     <div className="flex items-center my-4" key={key}>
-      <Avatar className="h-9 w-9">
-        <AvatarImage
-          src={
-            platform === "lastFm"
-              ? item?.image[1]["#text"]
-              : type === "artist"
-              ? item?.images[0]?.url
-              : item?.album?.images[0]?.url
-          }
-          alt="Icon"
-        />
-        <AvatarFallback>
-          <FaLastfmSquare size={20} />
-        </AvatarFallback>
-      </Avatar>
+      <Link
+        href={platform === "spotify" ? item?.external_urls?.spotify : item?.url}
+        target="_blank"
+      >
+        <Avatar className="h-9 w-9">
+          <AvatarImage
+            src={
+              platform === "lastFm"
+                ? item?.image[1]["#text"]
+                : type === "artist"
+                ? item?.images[0]?.url
+                : item?.album?.images[0]?.url
+            }
+            alt="Icon"
+          />
+          <AvatarFallback>
+            <FaLastfmSquare size={20} />
+          </AvatarFallback>
+        </Avatar>
+      </Link>
       <div className="flex justify-between w-full">
         <div className="ml-4 space-y-1">
-          <p className="text-sm font-medium leading-none">{item?.name}</p>
+          <Link
+            href={
+              platform === "spotify" ? item?.external_urls?.spotify : item?.url
+            }
+            target="_blank"
+          >
+            <p className="text-sm font-medium leading-none">{item?.name}</p>
+          </Link>
           <p className="text-sm text-gray-500">{item?.artist?.name}</p>
         </div>
         <div className="ml-4 space-y-1 items-center flex">
