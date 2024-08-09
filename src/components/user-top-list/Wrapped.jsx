@@ -143,7 +143,7 @@ const WrappedImage = ({ data, platform, timePeriod }) => {
         {/* Content */}
         <div className="py-8 px-12 flex flex-row gap-3 justify-between">
           {/* Top Artists */}
-          <div className="w-1/2 px-1 ml-2">
+          <div className="w-1/2 pr-1 pl-3 ml-5">
             <h2 className="text-5xl font-normal mb-5">Top Artists</h2>
             <ol className="text-5xl font-bold mb-6">
               {userData?.topArtists?.map((artist, index) => (
@@ -151,7 +151,7 @@ const WrappedImage = ({ data, platform, timePeriod }) => {
                   {index + 1}.{" "}
                   {truncateText(
                     artist,
-                    artist === artist?.toUpperCase() ? 12 : 16
+                    artist === artist?.toUpperCase() ? 11 : 15
                   )}
                 </li>
               ))}
@@ -159,7 +159,7 @@ const WrappedImage = ({ data, platform, timePeriod }) => {
           </div>
 
           {/* Top Songs */}
-          <div className="w-1/2 px-1 ">
+          <div className="w-1/2 pr-1 pl-3">
             <h2 className="text-5xl font-normal mb-5">Top Songs</h2>
             <ol className="text-5xl font-bold mb-6">
               {userData?.topSongs?.map((song, index) => (
@@ -167,7 +167,7 @@ const WrappedImage = ({ data, platform, timePeriod }) => {
                   {index + 1}.{" "}
                   {truncateText(
                     song?.name,
-                    song?.name === song?.name?.toUpperCase() ? 12 : 16
+                    song?.name === song?.name?.toUpperCase() ? 11 : 16
                   )}
                 </li>
               ))}

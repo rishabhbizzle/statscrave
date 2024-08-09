@@ -104,7 +104,7 @@ const UserData = ({
                 <CardTitle>Top Tracks</CardTitle>
               </CardHeader>
               <CardContent>
-                <ScrollArea className="h-56 md:h-72">
+                <ScrollArea className="h-64 md:h-72">
                   {userData?.tracks?.map((item, i) => (
                     <Item
                       item={item}
@@ -132,7 +132,7 @@ const UserData = ({
                 <CardTitle>Top Artists</CardTitle>
               </CardHeader>
               <CardContent>
-                <ScrollArea className="h-56 md:h-72">
+                <ScrollArea className="h-64 md:h-72">
                   {userData?.artists?.map((item, i) => (
                     <Item
                       item={item}
