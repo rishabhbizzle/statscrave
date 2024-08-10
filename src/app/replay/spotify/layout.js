@@ -15,7 +15,7 @@ export const metadata = {
     openGraph: {
         images: [
             {
-                url: 'https://statscrave.com/og-image-wide.png',
+                url: 'https://statscrave.com/replayTwt.png',
                 alt: 'StatsCrave - Your ultimate music analytics platform',
             },
             {
@@ -37,7 +37,7 @@ export const metadata = {
         creator: "@StatsCrave",
         images: [
             {
-                url: 'https://i.postimg.cc/C10cs3Sf/og-image-wide.png',
+                url: 'https://i.postimg.cc/4xqpV06N/replay-Twt.png',
                 alt: 'StatsCrave - Your ultimate music analytics platform!!',
             },
         ],
