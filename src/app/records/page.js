@@ -40,11 +40,11 @@ const projects = [
         description: "A list of the most streamed songs on Spotify in a single day.",
         link: "/records/most-streamed-songs-single-day",
     },
-    {
-        title: "Most Streamed Songs in Single Week",
-        description: "A list of the most streamed songs on Spotify in a single week.",
-        link: "/records/most-streamed-songs-single-week",
-    },
+    // {
+    //     title: "Most Streamed Songs in Single Week",
+    //     description: "A list of the most streamed songs on Spotify in a single week.",
+    //     link: "/records/most-streamed-songs-single-week",
+    // },
 
 ];
 
