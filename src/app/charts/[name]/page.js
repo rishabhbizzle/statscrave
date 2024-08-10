@@ -90,7 +90,7 @@ export async function generateMetadata({ params }) {
       title: `${chartDetails.title} - StatsCrave`,
       description: chartDetails.description,
       openGraph: {
-        images: [chartDetails.image],
+        images: [{url: chartDetails.image, alt: chartDetails.title}],
       },
       twitter: {
         card: "summary_large_image",
