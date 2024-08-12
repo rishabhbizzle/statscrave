@@ -39,10 +39,17 @@ Features
 - Personalized Dashboards: Customize your dashboard to track your favorite artists, albums, and songs effortlessly.
 - Curated Updates: Stay informed about the latest music trends and pop culture developments with our dynamic updates section.
 - Intuitive Search: Discover new music easily with our user-friendly search functionality.
+- Replay - Users can analyze their top Spotify/LastFM artists and songs across various time frames, receive personalized AI-generated music taste roasts, and share custom banners of their stats
 
 ![image](https://github.com/rishabhbizzle/statscrave/assets/100997409/b71ae273-ff04-4adf-b589-f84bed8a4864)
 
 ![pika-1710520176167-1x](https://github.com/rishabhbizzle/statscrave/assets/100997409/f3cb20a7-45a7-47e6-ac65-88e922f2ca93)
+
+![image](https://github.com/user-attachments/assets/5422328f-ef87-4b5e-8d59-2fcaf3c26214)
+
+![replayTwt](https://github.com/user-attachments/assets/11db6b72-dd62-43d1-8653-229fc41304c5)
+
+![screencapture-statscrave-replay-spotify-2024-08-08-13_59_48](https://github.com/user-attachments/assets/8ecd73e7-c1df-4d07-b00f-72e3d80ee29e)
 
 
 ### Why StatsCrave?
