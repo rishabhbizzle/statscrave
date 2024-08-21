@@ -15,7 +15,7 @@ function RecentlyPlayed({data, platform }) {
             <CardHeader>
               <CardTitle>Your Recently Played Tracks</CardTitle>
               <CardDescription>
-              Your recently played tracks on {platform === "spotify" ? "Spotify" : "Last.fm"}. Note: Currently doesn't support podcast episodes.
+              Your recently played tracks on {platform === "spotify" ? "Spotify" : "Last.fm"}.
               </CardDescription>
             </CardHeader>
             <CardContent>
