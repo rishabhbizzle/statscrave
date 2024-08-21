@@ -144,7 +144,7 @@ export default function SpotifyUserPage() {
       setUserRecentData(res?.data?.items || []);
     } catch (error) {
       console.error("Error fetching user data:", error);
-      toast.error(error?.message || "Failed to fetch user recent played data");
+      toast.error(error?.message || "Failed to fetch user recentely played data");
     } finally {
       setLoading(false);
     }

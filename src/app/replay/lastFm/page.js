@@ -39,7 +39,7 @@ const Page = () => {
                 return
             }
             if (res?.data?.error) {
-                toast.error(res?.data?.message || 'Failed to top tracks')
+                toast.error(res?.data?.message || 'Failed to fetch top tracks')
             }
             tracks = res?.data?.toptracks?.track
 
@@ -47,14 +47,14 @@ const Page = () => {
             const res2 = await axios.get(`https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=${username}&api_key=${process.env.NEXT_PUBLIC_LASTFM_API_KEY}&period=${timePeriod}&format=json`)
 
             if (res2?.data?.error) {
-                toast.error(res2?.data?.message || 'Failed to top artists')
+                toast.error(res2?.data?.message || 'Failed to fetch top artists')
             }
             artists = res2?.data?.topartists?.artist
 
             // albums
             const res3 = await axios.get(`https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=${username}&api_key=${process.env.NEXT_PUBLIC_LASTFM_API_KEY}&period=${timePeriod}&format=json`)
             if (res3?.data?.error) {
-                toast.error(res3?.data?.message || 'Failed to top albums')
+                toast.error(res3?.data?.message || 'Failed to fetch top albums')
             }
             albums = res3?.data?.topalbums?.album
             setData({
@@ -82,7 +82,7 @@ const Page = () => {
                 return
             }
             if (res?.data?.error) {
-                toast.error(res?.data?.message || 'Failed to top tracks')
+                toast.error(res?.data?.message || 'Failed to fetch recentely played tracks')
             }
 
             setRecentData(res?.data?.recenttracks?.track)
