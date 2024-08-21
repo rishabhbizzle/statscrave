@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import Info from "./InfoReplay";
+import RecentlyPlayed from "@/components/user-top-list/RecentlyPlayed";
 
 const AUTHORIZE = "https://accounts.spotify.com/authorize";
 const TOKEN = "https://accounts.spotify.com/api/token";
@@ -19,6 +20,7 @@ export default function SpotifyUserPage() {
   const [isSpotifyLoggedIn, setIsSpotifyLoggedIn] = useState(false);
   const [type, setType] = useState("tracks");
   const [userData, setUserData] = useState(null);
+  const [userRecentData, setUserRecentData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [timeRange, setTimeRange] = useState("short_term");
 
@@ -43,6 +45,12 @@ export default function SpotifyUserPage() {
       getUserTopTracksSpotify();
     }
   }, [type, timeRange, isSpotifyLoggedIn]);
+
+  useEffect(() => {
+    if (isSpotifyLoggedIn) {
+      getUserRecentlyPlayedTracks();
+    }
+  }, [isSpotifyLoggedIn]);
 
   const fetchAccessToken = async (code) => {
     const body = new URLSearchParams({
@@ -122,6 +130,26 @@ export default function SpotifyUserPage() {
     }
   };
 
+  const getUserRecentlyPlayedTracks = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get(
+        `https://api.spotify.com/v1/me/player/recently-played?limit=50`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("spotifyAccessToken")}`,
+          },
+        }
+      );
+      setUserRecentData(res?.data?.items || []);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      toast.error(error?.message || "Failed to fetch user recentely played data");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const getUserTopTracksSpotify = async () => {
     setLoading(true);
     try {
@@ -180,7 +208,7 @@ export default function SpotifyUserPage() {
 
       )}
       {isSpotifyLoggedIn ? (
-        <div>
+        <div className="flex flex-col gap-8">
           {userData && (
             <UserData
               type={type}
@@ -191,6 +219,15 @@ export default function SpotifyUserPage() {
               platform="spotify"
             />
           )}
+
+          {userRecentData && (
+            <RecentlyPlayed
+              data={userRecentData}
+              platform="spotify"
+            />
+          )}
+
+
         </div>
       ) : (
         <Info />

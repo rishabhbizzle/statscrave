@@ -13,7 +13,7 @@ import {
 } from "../ui/select";
 import { toast } from "sonner";
 import { Label } from "../ui/label";
-import { Download } from "lucide-react";
+import { Download, Share } from "lucide-react";
 import { BorderButton } from "../ui/moving-border";
 
 
@@ -226,8 +226,8 @@ const WrappedImage = ({ data, platform, timePeriod }) => {
           disabled={isLoading}
           size="sm"
         >
-          <Download className="mr-2 h-5 w-5" />
-          Download
+          <Share className="mr-2 h-5 w-5" />
+          Share
         </Button>
       </div>
     </div>

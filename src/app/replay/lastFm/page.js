@@ -3,6 +3,7 @@
 import Container from '@/components/ui/container'
 import Loader from '@/components/ui/loader';
 import { PlaceholdersAndVanishInput } from '@/components/ui/placeholders-and-vanish-input'
+import RecentlyPlayed from '@/components/user-top-list/RecentlyPlayed';
 import UserData from '@/components/user-top-list/user-data';
 import axios from 'axios';
 import React from 'react'
@@ -15,6 +16,7 @@ const Page = () => {
     const [username, setUsername] = React.useState('')
     const [timePeriod, setTimePeriod] = React.useState('1month')
     const [data, setData] = React.useState(null)
+    const [recentData, setRecentData] = React.useState(null)
     const [loading, setLoading] = React.useState(false)
 
     const handleChange = (e) => {
@@ -37,7 +39,7 @@ const Page = () => {
                 return
             }
             if (res?.data?.error) {
-                toast.error(res?.data?.message || 'Failed to top tracks')
+                toast.error(res?.data?.message || 'Failed to fetch top tracks')
             }
             tracks = res?.data?.toptracks?.track
 
@@ -45,14 +47,14 @@ const Page = () => {
             const res2 = await axios.get(`https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=${username}&api_key=${process.env.NEXT_PUBLIC_LASTFM_API_KEY}&period=${timePeriod}&format=json`)
 
             if (res2?.data?.error) {
-                toast.error(res2?.data?.message || 'Failed to top artists')
+                toast.error(res2?.data?.message || 'Failed to fetch top artists')
             }
             artists = res2?.data?.topartists?.artist
 
             // albums
             const res3 = await axios.get(`https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=${username}&api_key=${process.env.NEXT_PUBLIC_LASTFM_API_KEY}&period=${timePeriod}&format=json`)
             if (res3?.data?.error) {
-                toast.error(res3?.data?.message || 'Failed to top albums')
+                toast.error(res3?.data?.message || 'Failed to fetch top albums')
             }
             albums = res3?.data?.topalbums?.album
             setData({
@@ -69,11 +71,41 @@ const Page = () => {
         }
     }
 
+    const handleFetchRecentlyPlayed = async (e) => {
+        setLoading(true)
+        try {
+            const res = await axios.get(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&api_key=${process.env.NEXT_PUBLIC_LASTFM_API_KEY}&period=${timePeriod}&format=json`)
+
+            // if this userName is wrong throw error and show toast and return
+            if (res?.data?.error === 6) {
+                toast.error(res?.data?.message || 'User not found')
+                return
+            }
+            if (res?.data?.error) {
+                toast.error(res?.data?.message || 'Failed to fetch recentely played tracks')
+            }
+
+            setRecentData(res?.data?.recenttracks?.track)
+        } catch (error) {
+            console.log(error)
+            toast.error(error?.response?.data?.message)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+
     useEffect(() => {
         if (username) {
             handleSubmit()
         }
     }, [timePeriod])
+
+    const onSubmit = async (e) => {
+        e.preventDefault()
+        await handleSubmit()
+        await handleFetchRecentlyPlayed()
+    }
 
 
 
@@ -90,12 +122,19 @@ const Page = () => {
                 <p className='text-xl text-muted-foreground mt-4 mb-2'>
                     Enter your last.fm username:
                 </p>
-                <PlaceholdersAndVanishInput placeholders={['bizzxle', 'picklerick', 'umaruchan']} onChange={handleChange} onSubmit={handleSubmit} />
+                <PlaceholdersAndVanishInput placeholders={['bizzxle', 'picklerick', 'umaruchan']} onChange={handleChange} onSubmit={onSubmit} />
             </div>
+            <div className='flex flex-col gap-8'>
+
             {data && (
                 <UserData setTimeRange={setTimePeriod} timeRange={timePeriod} platform={'lastFm'} userData={data} />
             )}
 
+            {recentData && (
+                <RecentlyPlayed data={recentData} platform={'lastFm'} />
+            )}
+
+            </div>
             {loading && (<Loader />)}
 
         </Container>

@@ -104,7 +104,7 @@ const UserData = ({
                 <CardTitle>Top Tracks</CardTitle>
               </CardHeader>
               <CardContent>
-                <ScrollArea className="h-64 md:h-72">
+                <ScrollArea className="h-72">
                   {userData?.tracks?.map((item, i) => (
                     <Item
                       item={item}
@@ -132,7 +132,7 @@ const UserData = ({
                 <CardTitle>Top Artists</CardTitle>
               </CardHeader>
               <CardContent>
-                <ScrollArea className="h-64 md:h-72">
+                <ScrollArea className="h-72">
                   {userData?.artists?.map((item, i) => (
                     <Item
                       item={item}
@@ -275,7 +275,7 @@ const Item = ({ item, type, key, platform }) => {
           >
             <p className="text-sm font-medium leading-none">{item?.name}</p>
           </Link>
-          <p className="text-sm text-gray-500">{item?.artist?.name}</p>
+          <p className="text-sm text-gray-500 text-ellipsis overflow-hidden">{item?.artists?.map((artist) => artist?.name).join(", ")}</p>
         </div>
         <div className="ml-4 space-y-1 items-center flex">
           {platform === "lastFm" ? (
