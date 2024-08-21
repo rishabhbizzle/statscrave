@@ -331,14 +331,30 @@ export const bgOptions = [
     color: 'bg-gradient-to-r from-blue-800 to-indigo-900',
     text: 'white'
   },
+  {
+    color: 'bg-gradient-to-r from-red-500 to-orange-500',
+    text: 'black'
+  },
 
   {
     color: 'bg-gradient-to-r from-violet-200 to-pink-200',
     text: 'black'
   },
+  {
+    color: 'bg-gradient-to-r from-amber-500 to-pink-500',
+    text: 'black'
+  },
 
   {
     color: 'bg-gradient-to-r from-amber-200 to-yellow-400',
+    text: 'black'
+  },
+  {
+    color: 'bg-gradient-to-r from-fuchsia-500 to-cyan-500',
+    text: 'black'
+  },
+  {
+    color: 'bg-gradient-to-r from-lime-400 to-lime-500',
     text: 'black'
   },
 
