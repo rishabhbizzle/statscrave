@@ -32,17 +32,23 @@ export const getLatestDateValue = (data) => {
 
 
 export const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  const options = {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    timeZone: 'UTC' // Set the time zone as per your requirement
-  };
-  return date.toLocaleString('en-US', options);
+  try {
+    const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const date = new Date(dateString);
+    const options = {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      timeZone: userTimezone || 'UTC',
+    };
+    return date.toLocaleString('en-US', options);
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
 }
 
 
@@ -353,10 +359,10 @@ export const timePeriodMap = {
   short_term: "Last 4 weeks",
   medium_term: "Last 6 months",
   long_term: "Last 1 year",
-  "7day" : "Last 7 days",
-  "1month" : "Last 1 month",
-  "3month" : "Last 3 months",
-  "6month" : "Last 6 months",
-  "12month" : "Last 1 year",
-  "overall" : "All Time"
+  "7day": "Last 7 days",
+  "1month": "Last 1 month",
+  "3month": "Last 3 months",
+  "6month": "Last 6 months",
+  "12month": "Last 1 year",
+  "overall": "All Time"
 }
