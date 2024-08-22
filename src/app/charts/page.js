@@ -65,6 +65,12 @@ const ChartsPage = () => {
             <p className="my-3">Last Fm Weekly Top Artists</p>
           </div>
         </Link>
+        <Link href="/charts/qqMusic">
+          <div className="shadow-md shadow-[#040c16] hover:scale-110 duration-500 m-4 bg-black">
+            <img className="mx-auto w-full h-32 object-cover" src="https://assets.pandaily.com/uploads/2022/02/qq.jpeg" alt="QQMusic" />
+            <p className="my-3">QQ Music Top 100</p>
+          </div>
+        </Link>
       </div>
     </div>
   )
