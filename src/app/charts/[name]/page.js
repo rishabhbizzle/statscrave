@@ -13,6 +13,7 @@ import LastFmTopTracks from '@/components/charts/lastFmTopTracks';
 import LastFmTopArtists from '@/components/charts/lastFmTopArtists';
 import MelonCharts from '@/components/charts/melonCharts';
 import OtherKoreanCharts from '@/components/charts/otherKoreanCharts';
+import QQMusicChart from '@/components/charts/qqMusic';
 
 // Define chart details in a single array
 const chartArray = [
@@ -78,6 +79,13 @@ const chartArray = [
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Bugs%21_logo.jpg/640px-Bugs%21_logo.jpg',
     description: 'The current most popular tracks on Bugs. This chart is a property of Bugs. We do not own any of the data presented here. All rights to them',
     getComponent: (searchParams) => <OtherKoreanCharts chartName='bugs' searchParams={searchParams} />,
+  },
+  {
+    page: 'qqMusic',
+    title: 'QQ Music Top 100 Tracks',
+    image: 'https://assets.pandaily.com/uploads/2022/02/qq.jpeg',
+    description: 'The current most popular tracks on QQMusic. This chart is a property of QQMusic. We do not own any of the data presented here. All rights to them',
+    getComponent: (searchParams) => <QQMusicChart  />,
   },
 ];
 
