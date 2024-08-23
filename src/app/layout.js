@@ -18,6 +18,7 @@ export const metadata = {
   title: 'StatsCrave - Your ultimate music analytics platform',
   description: "A platform which offers comprehensive streaming statistics and personalized dashboards. Track trends, discover new music, and stay updated on pop culture developments effortlessly.",
   metadataBase: new URL('https://statscrave.com'),
+  keywords: ["music", "analytics", "statistics", "streaming", "platform", "trends", "spotify streams", "justin bieber", "pop culture", "statscrave"],
   alternates: {
     canonical: '/',
     languages: {
@@ -42,6 +43,22 @@ export const metadata = {
     description: "A platform which offers comprehensive streaming statistics and personalized dashboards. Track trends, discover new music, and stay updated on pop culture developments effortlessly.",
     site_name: 'StatsCrave',
   },
+  // metadataBase: {
+	// 	host: "https://statscrave.com",
+	// 	href: "/",
+	// 	origin: "https://statscrave.com",
+	// 	password: "statscrave",
+	// 	hash: "statscrave",
+	// 	pathname: "/",
+	// 	search: "",
+	// 	username: "statscrave",
+	// 	hostname: "statscrave.com",
+	// 	port: "",
+	// 	protocol: "https:",
+	// 	searchParams: new URLSearchParams(""),
+	// 	toString: () => "https://statscrave.com/",
+	// 	toJSON: () => "https://statscrave.com/",
+	// },
   twitter: {
     card: "summary_large_image",
     title: 'StatsCrave - Your ultimate music analytics platform',
@@ -55,6 +72,7 @@ export const metadata = {
       },
     ],
   },
+  manifest: "/manifest.json",
 }
 
 
