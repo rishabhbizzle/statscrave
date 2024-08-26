@@ -11,12 +11,13 @@ import { MobileNav } from "./navbar/mobile-nav"
 import { UserButton, useUser, useSession } from "@clerk/nextjs";
 import { SignIn, SignInButton } from "@clerk/clerk-react";
 import { UserMenu } from "./navbar/user-menu";
+import { usePathname } from "next/navigation";
 
 
 export default function Navbar() {
-
   const { isSignedIn: isAuthenticated, user, isLoaded } = useUser();
   const userRole = checkUserRole(user);
+  const path = usePathname();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -24,9 +25,11 @@ export default function Navbar() {
         <MainNav />
         <MobileNav />
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
+          {path !== '/' && (
           <div className="w-auto flex-1 md:w-auto md:flex-none">
             <CommandMenu />
           </div>
+          )}
           <nav className="flex items-center justify-end gap-2">
             {/* <Link
               href='/'
