@@ -183,7 +183,6 @@ export const roastUserMusicTaste = async (userData, timeRange) => {
 export const getTopArtistsForHomePage = async () => {
     try {
         const data = await Artist.find({}, 'name _id image followers popularity genres totalStreams spotifyId').limit(5).sort({ createdAt: 1 })
-        console.log(data)
         return data
     } catch (error) {
         console.error(error)

@@ -17,6 +17,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { useComparison } from "@/context/ComparisonProvider";
 
 const populariyDetails = {
   album:
@@ -31,6 +32,7 @@ export default function BasicDetails({ details, type, spotifyId }) {
   const { isSignedIn: isAuthenticated, user, isLoaded } = useUser();
   const [isFavourite, setIsFavourite] = useState(false);
   const [reRender, setReRender] = useState(false);
+  const { addToComparison, comparisonList } = useComparison();
 
   const fetchUserFavDetails = async () => {
     try {
@@ -151,12 +153,23 @@ export default function BasicDetails({ details, type, spotifyId }) {
               name={details?.name}
               setIsFavourite={setIsFavourite}
             />
-            <Button
+            {/* <Button
               variant="outline"
               onClick={() => toast.info("Coming Soon !!!")}
             >
               Download PDF report
+            </Button> */}
+            {type === "artist" && (
+            <Button
+              variant="secondary"
+              onClick={() => addToComparison(details)}
+              disabled={
+                comparisonList.some((a) => a.id === spotifyId)
+              }
+            >
+              Add to Compare
             </Button>
+          )}
           </div>
         </div>
       </div>
