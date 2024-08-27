@@ -25,11 +25,11 @@ export default function Navbar() {
         <MainNav />
         <MobileNav />
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-          {path !== '/' && (
           <div className="w-auto flex-1 md:w-auto md:flex-none">
+          {path !== '/' && (
             <CommandMenu />
-          </div>
           )}
+          </div>
           <nav className="flex items-center justify-end gap-2">
             {/* <Link
               href='/'
