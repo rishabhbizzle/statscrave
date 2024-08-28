@@ -4,6 +4,7 @@ import Link from "next/link";
 import {
   CommandIcon,
   Github,
+  Instagram,
   KeyboardIcon,
   LayoutGridIcon,
   MoonIcon,
@@ -35,6 +36,12 @@ export default function Footer() {
                   <span className="sr-only">GitHub</span>
                 </div>
               </Link> */}
+              <Link href='https://instagram.com/statscravee' target="_blank" rel="noreferrer">
+                <div className={cn("w-9 px-0")}>
+                  <Instagram className=" h-5 w-5 " />
+                  <span className="sr-only">Insta</span>
+                </div>
+              </Link>
               <Link href='https://twitter.com/statscrave' target="_blank" rel="noreferrer">
                 <div className={cn("w-9 px-0")}>
                   <Twitter className=" h-5 w-5 fill-current" />
