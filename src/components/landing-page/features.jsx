@@ -22,7 +22,7 @@ const features = [{
   },
   {
     title: "Replay - Get your most played tracks and artists",
-    description: "Get your most played tracks and artists of the month, 6 months and all time with just a click...",
+    description: "Get your most played tracks and artists for different time frames and get your music taste roasted by our AI. Share your music taste with the world!",
     image: "./replay.jpg"
   },
   ]
@@ -50,7 +50,7 @@ export default function Features() {
               <div className="flex flex-col justify-center space-y-4 md:w-[60%]">
                 <div className="space-y-2">
                   <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-gray-800">Features</div>
-                  <h2 className="text-3xl font-medium tracking-tighter sm:text-5xl">{feature?.title}</h2>
+                  <h2 className="text-2xl font-medium tracking-tighter sm:text-5xl">{feature?.title}</h2>
                   <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                     {feature.description}
                   </p>
