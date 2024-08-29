@@ -7,6 +7,7 @@ import MostStreamedAlbums from '@/components/records/most-streamed-albums'
 import MostPopularArtists from '@/components/records/most-popular-artists'
 import MostStreamedSongs from '@/components/records/most-streamed-songs'
 import MostStreamedSongsSingle from '@/components/records/most-streamed-songs-single'
+import MostViewedMusicVideos from '@/components/records/most-viewed-mv'
 
 const recordArray = [
   {
@@ -45,6 +46,12 @@ const recordArray = [
     title: 'Most Streamed Artists (Spotify)',
     description: 'List of the most streamed artists in Spotify history.',
     component: <MostStreamedArtists />,
+  },
+  {
+    page: "most-viewed-music-videos",
+    title: 'Most Viewed Music Videos on YouTube',
+    description: 'List of the most viewed music videos on YouTube.',
+    component: <MostViewedMusicVideos />,
   },
 ];
 
