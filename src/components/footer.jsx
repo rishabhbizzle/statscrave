@@ -4,6 +4,7 @@ import Link from "next/link";
 import {
   CommandIcon,
   Github,
+  Instagram,
   KeyboardIcon,
   LayoutGridIcon,
   MoonIcon,
@@ -35,6 +36,12 @@ export default function Footer() {
                   <span className="sr-only">GitHub</span>
                 </div>
               </Link> */}
+              <Link href='https://instagram.com/statscravee' target="_blank" rel="noreferrer">
+                <div className={cn("w-9 px-0")}>
+                  <Instagram className=" h-5 w-5 " />
+                  <span className="sr-only">Insta</span>
+                </div>
+              </Link>
               <Link href='https://twitter.com/statscrave' target="_blank" rel="noreferrer">
                 <div className={cn("w-9 px-0")}>
                   <Twitter className=" h-5 w-5 fill-current" />
@@ -47,9 +54,9 @@ export default function Footer() {
           <div className="flex flex-col-reverse justify-col items-center">
             <div className="flex flex-col gap-2">
               <div className="flex space-x-6 text-muted-foreground text-sm text-center">
-                We are not related to Billboard, Spotify or any of its partners.
+                *We are not related to Spotify, Billboard, etc. or any of the platform data we display.
                 This is a fan project. The data shown on this website is
-                publicly available and retrieved directly from APIs.
+                publicly available and retrieved directly from APIs.*
               </div>
             </div>
           </div>

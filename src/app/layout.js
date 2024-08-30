@@ -7,7 +7,8 @@ import { Toaster } from 'sonner'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { ClerkProvider } from '@clerk/nextjs'
 import { SpeedInsights } from '@vercel/speed-insights/next';
- 
+import { ComparisonProvider } from '@/context/ComparisonProvider'
+
 const roboto = Poppins({
   weight: ["400", "500", "700", "900"],
   subsets: ['latin'],
@@ -44,21 +45,21 @@ export const metadata = {
     site_name: 'StatsCrave',
   },
   // metadataBase: {
-	// 	host: "https://statscrave.com",
-	// 	href: "/",
-	// 	origin: "https://statscrave.com",
-	// 	password: "statscrave",
-	// 	hash: "statscrave",
-	// 	pathname: "/",
-	// 	search: "",
-	// 	username: "statscrave",
-	// 	hostname: "statscrave.com",
-	// 	port: "",
-	// 	protocol: "https:",
-	// 	searchParams: new URLSearchParams(""),
-	// 	toString: () => "https://statscrave.com/",
-	// 	toJSON: () => "https://statscrave.com/",
-	// },
+  // 	host: "https://statscrave.com",
+  // 	href: "/",
+  // 	origin: "https://statscrave.com",
+  // 	password: "statscrave",
+  // 	hash: "statscrave",
+  // 	pathname: "/",
+  // 	search: "",
+  // 	username: "statscrave",
+  // 	hostname: "statscrave.com",
+  // 	port: "",
+  // 	protocol: "https:",
+  // 	searchParams: new URLSearchParams(""),
+  // 	toString: () => "https://statscrave.com/",
+  // 	toJSON: () => "https://statscrave.com/",
+  // },
   twitter: {
     card: "summary_large_image",
     title: 'StatsCrave - Your ultimate music analytics platform',
@@ -79,25 +80,27 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <>
-    <ClerkProvider>
-      <html lang="en" suppressHydrationWarning>
-        <head />
-        <body className={roboto.className}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-          >
-            <Navbar />
-            {children}
-            <SpeedInsights />
-            <Toaster richColors />
-            <Footer />
-          </ThemeProvider>
-        </body>
-        <GoogleAnalytics gaId="G-9F4NHQG0XT" />
-      </html>
-    </ClerkProvider>
+      <ClerkProvider>
+        <html lang="en" suppressHydrationWarning>
+          <head />
+          <body className={roboto.className}>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+            >
+              <ComparisonProvider>
+                <Navbar />
+                {children}
+                <SpeedInsights />
+                <Toaster richColors />
+                <Footer />
+              </ComparisonProvider>
+            </ThemeProvider>
+          </body>
+          <GoogleAnalytics gaId="G-9F4NHQG0XT" />
+        </html>
+      </ClerkProvider>
     </>
   )
 }

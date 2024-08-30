@@ -1,6 +1,7 @@
 'use server'
 
 import { connect } from "@/dgConfig/dbConfig";
+import Artist from "@/models/artistModel";
 import Updates from "@/models/updatesModel";
 import { currentUser } from '@clerk/nextjs';
 import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -176,5 +177,15 @@ export const roastUserMusicTaste = async (userData, timeRange) => {
     } catch (error) {
         console.error(error);
         throw error
+    }
+}
+
+export const getTopArtistsForHomePage = async () => {
+    try {
+        const data = await Artist.find({}, 'name _id image followers popularity genres totalStreams spotifyId').limit(5).sort({ createdAt: 1 })
+        return data
+    } catch (error) {
+        console.error(error)
+        return []
     }
 }

@@ -40,6 +40,11 @@ const projects = [
         description: "A list of the most streamed songs on Spotify in a single day.",
         link: "/records/most-streamed-songs-single-day",
     },
+    {
+        title: "Most Viewed Music Videos on YouTube",
+        description: "A list of the most viewed music videos on YouTube. (all time and yearly)",
+        link: "/records/most-viewed-music-videos",
+    },
     // {
     //     title: "Most Streamed Songs in Single Week",
     //     description: "A list of the most streamed songs on Spotify in a single week.",

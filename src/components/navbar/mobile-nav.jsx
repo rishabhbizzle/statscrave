@@ -8,17 +8,19 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "../ui/button";
 import { ScrollArea } from "../ui/scroll-area";
 import Image from "next/image";
+import { useComparison } from "@/context/ComparisonProvider";
 
 export function MobileNav() {
   const [open, setOpen] = React.useState(false);
   const pathname = usePathname();
+  const { comparisonList = [] } = useComparison();
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button
           variant="ghost"
-          className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
+          className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 lg:hidden"
         >
           <svg
             strokeWidth="1.5"
@@ -169,6 +171,33 @@ export function MobileNav() {
                   )}
                 >
                   Updates
+                </MobileLink>
+              </React.Fragment>
+            </div>
+          </div>
+          <div className="flex flex-col space-y-2">
+            <div className="flex flex-col space-y-3 pt-6">
+              <React.Fragment key={1}>
+                <MobileLink
+                  href={"/compare"}
+                  onOpenChange={setOpen}
+                  className={cn(
+                    "transition-colors hover:text-foreground/80",
+                    pathname?.startsWith("/compare")
+                      ? "text-foreground"
+                      : "text-foreground/60"
+                  )}
+                >
+                 
+                  Compare
+
+                  {comparisonList.length > 0 && (
+            <span className="relative ml-4">
+              <span className="absolute top-0  right-0 -mt-1 -mr-1 bg-primary font-medium rounded-full h-4 w-4 flex items-center justify-center">
+                {comparisonList.length}
+              </span>
+            </span>
+          )}
                 </MobileLink>
               </React.Fragment>
             </div>

@@ -14,7 +14,7 @@ export default async function RecentUpdates() {
   const data = await getAllBlogsFromDb(5)
 
   return (
-    <div className="my-40 w-full flex justify-center px-10">
+    <div className="mt-14 mb-24 w-full flex justify-center px-10">
       <Carousel
         opts={{
           align: "start",

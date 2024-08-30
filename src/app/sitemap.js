@@ -35,21 +35,21 @@ export default async function sitemap() {
 
   // Generate dynamic routes
   const artistRoutes = artistIds.map(id => ({
-    url: `https://www.statscrave.com/artists/${id}`,
+    url: `https://www.statscrave.com/artist/${id}`,
     lastModified: new Date(),
     changeFrequency: 'daily',
     priority: 0.7,
   }));
 
   const albumRoutes = albumIds.map(id => ({
-    url: `https://www.statscrave.com/albums/${id}`,
+    url: `https://www.statscrave.com/album/${id}`,
     lastModified: new Date(),
     changeFrequency: 'daily',
     priority: 0.7,
   }));
 
   const trackRoutes = trackIds.map(id => ({
-    url: `https://www.statscrave.com/tracks/${id}`,
+    url: `https://www.statscrave.com/track/${id}`,
     lastModified: new Date(),
     changeFrequency: 'daily',
     priority: 0.7,
@@ -146,6 +146,12 @@ export default async function sitemap() {
       priority: 0.7,
     },
     {
+      url: 'https://www.statscrave.com/charts/qqMusic',
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.7,
+    },
+    {
       url: 'https://www.statscrave.com/charts/lastFmTopTracks',
       lastModified: new Date(),
       changeFrequency: 'daily',
@@ -190,6 +196,12 @@ export default async function sitemap() {
     },
     {
       url: 'https://www.statscrave.com/records/most-streamed-songs-single-day',
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.7,
+    },
+    {
+      url: 'https://www.statscrave.com/records/most-viewed-music-videos',
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 0.7,
