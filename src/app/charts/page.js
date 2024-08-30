@@ -1,7 +1,7 @@
 "use client"
 
 import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid'
-import { BarChart3 } from 'lucide-react';
+import { BarChart3, BarChartIcon } from 'lucide-react';
 import React from 'react'
 import Link from 'next/link';
 
@@ -9,6 +9,14 @@ import Link from 'next/link';
 const ChartsPage = () => {
   return (
     <div>
+      <div className="py-5 px-4 md:px-8">
+        <div className='flex gap-2 mb-2'>
+
+        <BarChartIcon size={32} />
+        <h1 className="text-2xl font-bold">Music Charts</h1>
+        </div>
+        <p className="text-md">From Billboard Hot 100 to Melon Top 100, we got you covered. Explore the top music charts from around the world. All rights reserved to the respective companies.</p>
+      </div>
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 text-center py-10 px-4 md:px-8 text-white">
         <Link href="/charts/hot100">
           <div className="shadow-md shadow-[#040c16] hover:scale-110 duration-500 m-4 bg-black">

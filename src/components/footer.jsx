@@ -54,9 +54,9 @@ export default function Footer() {
           <div className="flex flex-col-reverse justify-col items-center">
             <div className="flex flex-col gap-2">
               <div className="flex space-x-6 text-muted-foreground text-sm text-center">
-                We are not related to Billboard, Spotify or any of its partners.
+                *We are not related to Spotify, Billboard, etc. or any of the platform data we display.
                 This is a fan project. The data shown on this website is
-                publicly available and retrieved directly from APIs.
+                publicly available and retrieved directly from APIs.*
               </div>
             </div>
           </div>

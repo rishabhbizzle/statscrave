@@ -1,22 +1,40 @@
+import { Youtube } from "lucide-react";
 import Image from "next/image";
-import { FaLastfm, FaSpotify } from "react-icons/fa";
+import { FaLastfm, FaSpotify, FaYoutube } from "react-icons/fa";
 import { SiBillboard, SiTencentqq } from "react-icons/si";
 
  const logos = [
 	{
+		name: "Youtube",
+		url: <FaYoutube className="w-14 h-14 text-red-600 dark:text-white  brightness-100 invert-1 mx-10"  />,
+	},
+	{
 		name: "Spotify",
-		url: <FaSpotify className="w-16 h-16 brightness-100 invert-1 mx-10" />,
+		url: <FaSpotify className="w-14 text-green-600 dark:text-white h-14 brightness-100 invert-1 mx-10" />,
 	},
 	{
 		name: "last.fm",
 		url: (
-			<FaLastfm className="w-16 h-16 brightness-100 invert-1 mx-10" />
+			<FaLastfm className="w-14 h-14 text-red-500 dark:text-white  brightness-100 invert-1 mx-10" />
 		),
 	},
 	{
 		name: "Billboard",
-		url: <SiBillboard className="w-28 h-28 brightness-100 invert-1 mx-10" />,
+		url: <SiBillboard className="w-[7.5rem] h-[7.5rem] brightness-100 invert-1 mx-7" />,
 	},
+	{
+		name: "Melon",
+		url: <img className="h-9 brightness-100 dark:invert dark:brightness-0 dark:contrast-200 invert-1 mx-5" src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Melon_logo.png" />,
+	},
+	{
+		name: "Gennie",
+		url: <img className="h-20 brightness-100  dark:invert dark:brightness-0 dark:contrast-200 invert-1 mx-2" src="https://image.ajunews.com/content/image/2021/10/05/20211005092058390766.png" />,
+	},
+	{
+		name: "Bugs",
+		url: <img className="h-20 brightness-100  dark:invert dark:brightness-0 dark:contrast-200 invert-1 mx-5" src="https://independentdigital.com/wp-content/uploads/2019/09/bugs_music-1.png" />,
+	},
+	,
 ];
 
 const PlatformsSlider = () => {

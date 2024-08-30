@@ -70,12 +70,12 @@ function ComparePage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {data && Object.keys(data).length > 0 &&
-          Object.keys(data).map((artistId) => {
+          Object.keys(data).map((artistId, index) => {
             const artist = comparisonList.find((a) => a.id === artistId);
             const streamingData = data[artistId];
 
             return (
-              <Card>
+              <Card key={index}>
                 <div className="flex items-center justify-end">
                   <Button
                   size="icon"

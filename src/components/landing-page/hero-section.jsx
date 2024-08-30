@@ -46,7 +46,7 @@ const HeroSection = () => {
             ...slap,
             transition: { ...slap.transition, delay: 0.2 },
           }}
-          className="text-center  mx-auto bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)]  bg-clip-text text-4xl tracking-tighter  sm:text-5xl dark:text-transparent md:text-6xl lg:text-7xl"
+          className="text-center  mx-auto bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)]  bg-clip-text text-5xl tracking-tighter  sm:text-5xl dark:text-transparent md:text-6xl lg:text-7xl"
         >
           Your ultimate{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r to-green-500 dark:to-green-200 from-zinc-900 dark:from-zinc-300">
@@ -68,7 +68,7 @@ const HeroSection = () => {
         <SignedOut>
           <SignInButton>
             <Button
-              className="inline-flex text-lg gap-x-2 mt-2 backdrop-blur-md text-white justify-center items-center py-3 px-5 w-fit rounded-3xl border duration-200 group bg-page-gradient border-white/30 text-md font-geistSans hover:border-zinc-600 hover:bg-transparent/10 hover:text-zinc-100"
+              className="inline-flex text-lg gap-x-2 mt-2 backdrop-blur-md text-black dark:text-white justify-center items-center py-3 px-5 w-fit rounded-3xl border duration-200 group bg-page-gradient dark:border-white/30 border-black text-md font-geistSans hover:border-zinc-600 dark:hover:bg-transparent/10 hover:bg-transparent/90 hover:text-zinc-100"
             >
               Sign up now
               <div className="flex overflow-hidden relative justify-center items-center ml-1 w-5 h-5">

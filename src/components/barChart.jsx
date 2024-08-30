@@ -39,10 +39,10 @@ export function BarChartComponent({ data, formatted, artistName }) {
   // Determine the default view range (last 30 days or all data if less than 30 days)
   const defaultViewRange = useMemo(() => {
     const dataLength = sortedData.length;
-    if (dataLength <= 30) {
+    if (dataLength <= 100) {
       return [0, dataLength - 1];
     } else {
-      return [dataLength - 30, dataLength - 1];
+      return [dataLength - 100, dataLength - 1];
     }
   }, [sortedData]);
 
