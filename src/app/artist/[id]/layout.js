@@ -14,12 +14,12 @@ export async function generateMetadata({ params, searchParams }, parent) {
       images: [
         { url: artistData.data?.images[0]?.url, alt: artistData.data?.name },
         ],
-      title: `${artistData?.data?.name} | StatsCrave`,
+      title: `${artistData?.data?.name} - Spotify Streams | StatsCrave`,
       description: artistData.data?.summary,
     },
     twitter: {
       card: "summary_large_image",
-      title: `${artistData?.data?.name} | StatsCrave`,
+      title: `${artistData?.data?.name} - Spotify Streams | StatsCrave`,
       url: 'https://statscrave.com',
       description: "A platform which offers comprehensive streaming statistics and personalized dashboard. Track trends, discover new music, and stay updated on pop culture developments effortlessly.",
       creator: "@StatsCrave",

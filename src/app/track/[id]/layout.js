@@ -6,20 +6,19 @@ export async function generateMetadata({ params, searchParams }, parent) {
   const id = params.id
   // fetch data
   const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/track/${id}?metaData=true`, { cache: 'force-cache'}).then((res) => res.json())
-  console.log(data)
   // optionally access and extend (rather than replace) parent metadata
   return {
-    title: `${data?.data?.trackDetails?.name} by ${data?.data?.trackDetails?.artists[0]?.name || ''} | StatsCrave`,
+    title: `${data?.data?.trackDetails?.name} by ${data?.data?.trackDetails?.artists[0]?.name || ''} - Spotify Streams | StatsCrave`,
     openGraph: {
       images: [
         { url: data.data?.trackDetails?.album?.images[0]?.url, alt: data.data?.trackDetails?.name },
         ],
-      title: `${data?.data?.trackDetails?.name} by ${data?.data?.trackDetails?.artists[0]?.name || ''} | StatsCrave`,
+      title: `${data?.data?.trackDetails?.name} by ${data?.data?.trackDetails?.artists[0]?.name || ''} - Spotify Streams | StatsCrave`,
       description: "A platform which offers comprehensive streaming statistics and personalized dashboard. Track trends, discover new music, and stay updated on pop culture developments effortlessly.",
     },
     twitter: {
       card: "summary_large_image",
-      title: `${data?.data?.trackDetails?.name} by ${data?.data?.trackDetails?.artists[0]?.name || ''} | StatsCrave`,
+      title: `${data?.data?.trackDetails?.name} by ${data?.data?.trackDetails?.artists[0]?.name || ''} - Spotify Streams | StatsCrave`,
       url: 'https://statscrave.com',
       description: "A platform which offers comprehensive streaming statistics and personalized dashboard. Track trends, discover new music, and stay updated on pop culture developments effortlessly.",
       creator: "@StatsCrave",
