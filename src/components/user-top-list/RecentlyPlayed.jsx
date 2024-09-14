@@ -76,7 +76,7 @@ const Item = ({ item, type, key, platform }) => {
           </div>
           <div className="w-[30%] space-y-1 items-center flex gap-2 md:gap-5 md:justify-end flex-col md:flex-row">
             <div>
-                <p className="text-xs md:text-sm text-gray-500">{platform === 'spotify' ? formatDate(item?.played_at) : item?.date['#text']}</p>
+                <p className="text-xs md:text-sm text-gray-500">{platform === 'spotify' ? formatDate(item?.played_at) : item?.date ? formatDate(item?.date['#text']) : 'Currently Playing'}</p>
             </div>
             {platform === "spotify" && (
               <Link
