@@ -22,12 +22,14 @@ const NewReleases = () => {
     setLoading(true);
     try {
       const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/others/new-releases`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/others/new-releases?limit=20`
       );
       if (res.status !== 200) {
         throw new Error(res?.data?.message || "Failed to fetch data");
       }
-      setItems(res?.data?.data?.albums?.items);
+      const formattedData = res?.data?.data?.items?.map((item) => item?.track);
+      console.log(formattedData);
+      setItems(formattedData || []);
     } catch (error) {
       toast.error(error?.message);
       console.error(error);
@@ -56,7 +58,7 @@ const NewReleases = () => {
               className="w-full"
             >
               <CarouselContent>
-                {items.map((data, index) => (
+                {items?.length > 0 && items.map((data, index) => (
                   <CarouselItem
                     key={index}
                     className="md:basis-1/4 lg:basis-1/5"
@@ -66,7 +68,7 @@ const NewReleases = () => {
                         <Card>
                           <CardContent className="flex aspect-square  justify-center flex-col p-4 hover:opacity-90 hover:scale-105  transition-all cursor-pointer">
                             <img
-                              src={data?.images[0].url}
+                              src={data?.album?.images?.[0].url}
                               alt="test"
                               width={500}
                               height={500}
