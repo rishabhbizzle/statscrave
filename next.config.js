@@ -11,19 +11,22 @@ const withPWA = require("next-pwa")({
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-    images: {
-        remotePatterns: [
-          {
-            protocol: 'https',
-            hostname: 'i.scdn.co',
-          },
-          {
-            protocol: 'https',
-            hostname: 'lastfm.freetls.fastly.net',
-          },
-        ],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.scdn.co',
       },
-
+      {
+        protocol: 'https',
+        hostname: 'lastfm.freetls.fastly.net',
+      },
+    ],
+  },
+  // to disable sentry on development
+  experimental: {
+    instrumentationHook: process.env.NODE_ENV === 'production',
+  },
 }
 
 module.exports = withPWA(nextConfig);
