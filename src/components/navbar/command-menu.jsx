@@ -27,7 +27,7 @@ export function CommandMenu({ ...props }) {
 
   const handleSearch = async () => {
     setLoading(true);
-    const res = await fetch(`/api/search?type=${type}&text=${text}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/search?type=${type}&text=${text}`, { cache: 'no-store'});
     const { data } = await res.json();
     if (res.status === 200) {
       if (type === "artist") {
@@ -125,7 +125,7 @@ export function CommandMenu({ ...props }) {
           </Select>
         </div>
         <ScrollArea className="h-52 md:h-60">
-          {results.map((result, i) => (
+          {results?.map((result, i) => (
             <div className="px-3 my-1" key={i}>
               <div
                 className="flex gap-2 border-b transition-colors hover:bg-muted/50 cursor-pointer"
@@ -135,10 +135,10 @@ export function CommandMenu({ ...props }) {
                   src={
                     type === "track"
                       ? result?.album?.images?.length > 0
-                        ? result?.album?.images[0]?.url
+                        ? result?.album?.images?.[0]?.url
                         : "https://upload.wikimedia.org/wikipedia/en/b/b1/Portrait_placeholder.png"
                       : result?.images?.length > 0
-                      ? result?.images[0]?.url
+                      ? result?.images?.[0]?.url
                       : "https://upload.wikimedia.org/wikipedia/en/b/b1/Portrait_placeholder.png"
                   }
                   alt={result.name}

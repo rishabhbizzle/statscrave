@@ -92,7 +92,7 @@ export default function RootLayout({ children }) {
               <ComparisonProvider>
                 <Navbar />
                 {children}
-                <SpeedInsights />
+                {/* <SpeedInsights /> */}
                 <Toaster richColors />
                 <Footer />
               </ComparisonProvider>

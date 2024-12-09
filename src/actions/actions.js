@@ -7,7 +7,7 @@ import { currentUser } from '@clerk/nextjs';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import axios from "axios";
 import Melon from "melon-chart-api";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, unstable_cache } from "next/cache";
 import { clean } from 'profanity-cleaner';
 
 export const getAllBlogsFromDb = async (count) => {
@@ -181,11 +181,27 @@ export const roastUserMusicTaste = async (userData, timeRange) => {
 }
 
 export const getTopArtistsForHomePage = async () => {
-    try {
-        const data = await Artist.find({}, 'name _id image followers popularity genres totalStreams spotifyId').limit(5).sort({ createdAt: 1 })
-        return data
-    } catch (error) {
-        console.error(error)
-        return []
-    }
+    return unstable_cache(
+        async () => {
+            try {
+                console.log('Fetching top artists for homepage')
+                const data = await Artist.find(
+                    {}, 
+                    'name _id image followers popularity genres totalStreams spotifyId'
+                )
+                .limit(5)
+                .sort({ createdAt: 1 });
+                return data;
+            } catch (error) {
+                console.error(error);
+                return [];
+            }
+        },
+        ['top-artists-homepage'],
+        {
+            // / Cache for 6 hours
+            revalidate: 21600,
+            tags: ['top-artists']
+        }
+    )();
 }
