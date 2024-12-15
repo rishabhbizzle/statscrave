@@ -24,9 +24,9 @@ const nextConfig = {
     ],
   },
   // to disable sentry on development
-  experimental: {
-    instrumentationHook: process.env.NODE_ENV === 'production',
-  },
+  // experimental: {
+  //   instrumentationHook: process.env.NODE_ENV === 'production',
+  // },
 }
 
 module.exports = withPWA(nextConfig);
