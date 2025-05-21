@@ -142,7 +142,7 @@ export const getKoreanChartData = async (chartName) => {
         bugs: '/bugs/music/chart/100'
     }
     try {
-        const data = await fetch(`http://kr-music.ap-south-1.elasticbeanstalk.com/v1${chartMap[chartName]}`,{ cache: 'no-store' })
+        const data = await fetch(`${process.env.KR_MUSIC_API_ENDPOINT}v1${chartMap[chartName]}`,{ cache: 'no-store' })
             .then((response) => response.json())
             .then((data) => {
                 return data?.data
