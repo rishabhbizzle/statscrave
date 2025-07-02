@@ -68,7 +68,7 @@ const chartArray = [
   },
   {
     page: 'genie',
-    title: 'Genie Top 200 Tracks (Realtime)as',
+    title: 'Genie Top 200 Tracks (Realtime)',
     image: 'https://www.tuneskit.com/images/resource/genie-music.jpg',
     description: 'The current most popular tracks on Genie. This chart is a property of Genie. We do not own any of the data presented here. All rights to them',
     getComponent: (searchParams) => <OtherKoreanCharts chartName='genie' searchParams={searchParams} />,
