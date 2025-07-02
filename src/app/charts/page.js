@@ -57,7 +57,7 @@ const ChartsPage = () => {
         
         <Link href="/charts/genie">
           <div className="shadow-md shadow-[#040c16] hover:scale-110 duration-500 m-4 bg-black">
-            <img className="mx-auto w-full h-32 object-cover" src="https://yt3.googleusercontent.com/scUX4jtNfsIWOB7fFR54ghwTgFziOmvmLkPSt6C5Dl3D5x4haSx_YWvoLcq9L5eo29vSsF2_kw=s900-c-k-c0x00ffffff-no-rj" alt="BB200" />
+            <img className="mx-auto w-full h-32 object-cover" src="https://www.tuneskit.com/images/resource/genie-music.jpg" alt="BB200" />
             <p className="my-3">Genie Top 200 Tracks</p>
           </div>
         </Link>

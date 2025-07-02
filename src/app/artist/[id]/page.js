@@ -54,7 +54,7 @@ const Artist = ({ params }) => {
                         </TabsList>
                         <TabsContent value="overview">
                             <ArtistOverview id={id} artist={artist} lastFmStats={artist?.lastFmStats} />
-                            <ArtistSocials id={id} />
+                            {/* <ArtistSocials id={id} /> */}
                             <PopularTracks id={id} />
                         </TabsContent>
                         <TabsContent value="songs">

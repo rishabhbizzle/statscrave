@@ -143,7 +143,7 @@ export const getKoreanChartData = async (chartName) => {
     }
     try {
         const data = await fetch(`${process.env.KR_MUSIC_API_ENDPOINT}v1${chartMap[chartName]}`,{ cache: 'no-store' })
-            .then((response) => response.json())
+            .then((response) => response?.json())
             .then((data) => {
                 return data?.data
             })
