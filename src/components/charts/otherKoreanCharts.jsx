@@ -1,6 +1,9 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import { AlertTitle } from "../ui/alert";
 import { Info } from "lucide-react";
+import axios from "axios";
 
 import {
   Table,
@@ -12,10 +15,54 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { getKoreanChartData } from "@/actions/actions";
+import Loader from "../ui/loader";
 
-const OtherKoreanCharts = async ({ chartName }) => {
-  let data = await getKoreanChartData(chartName);
+const OtherKoreanCharts = ({ chartName }) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const chartMap = {
+    genie: '/genie/music/chart/200',
+    naver: '/naver/music/chart/100',
+    bugs: '/bugs/music/chart/100'
+  }
+
+  useEffect(() => {
+    const fetchChartData = async () => {
+      setLoading(true);
+      setError(null);
+      
+      try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_KR_MUSIC_API_ENDPOINT}v1${chartMap[chartName]}`);
+        setData(response?.data?.data || []);
+      } catch (error) {
+        console.error(error);
+        setError('Failed to fetch chart data');
+        setData([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (chartName && chartMap[chartName]) {
+      fetchChartData();
+    }
+  }, [chartName]);
+
+  if (loading) {
+    return (
+      <Loader text="Loading chart data..." />
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="w-full flex justify-center m-10">
+        {error}
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -68,7 +115,7 @@ const OtherKoreanCharts = async ({ chartName }) => {
         </>
       ) : (
         <div className="w-full flex justify-center m-10">
-          OOPS!!! Something went wrong
+          No chart data available
         </div>
       )}
     </div>

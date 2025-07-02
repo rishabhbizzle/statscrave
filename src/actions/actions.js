@@ -135,24 +135,7 @@ export const getMelonChartData = async (chartType = 'realtime', date = new Date(
     }
 }
 
-export const getKoreanChartData = async (chartName) => {
-    const chartMap = {
-        genie: '/genie/music/chart/200',
-        naver: '/naver/music/chart/100',
-        bugs: '/bugs/music/chart/100'
-    }
-    try {
-        const data = await fetch(`${process.env.KR_MUSIC_API_ENDPOINT}v1${chartMap[chartName]}`,{ cache: 'no-store' })
-            .then((response) => response?.json())
-            .then((data) => {
-                return data?.data
-            })
-        return data;
-    } catch (error) {
-        console.error(error)
-        return []
-    }
-}
+
 
 
 export const roastUserMusicTaste = async (userData, timeRange) => {
