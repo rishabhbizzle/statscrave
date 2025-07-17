@@ -8,6 +8,7 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 import { ClerkProvider } from '@clerk/nextjs'
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ComparisonProvider } from '@/context/ComparisonProvider'
+import { PromotionManager } from '@/components/promotions'
 
 const roboto = Poppins({
   weight: ["400", "500", "700", "900"],
@@ -89,6 +90,9 @@ export default function RootLayout({ children }) {
               defaultTheme="system"
               enableSystem
             >
+              {/* Promotional Banner System - Easy to remove by commenting out */}
+              <PromotionManager />
+              
               <ComparisonProvider>
                 <Navbar />
                 {children}
