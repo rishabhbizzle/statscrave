@@ -98,7 +98,7 @@ export const PROMOTIONS = [
       newUsersOnly: false,
       userSegments: [],
       locations: [],
-      minPageViews: 2,
+      minPageViews: 0,
     },
     
     modalConfig: {
