@@ -11,6 +11,7 @@ import dynamic from 'next/dynamic'
 import { toast } from 'sonner'
 import { Info } from 'lucide-react'
 import LyricsSection from '@/components/LyricsSection'
+import { ErrorBoundary } from 'react-error-boundary'
 const Recomendations = dynamic(() => import('../../../components/recomendations.jsx'), {
   loading: () => <Loader component={true} />,
 });
@@ -52,14 +53,22 @@ const Track = ({ params }) => {
             {data?.streamingData && (
               <StreamingDetails streamingData={data?.streamingData} type='track' />
             )}
-            <AudioFeatures data={data?.trackFeatures} />
-            <LyricsSection
-              trackName={data?.trackDetails?.name}
-              artistName={data?.trackDetails?.artists?.[0]?.name}
-              albumName={data?.trackDetails?.album?.name}
-              duration={data?.trackDetails?.duration_ms}
-              coverImage={data?.trackDetails?.album?.images?.[0]?.url}
-            />
+            <ErrorBoundary
+              fallbackRender={<div />}
+            >
+              <AudioFeatures data={data?.trackFeatures} />
+            </ErrorBoundary>
+            <ErrorBoundary
+              fallbackRender={<div />}
+            >
+              <LyricsSection
+                trackName={data?.trackDetails?.name}
+                artistName={data?.trackDetails?.artists?.[0]?.name}
+                albumName={data?.trackDetails?.album?.name}
+                duration={data?.trackDetails?.duration_ms}
+                coverImage={data?.trackDetails?.album?.images?.[0]?.url}
+              />
+            </ErrorBoundary>
             <Recomendations type='track' />
           </div>
         </div>
