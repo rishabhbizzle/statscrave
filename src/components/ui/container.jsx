@@ -3,7 +3,7 @@ const Container = ({
     children
   }) => {
     return ( 
-      <div className="container min-h-screen">
+      <div className="container px-4 md:px-8 min-h-screen">
         {children}
       </div>
      );
