@@ -8,6 +8,7 @@ import Loader from '@/components/ui/loader'
 import axios from 'axios'
 import AudioFeatures from '@/components/audioFeatures'
 import dynamic from 'next/dynamic'
+import ReviewSection from '@/components/reviews/ReviewSection'
 import { toast } from 'sonner'
 import { Info } from 'lucide-react'
 const Recomendations = dynamic(() => import('../../../components/recomendations.jsx'), {
@@ -52,6 +53,7 @@ const Track = ({ params }) => {
               <StreamingDetails streamingData={data?.streamingData} type='track' />
             )}
             <AudioFeatures data={data?.trackFeatures} />
+            <ReviewSection targetId={id} targetType="song" />
             <Recomendations type='track' />
           </div>
         </div>

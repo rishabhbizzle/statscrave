@@ -1,9 +1,9 @@
 import { authMiddleware, redirectToSignIn } from "@clerk/nextjs";
 
 export default authMiddleware({
-    publicRoutes: ["/", "/updates"],
+    publicRoutes: ["/", "/updates", "/album(.*)", "/track(.*)", "/artist(.*)", "/charts(.*)", "/compare(.*)", "/records(.*)", "/privacy-policy", "/api(.*)"],
 });
 
 export const config = {
-    matcher: ["/dashboard", "/user-profile", "/admin"],
+    matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };
