@@ -54,12 +54,12 @@ const Track = ({ params }) => {
               <StreamingDetails streamingData={data?.streamingData} type='track' />
             )}
             <ErrorBoundary
-              fallbackRender={<div />}
+              fallback={<div />}
             >
               <AudioFeatures data={data?.trackFeatures} />
             </ErrorBoundary>
             <ErrorBoundary
-              fallbackRender={<div />}
+              fallback={<div />}
             >
               <LyricsSection
                 trackName={data?.trackDetails?.name}
