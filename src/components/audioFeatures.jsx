@@ -84,17 +84,17 @@ const AudioFeatures = ({ data }) => {
         <div className="flex gap-4 text-sm font-medium text-muted-foreground bg-secondary/30 p-2 rounded-lg">
            <div className="flex items-center gap-2 px-2">
               <Clock className="w-4 h-4" />
-              {formatDuration(data.duration_ms)}
+              {formatDuration(data?.duration_ms)}
            </div>
            <div className="w-px h-4 bg-border self-center" />
            <div className="flex items-center gap-2 px-2">
               <Activity className="w-4 h-4" />
-              {Math.round(data.tempo)} BPM
+              {Math.round(data?.tempo)} BPM
            </div>
            <div className="w-px h-4 bg-border self-center" />
            <div className="flex items-center gap-2 px-2">
               <Music className="w-4 h-4" />
-              Key: {data.key}
+              Key: {data?.key}
            </div>
         </div>
       </div>

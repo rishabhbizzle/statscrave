@@ -11,8 +11,7 @@ const LyricsSection = ({
   trackName,
   artistName,
   albumName,
-  duration,
-  coverImage,
+  coverImage
 }) => {
   const [lyrics, setLyrics] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -20,7 +19,7 @@ const LyricsSection = ({
 
   useEffect(() => {
     const fetchLyrics = async () => {
-      if (!trackName || !artistName || !duration) return;
+      if (!trackName || !artistName) return;
 
       setLoading(true);
       setError(null);
@@ -47,7 +46,7 @@ const LyricsSection = ({
     };
 
     fetchLyrics();
-  }, [trackName, artistName, albumName, duration]);
+  }, [trackName, artistName, albumName]);
 
   if (loading) {
     return (
