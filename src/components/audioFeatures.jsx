@@ -152,7 +152,7 @@ const AudioFeatures = ({ data }) => {
 
 const BentoCard = ({ featureKey, value, config, className, showGraph, compact }) => {
   if (!config) return null;
-  const percentage = Math.round(value * 100);
+  const percentage = Math.round((value || 0) * 100);
   const Icon = config.icon;
 
   return (
