@@ -382,3 +382,15 @@ export const timePeriodMap = {
   "12month": "Last 1 year",
   "overall": "All Time"
 }
+
+export const formatDuration = (ms) => {
+  if (!ms) return null;
+  try {
+    const minutes = Math.floor(ms / 60000);
+    const seconds = ((ms % 60000) / 1000).toFixed(0);
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
