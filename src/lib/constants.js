@@ -1,0 +1,1 @@
+export const BILLBOARD_FALLBACK_IMAGE = "https://www.billboard.com/wp-content/themes/vip/pmc-billboard-2021/assets/public/lazyload-fallback.gif"
