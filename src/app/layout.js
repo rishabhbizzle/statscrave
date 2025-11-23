@@ -8,6 +8,7 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 import { ClerkProvider } from '@clerk/nextjs'
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ComparisonProvider } from '@/context/ComparisonProvider'
+import GoogleAdsense from '@/components/GoogleAdsense'
 
 const roboto = Poppins({
   weight: ["400", "500", "700", "900"],
@@ -77,6 +78,7 @@ export const metadata = {
 }
 
 
+
 export default function RootLayout({ children }) {
   return (
     <>
@@ -95,6 +97,7 @@ export default function RootLayout({ children }) {
                 {/* <SpeedInsights /> */}
                 <Toaster richColors />
                 <Footer />
+                <GoogleAdsense />
               </ComparisonProvider>
             </ThemeProvider>
           </body>
