@@ -8,7 +8,6 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 import { ClerkProvider } from '@clerk/nextjs'
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ComparisonProvider } from '@/context/ComparisonProvider'
-import Script from "next/script";
 
 const roboto = Poppins({
   weight: ["400", "500", "700", "900"],
@@ -83,12 +82,7 @@ export default function RootLayout({ children }) {
     <>
       <ClerkProvider>
         <html lang="en" suppressHydrationWarning>
-          <head>
-            <Script
-              async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4120906202604776"
-              crossorigin="anonymous"
-            />
-          </head>
+          <head />
           <body className={roboto.className}>
             <ThemeProvider
               attribute="class"
