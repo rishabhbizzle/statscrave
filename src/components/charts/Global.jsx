@@ -4,6 +4,7 @@ import Head from "@/assets/global.jpg";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
+import { BILLBOARD_FALLBACK_IMAGE } from "@/lib/constants";
 
 const Global = () => {
   const url =
@@ -119,7 +120,7 @@ const Global = () => {
                   </td>
                   <td className="w-8 h-8 md:w-10 md:h-10">
                     <img
-                      src={song.image}
+                      src={song.image || BILLBOARD_FALLBACK_IMAGE}
                       alt="cover"
                       className="w-8 h-8 md:w-10 md:h-10"
                     />
@@ -129,9 +130,6 @@ const Global = () => {
                   </td>
                   <td className="px-1 h-3 md:px-2 md:h-10 border-r-2 border-dashed">
                     {song.artist}
-                  </td>
-                  <td className="px-1 md:px-2 border-r-2 border-dashed">
-                    {song.peak_rank}
                   </td>
                   <td
                     className={

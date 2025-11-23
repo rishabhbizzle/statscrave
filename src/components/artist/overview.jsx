@@ -67,9 +67,9 @@ const ArtistOverview = ({ id, lastFmStats }) => {
       <div className="my-3 grid gap-4 md:grid-cols-2">
         {overallData &&
           overallData?.map((data, index) => (
-            <Card key={index}>
+            <Card key={index} className="bg-gradient-to-br from-primary/5 to-transparent border-none shadow-md hover:shadow-lg transition-shadow ">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
+                <CardTitle className="text-sm font-medium text-muted-foreground">
                   {data?.type}
                 </CardTitle>
                 <FaSpotify  />
@@ -101,9 +101,9 @@ const ArtistOverview = ({ id, lastFmStats }) => {
             </Card>
           ))}
           {!loading && lastFmStats && (
-            <Card>
+            <Card className="bg-gradient-to-br from-primary/5 to-transparent border-none shadow-md hover:shadow-lg transition-shadow ">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
                 Last.fm Total Streams
               </CardTitle>
               <FaLastfm className="text-2xl" />
