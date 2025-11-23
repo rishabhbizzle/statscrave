@@ -13,6 +13,7 @@ import { toast } from 'sonner'
 import { redirect } from 'next/navigation'
 import ArtistEvents from '@/components/artist/events'
 import ArtistStats from '@/components/artist/ArtistStats'
+import { ErrorBoundary } from 'react-error-boundary'
 
 
 const Artist = ({ params }) => {
@@ -54,10 +55,13 @@ const Artist = ({ params }) => {
                             <TabsTrigger value="albums">Albums</TabsTrigger>
                         </TabsList>
                         <TabsContent value="overview">
-                            <ArtistStats stats={artist?.otherStats} />
+                            <ErrorBoundary fallback={<div />}>
+                                <ArtistStats stats={artist?.otherStats} />
+                            </ErrorBoundary>
                             <ArtistOverview id={id} artist={artist} lastFmStats={artist?.lastFmStats} />
-
-                            <ArtistEvents concerts={artist?.events?.concerts} />
+                            <ErrorBoundary fallback={<div />}>
+                                <ArtistEvents concerts={artist?.events?.concerts} />
+                            </ErrorBoundary>
                             <PopularTracks id={id} />
                         </TabsContent>
                         <TabsContent value="songs">
