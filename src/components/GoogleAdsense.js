@@ -7,11 +7,11 @@ const GoogleAdsense = () => {
     const pathname = usePathname();
     const allowedPaths = ["/charts", "/records", "/updates", "/compare"];
 
-    const shouldShowAds = allowedPaths.some((path) => pathname.startsWith(path));
-    console.log("shouldShowAds", shouldShowAds)
-    if (!shouldShowAds) {
-        return null;
-    }
+    // const shouldShowAds = allowedPaths.some((path) => pathname.startsWith(path));
+    // console.log("shouldShowAds", shouldShowAds)
+    // if (!shouldShowAds) {
+    //     return null;
+    // }
 
     return (
         <Script
