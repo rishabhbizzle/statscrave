@@ -131,13 +131,11 @@ const Chart = async ({ params, searchParams }) => {
           <CardDescription>{foundChartDetails.description}</CardDescription>
         </CardHeader>
         <CardContent className="p-3 md:p-6">
-          <div className="flex justify-center w-full">
 
-            <AdUnit slot="9051040269"
-              data-ad-format="fluid"
-              data-ad-layout-key="-gw-3+1f-3d+2z"
-            />
-          </div>
+          <AdUnit slot="9051040269"
+            data-ad-format="fluid"
+            data-ad-layout-key="-gw-3+1f-3d+2z"
+          />
           {/* <Alert>
             <Info className="h-4 w-4" />
             <AlertTitle>Heads up!</AlertTitle>
@@ -154,12 +152,10 @@ const Chart = async ({ params, searchParams }) => {
               {foundChartDetails.getComponent(searchParams)}
             </Suspense>
           </Card>
-          <div className="flex justify-center w-full">
-            <AdUnit slot="9051040269"
-              data-ad-format="fluid"
-              data-ad-layout-key="-gw-3+1f-3d+2z"
-            />
-          </div>
+          <AdUnit slot="9051040269"
+            data-ad-format="fluid"
+            data-ad-layout-key="-gw-3+1f-3d+2z"
+          />
         </CardContent>
       </Card>
     </div>
