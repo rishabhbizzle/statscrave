@@ -14,6 +14,7 @@ import LastFmTopArtists from '@/components/charts/lastFmTopArtists';
 import MelonCharts from '@/components/charts/melonCharts';
 import OtherKoreanCharts from '@/components/charts/otherKoreanCharts';
 import QQMusicChart from '@/components/charts/qqMusic';
+import AdUnit from '@/components/ads/ad-unit';
 
 // Define chart details in a single array
 const chartArray = [
@@ -85,7 +86,7 @@ const chartArray = [
     title: 'QQ Music Top 100 Tracks',
     image: 'https://assets.pandaily.com/uploads/2022/02/qq.jpeg',
     description: 'The current most popular tracks on QQMusic. This chart is a property of QQMusic. We do not own any of the data presented here. All rights to them',
-    getComponent: (searchParams) => <QQMusicChart  />,
+    getComponent: (searchParams) => <QQMusicChart />,
   },
 ];
 
@@ -98,7 +99,7 @@ export async function generateMetadata({ params }) {
       title: `${chartDetails.title} - StatsCrave`,
       description: chartDetails.description,
       openGraph: {
-        images: [{url: chartDetails.image, alt: chartDetails.title}],
+        images: [{ url: chartDetails.image, alt: chartDetails.title }],
       },
       twitter: {
         card: "summary_large_image",
@@ -130,22 +131,30 @@ const Chart = async ({ params, searchParams }) => {
           <CardDescription>{foundChartDetails.description}</CardDescription>
         </CardHeader>
         <CardContent className="p-3 md:p-6">
+          <AdUnit slot="9051040269"
+            data-ad-format="fluid"
+            data-ad-layout-key="-gw-3+1f-3d+2z"
+          />
           {/* <Alert>
             <Info className="h-4 w-4" />
             <AlertTitle>Heads up!</AlertTitle>
             <AlertDescription>
-              This chart is a property of
-              <Link href="https://www.billboard.com/" className='mx-1 font-semibold' target='_blank'>
-                Billboard
-              </Link>
-              and are used for educational purposes only. We do not own any of the data presented here. All rights reserved to the respective owners.
+            This chart is a property of
+            <Link href="https://www.billboard.com/" className='mx-1 font-semibold' target='_blank'>
+            Billboard
+            </Link>
+            and are used for educational purposes only. We do not own any of the data presented here. All rights reserved to the respective owners.
             </AlertDescription>
-          </Alert> */}
+            </Alert> */}
           <Card className="">
             <Suspense fallback={<Loader component={true} />}>
               {foundChartDetails.getComponent(searchParams)}
             </Suspense>
           </Card>
+          <AdUnit slot="9051040269"
+            data-ad-format="fluid"
+            data-ad-layout-key="-gw-3+1f-3d+2z"
+          />
         </CardContent>
       </Card>
     </div>
