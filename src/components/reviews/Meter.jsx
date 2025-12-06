@@ -38,10 +38,10 @@ const Meter = ({ stats, targetName, targetType, coverImage, artistName }) => {
     const handleShare = async () => {
         setIsSharing(true);
         try {
-            const filename = `statscrave-meter-${targetName?.replace(/\s+/g, '-').toLowerCase() || 'review'}.png`;
+            const filename = `statscrave-meter-${targetName?.replace(/\s+/g, '-')?.toLowerCase() || 'review'}.png`;
             await captureAndShare(filename);
         } catch (error) {
-            toast.error("Failed to create image");
+            toast.error(error.message);
         } finally {
             setIsSharing(false);
         }

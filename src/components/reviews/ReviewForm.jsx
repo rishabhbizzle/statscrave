@@ -119,10 +119,10 @@ const ReviewForm = ({ targetId, targetType, targetName, coverImage, artistName, 
         
         setIsSharing(true);
         try {
-            const filename = `my-review-${targetName?.replace(/\s+/g, '-').toLowerCase() || 'statscrave'}.png`;
+            const filename = `my-review-${targetName?.replace(/\s+/g, '-')?.toLowerCase() || 'statscrave'}.png`;
             await captureAndShare(filename);
         } catch (error) {
-            toast.error("Failed to create image");
+            toast.error(error.message);
         } finally {
             setIsSharing(false);
         }
