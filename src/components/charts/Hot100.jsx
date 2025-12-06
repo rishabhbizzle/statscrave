@@ -5,6 +5,7 @@ import Hot from "@/assets/head.jpg";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
+import { BILLBOARD_FALLBACK_IMAGE } from "@/lib/constants";
 const Hot100 = () => {
   const url =
     "https://raw.githubusercontent.com/KoreanThinker/billboard-json/main/billboard-hot-100/recent.json";
@@ -96,9 +97,6 @@ const Hot100 = () => {
               <th className="bg-black text-white text-left px-1 md:px-2">
                 ARTIST
               </th>
-              <th className="bg-black text-white text-left px-1 md:px-2">
-                PEAK
-              </th>
               <th className="bg-black text-white text-left px-1">W.O.C</th>
             </tr>
 
@@ -112,7 +110,7 @@ const Hot100 = () => {
                 </td>
                 <td className="w-8 h-8 md:w-10 md:h-10">
                   <img
-                    src={song.image}
+                    src={song.image || BILLBOARD_FALLBACK_IMAGE}
                     alt="cover"
                     className="w-8 h-8 md:w-10 md:h-10"
                   />
@@ -122,9 +120,6 @@ const Hot100 = () => {
                 </td>
                 <td className="px-1 h-3 md:px-2 md:h-10 border-r-2 border-dashed">
                   {song.artist}
-                </td>
-                <td className="px-1 md:px-2 border-r-2 border-dashed">
-                  {song.peak_rank}
                 </td>
                 <td
                   className={

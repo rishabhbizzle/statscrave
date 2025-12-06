@@ -11,7 +11,9 @@ import Loader from '@/components/ui/loader'
 import axios from 'axios'
 import { toast } from 'sonner'
 import { redirect } from 'next/navigation'
-import ArtistSocials from '@/components/artist/socials'
+import ArtistEvents from '@/components/artist/events'
+import ArtistStats from '@/components/artist/ArtistStats'
+import { ErrorBoundary } from 'react-error-boundary'
 
 
 const Artist = ({ params }) => {
@@ -53,8 +55,13 @@ const Artist = ({ params }) => {
                             <TabsTrigger value="albums">Albums</TabsTrigger>
                         </TabsList>
                         <TabsContent value="overview">
+                            <ErrorBoundary fallback={<div />}>
+                                <ArtistStats stats={artist?.otherStats} />
+                            </ErrorBoundary>
                             <ArtistOverview id={id} artist={artist} lastFmStats={artist?.lastFmStats} />
-                            {/* <ArtistSocials id={id} /> */}
+                            <ErrorBoundary fallback={<div />}>
+                                <ArtistEvents concerts={artist?.events?.concerts} />
+                            </ErrorBoundary>
                             <PopularTracks id={id} />
                         </TabsContent>
                         <TabsContent value="songs">
