@@ -73,7 +73,13 @@ const Track = ({ params }) => {
             <ErrorBoundary
               fallback={<div />}
             >
-              <ReviewSection targetId={id} targetType="song" />
+              <ReviewSection
+                targetId={id}
+                targetType="song"
+                targetName={data?.trackDetails?.name}
+                coverImage={data?.trackDetails?.album?.images?.[0]?.url}
+                artistName={data?.trackDetails?.artists?.[0]?.name}
+              />
             </ErrorBoundary>
             <Recomendations type='track' />
           </div>
