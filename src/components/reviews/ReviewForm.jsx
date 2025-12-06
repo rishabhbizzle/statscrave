@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useUser, useAuth } from "@clerk/nextjs";
 import { toast } from "sonner";
-import { Trash2 } from 'lucide-react';
+import { Trash2, Share2 } from 'lucide-react';
 
 import { RATING_OPTIONS } from '@/constants/reviewConstants';
 import { Card, CardContent } from '@/components/ui/card';
@@ -17,14 +17,18 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { ShareableReviewCard } from './ShareableCards';
+import { useShareImage } from '@/hooks/useShareImage';
 
-const ReviewForm = ({ targetId, targetType, onReviewSubmitted, onReviewDeleted, initialReview }) => {
+const ReviewForm = ({ targetId, targetType, targetName, coverImage, artistName, onReviewSubmitted, onReviewDeleted, initialReview }) => {
     const { user, isLoaded } = useUser();
     const { getToken } = useAuth();
     const [rating, setRating] = useState(initialReview?.rating || null);
     const [reviewText, setReviewText] = useState(initialReview?.reviewText || '');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
+    const [isSharing, setIsSharing] = useState(false);
+    const { elementRef: shareRef, captureAndShare } = useShareImage();
 
     useEffect(() => {
         if (initialReview) {
@@ -110,86 +114,126 @@ const ReviewForm = ({ targetId, targetType, onReviewSubmitted, onReviewDeleted, 
         }
     };
 
+    const handleShare = async () => {
+        if (!initialReview) return;
+        
+        setIsSharing(true);
+        try {
+            const filename = `my-review-${targetName?.replace(/\s+/g, '-').toLowerCase() || 'statscrave'}.png`;
+            await captureAndShare(filename);
+        } catch (error) {
+            toast.error("Failed to create image");
+        } finally {
+            setIsSharing(false);
+        }
+    };
+
     return (
-        <Card>
-            <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center gap-3">
-                        <img src={user.imageUrl} alt={user.fullName} className="w-10 h-10 rounded-full" />
-                        <div>
-                            <h4 className="font-semibold text-foreground">{user.fullName}</h4>
+        <>
+            {/* Hidden shareable card for capture */}
+            {initialReview && (
+                <ShareableReviewCard
+                    ref={shareRef}
+                    review={initialReview}
+                    targetName={targetName}
+                    targetType={targetType}
+                    coverImage={coverImage}
+                    artistName={artistName}
+                    user={user}
+                />
+            )}
+
+            <Card>
+                <CardContent className="p-6">
+                    <div className="flex items-center justify-between mb-6">
+                        <div className="flex items-center gap-3">
+                            <img src={user.imageUrl} alt={user.fullName} className="w-10 h-10 rounded-full" />
+                            <div>
+                                <h4 className="font-semibold text-foreground">{user.fullName}</h4>
+                            </div>
                         </div>
-                    </div>
-                    {initialReview && (
-                        <AlertDialog>
-                            <AlertDialogTrigger asChild>
+                        {initialReview && (
+                            <div className="flex items-center gap-1">
                                 <button
                                     type="button"
-                                    disabled={isDeleting}
-                                    className="text-muted-foreground hover:text-destructive transition-colors p-2 rounded-lg hover:bg-destructive/10 disabled:opacity-50"
-                                    title="Delete review"
+                                    onClick={handleShare}
+                                    disabled={isSharing}
+                                    className="text-muted-foreground hover:text-primary transition-colors p-2 rounded-lg hover:bg-primary/10 disabled:opacity-50"
+                                    title="Share review"
                                 >
-                                    <Trash2 className="w-4 h-4" />
+                                    <Share2 className="w-4 h-4" />
                                 </button>
-                            </AlertDialogTrigger>
-                            <AlertDialogContent>
-                                <AlertDialogHeader>
-                                    <AlertDialogTitle>Delete Review</AlertDialogTitle>
-                                    <AlertDialogDescription>
-                                        Are you sure you want to delete your review? This action cannot be undone.
-                                    </AlertDialogDescription>
-                                </AlertDialogHeader>
-                                <AlertDialogFooter>
-                                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                    <AlertDialogAction 
-                                        onClick={handleDelete}
-                                        className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                                    >
-                                        Delete
-                                    </AlertDialogAction>
-                                </AlertDialogFooter>
-                            </AlertDialogContent>
-                        </AlertDialog>
-                    )}
-                </div>
+                                <AlertDialog>
+                                    <AlertDialogTrigger asChild>
+                                        <button
+                                            type="button"
+                                            disabled={isDeleting}
+                                            className="text-muted-foreground hover:text-destructive transition-colors p-2 rounded-lg hover:bg-destructive/10 disabled:opacity-50"
+                                            title="Delete review"
+                                        >
+                                            <Trash2 className="w-4 h-4" />
+                                        </button>
+                                    </AlertDialogTrigger>
+                                    <AlertDialogContent>
+                                        <AlertDialogHeader>
+                                            <AlertDialogTitle>Delete Review</AlertDialogTitle>
+                                            <AlertDialogDescription>
+                                                Are you sure you want to delete your review? This action cannot be undone.
+                                            </AlertDialogDescription>
+                                        </AlertDialogHeader>
+                                        <AlertDialogFooter>
+                                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                            <AlertDialogAction 
+                                                onClick={handleDelete}
+                                                className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                                            >
+                                                Delete
+                                            </AlertDialogAction>
+                                        </AlertDialogFooter>
+                                    </AlertDialogContent>
+                                </AlertDialog>
+                            </div>
+                        )}
+                    </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
-                    {RATING_OPTIONS.map((option) => (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                    <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                        {RATING_OPTIONS.map((option) => (
+                            <button
+                                key={option.value}
+                                type="button"
+                                onClick={() => setRating(option.value)}
+                                className={`py-2 px-1 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 ${
+                                    rating === option.value 
+                                        ? `${option.bg} text-white ring-2 ring-primary/20` 
+                                        : `bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground`
+                                }`}
+                            >
+                                {option.label}
+                            </button>
+                        ))}
+                    </div>
+
+                    <textarea
+                        value={reviewText}
+                        onChange={(e) => setReviewText(e.target.value)}
+                        placeholder="Write your review here..."
+                        className="w-full bg-background border border-border rounded-lg p-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary min-h-[100px]"
+                    />
+
+                    <div className="flex justify-end">
                         <button
-                            key={option.value}
-                            type="button"
-                            onClick={() => setRating(option.value)}
-                            className={`py-2 px-1 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 ${
-                                rating === option.value 
-                                    ? `${option.bg} text-white ring-2 ring-primary/20` 
-                                    : `bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground`
-                            }`}
+                            type="submit"
+                            disabled={isSubmitting}
+                            className="bg-primary text-primary-foreground px-6 py-2 rounded-full font-semibold text-sm hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                         >
-                            {option.label}
+                            {isSubmitting ? 'Posting...' : (initialReview ? 'Update Review' : 'Post Review')}
                         </button>
-                    ))}
-                </div>
-
-                <textarea
-                    value={reviewText}
-                    onChange={(e) => setReviewText(e.target.value)}
-                    placeholder="Write your review here..."
-                    className="w-full bg-background border border-border rounded-lg p-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary min-h-[100px]"
-                />
-
-                <div className="flex justify-end">
-                    <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="bg-primary text-primary-foreground px-6 py-2 rounded-full font-semibold text-sm hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                    >
-                        {isSubmitting ? 'Posting...' : (initialReview ? 'Update Review' : 'Post Review')}
-                    </button>
-                </div>
-            </form>
-            </CardContent>
-        </Card>
+                    </div>
+                </form>
+                </CardContent>
+            </Card>
+        </>
     );
 };
 
