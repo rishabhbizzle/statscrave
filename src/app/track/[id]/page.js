@@ -8,6 +8,7 @@ import Loader from '@/components/ui/loader'
 import axios from 'axios'
 import AudioFeatures from '@/components/audioFeatures'
 import dynamic from 'next/dynamic'
+import ReviewSection from '@/components/reviews/ReviewSection'
 import { toast } from 'sonner'
 import { Info } from 'lucide-react'
 import LyricsSection from '@/components/LyricsSection'
@@ -68,6 +69,11 @@ const Track = ({ params }) => {
                 duration={data?.trackDetails?.duration_ms}
                 coverImage={data?.trackDetails?.album?.images?.[0]?.url}
               />
+            </ErrorBoundary>
+            <ErrorBoundary
+              fallback={<div />}
+            >
+              <ReviewSection targetId={id} targetType="song" />
             </ErrorBoundary>
             <Recomendations type='track' />
           </div>
