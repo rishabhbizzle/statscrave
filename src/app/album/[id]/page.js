@@ -10,6 +10,7 @@ import axios from 'axios'
 import { toast } from 'sonner'
 import dynamic from 'next/dynamic'
 import ReviewSection from '@/components/reviews/ReviewSection'
+import { ErrorBoundary } from 'react-error-boundary'
 
 const Recomendations = dynamic(() => import('../../../components/recomendations.jsx'), {
   loading: () => <Loader component={true} />,
@@ -53,7 +54,11 @@ const Album = ({ params }) => {
               <StreamingDetails streamingData={data?.streamingData} type='album' />
             )}
             <OtherDetails details={data?.albumDetails} type='album' />
-            <ReviewSection targetId={id} targetType="album" />
+            <ErrorBoundary
+              fallback={<div />}
+            >
+              <ReviewSection targetId={id} targetType="album" />
+            </ErrorBoundary>
             <Recomendations type='album' />
           </div>
         </div>

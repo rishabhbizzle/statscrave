@@ -2,21 +2,37 @@
 import React, { useEffect, useState } from 'react';
 import { useUser, useAuth } from "@clerk/nextjs";
 import { toast } from "sonner";
+import { Trash2 } from 'lucide-react';
 
 import { RATING_OPTIONS } from '@/constants/reviewConstants';
 import { Card, CardContent } from '@/components/ui/card';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
-const ReviewForm = ({ targetId, targetType, onReviewSubmitted, initialReview }) => {
+const ReviewForm = ({ targetId, targetType, onReviewSubmitted, onReviewDeleted, initialReview }) => {
     const { user, isLoaded } = useUser();
     const { getToken } = useAuth();
     const [rating, setRating] = useState(initialReview?.rating || null);
     const [reviewText, setReviewText] = useState(initialReview?.reviewText || '');
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isDeleting, setIsDeleting] = useState(false);
 
     useEffect(() => {
         if (initialReview) {
             setRating(initialReview.rating);
             setReviewText(initialReview.reviewText);
+        } else {
+            setRating(null);
+            setReviewText('');
         }
     }, [initialReview]);
 
@@ -58,8 +74,6 @@ const ReviewForm = ({ targetId, targetType, onReviewSubmitted, initialReview }) 
 
             if (onReviewSubmitted) await onReviewSubmitted(data.review);
             toast.success("Review submitted!");
-            setRating(null);
-            setReviewText('');
 
         } catch (error) {
             toast.error(error.message);
@@ -68,14 +82,75 @@ const ReviewForm = ({ targetId, targetType, onReviewSubmitted, initialReview }) 
         }
     };
 
+    const handleDelete = async () => {
+        if (!initialReview?._id) return;
+        
+        setIsDeleting(true);
+        try {
+            const token = await getToken();
+            const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/reviews/${initialReview._id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.message || "Failed to delete review");
+
+            toast.success("Review deleted!");
+            setRating(null);
+            setReviewText('');
+            if (onReviewDeleted) await onReviewDeleted();
+
+        } catch (error) {
+            toast.error(error.message);
+        } finally {
+            setIsDeleting(false);
+        }
+    };
+
     return (
         <Card>
             <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-6">
-                    <img src={user.imageUrl} alt={user.fullName} className="w-10 h-10 rounded-full" />
-                    <div>
-                        <h4 className="font-semibold text-foreground">{user.fullName}</h4>
+                <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center gap-3">
+                        <img src={user.imageUrl} alt={user.fullName} className="w-10 h-10 rounded-full" />
+                        <div>
+                            <h4 className="font-semibold text-foreground">{user.fullName}</h4>
+                        </div>
                     </div>
+                    {initialReview && (
+                        <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                                <button
+                                    type="button"
+                                    disabled={isDeleting}
+                                    className="text-muted-foreground hover:text-destructive transition-colors p-2 rounded-lg hover:bg-destructive/10 disabled:opacity-50"
+                                    title="Delete review"
+                                >
+                                    <Trash2 className="w-4 h-4" />
+                                </button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                                <AlertDialogHeader>
+                                    <AlertDialogTitle>Delete Review</AlertDialogTitle>
+                                    <AlertDialogDescription>
+                                        Are you sure you want to delete your review? This action cannot be undone.
+                                    </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                    <AlertDialogAction 
+                                        onClick={handleDelete}
+                                        className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                                    >
+                                        Delete
+                                    </AlertDialogAction>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
+                    )}
                 </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -109,7 +184,7 @@ const ReviewForm = ({ targetId, targetType, onReviewSubmitted, initialReview }) 
                         disabled={isSubmitting}
                         className="bg-primary text-primary-foreground px-6 py-2 rounded-full font-semibold text-sm hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                     >
-                        {isSubmitting ? 'Posting...' : 'Post Review'}
+                        {isSubmitting ? 'Posting...' : (initialReview ? 'Update Review' : 'Post Review')}
                     </button>
                 </div>
             </form>

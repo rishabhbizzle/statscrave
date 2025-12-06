@@ -74,6 +74,13 @@ const ReviewSection = ({ targetId, targetType }) => {
         await fetchUserReview();
     };
 
+    const handleReviewDeleted = async () => {
+        setUserReview(null);
+        setPage(1);
+        setSort('newest');
+        await fetchReviews(1, 'newest');
+    };
+
     const handleLoadMore = async () => {
         const nextPage = page + 1;
         setPage(nextPage);
@@ -100,6 +107,7 @@ const ReviewSection = ({ targetId, targetType }) => {
                             targetId={targetId} 
                             targetType={targetType} 
                             onReviewSubmitted={handleReviewSubmitted}
+                            onReviewDeleted={handleReviewDeleted}
                             initialReview={userReview}
                         />
                     </div>
