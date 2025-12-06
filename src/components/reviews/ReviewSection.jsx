@@ -2,13 +2,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Meter from './Meter';
 import ReviewForm from './ReviewForm';
-import ReviewList from './ReviewList';
+import ReviewList, { ReviewListSkeleton } from './ReviewList';
 import { Loader2 } from 'lucide-react';
 
-import { useUser } from "@clerk/nextjs";
+import { useUser, useAuth } from "@clerk/nextjs";
 
 const ReviewSection = ({ targetId, targetType }) => {
     const { user } = useUser();
+    const { getToken } = useAuth();
     const [reviews, setReviews] = useState([]);
     const [stats, setStats] = useState({ total: 0, counts: {} });
     const [loading, setLoading] = useState(true);
@@ -21,7 +22,12 @@ const ReviewSection = ({ targetId, targetType }) => {
     const fetchUserReview = useCallback(async () => {
         if (!user) return;
         try {
-            const res = await fetch(`/api/reviews/user?targetId=${targetId}`);
+            const token = await getToken();
+            const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/reviews/user?targetId=${targetId}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
             const data = await res.json();
             if (data.success) {
                 setUserReview(data.review);
@@ -29,14 +35,14 @@ const ReviewSection = ({ targetId, targetType }) => {
         } catch (error) {
             console.error("Failed to fetch user review:", error);
         }
-    }, [targetId, user]);
+    }, [targetId, user, getToken]);
 
     const fetchReviews = useCallback(async (pageNum, sortOption) => {
         try {
             if (pageNum === 1) setLoading(true);
             else setIsFetchingMore(true);
 
-            const res = await fetch(`/api/reviews?targetId=${targetId}&page=${pageNum}&limit=25&sort=${sortOption}`);
+            const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/reviews?targetId=${targetId}&page=${pageNum}&limit=25&sort=${sortOption}`);
             const data = await res.json();
             
             if (data.success) {
@@ -46,7 +52,7 @@ const ReviewSection = ({ targetId, targetType }) => {
                     setReviews(prev => [...prev, ...data.reviews]);
                 }
                 setStats(data.stats);
-                setHasMore(data.pagination.hasMore);
+                setHasMore(data?.pagination?.hasMore);
             }
         } catch (error) {
             console.error("Failed to fetch reviews:", error);
@@ -61,18 +67,17 @@ const ReviewSection = ({ targetId, targetType }) => {
         fetchUserReview();
     }, [fetchReviews, fetchUserReview, sort]);
 
-    const handleReviewSubmitted = (newReview) => {
-        // Refresh to show new review at top (if newest) or just re-fetch
+    const handleReviewSubmitted = async (newReview) => {
         setPage(1);
         setSort('newest');
-        fetchReviews(1, 'newest');
-        fetchUserReview();
+        await fetchReviews(1, 'newest');
+        await fetchUserReview();
     };
 
-    const handleLoadMore = () => {
+    const handleLoadMore = async () => {
         const nextPage = page + 1;
         setPage(nextPage);
-        fetchReviews(nextPage, sort);
+        await fetchReviews(nextPage, sort);
     };
 
     return (
@@ -88,7 +93,7 @@ const ReviewSection = ({ targetId, targetType }) => {
                 {/* Right Column: Reviews & Form */}
                 <div className="md:col-span-2 space-y-8">
                     <div>
-                        <h3 className="text-xl font-bold text-white mb-4">
+                        <h3 className="text-xl font-bold text-foreground mb-4">
                             {userReview ? "Update Your Review" : "Write a Review"}
                         </h3>
                         <ReviewForm 
@@ -101,14 +106,14 @@ const ReviewSection = ({ targetId, targetType }) => {
 
                     <div>
                         <div className="flex items-center justify-between mb-6">
-                            <h3 className="text-xl font-bold text-white">Reviews</h3>
+                            <h3 className="text-xl font-bold text-foreground">Reviews</h3>
                             <select 
                                 value={sort} 
                                 onChange={(e) => {
                                     setSort(e.target.value);
                                     setPage(1);
                                 }}
-                                className="bg-black/40 border border-white/10 text-white text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block p-2.5"
+                                className="bg-secondary border border-border text-foreground text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5"
                             >
                                 <option value="newest">Newest First</option>
                                 <option value="most_liked">Most Liked</option>
@@ -116,9 +121,7 @@ const ReviewSection = ({ targetId, targetType }) => {
                         </div>
                         
                         {loading && page === 1 ? (
-                            <div className="flex justify-center py-10">
-                                <Loader2 className="w-8 h-8 animate-spin text-gray-500" />
-                            </div>
+                            <ReviewListSkeleton count={3} />
                         ) : (
                             <>
                                 <ReviewList reviews={reviews} />
@@ -128,7 +131,7 @@ const ReviewSection = ({ targetId, targetType }) => {
                                         <button
                                             onClick={handleLoadMore}
                                             disabled={isFetchingMore}
-                                            className="px-6 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-sm font-medium text-white transition-colors disabled:opacity-50"
+                                            className="px-6 py-2 bg-muted hover:bg-muted/80 border border-border rounded-full text-sm font-medium text-foreground transition-colors disabled:opacity-50"
                                         >
                                             {isFetchingMore ? (
                                                 <span className="flex items-center gap-2">

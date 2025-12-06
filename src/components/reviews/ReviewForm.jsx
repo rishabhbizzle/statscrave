@@ -1,12 +1,14 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import { useUser } from "@clerk/nextjs";
+import { useUser, useAuth } from "@clerk/nextjs";
 import { toast } from "sonner";
 
 import { RATING_OPTIONS } from '@/constants/reviewConstants';
+import { Card, CardContent } from '@/components/ui/card';
 
 const ReviewForm = ({ targetId, targetType, onReviewSubmitted, initialReview }) => {
     const { user, isLoaded } = useUser();
+    const { getToken } = useAuth();
     const [rating, setRating] = useState(initialReview?.rating || null);
     const [reviewText, setReviewText] = useState(initialReview?.reviewText || '');
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -20,9 +22,11 @@ const ReviewForm = ({ targetId, targetType, onReviewSubmitted, initialReview }) 
 
     if (!isLoaded) return null;
     if (!user) return (
-        <div className="p-6 bg-black/40 border border-white/10 rounded-xl text-center">
-            <p className="text-gray-400">Please sign in to leave a review.</p>
-        </div>
+        <Card>
+            <CardContent className="p-6 text-center">
+                <p className="text-muted-foreground">Please sign in to leave a review.</p>
+            </CardContent>
+        </Card>
     );
 
     const handleSubmit = async (e) => {
@@ -34,9 +38,13 @@ const ReviewForm = ({ targetId, targetType, onReviewSubmitted, initialReview }) 
 
         setIsSubmitting(true);
         try {
-            const res = await fetch('/api/reviews', {
+            const token = await getToken();
+            const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/reviews`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
                 body: JSON.stringify({
                     targetId,
                     targetType,
@@ -46,12 +54,12 @@ const ReviewForm = ({ targetId, targetType, onReviewSubmitted, initialReview }) 
             });
 
             const data = await res.json();
-            if (!res.ok) throw new Error(data.error || "Failed to submit review");
+            if (!res.ok) throw new Error(data.message || "Failed to submit review");
 
+            if (onReviewSubmitted) await onReviewSubmitted(data.review);
             toast.success("Review submitted!");
             setRating(null);
             setReviewText('');
-            if (onReviewSubmitted) onReviewSubmitted(data.review);
 
         } catch (error) {
             toast.error(error.message);
@@ -61,14 +69,14 @@ const ReviewForm = ({ targetId, targetType, onReviewSubmitted, initialReview }) 
     };
 
     return (
-        <div className="bg-black/40 p-6 rounded-xl border border-white/10">
-            <div className="flex items-center gap-3 mb-6">
-                <img src={user.imageUrl} alt={user.fullName} className="w-10 h-10 rounded-full" />
-                <div>
-                    <h4 className="font-semibold text-white">{user.fullName}</h4>
-                    <p className="text-xs text-gray-400">@{user.username}</p>
+        <Card>
+            <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-6">
+                    <img src={user.imageUrl} alt={user.fullName} className="w-10 h-10 rounded-full" />
+                    <div>
+                        <h4 className="font-semibold text-foreground">{user.fullName}</h4>
+                    </div>
                 </div>
-            </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
@@ -79,8 +87,8 @@ const ReviewForm = ({ targetId, targetType, onReviewSubmitted, initialReview }) 
                             onClick={() => setRating(option.value)}
                             className={`py-2 px-1 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 ${
                                 rating === option.value 
-                                    ? `${option.bg} text-white ring-2 ring-white/20` 
-                                    : `bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white`
+                                    ? `${option.bg} text-white ring-2 ring-primary/20` 
+                                    : `bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground`
                             }`}
                         >
                             {option.label}
@@ -92,20 +100,21 @@ const ReviewForm = ({ targetId, targetType, onReviewSubmitted, initialReview }) 
                     value={reviewText}
                     onChange={(e) => setReviewText(e.target.value)}
                     placeholder="Write your review here..."
-                    className="w-full bg-black/20 border border-white/10 rounded-lg p-3 text-white placeholder:text-gray-500 focus:outline-none focus:border-white/30 min-h-[100px]"
+                    className="w-full bg-background border border-border rounded-lg p-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary min-h-[100px]"
                 />
 
                 <div className="flex justify-end">
                     <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="bg-white text-black px-6 py-2 rounded-full font-semibold text-sm hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                        className="bg-primary text-primary-foreground px-6 py-2 rounded-full font-semibold text-sm hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                     >
                         {isSubmitting ? 'Posting...' : 'Post Review'}
                     </button>
                 </div>
             </form>
-        </div>
+            </CardContent>
+        </Card>
     );
 };
 
