@@ -7,7 +7,7 @@ import { Loader2 } from 'lucide-react';
 
 import { useUser, useAuth } from "@clerk/nextjs";
 
-const ReviewSection = ({ targetId, targetType }) => {
+const ReviewSection = ({ targetId, targetType, targetName, coverImage, artistName }) => {
     const { user } = useUser();
     const { getToken } = useAuth();
     const [reviews, setReviews] = useState([]);
@@ -93,7 +93,7 @@ const ReviewSection = ({ targetId, targetType }) => {
                 {/* Left Column: Meter */}
                 <div className="md:col-span-1">
                     <div className="sticky top-24">
-                        <Meter stats={stats} />
+                        <Meter stats={stats} targetName={targetName} targetType={targetType} coverImage={coverImage} artistName={artistName} />
                     </div>
                 </div>
 
@@ -105,7 +105,10 @@ const ReviewSection = ({ targetId, targetType }) => {
                         </h3>
                         <ReviewForm 
                             targetId={targetId} 
-                            targetType={targetType} 
+                            targetType={targetType}
+                            targetName={targetName}
+                            coverImage={coverImage}
+                            artistName={artistName}
                             onReviewSubmitted={handleReviewSubmitted}
                             onReviewDeleted={handleReviewDeleted}
                             initialReview={userReview}
