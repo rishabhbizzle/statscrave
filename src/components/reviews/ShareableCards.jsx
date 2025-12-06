@@ -162,7 +162,7 @@ export const ShareableReviewCard = React.forwardRef(({
                                 lineHeight: '1.5',
                                 wordBreak: 'break-word',
                             }}>
-                                "{reviewText}"
+                                &quot;{reviewText}&quot;
                             </span>
                         </div>
                     )}
