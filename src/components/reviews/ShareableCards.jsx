@@ -20,7 +20,7 @@ export const ShareableReviewCard = React.forwardRef(({
     user 
 }, ref) => {
     const badge = RATING_CONFIG[review?.rating];
-    const reviewText = truncateText(review?.reviewText, 180);
+    const reviewText = truncateText(review?.reviewText, 600);
     
     return (
         <div 
@@ -63,7 +63,7 @@ export const ShareableReviewCard = React.forwardRef(({
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    background: 'rgba(0, 0, 0, 0.95)',
+                    background: 'rgba(13, 13, 13, 0.96)',
                 }}
             />
 
@@ -272,7 +272,7 @@ export const ShareableMeterCard = React.forwardRef(({
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    background: 'rgba(0, 0, 0, 0.95)',
+                    background: 'rgba(13, 13, 13, 0.96)',
                 }}
             />
 
