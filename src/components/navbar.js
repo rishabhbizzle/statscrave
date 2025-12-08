@@ -12,6 +12,7 @@ import { UserButton, useUser, useSession } from "@clerk/nextjs";
 import { SignIn, SignInButton } from "@clerk/clerk-react";
 import { UserMenu } from "./navbar/user-menu";
 import { usePathname } from "next/navigation";
+import { ThemeSwitcher } from "./theme-switcher";
 
 
 export default function Navbar() {
@@ -26,9 +27,9 @@ export default function Navbar() {
         <MobileNav />
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
           <div className="w-auto flex-1 md:w-auto md:flex-none">
-          {path !== '/' && (
-            <CommandMenu />
-          )}
+            {path !== '/' && (
+              <CommandMenu />
+            )}
           </div>
           <nav className="flex items-center justify-end gap-2">
             {/* <Link
@@ -65,6 +66,8 @@ export default function Navbar() {
                 <span className="sr-only">Twitter</span>
               </div>
             </Link>
+
+            <ThemeSwitcher />
 
             {isAuthenticated ? (
               <UserMenu user={user} />

@@ -3,7 +3,7 @@
 import { themes } from "@/hooks/themes";
 import { useConfig } from "@/hooks/use-config";
 import { useTheme } from "next-themes";
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useState, useEffect } from "react";
 import {
   ResponsiveContainer,
   XAxis,
@@ -50,6 +50,31 @@ export function BarChartComponent({ data, formatted, artistName }) {
   const [config] = useConfig();
   const theme = themes.find((theme) => theme.name === config.theme);
   const ref = useRef(null);
+
+  // Get primary color from CSS variable
+  const [primaryColor, setPrimaryColor] = useState("#22C55E");
+  
+  useEffect(() => {
+    const updateColor = () => {
+      const root = document.documentElement;
+      const computedStyle = getComputedStyle(root);
+      const hslValue = computedStyle.getPropertyValue('--primary').trim();
+      if (hslValue) {
+        setPrimaryColor(`hsl(${hslValue})`);
+      }
+    };
+    
+    updateColor();
+    
+    // Listen for theme changes
+    const observer = new MutationObserver(updateColor);
+    observer.observe(document.documentElement, { 
+      attributes: true, 
+      attributeFilter: ['data-theme', 'class'] 
+    });
+    
+    return () => observer.disconnect();
+  }, []);
 
   const [image, takeScreenShot] = useScreenshot({
     type: "image/jpeg",
@@ -100,7 +125,7 @@ export function BarChartComponent({ data, formatted, artistName }) {
               align="right"
               wrapperStyle={{ lineHeight: "20px" }}
               formatter={(value, entry, index) => (
-                <span style={{ color: "#22C55E" }}>{value}</span>
+                <span style={{ color: primaryColor }}>{value}</span>
               )}
             />
             <Brush
@@ -118,9 +143,9 @@ export function BarChartComponent({ data, formatted, artistName }) {
               type="monotone"
               dataKey="streams"
               fillOpacity={0.5}
-              fill="#22C55E"
-              stroke="#22C55E"
-              dot={{ fill: "#22C55E", stroke: "#22C55E" }}
+              fill={primaryColor}
+              stroke={primaryColor}
+              dot={{ fill: primaryColor, stroke: primaryColor }}
             />
           </AreaChart>
         </ResponsiveContainer>
