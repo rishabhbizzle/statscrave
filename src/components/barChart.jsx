@@ -52,7 +52,7 @@ export function BarChartComponent({ data, formatted, artistName }) {
   const ref = useRef(null);
 
   // Get primary color from CSS variable
-  const [primaryColor, setPrimaryColor] = useState("#22C55E");
+  const [primaryColor, setPrimaryColor] = useState("#3e9eff");
   
   useEffect(() => {
     const updateColor = () => {
