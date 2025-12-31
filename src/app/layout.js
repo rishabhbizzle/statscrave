@@ -88,14 +88,14 @@ export default function RootLayout({ children }) {
           <body className={roboto.className}>
             <ThemeProvider
               attribute="class"
-              defaultTheme="system"
+              defaultTheme="dark"
               enableSystem
             >
               <ComparisonProvider>
                 <Navbar />
                 {children}
                 {/* <SpeedInsights /> */}
-                <Toaster richColors />
+                <Toaster theme='dark' richColors />
                 <Footer />
                 <GoogleAdsense />
               </ComparisonProvider>
