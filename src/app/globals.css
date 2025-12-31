@@ -1,59 +1,1789 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
 
-
-
+/* ============================================
+   THEME SWITCHER - 5 Modern Themes for 2026
+   ============================================ */
 
 @layer base {
+  /* Default Theme: Glass Blue (Apple vibes) */
   :root {
+    --background: 0 0% 100%;
+    --foreground: 224 71.4% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71.4% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71.4% 4.1%;
+    --primary: 210 100% 62%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220.9 39.3% 11%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 210 100% 62%;
+    --radius: 0.75rem;
+    --theme-name: "Glass Blue";
+  }
+
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+    --card: 224 71% 6%;
+    --card-foreground: 213 31% 91%;
+    --popover: 224 71% 6%;
+    --popover-foreground: 213 31% 91%;
+    --primary: 210 100% 62%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 216 34% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 216 34% 17%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+    --ring: 210 100% 62%;
+  }
+
+  /* ============================================
+     THEME 1: Midnight Teal (Spotify-esque)
+     ============================================ */
+  [data-theme="midnight-teal"] {
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+    --primary: 190 95% 39%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 190 95% 39%;
+    --radius: 0.625rem;
+  }
+
+  [data-theme="midnight-teal"].dark {
+    --background: 222.2 47.4% 3%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 47.4% 6%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 47.4% 6%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 190 95% 50%;
+    --primary-foreground: 222.2 47.4% 1.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 190 95% 50%;
+  }
+
+  /* ============================================
+     THEME 2: Electric Purple / Violet
+     ============================================ */
+  [data-theme="electric-purple"] {
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
-    --primary: 142.1 76.2% 36.3%;
-    --primary-foreground: 355.7 100% 97.3%;
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 210 20% 98%;
     --secondary: 240 4.8% 95.9%;
     --secondary-foreground: 240 5.9% 10%;
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --accent: 262.1 83.3% 57.8%;
+    --accent-foreground: 210 20% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
-    --ring: 142.1 76.2% 36.3%;
+    --ring: 262.1 83.3% 57.8%;
+    --radius: 0.75rem;
+  }
+
+  [data-theme="electric-purple"].dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 6% 8%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 6% 8%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 262.1 83.3% 57.8%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 262.1 83.3% 57.8%;
+  }
+
+  /* ============================================
+     THEME 3: Rose Gold / Warm Minimal
+     ============================================ */
+  [data-theme="rose-gold"] {
+    --background: 0 0% 100%;
+    --foreground: 20 14.3% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 20 14.3% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14.3% 4.1%;
+    --primary: 12 76% 61%;
+    --primary-foreground: 60 9.1% 97.8%;
+    --secondary: 60 4.8% 95.9%;
+    --secondary-foreground: 24 9.8% 10%;
+    --muted: 60 4.8% 95.9%;
+    --muted-foreground: 25 5.3% 44.7%;
+    --accent: 60 4.8% 95.9%;
+    --accent-foreground: 24 9.8% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 20 5.9% 90%;
+    --input: 20 5.9% 90%;
+    --ring: 12 76% 61%;
     --radius: 0.5rem;
   }
 
-  .dark {
+  [data-theme="rose-gold"].dark {
     --background: 20 14.3% 4.1%;
+    --foreground: 60 9.1% 97.8%;
+    --card: 20 14.3% 6%;
+    --card-foreground: 60 9.1% 97.8%;
+    --popover: 20 14.3% 6%;
+    --popover-foreground: 60 9.1% 97.8%;
+    --primary: 12 76% 61%;
+    --primary-foreground: 60 9.1% 97.8%;
+    --secondary: 12 6.5% 15.1%;
+    --secondary-foreground: 60 9.1% 97.8%;
+    --muted: 12 6.5% 15.1%;
+    --muted-foreground: 24 5.4% 63.9%;
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 60 9.1% 97.8%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 12 6.5% 15.1%;
+    --input: 12 6.5% 15.1%;
+    --ring: 12 76% 61%;
+  }
+
+  /* ============================================
+     THEME 4: Neo Brutalist (Bold 2026 Trend)
+     ============================================ */
+  [data-theme="neo-brutal"] {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 47 100% 50%;
+    --primary-foreground: 0 0% 3.9%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 47 100% 50%;
+    --accent-foreground: 0 0% 3.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 20%;
+    --input: 0 0% 89.8%;
+    --ring: 47 100% 50%;
+    --radius: 0px;
+  }
+
+  [data-theme="neo-brutal"].dark {
+    --background: 0 0% 3%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 47 100% 50%;
+    --primary-foreground: 0 0% 3.9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 47 100% 50%;
+    --accent-foreground: 0 0% 3.9%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 20%;
+    --input: 0 0% 14.9%;
+    --ring: 47 100% 50%;
+  }
+
+  /* ============================================
+     THEME 5: Glass Morphism Blue (Apple vibes)
+     ============================================ */
+  [data-theme="glass-blue"] {
+    --background: 0 0% 100%;
+    --foreground: 224 71.4% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71.4% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71.4% 4.1%;
+    --primary: 210 100% 62%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220.9 39.3% 11%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 210 100% 62%;
+    --radius: 0.75rem;
+  }
+
+  [data-theme="glass-blue"].dark {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+    --card: 224 71% 6%;
+    --card-foreground: 213 31% 91%;
+    --popover: 224 71% 6%;
+    --popover-foreground: 213 31% 91%;
+    --primary: 210 100% 62%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 216 34% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 216 34% 17%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+    --ring: 210 100% 62%;
+  }
+
+  /* ============================================
+     THEME 6: Catppuccin Mocha (Popular Dev Theme)
+     ============================================ */
+  [data-theme="catppuccin"] {
+    --background: 220 23% 95%;
+    --foreground: 234 16% 35%;
+    --card: 220 23% 95%;
+    --card-foreground: 234 16% 35%;
+    --popover: 220 23% 95%;
+    --popover-foreground: 234 16% 35%;
+    --primary: 266 85% 58%;
+    --primary-foreground: 220 23% 95%;
+    --secondary: 223 16% 83%;
+    --secondary-foreground: 234 16% 35%;
+    --muted: 223 16% 83%;
+    --muted-foreground: 233 10% 47%;
+    --accent: 266 85% 58%;
+    --accent-foreground: 220 23% 95%;
+    --destructive: 347 87% 44%;
+    --destructive-foreground: 220 23% 95%;
+    --border: 225 14% 77%;
+    --input: 225 14% 77%;
+    --ring: 266 85% 58%;
+    --radius: 0.5rem;
+  }
+
+  [data-theme="catppuccin"].dark {
+    --background: 240 21% 15%;
+    --foreground: 226 64% 88%;
+    --card: 240 21% 12%;
+    --card-foreground: 226 64% 88%;
+    --popover: 240 21% 12%;
+    --popover-foreground: 226 64% 88%;
+    --primary: 267 84% 81%;
+    --primary-foreground: 240 21% 15%;
+    --secondary: 237 16% 23%;
+    --secondary-foreground: 226 64% 88%;
+    --muted: 237 16% 23%;
+    --muted-foreground: 227 35% 80%;
+    --accent: 267 84% 81%;
+    --accent-foreground: 240 21% 15%;
+    --destructive: 343 81% 75%;
+    --destructive-foreground: 240 21% 15%;
+    --border: 237 16% 23%;
+    --input: 237 16% 23%;
+    --ring: 267 84% 81%;
+  }
+
+  /* ============================================
+     THEME 7: Dracula (Classic Dark Theme)
+     ============================================ */
+  [data-theme="dracula"] {
+    --background: 0 0% 100%;
+    --foreground: 231 15% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 231 15% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 231 15% 18%;
+    --primary: 265 89% 78%;
+    --primary-foreground: 231 15% 18%;
+    --secondary: 232 14% 93%;
+    --secondary-foreground: 231 15% 18%;
+    --muted: 232 14% 93%;
+    --muted-foreground: 231 15% 38%;
+    --accent: 265 89% 78%;
+    --accent-foreground: 231 15% 18%;
+    --destructive: 0 100% 67%;
+    --destructive-foreground: 231 15% 18%;
+    --border: 232 14% 85%;
+    --input: 232 14% 85%;
+    --ring: 265 89% 78%;
+    --radius: 0.5rem;
+  }
+
+  [data-theme="dracula"].dark {
+    --background: 231 15% 18%;
+    --foreground: 60 30% 96%;
+    --card: 232 14% 14%;
+    --card-foreground: 60 30% 96%;
+    --popover: 232 14% 14%;
+    --popover-foreground: 60 30% 96%;
+    --primary: 265 89% 78%;
+    --primary-foreground: 231 15% 18%;
+    --secondary: 232 14% 25%;
+    --secondary-foreground: 60 30% 96%;
+    --muted: 232 14% 25%;
+    --muted-foreground: 60 30% 76%;
+    --accent: 265 89% 78%;
+    --accent-foreground: 231 15% 18%;
+    --destructive: 0 100% 67%;
+    --destructive-foreground: 231 15% 18%;
+    --border: 232 14% 25%;
+    --input: 232 14% 25%;
+    --ring: 265 89% 78%;
+  }
+
+  /* ============================================
+     THEME 8: Nord (Cold & Calm Scandinavian)
+     ============================================ */
+  [data-theme="nord"] {
+    --background: 218 27% 94%;
+    --foreground: 220 16% 22%;
+    --card: 218 27% 94%;
+    --card-foreground: 220 16% 22%;
+    --popover: 218 27% 94%;
+    --popover-foreground: 220 16% 22%;
+    --primary: 193 43% 67%;
+    --primary-foreground: 220 16% 22%;
+    --secondary: 219 28% 88%;
+    --secondary-foreground: 220 16% 22%;
+    --muted: 219 28% 88%;
+    --muted-foreground: 220 16% 36%;
+    --accent: 193 43% 67%;
+    --accent-foreground: 220 16% 22%;
+    --destructive: 354 42% 56%;
+    --destructive-foreground: 218 27% 94%;
+    --border: 219 28% 82%;
+    --input: 219 28% 82%;
+    --ring: 193 43% 67%;
+    --radius: 0.375rem;
+  }
+
+  [data-theme="nord"].dark {
+    --background: 220 16% 22%;
+    --foreground: 218 27% 94%;
+    --card: 222 16% 28%;
+    --card-foreground: 218 27% 94%;
+    --popover: 222 16% 28%;
+    --popover-foreground: 218 27% 94%;
+    --primary: 193 43% 67%;
+    --primary-foreground: 220 16% 22%;
+    --secondary: 220 17% 32%;
+    --secondary-foreground: 218 27% 94%;
+    --muted: 220 17% 32%;
+    --muted-foreground: 219 28% 70%;
+    --accent: 193 43% 67%;
+    --accent-foreground: 220 16% 22%;
+    --destructive: 354 42% 56%;
+    --destructive-foreground: 218 27% 94%;
+    --border: 220 17% 32%;
+    --input: 220 17% 32%;
+    --ring: 193 43% 67%;
+  }
+
+  /* ============================================
+     THEME 9: Sunset Orange (Warm & Energetic)
+     ============================================ */
+  [data-theme="sunset"] {
+    --background: 0 0% 100%;
+    --foreground: 20 14.3% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 20 14.3% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14.3% 4.1%;
+    --primary: 24 95% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 30 20% 94%;
+    --secondary-foreground: 20 14.3% 4.1%;
+    --muted: 30 20% 94%;
+    --muted-foreground: 20 10% 40%;
+    --accent: 24 95% 53%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 30 20% 88%;
+    --input: 30 20% 88%;
+    --ring: 24 95% 53%;
+    --radius: 0.625rem;
+  }
+
+  [data-theme="sunset"].dark {
+    --background: 20 14.3% 4.1%;
+    --foreground: 60 9.1% 97.8%;
+    --card: 24 10% 8%;
+    --card-foreground: 60 9.1% 97.8%;
+    --popover: 24 10% 8%;
+    --popover-foreground: 60 9.1% 97.8%;
+    --primary: 24 95% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 24 10% 14%;
+    --secondary-foreground: 60 9.1% 97.8%;
+    --muted: 24 10% 14%;
+    --muted-foreground: 30 10% 60%;
+    --accent: 24 95% 53%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 24 10% 14%;
+    --input: 24 10% 14%;
+    --ring: 24 95% 53%;
+  }
+
+  /* ============================================
+     THEME 10: Synthwave (Retro 80s Neon)
+     ============================================ */
+  [data-theme="synthwave"] {
+    --background: 0 0% 100%;
+    --foreground: 260 20% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 260 20% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 260 20% 15%;
+    --primary: 318 91% 63%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 280 20% 94%;
+    --secondary-foreground: 260 20% 15%;
+    --muted: 280 20% 94%;
+    --muted-foreground: 260 15% 45%;
+    --accent: 318 91% 63%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 280 20% 88%;
+    --input: 280 20% 88%;
+    --ring: 318 91% 63%;
+    --radius: 0.75rem;
+  }
+
+  [data-theme="synthwave"].dark {
+    --background: 260 20% 8%;
+    --foreground: 280 20% 94%;
+    --card: 260 25% 12%;
+    --card-foreground: 280 20% 94%;
+    --popover: 260 25% 12%;
+    --popover-foreground: 280 20% 94%;
+    --primary: 318 91% 63%;
+    --primary-foreground: 260 20% 8%;
+    --secondary: 260 20% 18%;
+    --secondary-foreground: 280 20% 94%;
+    --muted: 260 20% 18%;
+    --muted-foreground: 280 15% 65%;
+    --accent: 195 90% 55%;
+    --accent-foreground: 260 20% 8%;
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 280 20% 94%;
+    --border: 260 20% 18%;
+    --input: 260 20% 18%;
+    --ring: 318 91% 63%;
+  }
+
+  /* ============================================
+     THEME 11: Twitter/X (Modern Social)
+     ============================================ */
+  [data-theme="twitter"] {
+    --background: 0 0% 100%;
+    --foreground: 210 20% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 20% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 20% 10%;
+    --primary: 204 88% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 210 20% 10%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 210 10% 50%;
+    --accent: 204 88% 53%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 356 75% 53%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 204 88% 53%;
+    --radius: 1rem;
+  }
+
+  [data-theme="twitter"].dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 204 88% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 204 88% 53%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 356 75% 53%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 204 88% 53%;
+  }
+
+  /* ============================================
+     THEME 12: Apple Liquid Glass (iOS 26 Trend)
+     ============================================ */
+  [data-theme="liquid-glass"] {
+    --background: 0 0% 98%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 211 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 211 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 211 100% 50%;
+    --radius: 1.5rem;
+  }
+
+  [data-theme="liquid-glass"].dark {
+    --background: 228 15% 10%;
     --foreground: 0 0% 95%;
-    --card: 24 9.8% 10%;
+    --card: 228 20% 14%;
+    --card-foreground: 0 0% 95%;
+    --popover: 228 20% 14%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 211 100% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 228 15% 20%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 228 15% 20%;
+    --muted-foreground: 228 10% 60%;
+    --accent: 211 100% 60%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 228 15% 22%;
+    --input: 228 15% 22%;
+    --ring: 211 100% 60%;
+  }
+
+  /* ============================================
+     THEME 13: Vercel (Next.js)
+     ============================================ */
+  [data-theme="vercel"] {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 212 100% 48%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --radius: 0.5rem;
+  }
+
+  [data-theme="vercel"].dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 212 100% 48%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+  }
+
+  /* ============================================
+     THEME 14: Linear (SaaS Purple)
+     ============================================ */
+  [data-theme="linear"] {
+    --background: 0 0% 100%;
+    --foreground: 224 71.4% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71.4% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71.4% 4.1%;
+    --primary: 245 58% 51%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+    --accent: 245 58% 51%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 245 58% 51%;
+    --radius: 0.5rem;
+  }
+
+  [data-theme="linear"].dark {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 8%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 245 58% 61%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 245 58% 61%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 245 58% 61%;
+  }
+
+  /* ============================================
+     THEME 15: Stripe
+     ============================================ */
+  [data-theme="stripe"] {
+    --background: 0 0% 100%;
+    --foreground: 230 25% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 230 25% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 230 25% 18%;
+    --primary: 250 85% 63%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 233 27% 94%;
+    --secondary-foreground: 230 25% 18%;
+    --muted: 233 27% 94%;
+    --muted-foreground: 230 15% 50%;
+    --accent: 250 85% 63%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 233 27% 88%;
+    --input: 233 27% 88%;
+    --ring: 250 85% 63%;
+    --radius: 0.375rem;
+  }
+
+  [data-theme="stripe"].dark {
+    --background: 230 25% 10%;
+    --foreground: 0 0% 95%;
+    --card: 230 25% 14%;
+    --card-foreground: 0 0% 95%;
+    --popover: 230 25% 14%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 250 85% 68%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 230 25% 18%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 230 25% 18%;
+    --muted-foreground: 230 15% 60%;
+    --accent: 250 85% 68%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 230 25% 20%;
+    --input: 230 25% 20%;
+    --ring: 250 85% 68%;
+  }
+
+  /* ============================================
+     THEME 16: Discord (Blurple)
+     ============================================ */
+  [data-theme="discord"] {
+    --background: 0 0% 100%;
+    --foreground: 228 6% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 228 6% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 228 6% 15%;
+    --primary: 235 86% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 228 6% 94%;
+    --secondary-foreground: 228 6% 15%;
+    --muted: 228 6% 94%;
+    --muted-foreground: 228 6% 45%;
+    --accent: 235 86% 65%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 359 82% 63%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 228 6% 88%;
+    --input: 228 6% 88%;
+    --ring: 235 86% 65%;
+    --radius: 0.5rem;
+  }
+
+  [data-theme="discord"].dark {
+    --background: 223 7% 21%;
+    --foreground: 210 3% 87%;
+    --card: 225 6% 25%;
+    --card-foreground: 210 3% 87%;
+    --popover: 225 6% 25%;
+    --popover-foreground: 210 3% 87%;
+    --primary: 235 86% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 223 7% 28%;
+    --secondary-foreground: 210 3% 87%;
+    --muted: 223 7% 28%;
+    --muted-foreground: 215 9% 55%;
+    --accent: 235 86% 65%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 359 82% 63%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 223 7% 30%;
+    --input: 223 7% 30%;
+    --ring: 235 86% 65%;
+  }
+
+  /* ============================================
+     THEME 17: GitHub
+     ============================================ */
+  [data-theme="github"] {
+    --background: 0 0% 100%;
+    --foreground: 210 12% 16%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 12% 16%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 12% 16%;
+    --primary: 137 55% 36%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 14% 96%;
+    --secondary-foreground: 210 12% 16%;
+    --muted: 210 14% 96%;
+    --muted-foreground: 212 8% 45%;
+    --accent: 215 91% 56%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 210 14% 89%;
+    --input: 210 14% 89%;
+    --ring: 137 55% 36%;
+    --radius: 0.375rem;
+  }
+
+  [data-theme="github"].dark {
+    --background: 215 28% 9%;
+    --foreground: 210 14% 93%;
+    --card: 215 25% 12%;
+    --card-foreground: 210 14% 93%;
+    --popover: 215 25% 12%;
+    --popover-foreground: 210 14% 93%;
+    --primary: 137 55% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 215 25% 17%;
+    --secondary-foreground: 210 14% 93%;
+    --muted: 215 25% 17%;
+    --muted-foreground: 212 8% 60%;
+    --accent: 215 91% 56%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 215 25% 20%;
+    --input: 215 25% 20%;
+    --ring: 137 55% 45%;
+  }
+
+  /* ============================================
+     THEME 18: Notion
+     ============================================ */
+  [data-theme="notion"] {
+    --background: 40 23% 97%;
+    --foreground: 37 5% 20%;
+    --card: 40 33% 99%;
+    --card-foreground: 37 5% 20%;
+    --popover: 40 33% 99%;
+    --popover-foreground: 37 5% 20%;
+    --primary: 37 5% 20%;
+    --primary-foreground: 40 23% 97%;
+    --secondary: 40 12% 92%;
+    --secondary-foreground: 37 5% 20%;
+    --muted: 40 12% 92%;
+    --muted-foreground: 37 5% 50%;
+    --accent: 37 5% 20%;
+    --accent-foreground: 40 23% 97%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 40 12% 85%;
+    --input: 40 12% 85%;
+    --ring: 37 5% 20%;
+    --radius: 0.25rem;
+  }
+
+  [data-theme="notion"].dark {
+    --background: 210 6% 12%;
+    --foreground: 40 10% 90%;
+    --card: 210 6% 15%;
+    --card-foreground: 40 10% 90%;
+    --popover: 210 6% 15%;
+    --popover-foreground: 40 10% 90%;
+    --primary: 40 10% 90%;
+    --primary-foreground: 210 6% 12%;
+    --secondary: 210 6% 20%;
+    --secondary-foreground: 40 10% 90%;
+    --muted: 210 6% 20%;
+    --muted-foreground: 40 5% 60%;
+    --accent: 40 10% 90%;
+    --accent-foreground: 210 6% 12%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 210 6% 22%;
+    --input: 210 6% 22%;
+    --ring: 40 10% 90%;
+  }
+
+  /* ============================================
+     THEME 19: Tokyo Night
+     ============================================ */
+  [data-theme="tokyo-night"] {
+    --background: 230 15% 95%;
+    --foreground: 231 15% 20%;
+    --card: 230 15% 95%;
+    --card-foreground: 231 15% 20%;
+    --popover: 230 15% 95%;
+    --popover-foreground: 231 15% 20%;
+    --primary: 190 95% 45%;
+    --primary-foreground: 231 15% 15%;
+    --secondary: 230 15% 88%;
+    --secondary-foreground: 231 15% 20%;
+    --muted: 230 15% 88%;
+    --muted-foreground: 231 15% 40%;
+    --accent: 276 68% 60%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 230 15% 82%;
+    --input: 230 15% 82%;
+    --ring: 190 95% 45%;
+    --radius: 0.5rem;
+  }
+
+  [data-theme="tokyo-night"].dark {
+    --background: 235 21% 11%;
+    --foreground: 231 16% 84%;
+    --card: 232 18% 15%;
+    --card-foreground: 231 16% 84%;
+    --popover: 232 18% 15%;
+    --popover-foreground: 231 16% 84%;
+    --primary: 190 95% 55%;
+    --primary-foreground: 235 21% 11%;
+    --secondary: 232 18% 20%;
+    --secondary-foreground: 231 16% 84%;
+    --muted: 232 18% 20%;
+    --muted-foreground: 231 12% 55%;
+    --accent: 276 68% 65%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 232 18% 22%;
+    --input: 232 18% 22%;
+    --ring: 190 95% 55%;
+  }
+
+  /* ============================================
+     THEME 20: Gruvbox
+     ============================================ */
+  [data-theme="gruvbox"] {
+    --background: 48 27% 94%;
+    --foreground: 0 0% 18%;
+    --card: 48 27% 94%;
+    --card-foreground: 0 0% 18%;
+    --popover: 48 27% 94%;
+    --popover-foreground: 0 0% 18%;
+    --primary: 27 61% 50%;
+    --primary-foreground: 48 27% 94%;
+    --secondary: 48 20% 85%;
+    --secondary-foreground: 0 0% 18%;
+    --muted: 48 20% 85%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 143 35% 40%;
+    --accent-foreground: 48 27% 94%;
+    --destructive: 0 73% 55%;
+    --destructive-foreground: 48 27% 94%;
+    --border: 48 20% 78%;
+    --input: 48 20% 78%;
+    --ring: 27 61% 50%;
+    --radius: 0.375rem;
+  }
+
+  [data-theme="gruvbox"].dark {
+    --background: 0 0% 16%;
+    --foreground: 48 35% 83%;
+    --card: 0 0% 20%;
+    --card-foreground: 48 35% 83%;
+    --popover: 0 0% 20%;
+    --popover-foreground: 48 35% 83%;
+    --primary: 27 61% 55%;
+    --primary-foreground: 0 0% 16%;
+    --secondary: 0 0% 24%;
+    --secondary-foreground: 48 35% 83%;
+    --muted: 0 0% 24%;
+    --muted-foreground: 48 20% 60%;
+    --accent: 143 35% 50%;
+    --accent-foreground: 0 0% 16%;
+    --destructive: 0 73% 55%;
+    --destructive-foreground: 48 35% 83%;
+    --border: 0 0% 28%;
+    --input: 0 0% 28%;
+    --ring: 27 61% 55%;
+  }
+
+  /* ============================================
+     THEME 21: Apple Music
+     ============================================ */
+  [data-theme="apple-music"] {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+    --primary: 350 89% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 350 89% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 350 89% 55%;
+    --radius: 0.75rem;
+  }
+
+  [data-theme="apple-music"].dark {
+    --background: 0 0% 5%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 9%;
     --card-foreground: 0 0% 95%;
     --popover: 0 0% 9%;
     --popover-foreground: 0 0% 95%;
-    --primary: 142.1 70.6% 45.3%;
-    --primary-foreground: 144.9 80.4% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
+    --primary: 350 89% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 95%;
     --muted: 0 0% 15%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 12 6.5% 15.1%;
-    --accent-foreground: 0 0% 98%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 350 89% 60%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 85.7% 97.3%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 142.4 71.8% 29.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 350 89% 60%;
+  }
+
+  /* ============================================
+     THEME 22: SoundCloud
+     ============================================ */
+  [data-theme="soundcloud"] {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 13%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 13%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 13%;
+    --primary: 25 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 20 10% 94%;
+    --secondary-foreground: 0 0% 13%;
+    --muted: 20 10% 94%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 25 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 20 10% 88%;
+    --input: 20 10% 88%;
+    --ring: 25 100% 50%;
+    --radius: 0.25rem;
+  }
+
+  [data-theme="soundcloud"].dark {
+    --background: 0 0% 7%;
+    --foreground: 0 0% 93%;
+    --card: 0 0% 11%;
+    --card-foreground: 0 0% 93%;
+    --popover: 0 0% 11%;
+    --popover-foreground: 0 0% 93%;
+    --primary: 25 100% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 93%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 25 100% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 25 100% 55%;
+  }
+
+  /* ============================================
+     THEME 23: Tidal
+     ============================================ */
+  [data-theme="tidal"] {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+    --primary: 178 75% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 180 10% 94%;
+    --secondary-foreground: 0 0% 10%;
+    --muted: 180 10% 94%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 178 75% 45%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 180 10% 88%;
+    --input: 180 10% 88%;
+    --ring: 178 75% 45%;
+    --radius: 0.375rem;
+  }
+
+  [data-theme="tidal"].dark {
+    --background: 220 10% 6%;
+    --foreground: 0 0% 95%;
+    --card: 220 10% 10%;
+    --card-foreground: 0 0% 95%;
+    --popover: 220 10% 10%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 178 75% 55%;
+    --primary-foreground: 220 10% 6%;
+    --secondary: 220 10% 15%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 220 10% 15%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 178 75% 55%;
+    --accent-foreground: 220 10% 6%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 10% 18%;
+    --input: 220 10% 18%;
+    --ring: 178 75% 55%;
+  }
+
+  /* ============================================
+     THEME 24: YouTube Music
+     ============================================ */
+  [data-theme="youtube-music"] {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+    --primary: 0 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 100% 50%;
+    --radius: 0.5rem;
+  }
+
+  [data-theme="youtube-music"].dark {
+    --background: 0 0% 7%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 11%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 11%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 0 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 0 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 0 100% 50%;
+  }
+
+  /* ============================================
+     THEME 25: Aurora (Gradient Dreamy)
+     ============================================ */
+  [data-theme="aurora"] {
+    --background: 280 20% 97%;
+    --foreground: 280 20% 10%;
+    --card: 280 20% 97%;
+    --card-foreground: 280 20% 10%;
+    --popover: 280 20% 97%;
+    --popover-foreground: 280 20% 10%;
+    --primary: 280 70% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 200 50% 92%;
+    --secondary-foreground: 280 20% 10%;
+    --muted: 200 50% 92%;
+    --muted-foreground: 280 15% 45%;
+    --accent: 170 70% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 200 30% 85%;
+    --input: 200 30% 85%;
+    --ring: 280 70% 60%;
+    --radius: 0.75rem;
+  }
+
+  [data-theme="aurora"].dark {
+    --background: 260 30% 8%;
+    --foreground: 280 20% 95%;
+    --card: 260 30% 12%;
+    --card-foreground: 280 20% 95%;
+    --popover: 260 30% 12%;
+    --popover-foreground: 280 20% 95%;
+    --primary: 280 70% 65%;
+    --primary-foreground: 260 30% 8%;
+    --secondary: 260 25% 18%;
+    --secondary-foreground: 280 20% 95%;
+    --muted: 260 25% 18%;
+    --muted-foreground: 280 15% 60%;
+    --accent: 170 70% 55%;
+    --accent-foreground: 260 30% 8%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 260 25% 22%;
+    --input: 260 25% 22%;
+    --ring: 280 70% 65%;
+  }
+
+  /* ============================================
+     THEME 26: Monochrome (Pure B&W)
+     ============================================ */
+  [data-theme="monochrome"] {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 0 0% 0%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 0% 30%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
+    --ring: 0 0% 0%;
+    --radius: 0px;
+  }
+
+  [data-theme="monochrome"].dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 0% 100%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 0% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 0% 100%;
+  }
+
+  /* ============================================
+     THEME 27: Coral Sunset
+     ============================================ */
+  [data-theme="coral"] {
+    --background: 15 30% 98%;
+    --foreground: 15 20% 15%;
+    --card: 15 30% 98%;
+    --card-foreground: 15 20% 15%;
+    --popover: 15 30% 98%;
+    --popover-foreground: 15 20% 15%;
+    --primary: 16 85% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 15 20% 92%;
+    --secondary-foreground: 15 20% 15%;
+    --muted: 15 20% 92%;
+    --muted-foreground: 15 15% 45%;
+    --accent: 340 75% 60%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 15 20% 85%;
+    --input: 15 20% 85%;
+    --ring: 16 85% 65%;
+    --radius: 0.625rem;
+  }
+
+  [data-theme="coral"].dark {
+    --background: 15 20% 8%;
+    --foreground: 15 20% 95%;
+    --card: 15 20% 12%;
+    --card-foreground: 15 20% 95%;
+    --popover: 15 20% 12%;
+    --popover-foreground: 15 20% 95%;
+    --primary: 16 85% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 15 15% 18%;
+    --secondary-foreground: 15 20% 95%;
+    --muted: 15 15% 18%;
+    --muted-foreground: 15 15% 55%;
+    --accent: 340 75% 65%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 15 15% 22%;
+    --input: 15 15% 22%;
+    --ring: 16 85% 60%;
+  }
+
+  /* ============================================
+     THEME 28: Forest (Nature)
+     ============================================ */
+  [data-theme="forest"] {
+    --background: 120 15% 97%;
+    --foreground: 150 25% 15%;
+    --card: 120 15% 97%;
+    --card-foreground: 150 25% 15%;
+    --popover: 120 15% 97%;
+    --popover-foreground: 150 25% 15%;
+    --primary: 152 55% 35%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 120 10% 90%;
+    --secondary-foreground: 150 25% 15%;
+    --muted: 120 10% 90%;
+    --muted-foreground: 150 15% 45%;
+    --accent: 40 75% 55%;
+    --accent-foreground: 150 25% 15%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 120 10% 82%;
+    --input: 120 10% 82%;
+    --ring: 152 55% 35%;
+    --radius: 0.5rem;
+  }
+
+  [data-theme="forest"].dark {
+    --background: 150 25% 8%;
+    --foreground: 120 15% 93%;
+    --card: 150 22% 12%;
+    --card-foreground: 120 15% 93%;
+    --popover: 150 22% 12%;
+    --popover-foreground: 120 15% 93%;
+    --primary: 152 55% 45%;
+    --primary-foreground: 150 25% 8%;
+    --secondary: 150 20% 18%;
+    --secondary-foreground: 120 15% 93%;
+    --muted: 150 20% 18%;
+    --muted-foreground: 120 10% 55%;
+    --accent: 40 75% 55%;
+    --accent-foreground: 150 25% 8%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 150 20% 22%;
+    --input: 150 20% 22%;
+    --ring: 152 55% 45%;
+  }
+
+  /* ============================================
+     THEME 29: Material Palenight
+     ============================================ */
+  [data-theme="palenight"] {
+    --background: 231 15% 95%;
+    --foreground: 231 15% 20%;
+    --card: 231 15% 95%;
+    --card-foreground: 231 15% 20%;
+    --popover: 231 15% 95%;
+    --popover-foreground: 231 15% 20%;
+    --primary: 261 90% 68%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 231 15% 88%;
+    --secondary-foreground: 231 15% 20%;
+    --muted: 231 15% 88%;
+    --muted-foreground: 231 10% 45%;
+    --accent: 180 65% 55%;
+    --accent-foreground: 231 15% 15%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 231 15% 82%;
+    --input: 231 15% 82%;
+    --ring: 261 90% 68%;
+    --radius: 0.5rem;
+  }
+
+  [data-theme="palenight"].dark {
+    --background: 231 15% 18%;
+    --foreground: 231 9% 82%;
+    --card: 231 15% 22%;
+    --card-foreground: 231 9% 82%;
+    --popover: 231 15% 22%;
+    --popover-foreground: 231 9% 82%;
+    --primary: 261 90% 73%;
+    --primary-foreground: 231 15% 18%;
+    --secondary: 231 15% 25%;
+    --secondary-foreground: 231 9% 82%;
+    --muted: 231 15% 25%;
+    --muted-foreground: 231 9% 55%;
+    --accent: 180 65% 55%;
+    --accent-foreground: 231 15% 18%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 231 15% 28%;
+    --input: 231 15% 28%;
+    --ring: 261 90% 73%;
+  }
+
+  /* ============================================
+     THEME 30: Slack
+     ============================================ */
+  [data-theme="slack"] {
+    --background: 300 14% 97%;
+    --foreground: 300 20% 15%;
+    --card: 300 14% 97%;
+    --card-foreground: 300 20% 15%;
+    --popover: 300 14% 97%;
+    --popover-foreground: 300 20% 15%;
+    --primary: 283 68% 34%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 300 10% 92%;
+    --secondary-foreground: 300 20% 15%;
+    --muted: 300 10% 92%;
+    --muted-foreground: 300 10% 45%;
+    --accent: 154 70% 38%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 300 10% 85%;
+    --input: 300 10% 85%;
+    --ring: 283 68% 34%;
+    --radius: 0.375rem;
+  }
+
+  [data-theme="slack"].dark {
+    --background: 300 15% 10%;
+    --foreground: 300 10% 92%;
+    --card: 300 15% 14%;
+    --card-foreground: 300 10% 92%;
+    --popover: 300 15% 14%;
+    --popover-foreground: 300 10% 92%;
+    --primary: 283 68% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 300 12% 18%;
+    --secondary-foreground: 300 10% 92%;
+    --muted: 300 12% 18%;
+    --muted-foreground: 300 10% 55%;
+    --accent: 154 70% 45%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 300 12% 22%;
+    --input: 300 12% 22%;
+    --ring: 283 68% 50%;
+  }
+
+  /* ============================================
+     THEME 31: Deezer
+     ============================================ */
+  [data-theme="deezer"] {
+    --background: 0 0% 100%;
+    --foreground: 280 10% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 280 10% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 280 10% 15%;
+    --primary: 280 70% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 280 10% 94%;
+    --secondary-foreground: 280 10% 15%;
+    --muted: 280 10% 94%;
+    --muted-foreground: 280 10% 45%;
+    --accent: 280 70% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 280 10% 88%;
+    --input: 280 10% 88%;
+    --ring: 280 70% 50%;
+    --radius: 0.5rem;
+  }
+
+  [data-theme="deezer"].dark {
+    --background: 280 15% 8%;
+    --foreground: 280 10% 92%;
+    --card: 280 15% 12%;
+    --card-foreground: 280 10% 92%;
+    --popover: 280 15% 12%;
+    --popover-foreground: 280 10% 92%;
+    --primary: 280 70% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 280 12% 18%;
+    --secondary-foreground: 280 10% 92%;
+    --muted: 280 12% 18%;
+    --muted-foreground: 280 10% 55%;
+    --accent: 280 70% 60%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 280 12% 22%;
+    --input: 280 12% 22%;
+    --ring: 280 70% 60%;
+  }
+
+  /* ============================================
+     THEME 32: One Dark Pro
+     ============================================ */
+  [data-theme="one-dark"] {
+    --background: 220 13% 95%;
+    --foreground: 220 13% 18%;
+    --card: 220 13% 95%;
+    --card-foreground: 220 13% 18%;
+    --popover: 220 13% 95%;
+    --popover-foreground: 220 13% 18%;
+    --primary: 207 82% 66%;
+    --primary-foreground: 220 13% 10%;
+    --secondary: 220 10% 88%;
+    --secondary-foreground: 220 13% 18%;
+    --muted: 220 10% 88%;
+    --muted-foreground: 220 10% 45%;
+    --accent: 286 60% 67%;
+    --accent-foreground: 220 13% 10%;
+    --destructive: 355 65% 65%;
+    --destructive-foreground: 220 13% 10%;
+    --border: 220 10% 82%;
+    --input: 220 10% 82%;
+    --ring: 207 82% 66%;
+    --radius: 0.375rem;
+  }
+
+  [data-theme="one-dark"].dark {
+    --background: 220 13% 18%;
+    --foreground: 220 14% 71%;
+    --card: 220 13% 22%;
+    --card-foreground: 220 14% 71%;
+    --popover: 220 13% 22%;
+    --popover-foreground: 220 14% 71%;
+    --primary: 207 82% 66%;
+    --primary-foreground: 220 13% 10%;
+    --secondary: 220 13% 25%;
+    --secondary-foreground: 220 14% 71%;
+    --muted: 220 13% 25%;
+    --muted-foreground: 220 10% 50%;
+    --accent: 286 60% 67%;
+    --accent-foreground: 220 13% 10%;
+    --destructive: 355 65% 65%;
+    --destructive-foreground: 220 13% 10%;
+    --border: 220 13% 28%;
+    --input: 220 13% 28%;
+    --ring: 207 82% 66%;
+  }
+
+  /* ============================================
+     THEME 33: Ayu Mirage
+     ============================================ */
+  [data-theme="ayu"] {
+    --background: 220 20% 95%;
+    --foreground: 220 20% 15%;
+    --card: 220 20% 95%;
+    --card-foreground: 220 20% 15%;
+    --popover: 220 20% 95%;
+    --popover-foreground: 220 20% 15%;
+    --primary: 35 90% 60%;
+    --primary-foreground: 220 20% 10%;
+    --secondary: 220 15% 88%;
+    --secondary-foreground: 220 20% 15%;
+    --muted: 220 15% 88%;
+    --muted-foreground: 220 15% 45%;
+    --accent: 180 50% 50%;
+    --accent-foreground: 220 20% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 15% 82%;
+    --input: 220 15% 82%;
+    --ring: 35 90% 60%;
+    --radius: 0.375rem;
+  }
+
+  [data-theme="ayu"].dark {
+    --background: 220 25% 12%;
+    --foreground: 220 15% 80%;
+    --card: 220 25% 16%;
+    --card-foreground: 220 15% 80%;
+    --popover: 220 25% 16%;
+    --popover-foreground: 220 15% 80%;
+    --primary: 35 90% 62%;
+    --primary-foreground: 220 25% 10%;
+    --secondary: 220 22% 20%;
+    --secondary-foreground: 220 15% 80%;
+    --muted: 220 22% 20%;
+    --muted-foreground: 220 15% 55%;
+    --accent: 180 50% 55%;
+    --accent-foreground: 220 25% 10%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 22% 24%;
+    --input: 220 22% 24%;
+    --ring: 35 90% 62%;
+  }
+
+  /* ============================================
+     THEME 34: Solarized
+     ============================================ */
+  [data-theme="solarized"] {
+    --background: 44 87% 94%;
+    --foreground: 192 81% 14%;
+    --card: 44 87% 94%;
+    --card-foreground: 192 81% 14%;
+    --popover: 44 87% 94%;
+    --popover-foreground: 192 81% 14%;
+    --primary: 175 59% 40%;
+    --primary-foreground: 44 87% 94%;
+    --secondary: 46 42% 88%;
+    --secondary-foreground: 192 81% 14%;
+    --muted: 46 42% 88%;
+    --muted-foreground: 194 14% 40%;
+    --accent: 18 89% 55%;
+    --accent-foreground: 44 87% 94%;
+    --destructive: 1 71% 52%;
+    --destructive-foreground: 44 87% 94%;
+    --border: 46 30% 80%;
+    --input: 46 30% 80%;
+    --ring: 175 59% 40%;
+    --radius: 0.25rem;
+  }
+
+  [data-theme="solarized"].dark {
+    --background: 192 81% 14%;
+    --foreground: 44 87% 94%;
+    --card: 193 100% 10%;
+    --card-foreground: 44 87% 94%;
+    --popover: 193 100% 10%;
+    --popover-foreground: 44 87% 94%;
+    --primary: 175 59% 50%;
+    --primary-foreground: 192 81% 14%;
+    --secondary: 192 50% 20%;
+    --secondary-foreground: 44 87% 94%;
+    --muted: 192 50% 20%;
+    --muted-foreground: 180 9% 50%;
+    --accent: 18 89% 55%;
+    --accent-foreground: 192 81% 14%;
+    --destructive: 1 71% 52%;
+    --destructive-foreground: 44 87% 94%;
+    --border: 192 50% 25%;
+    --input: 192 50% 25%;
+    --ring: 175 59% 50%;
+  }
+
+  /* ============================================
+     THEME 35: Bento (Playful Pastels)
+     ============================================ */
+  [data-theme="bento"] {
+    --background: 40 33% 97%;
+    --foreground: 225 25% 20%;
+    --card: 40 33% 99%;
+    --card-foreground: 225 25% 20%;
+    --popover: 40 33% 99%;
+    --popover-foreground: 225 25% 20%;
+    --primary: 339 70% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 200 60% 92%;
+    --secondary-foreground: 225 25% 20%;
+    --muted: 200 60% 92%;
+    --muted-foreground: 225 15% 50%;
+    --accent: 160 50% 60%;
+    --accent-foreground: 225 25% 15%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 200 40% 85%;
+    --input: 200 40% 85%;
+    --ring: 339 70% 65%;
+    --radius: 1rem;
+  }
+
+  [data-theme="bento"].dark {
+    --background: 225 25% 10%;
+    --foreground: 40 25% 92%;
+    --card: 225 25% 14%;
+    --card-foreground: 40 25% 92%;
+    --popover: 225 25% 14%;
+    --popover-foreground: 40 25% 92%;
+    --primary: 339 70% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 225 20% 18%;
+    --secondary-foreground: 40 25% 92%;
+    --muted: 225 20% 18%;
+    --muted-foreground: 225 15% 55%;
+    --accent: 160 50% 55%;
+    --accent-foreground: 225 25% 10%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 225 20% 22%;
+    --input: 225 20% 22%;
+    --ring: 339 70% 60%;
+  }
+
+  /* ============================================
+     THEME 36: Y3K (Futuristic Chrome)
+     ============================================ */
+  [data-theme="y3k"] {
+    --background: 240 5% 96%;
+    --foreground: 240 5% 10%;
+    --card: 240 5% 98%;
+    --card-foreground: 240 5% 10%;
+    --popover: 240 5% 98%;
+    --popover-foreground: 240 5% 10%;
+    --primary: 240 10% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 5% 90%;
+    --secondary-foreground: 240 5% 10%;
+    --muted: 240 5% 90%;
+    --muted-foreground: 240 5% 45%;
+    --accent: 280 80% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5% 82%;
+    --input: 240 5% 82%;
+    --ring: 280 80% 55%;
+    --radius: 0rem;
+  }
+
+  [data-theme="y3k"].dark {
+    --background: 240 5% 6%;
+    --foreground: 240 5% 92%;
+    --card: 240 5% 10%;
+    --card-foreground: 240 5% 92%;
+    --popover: 240 5% 10%;
+    --popover-foreground: 240 5% 92%;
+    --primary: 240 10% 70%;
+    --primary-foreground: 240 5% 6%;
+    --secondary: 240 5% 14%;
+    --secondary-foreground: 240 5% 92%;
+    --muted: 240 5% 14%;
+    --muted-foreground: 240 5% 55%;
+    --accent: 280 80% 60%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5% 18%;
+    --input: 240 5% 18%;
+    --ring: 280 80% 60%;
   }
 }
 
-
+/* Chart colors */
 @layer base {
   :root {
     --chart-1: 12 76% 61%;
@@ -72,8 +1802,6 @@
   }
 }
 
-
- 
 @layer base {
   * {
     @apply border-border;
@@ -83,13 +1811,12 @@
   }
 }
 
-
-.global-bg{
-  background-image: linear-gradient(-180deg, #2922C6, #490580 );
+.global-bg {
+  background-image: linear-gradient(-180deg, #2922c6, #490580);
 }
 
-.blogContent{
-  color: white
+.blogContent {
+  color: white;
 }
 
 .invert-white {

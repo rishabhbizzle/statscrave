@@ -49,7 +49,7 @@ const HeroSection = () => {
           className="text-center  mx-auto bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)]  bg-clip-text text-5xl tracking-tighter  sm:text-5xl dark:text-transparent md:text-6xl lg:text-7xl"
         >
           Your ultimate{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r to-green-500 dark:to-green-200 from-zinc-900 dark:from-zinc-300">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r to-primary dark:to-primary from-zinc-900 dark:from-zinc-300">
             music analytics
           </span>{" "}
           platform
