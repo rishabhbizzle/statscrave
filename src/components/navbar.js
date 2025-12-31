@@ -12,7 +12,6 @@ import { UserButton, useUser, useSession } from "@clerk/nextjs";
 import { SignIn, SignInButton } from "@clerk/clerk-react";
 import { UserMenu } from "./navbar/user-menu";
 import { usePathname } from "next/navigation";
-import { ThemeSwitcher } from "./theme-switcher";
 
 
 export default function Navbar() {
@@ -66,8 +65,6 @@ export default function Navbar() {
                 <span className="sr-only">Twitter</span>
               </div>
             </Link>
-
-            <ThemeSwitcher />
 
             {isAuthenticated ? (
               <UserMenu user={user} />
