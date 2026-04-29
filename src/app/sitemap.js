@@ -4,6 +4,8 @@ import Artist from "@/models/artistModel";
 import Song from "@/models/songModel";
 import Updates from "@/models/updatesModel";
 
+export const revalidate = 86400;
+
 export default async function sitemap() {
   await connect()
   
