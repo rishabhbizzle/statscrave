@@ -6,7 +6,6 @@ import { Poppins, Roboto } from 'next/font/google'
 import { Toaster } from 'sonner'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { ClerkProvider } from '@clerk/nextjs'
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ComparisonProvider } from '@/context/ComparisonProvider'
 import GoogleAdsense from '@/components/GoogleAdsense'
 
@@ -94,7 +93,6 @@ export default function RootLayout({ children }) {
               <ComparisonProvider>
                 <Navbar />
                 {children}
-                {/* <SpeedInsights /> */}
                 <Toaster theme='dark' richColors />
                 <Footer />
                 <GoogleAdsense />
