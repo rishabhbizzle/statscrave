@@ -65,9 +65,8 @@ export default async function Home() {
         </Suspense>
 
 
-        <div className='flex gap-5 flex-col md:flex-row'>
+        <div className='w-full md:w-[80%]'>
           <TopSongsGlobal />
-          <TopViralSongs />
         </div>
         <Features />
         {/* <div className='w-full'>
