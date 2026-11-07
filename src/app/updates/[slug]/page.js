@@ -1,6 +1,7 @@
 import { getBlogPostFromDb } from '@/actions/actions'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { formatDate } from '@/lib/helperFunctions'
+import { sanitizeBlogHtml } from '@/lib/sanitize'
 import { Sparkle, Sparkles, User } from 'lucide-react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -41,7 +42,8 @@ export default async function Page({ params }) {
 
     if (!blog) return notFound()
 
-    const styledContent = blog.content.replace(/color:#0e101a/g, '')
+    // sanitised at render too, so posts stored before the write-side check are safe
+    const styledContent = sanitizeBlogHtml(blog.content).replace(/color:\s*#0e101a;?/gi, '')
 
     return (
         <>

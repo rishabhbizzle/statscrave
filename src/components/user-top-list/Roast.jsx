@@ -27,15 +27,22 @@ const Roast = ({ userData: data, platform, timePeriod }) => {
   const getRoast = async () => {
     setLoading(true);
     try {
-      const response = await fetch("/api/musicTasteRoast", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/roast`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ userData }),
       });
-      const data = await response.json();
-      setRoastData(data?.data?.roastData);
+      const data = await response.json().catch(() => null);
+      if (response.status === 429) {
+        toast.error(data?.message || "You've been roasted enough for now, try again later.");
+        return;
+      }
+      if (!response.ok || !data?.data?.roastData) {
+        throw new Error(data?.message || "Could not generate a roast right now, please try again later.");
+      }
+      setRoastData(data.data.roastData);
     } catch (error) {
       console.error("Error:", error);
       toast.error(error?.message || "Something went wrong");

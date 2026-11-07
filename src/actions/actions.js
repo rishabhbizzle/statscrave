@@ -4,11 +4,11 @@ import { connect } from "@/dgConfig/dbConfig";
 import Artist from "@/models/artistModel";
 import Updates from "@/models/updatesModel";
 import { currentUser } from '@clerk/nextjs';
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { isAdmin, requireAdmin } from "@/lib/auth";
+import { sanitizeBlogHtml } from "@/lib/sanitize";
 import axios from "axios";
 import Melon from "melon-chart-api";
 import { revalidatePath, unstable_cache } from "next/cache";
-import { clean } from 'profanity-cleaner';
 
 export const getAllBlogsFromDb = async (count) => {
     try {
@@ -41,20 +41,30 @@ export const getBlogPostFromDb = async (slug) => {
 }
 
 
+// For the /admin page's client-side redirect only; the real check is
+// requireAdmin() inside each admin action.
+export const isAdminAction = async () => isAdmin()
+
 export const createBlogPostInDb = async (blog) => {
     try {
-        const user = await currentUser();
-        console.log(user, user?.firstName, user?.id)
-        if (!user) {
-            return { data: null, error: 'User not found' }
-        }
+        requireAdmin()
+        const user = await currentUser()
 
         // blog is of formdata type so get the values from it
-        const title = blog.get('title')
-        const content = blog.get('content')
-        const image = blog.get('image')
-        const status = blog.get('status') || 'draft'
-        const pin = blog.get('pin') || false
+        const title = String(blog.get('title') || '').trim()
+        const content = sanitizeBlogHtml(String(blog.get('content') || ''))
+        const image = String(blog.get('image') || '').trim()
+        const status = blog.get('status') === 'published' ? 'published' : 'draft'
+        const pin = blog.get('pin') === 'true'
+        if (!title || title.length > 200) {
+            return { data: null, error: 'Title is required (max 200 characters)' }
+        }
+        if (!content.trim()) {
+            return { data: null, error: 'Content is required' }
+        }
+        if (image && !/^https?:\/\//i.test(image)) {
+            return { data: null, error: 'Image must be an http(s) URL' }
+        }
         await connect()
         const data = {
             title,
@@ -65,11 +75,12 @@ export const createBlogPostInDb = async (blog) => {
             slug: title.replace(/\s+/g, '-').toLowerCase(),
             author: user?.firstName || 'Admin'
         }
-        const newBlog = Updates.create(data)
+        await Updates.create(data)
         revalidatePath('/admin')
+        revalidatePath('/updates')
         return { data: 'Blog created', error: null }
     } catch (error) {
-        return { data: null, error: error?.message }
+        return { data: null, error: error?.message || 'Failed to create blog' }
     }
 }
 
@@ -137,31 +148,6 @@ export const getMelonChartData = async (chartType = 'realtime', date = new Date(
 
 
 
-
-export const roastUserMusicTaste = async (userData, timeRange) => {
-    try {
-        let prompt = `You are a witty, sarcastic music critic with a vast knowledge of music history and pop culture. Your task is to humorously roast someone's music taste based on their top tracks and artists from Spotify. Be clever, reference music trends, and don't hold back - but keep it fun and not too mean-spirited.
-            Here's the user's music data:
-
-            Top Tracks:
-            ${userData?.topSongs?.map((track, index) => `${index + 1}. ${track.name} by ${track.artist}`).join('\n')}
-
-            Top Artists:
-            ${userData?.topArtists?.map((artist, index) => `${index + 1}. ${artist}`).join('\n')}
-           
-
-            Now, write a humorous roast of this person's music taste in about 170 words. Include at least one specific reference to their top tracks or artists, and one broader comment about their overall taste or a music trend they follow. End with a backhanded compliment.`
-
-        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-        const modelDetails = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' })
-        const result = await modelDetails?.generateContent(clean(prompt));
-        const text = result?.response?.text();
-        return text;
-    } catch (error) {
-        console.error(error);
-        throw error
-    }
-}
 
 export const getTopArtistsForHomePage = async () => {
     return unstable_cache(

@@ -22,18 +22,21 @@ import {
 import Image from "next/image";
 import { toast } from "sonner";
 import axios from "axios";
+import { useAuth } from "@clerk/nextjs";
 import Loader from "../ui/loader";
 import { ScrollArea } from "../ui/scroll-area";
 
 const ArtistRankings = ({ id }) => {
   const [artistsRanking, setArtistsRanking] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { getToken } = useAuth();
 
   const fetchDashboardData = async () => {
     setLoading(true);
     try {
       const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/user/dashboard/${id}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/user/dashboard`,
+        { headers: { Authorization: `Bearer ${await getToken()}` } }
       );
       if (res.status !== 200) {
         throw new Error(res?.data?.message || "Failed to fetch data");
@@ -47,6 +50,7 @@ const ArtistRankings = ({ id }) => {
   };
 
   useEffect(() => {
+    if (!id) return;
     fetchDashboardData();
   }, [id]);
 

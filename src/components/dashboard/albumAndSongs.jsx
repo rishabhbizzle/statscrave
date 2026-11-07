@@ -11,17 +11,20 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
 import { toast } from "sonner";
 import axios from "axios";
+import { useAuth } from "@clerk/nextjs";
 import Loader from "../ui/loader";
 
 const AlbumAndSongs = ({ id }) => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
+  const { getToken } = useAuth();
 
   const fetchFavouritesData = async () => {
     setLoading(true);
     try {
       const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/user/favourites/${id}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/user/favourites`,
+        { headers: { Authorization: `Bearer ${await getToken()}` } }
       );
       if (res.status !== 200) {
         throw new Error(res?.data?.message || "Failed to fetch data");
@@ -35,6 +38,7 @@ const AlbumAndSongs = ({ id }) => {
   };
 
   useEffect(() => {
+    if (!id) return;
     fetchFavouritesData();
   }, [id]);
 

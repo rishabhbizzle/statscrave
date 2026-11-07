@@ -8,6 +8,7 @@ import { Button } from "./ui/button";
 import { HeartFilledIcon, HeartIcon } from "@radix-ui/react-icons";
 import { toast } from "sonner";
 import axios from "axios";
+import { useAuth } from "@clerk/nextjs";
 
 const FavouriteButton = ({
   type,
@@ -19,6 +20,7 @@ const FavouriteButton = ({
   setIsFavourite,
 }) => {
   const [loading, setLoading] = useState(false);
+  const { getToken } = useAuth();
   // const [optimisticValue, setOptimisticValue] = useOptimistic(isFavourite,
   //   (state, newVal) => {
   //     return newVal}
@@ -32,15 +34,17 @@ const FavouriteButton = ({
         return
       }
 
+      setLoading(true);
+      const token = await getToken();
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/user/markFavourite`,
         {
           type,
           spotifyId,
-          id: id,
           image,
           name,
-        }
+        },
+        { headers: { Authorization: `Bearer ${token}` } }
       );
       if (res.status !== 200) {
         throw new Error("Failed to mark favourite");
@@ -49,7 +53,9 @@ const FavouriteButton = ({
       setIsFavourite((prev) => !prev);
     } catch (error) {
       console.error(error);
-      toast.error(error?.response?.data?.message);
+      toast.error(error?.response?.data?.message || "Failed to update favourites");
+    } finally {
+      setLoading(false);
     }
   };
 
