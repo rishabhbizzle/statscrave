@@ -1,11 +1,9 @@
-import Link from "next/link";
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-
-const AUTHORIZE = "https://accounts.spotify.com/authorize";
-const SCOPES = ["user-top-read", "user-read-recently-played"].join(",");
-const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
-const redirectURI = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT;
+import { startSpotifyLogin } from "@/lib/spotifyPkce";
+import { toast } from "sonner";
 
 
 export default function Info() {
@@ -21,13 +19,15 @@ export default function Info() {
             your Spotify account to get analysis of your top songs
             and artists for the last 1 month, 6 months, and 1 year with a roast on the side.
           </p>
-          <Link
-            href={`${AUTHORIZE}?client_id=${clientId}&response_type=code&redirect_uri=${redirectURI}&show_dialog=true&scope=${SCOPES}`}
+          <Button
+            variant="outline"
+            className="mt-5"
+            onClick={() =>
+              startSpotifyLogin().catch(() => toast.error("Could not start Spotify login"))
+            }
           >
-            <Button variant="outline" className="mt-5">
-              Sign in with Spotify
-            </Button>
-          </Link>
+            Sign in with Spotify
+          </Button>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl">
           <Card className="bg-white/10 backdrop-blur-sm rounded-lg p-6 space-y-4">

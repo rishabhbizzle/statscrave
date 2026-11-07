@@ -10,7 +10,7 @@ import Link from "next/link";
 import { toast } from "sonner";
 
 import axios from "axios";
-import { useUser } from "@clerk/nextjs";
+import { useAuth, useUser } from "@clerk/nextjs";
 import { toSentenceCase } from "@/lib/helperFunctions";
 import {
   Popover,
@@ -30,20 +30,21 @@ const populariyDetails = {
 
 export default function BasicDetails({ details, type, spotifyId }) {
   const { isSignedIn: isAuthenticated, user, isLoaded } = useUser();
+  const { getToken } = useAuth();
   const [isFavourite, setIsFavourite] = useState(false);
   const [reRender, setReRender] = useState(false);
   const { addToComparison, comparisonList } = useComparison();
 
   const fetchUserFavDetails = async () => {
     try {
-      const userId = user?.id;
+      const token = await getToken();
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/user/isFavourite`,
         {
           type,
           spotifyId,
-          id: userId,
-        }
+        },
+        { headers: { Authorization: `Bearer ${token}` } }
       );
       if (res.status !== 200) {
         throw new Error("Failed to fetch data");

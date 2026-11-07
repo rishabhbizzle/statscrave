@@ -11,10 +11,13 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import Info from "./InfoReplay";
 import RecentlyPlayed from "@/components/user-top-list/RecentlyPlayed";
+import { SPOTIFY_TOKEN_URL as TOKEN, VERIFIER_KEY } from "@/lib/spotifyPkce";
 
-const AUTHORIZE = "https://accounts.spotify.com/authorize";
-const TOKEN = "https://accounts.spotify.com/api/token";
-const SCOPES = ["user-top-read", "user-read-recently-played"].join(",");
+const clearSpotifyTokens = () => {
+  localStorage.removeItem("spotifyAccessToken");
+  localStorage.removeItem("spotifyRefreshToken");
+  localStorage.removeItem("spotifyTokenExpire");
+};
 
 export default function SpotifyUserPage() {
   const [isSpotifyLoggedIn, setIsSpotifyLoggedIn] = useState(false);
@@ -26,7 +29,6 @@ export default function SpotifyUserPage() {
 
   const router = useRouter();
   const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
-  const clientSecret = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET;
   const redirectURI = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT;
 
   useEffect(() => {
@@ -52,21 +54,26 @@ export default function SpotifyUserPage() {
     }
   }, [isSpotifyLoggedIn]);
 
+  // PKCE: no client secret; the code_verifier saved by startSpotifyLogin()
+  // proves this browser started the login.
   const fetchAccessToken = async (code) => {
+    const codeVerifier = localStorage.getItem(VERIFIER_KEY);
+    localStorage.removeItem(VERIFIER_KEY);
+    if (!codeVerifier) {
+      toast.error("Spotify login expired, please try again");
+      return;
+    }
     const body = new URLSearchParams({
       grant_type: "authorization_code",
       code,
       redirect_uri: redirectURI,
       client_id: clientId,
-      client_secret: clientSecret,
+      code_verifier: codeVerifier,
     });
 
     try {
       const response = await axios.post(TOKEN, body, {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          Authorization: `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
-        },
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
       });
 
       handleTokenResponse(response.data);
@@ -91,17 +98,17 @@ export default function SpotifyUserPage() {
 
     try {
       const response = await axios.post(TOKEN, body, {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          Authorization: `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
-        },
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
       });
 
       handleTokenResponse(response.data);
     } catch (error) {
+      // Tokens issued before the switch to PKCE can't be refreshed without
+      // the old client secret, so those users simply reconnect once.
       console.error("Error refreshing token:", error);
+      clearSpotifyTokens();
       setIsSpotifyLoggedIn(false);
-      toast.error("Session expired, please log in again");
+      toast.error("Please reconnect your Spotify account");
       router.push("/replay");
     }
   };
@@ -194,9 +201,7 @@ export default function SpotifyUserPage() {
           <div>
             <Button
               onClick={() => {
-                localStorage.removeItem("spotifyAccessToken");
-                localStorage.removeItem("spotifyRefreshToken");
-                localStorage.removeItem("spotifyTokenExpire");
+                clearSpotifyTokens();
                 setIsSpotifyLoggedIn(false);
                 router.replace("/replay");
               }}
