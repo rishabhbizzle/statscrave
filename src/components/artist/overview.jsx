@@ -17,6 +17,7 @@ import { toast } from "sonner";
 import axios from "axios";
 import Loader from "../ui/loader";
 import { FaLastfm, FaSpotify } from "react-icons/fa";
+import EntityMilestone from "../milestones/EntityMilestone";
 
 const ArtistOverview = ({ id, lastFmStats }) => {
   const [loading, setLoading] = useState(false);
@@ -64,6 +65,9 @@ const ArtistOverview = ({ id, lastFmStats }) => {
   return (
     <div>
       {loading && <Loader component={true} text="Fetching Streaming Stats" />}
+      <div className="my-3">
+        <EntityMilestone type="artist" id={id} pageId={id} />
+      </div>
       <div className="my-3 grid gap-4 md:grid-cols-2">
         {overallData &&
           overallData?.map((data, index) => (

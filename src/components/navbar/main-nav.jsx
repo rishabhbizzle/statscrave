@@ -58,6 +58,17 @@ export function MainNav() {
           Records
         </Link>
         <Link
+          href="/milestones"
+          className={cn(
+            "transition-colors hover:text-foreground/80",
+            pathname?.startsWith("/milestones")
+              ? "text-foreground"
+              : "text-foreground/60"
+          )}
+        >
+          Milestones
+        </Link>
+        <Link
           href="/charts"
           className={cn(
             "transition-colors hover:text-foreground/80",
