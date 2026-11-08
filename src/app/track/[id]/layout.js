@@ -7,12 +7,11 @@ export async function generateMetadata({ params, searchParams }, parent) {
   // fetch data
   const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/track/${id}?metaData=true`, { cache: 'force-cache'}).then((res) => res.json())
   // optionally access and extend (rather than replace) parent metadata
+  // og:image / twitter:image come from opengraph-image.js / twitter-image.js
+  // (the live stats card), so no images are set here.
   return {
     title: `${data?.data?.trackDetails?.name} by ${data?.data?.trackDetails?.artists[0]?.name || ''} - Spotify Streams | StatsCrave`,
     openGraph: {
-      images: [
-        { url: data.data?.trackDetails?.album?.images[0]?.url, alt: data.data?.trackDetails?.name },
-        ],
       title: `${data?.data?.trackDetails?.name} by ${data?.data?.trackDetails?.artists[0]?.name || ''} - Spotify Streams | StatsCrave`,
       description: "A platform which offers comprehensive streaming statistics and personalized dashboard. Track trends, discover new music, and stay updated on pop culture developments effortlessly.",
     },
@@ -22,16 +21,6 @@ export async function generateMetadata({ params, searchParams }, parent) {
       url: 'https://statscrave.com',
       description: "A platform which offers comprehensive streaming statistics and personalized dashboard. Track trends, discover new music, and stay updated on pop culture developments effortlessly.",
       creator: "@StatsCrave",
-      images: [
-        {
-          url: data?.data?.trackDetails?.album?.images[0]?.url,
-          alt: data?.data?.trackDetails?.name,
-        },
-        {
-          url: 'https://i.postimg.cc/C10cs3Sf/og-image-wide.png',
-          alt: 'StatsCrave - Your ultimate music analytics platform!!',
-        },
-      ],
     },
   }
 }

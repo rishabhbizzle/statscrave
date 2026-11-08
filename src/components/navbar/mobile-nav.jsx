@@ -124,6 +124,24 @@ export function MobileNav() {
             <div className="flex flex-col space-y-3 pt-6">
               <React.Fragment key={1}>
                 <MobileLink
+                  href={"/milestones"}
+                  onOpenChange={setOpen}
+                  className={cn(
+                    "transition-colors hover:text-foreground/80",
+                    pathname?.startsWith("/milestones")
+                      ? "text-foreground"
+                      : "text-foreground/60"
+                  )}
+                >
+                  Milestones
+                </MobileLink>
+              </React.Fragment>
+            </div>
+          </div>
+          <div className="flex flex-col space-y-2">
+            <div className="flex flex-col space-y-3 pt-6">
+              <React.Fragment key={1}>
+                <MobileLink
                   href={"/charts"}
                   onOpenChange={setOpen}
                   className={cn(

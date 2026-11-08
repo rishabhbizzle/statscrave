@@ -6,6 +6,7 @@ import HeroSection from '@/components/landing-page/hero-section';
 import RecentUpdates from '@/components/landing-page/recent-updates';
 import TopSongsGlobal from '@/components/landing-page/TopSongsGlobal';
 import TopViralSongs from '@/components/landing-page/TopViralSongs';
+import MilestonesStrip from '@/components/landing-page/MilestonesStrip';
 import Recomendations from '@/components/recomendations';
 import Container from '@/components/ui/container'
 import Loader from '@/components/ui/loader';
@@ -68,6 +69,9 @@ export default async function Home() {
         <div className='w-full md:w-[80%]'>
           <TopSongsGlobal />
         </div>
+        <Suspense fallback={null}>
+          <MilestonesStrip />
+        </Suspense>
         <Features />
         {/* <div className='w-full'>
           <NewReleases />

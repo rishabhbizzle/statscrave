@@ -51,7 +51,7 @@ const Album = ({ params }) => {
           <BasicDetails details={data?.albumDetails} type='album' spotifyId={id} />
           <div className="flex-1 space-y-4 pt-6">
             {data?.streamingData && (
-              <StreamingDetails streamingData={data?.streamingData} type='album' />
+              <StreamingDetails streamingData={data?.streamingData} type='album' pageId={id} name={data?.albumDetails?.name} />
             )}
             <OtherDetails details={data?.albumDetails} type='album' />
             <ErrorBoundary

@@ -52,7 +52,7 @@ const Track = ({ params }) => {
           <BasicDetails details={data?.trackDetails} type='track' spotifyId={id} />
           <div className="flex-1 space-y-4 pt-6">
             {data?.streamingData && (
-              <StreamingDetails streamingData={data?.streamingData} type='track' />
+              <StreamingDetails streamingData={data?.streamingData} type='track' pageId={id} name={data?.trackDetails?.name} />
             )}
             <ErrorBoundary
               fallback={<div />}

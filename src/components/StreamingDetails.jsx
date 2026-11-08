@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { BarChartComponent } from "./barChart";
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert.jsx'
 import { Info } from "lucide-react";
+import EntityMilestone from "./milestones/EntityMilestone";
 
 
 function calculatePercentageChange(data) {
@@ -33,7 +34,7 @@ function calculatePercentageChange(data) {
   }
 }
 
-export default function StreamingDetails({ streamingData, type }) {
+export default function StreamingDetails({ streamingData, type, pageId, name }) {
   const lastDate = Object.keys(streamingData?.dailyStreams).pop();
 
   return (
@@ -104,6 +105,12 @@ export default function StreamingDetails({ streamingData, type }) {
           </CardContent>
         </Card>
       </div>
+      <EntityMilestone
+        type={type === "track" ? "song" : "album"}
+        id={streamingData?.spotifyId}
+        pageId={pageId}
+        name={name}
+      />
       <div className="grid gap-4 md:grid-cols-2">
         <Card className="col-span-4">
           <CardHeader>
