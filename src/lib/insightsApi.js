@@ -25,3 +25,10 @@ export async function fetchMilestones(kind, params = {}, init) {
   const r = await getJson(`/milestones/${kind}${qs ? `?${qs}` : ""}`, init);
   return r.ok && Array.isArray(r.data) ? r.data : [];
 }
+
+// Generic GET for the other insight-backed lists (debuts, releases, ...).
+export async function fetchList(path, params = {}, init) {
+  const qs = new URLSearchParams(Object.entries(params).filter(([, v]) => v != null && v !== "")).toString();
+  const r = await getJson(`${path}${qs ? `?${qs}` : ""}`, init);
+  return r.ok && Array.isArray(r.data) ? r.data : [];
+}

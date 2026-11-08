@@ -112,6 +112,24 @@ export default async function sitemap() {
       priority: 0.8,
     },
     {
+      url: 'https://www.statscrave.com/streamdle',
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.8,
+    },
+    {
+      url: 'https://www.statscrave.com/debuts',
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.8,
+    },
+    {
+      url: 'https://www.statscrave.com/releases',
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.8,
+    },
+    {
       url: 'https://www.statscrave.com/charts/hot100',
       lastModified: new Date(),
       changeFrequency: 'weekly',

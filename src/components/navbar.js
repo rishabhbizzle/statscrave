@@ -69,7 +69,9 @@ export default function Navbar() {
             {isAuthenticated ? (
               <UserMenu user={user} />
             ) : (
-              <SignInButton />
+              <span className="whitespace-nowrap">
+                <SignInButton />
+              </span>
             )}
 
             {userRole === "org:admin" && (
