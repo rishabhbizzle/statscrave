@@ -7,6 +7,19 @@ import { cn } from "@/lib/utils";
 import Logo from "@/assets/logo.png";
 import Image from "next/image";
 import { useComparison } from "@/context/ComparisonProvider";
+import { ChevronDown } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+export const FAN_ZONE = [
+  { href: "/milestones", label: "Milestone Tracker", description: "Countdowns to the next big stream milestones" },
+  { href: "/debuts", label: "Debut Wars", description: "Biggest first weeks, head to heads and races" },
+  { href: "/releases", label: "Releases", description: "Release countdowns and day-one streams" },
+];
 
 export function MainNav() {
   const pathname = usePathname();
@@ -14,8 +27,8 @@ export function MainNav() {
 
 
   return (
-    <div className="mr-4 hidden lg:flex">
-      <Link href="/" className="mr-6 flex items-center space-x-2">
+    <div className="mr-4 hidden xl:flex">
+      <Link href="/" className="mr-6 flex shrink-0 items-center space-x-2">
         <img
           src="/logo-white.png"
           alt="Logo"
@@ -23,11 +36,11 @@ export function MainNav() {
           height="40"
           className="rounded-full invert-white dark:invert-0"
         />
-        <span className="hidden font-bold sm:inline-block text-xl">
+        <span className="hidden font-bold xl:inline-block text-xl">
           StatsCrave
         </span>
       </Link>
-      <nav className="flex items-center gap-6 text-sm">
+      <nav className="flex items-center gap-4 whitespace-nowrap text-sm xl:gap-6">
         <Link
           href="/dashboard"
           className={cn(
@@ -58,16 +71,38 @@ export function MainNav() {
           Records
         </Link>
         <Link
-          href="/milestones"
+          href="/streamdle"
           className={cn(
             "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/milestones")
+            pathname?.startsWith("/streamdle")
               ? "text-foreground"
               : "text-foreground/60"
           )}
         >
-          Milestones
+          Streamdle
         </Link>
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            className={cn(
+              "flex items-center gap-1 outline-none transition-colors hover:text-foreground/80",
+              FAN_ZONE.some((l) => pathname?.startsWith(l.href))
+                ? "text-foreground"
+                : "text-foreground/60"
+            )}
+          >
+            Fan Zone <ChevronDown className="h-3.5 w-3.5" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="start" className="w-64">
+            {FAN_ZONE.map((l) => (
+              <DropdownMenuItem key={l.href} asChild>
+                <Link href={l.href} className="flex flex-col items-start gap-0.5">
+                  <span className="font-medium">{l.label}</span>
+                  <span className="text-xs text-muted-foreground">{l.description}</span>
+                </Link>
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
         <Link
           href="/charts"
           className={cn(

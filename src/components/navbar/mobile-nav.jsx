@@ -20,7 +20,7 @@ export function MobileNav() {
       <SheetTrigger asChild>
         <Button
           variant="ghost"
-          className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 lg:hidden"
+          className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 xl:hidden"
         >
           <svg
             strokeWidth="1.5"
@@ -124,6 +124,18 @@ export function MobileNav() {
             <div className="flex flex-col space-y-3 pt-6">
               <React.Fragment key={1}>
                 <MobileLink
+                  href={"/streamdle"}
+                  onOpenChange={setOpen}
+                  className={cn(
+                    "transition-colors hover:text-foreground/80",
+                    pathname?.startsWith("/streamdle")
+                      ? "text-foreground"
+                      : "text-foreground/60"
+                  )}
+                >
+                  Streamdle
+                </MobileLink>
+                <MobileLink
                   href={"/milestones"}
                   onOpenChange={setOpen}
                   className={cn(
@@ -134,6 +146,30 @@ export function MobileNav() {
                   )}
                 >
                   Milestones
+                </MobileLink>
+                <MobileLink
+                  href={"/debuts"}
+                  onOpenChange={setOpen}
+                  className={cn(
+                    "transition-colors hover:text-foreground/80",
+                    pathname?.startsWith("/debuts")
+                      ? "text-foreground"
+                      : "text-foreground/60"
+                  )}
+                >
+                  Debut Wars
+                </MobileLink>
+                <MobileLink
+                  href={"/releases"}
+                  onOpenChange={setOpen}
+                  className={cn(
+                    "transition-colors hover:text-foreground/80",
+                    pathname?.startsWith("/releases")
+                      ? "text-foreground"
+                      : "text-foreground/60"
+                  )}
+                >
+                  Releases
                 </MobileLink>
               </React.Fragment>
             </div>

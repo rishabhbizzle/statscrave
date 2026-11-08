@@ -14,6 +14,7 @@ import { redirect } from 'next/navigation'
 import ArtistEvents from '@/components/artist/events'
 import ArtistStats from '@/components/artist/ArtistStats'
 import { ErrorBoundary } from 'react-error-boundary'
+import ReleaseCountdownCard from '@/components/releases/ReleaseCountdownCard'
 
 
 const Artist = ({ params }) => {
@@ -48,6 +49,9 @@ const Artist = ({ params }) => {
             {artist && (
                 <div className="w-full ">
                     <BasicDetails details={artist} type="artist" spotifyId={id} />
+                    <ErrorBoundary fallback={<div />}>
+                        <ReleaseCountdownCard upcoming={artist?.upcomingRelease} latest={artist?.latestRelease} />
+                    </ErrorBoundary>
                     <Tabs className="mt-6" defaultValue='overview' activationMode='manual'>
                         <TabsList>
                             <TabsTrigger value="overview">Overview</TabsTrigger>
